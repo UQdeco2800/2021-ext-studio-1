@@ -1,5 +1,6 @@
 package com.deco2800.game.components;
 
+import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,6 +14,7 @@ public class CombatStatsComponent extends Component {
   private static final Logger logger = LoggerFactory.getLogger(CombatStatsComponent.class);
   private int health;
   private int baseAttack;
+  private long invincibleStart = 0L;
 
   public CombatStatsComponent(int health, int baseAttack) {
     setHealth(health);
@@ -85,7 +87,21 @@ public class CombatStatsComponent extends Component {
   }
 
   public void hit(CombatStatsComponent attacker) {
-    int newHealth = getHealth() - attacker.getBaseAttack();
-    setHealth(newHealth);
+    try {
+      if (ServiceLocator.getTimeSource().getTimeSince(invincibleStart) < 1000L) {
+        return;
+      }
+
+      int newHealth = getHealth() - attacker.getBaseAttack();
+      setHealth(newHealth);
+      invincibleStart = ServiceLocator.getTimeSource().getTime();
+
+    } catch (NullPointerException e) {
+      int newHealth = getHealth() - attacker.getBaseAttack();
+      setHealth(newHealth);
+    }
+
+
+
   }
 }
