@@ -56,6 +56,11 @@ public class TerrainFactory {
   public TerrainComponent createTerrain(TerrainType terrainType) {
     ResourceService resourceService = ServiceLocator.getResourceService();
     switch (terrainType) {
+      case RAINBOW_BRIDGE:
+        TextureRegion water =
+                new TextureRegion(resourceService.getAsset("images/terrain/water.png", Texture.class));
+        return createRainbowBridgeTerrain(0.5f, water);
+
       case FOREST_DEMO:
         TextureRegion orthoGrass =
             new TextureRegion(resourceService.getAsset("images/grass_1.png", Texture.class));
@@ -93,6 +98,16 @@ public class TerrainFactory {
     return new TerrainComponent(camera, tiledMap, renderer, orientation, tileWorldSize);
   }
 
+  private TerrainComponent createRainbowBridgeTerrain(
+          float tileWorldSize,
+          TextureRegion water
+  ) {
+    GridPoint2 tilePixelSize = new GridPoint2(water.getRegionWidth(), water.getRegionHeight());
+    TiledMap tiledMap = createRainbowBridgeTiles(tilePixelSize, water);
+    TiledMapRenderer renderer = createRenderer(tiledMap, tileWorldSize / tilePixelSize.x);
+    return new TerrainComponent(camera, tiledMap, renderer, orientation, tileWorldSize);
+  }
+
   private TiledMapRenderer createRenderer(TiledMap tiledMap, float tileScale) {
     switch (orientation) {
       case ORTHOGONAL:
@@ -125,6 +140,21 @@ public class TerrainFactory {
     return tiledMap;
   }
 
+  private TiledMap createRainbowBridgeTiles(
+          GridPoint2 tileSize,
+          TextureRegion water
+  ) {
+    TiledMap tiledMap = new TiledMap();
+    TerrainTile waterTile = new TerrainTile(water);
+    TiledMapTileLayer layer = new TiledMapTileLayer(MAP_SIZE.x, MAP_SIZE.y, tileSize.x, tileSize.y);
+
+    // Create base water
+    fillTiles(layer, MAP_SIZE, waterTile);
+
+    tiledMap.getLayers().add(layer);
+    return tiledMap;
+  }
+
   private static void fillTilesAtRandom(
       TiledMapTileLayer layer, GridPoint2 mapSize, TerrainTile tile, int amount) {
     GridPoint2 min = new GridPoint2(0, 0);
@@ -147,6 +177,8 @@ public class TerrainFactory {
     }
   }
 
+  // 2 functions 1 to fill the sky, one to fill the water
+
   /**
    * This enum should contain the different terrains in your game, e.g. forest, cave, home, all with
    * the same oerientation. But for demonstration purposes, the base code has the same level in 3
@@ -155,6 +187,7 @@ public class TerrainFactory {
   public enum TerrainType {
     FOREST_DEMO,
     FOREST_DEMO_ISO,
-    FOREST_DEMO_HEX
+    FOREST_DEMO_HEX,
+    RAINBOW_BRIDGE
   }
 }
