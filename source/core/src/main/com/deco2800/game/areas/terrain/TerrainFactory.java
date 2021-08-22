@@ -166,10 +166,13 @@ public class TerrainFactory {
   ) {
     TiledMap tiledMap = new TiledMap();
     TerrainTile starTile = new TerrainTile(star);
+    TerrainTile waterTile = new TerrainTile(blue);
     TiledMapTileLayer layer = new TiledMapTileLayer(MAP_SIZE.x, MAP_SIZE.y, tileSize.x, tileSize.y);
 
     // Create base star
-    fillTiles(layer, MAP_SIZE, starTile);
+    fillTopHalfTiles(layer, MAP_SIZE, starTile);
+    fillBottomHalfTiles(layer, MAP_SIZE, waterTile);
+
 
     tiledMap.getLayers().add(layer);
     return tiledMap;
@@ -197,7 +200,25 @@ public class TerrainFactory {
     }
   }
 
-  // 2 functions 1 to fill the sky, one to fill the water
+  private static void fillBottomHalfTiles(TiledMapTileLayer layer, GridPoint2 mapSize, TerrainTile tile) {
+    for (int x = 0; x < mapSize.x; x++) {
+      for (int y = 0; y < mapSize.y / 2; y++) {
+        Cell cell = new Cell();
+        cell.setTile(tile);
+        layer.setCell(x, y, cell);
+      }
+    }
+  }
+
+  private static void fillTopHalfTiles(TiledMapTileLayer layer, GridPoint2 mapSize, TerrainTile tile) {
+    for (int x = 0; x < mapSize.x; x++) {
+      for (int y = mapSize.y / 2; y < mapSize.y; y++) {
+        Cell cell = new Cell();
+        cell.setTile(tile);
+        layer.setCell(x, y, cell);
+      }
+    }
+  }
 
   /**
    * This enum should contain the different terrains in your game, e.g. forest, cave, home, all with
