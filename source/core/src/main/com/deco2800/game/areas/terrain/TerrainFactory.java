@@ -57,33 +57,43 @@ public class TerrainFactory {
     ResourceService resourceService = ServiceLocator.getResourceService();
     switch (terrainType) {
       case RAINBOW_BRIDGE:
+        TextureRegion star =
+                new TextureRegion(resourceService.getAsset("images/terrain/star.png", Texture.class));
         TextureRegion water =
                 new TextureRegion(resourceService.getAsset("images/terrain/water.png", Texture.class));
-        return createRainbowBridgeTerrain(0.5f, water);
+        TextureRegion red =
+                new TextureRegion(resourceService.getAsset("images/terrain/red.png", Texture.class));
+        TextureRegion blue =
+                new TextureRegion(resourceService.getAsset("images/terrain/blue.png", Texture.class));
+        TextureRegion green =
+                new TextureRegion(resourceService.getAsset("images/terrain/green.png", Texture.class));
+        TextureRegion purple =
+                new TextureRegion(resourceService.getAsset("images/terrain/purple.png", Texture.class));
+        return createRainbowBridgeTerrain(0.5f, star, water, red, blue, green, purple);
 
       case FOREST_DEMO:
         TextureRegion orthoGrass =
-            new TextureRegion(resourceService.getAsset("images/grass_1.png", Texture.class));
+                new TextureRegion(resourceService.getAsset("images/grass_1.png", Texture.class));
         TextureRegion orthoTuft =
-            new TextureRegion(resourceService.getAsset("images/grass_2.png", Texture.class));
+                new TextureRegion(resourceService.getAsset("images/grass_2.png", Texture.class));
         TextureRegion orthoRocks =
-            new TextureRegion(resourceService.getAsset("images/grass_3.png", Texture.class));
+                new TextureRegion(resourceService.getAsset("images/grass_3.png", Texture.class));
         return createForestDemoTerrain(0.5f, orthoGrass, orthoTuft, orthoRocks);
       case FOREST_DEMO_ISO:
         TextureRegion isoGrass =
-            new TextureRegion(resourceService.getAsset("images/iso_grass_1.png", Texture.class));
+                new TextureRegion(resourceService.getAsset("images/iso_grass_1.png", Texture.class));
         TextureRegion isoTuft =
-            new TextureRegion(resourceService.getAsset("images/iso_grass_2.png", Texture.class));
+                new TextureRegion(resourceService.getAsset("images/iso_grass_2.png", Texture.class));
         TextureRegion isoRocks =
-            new TextureRegion(resourceService.getAsset("images/iso_grass_3.png", Texture.class));
+                new TextureRegion(resourceService.getAsset("images/iso_grass_3.png", Texture.class));
         return createForestDemoTerrain(1f, isoGrass, isoTuft, isoRocks);
       case FOREST_DEMO_HEX:
         TextureRegion hexGrass =
-            new TextureRegion(resourceService.getAsset("images/hex_grass_1.png", Texture.class));
+                new TextureRegion(resourceService.getAsset("images/hex_grass_1.png", Texture.class));
         TextureRegion hexTuft =
-            new TextureRegion(resourceService.getAsset("images/hex_grass_2.png", Texture.class));
+                new TextureRegion(resourceService.getAsset("images/hex_grass_2.png", Texture.class));
         TextureRegion hexRocks =
-            new TextureRegion(resourceService.getAsset("images/hex_grass_3.png", Texture.class));
+                new TextureRegion(resourceService.getAsset("images/hex_grass_3.png", Texture.class));
         return createForestDemoTerrain(1f, hexGrass, hexTuft, hexRocks);
       default:
         return null;
@@ -91,7 +101,7 @@ public class TerrainFactory {
   }
 
   private TerrainComponent createForestDemoTerrain(
-      float tileWorldSize, TextureRegion grass, TextureRegion grassTuft, TextureRegion rocks) {
+          float tileWorldSize, TextureRegion grass, TextureRegion grassTuft, TextureRegion rocks) {
     GridPoint2 tilePixelSize = new GridPoint2(grass.getRegionWidth(), grass.getRegionHeight());
     TiledMap tiledMap = createForestDemoTiles(tilePixelSize, grass, grassTuft, rocks);
     TiledMapRenderer renderer = createRenderer(tiledMap, tileWorldSize / tilePixelSize.x);
@@ -100,10 +110,15 @@ public class TerrainFactory {
 
   private TerrainComponent createRainbowBridgeTerrain(
           float tileWorldSize,
-          TextureRegion water
+          TextureRegion star,
+          TextureRegion water,
+          TextureRegion red,
+          TextureRegion blue,
+          TextureRegion green,
+          TextureRegion purple
   ) {
-    GridPoint2 tilePixelSize = new GridPoint2(water.getRegionWidth(), water.getRegionHeight());
-    TiledMap tiledMap = createRainbowBridgeTiles(tilePixelSize, water);
+    GridPoint2 tilePixelSize = new GridPoint2(star.getRegionWidth(), star.getRegionHeight());
+    TiledMap tiledMap = createRainbowBridgeTiles(tilePixelSize, star, water, red, blue, green, purple);
     TiledMapRenderer renderer = createRenderer(tiledMap, tileWorldSize / tilePixelSize.x);
     return new TerrainComponent(camera, tiledMap, renderer, orientation, tileWorldSize);
   }
@@ -122,7 +137,7 @@ public class TerrainFactory {
   }
 
   private TiledMap createForestDemoTiles(
-      GridPoint2 tileSize, TextureRegion grass, TextureRegion grassTuft, TextureRegion rocks) {
+          GridPoint2 tileSize, TextureRegion grass, TextureRegion grassTuft, TextureRegion rocks) {
     TiledMap tiledMap = new TiledMap();
     TerrainTile grassTile = new TerrainTile(grass);
     TerrainTile grassTuftTile = new TerrainTile(grassTuft);
@@ -142,21 +157,26 @@ public class TerrainFactory {
 
   private TiledMap createRainbowBridgeTiles(
           GridPoint2 tileSize,
-          TextureRegion water
+          TextureRegion star,
+          TextureRegion water,
+          TextureRegion red,
+          TextureRegion blue,
+          TextureRegion green,
+          TextureRegion purple
   ) {
     TiledMap tiledMap = new TiledMap();
-    TerrainTile waterTile = new TerrainTile(water);
+    TerrainTile starTile = new TerrainTile(star);
     TiledMapTileLayer layer = new TiledMapTileLayer(MAP_SIZE.x, MAP_SIZE.y, tileSize.x, tileSize.y);
 
-    // Create base water
-    fillTiles(layer, MAP_SIZE, waterTile);
+    // Create base star
+    fillTiles(layer, MAP_SIZE, starTile);
 
     tiledMap.getLayers().add(layer);
     return tiledMap;
   }
 
   private static void fillTilesAtRandom(
-      TiledMapTileLayer layer, GridPoint2 mapSize, TerrainTile tile, int amount) {
+          TiledMapTileLayer layer, GridPoint2 mapSize, TerrainTile tile, int amount) {
     GridPoint2 min = new GridPoint2(0, 0);
     GridPoint2 max = new GridPoint2(mapSize.x - 1, mapSize.y - 1);
 

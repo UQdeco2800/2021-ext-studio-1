@@ -70,7 +70,7 @@ public class GdxGame extends Game {
       case MAIN_MENU:
         return new MainMenuScreen(this);
       case MAIN_GAME:
-        return new MainGameScreen(this);
+        return new RagnorakRacer(this);
       case SETTINGS:
         return new SettingsScreen(this);
       default:

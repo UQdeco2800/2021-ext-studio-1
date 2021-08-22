@@ -20,7 +20,12 @@ public class RainbowBridge extends GameArea {
     private static final GridPoint2 PLAYER_SPAWN = new GridPoint2(10, 10);
     private static final float WALL_WIDTH = 0.1f;
     private static final String[] rainbowBridgeTextures = {
+            "images/terrain/star.png",
             "images/terrain/water.png",
+            "images/terrain/red.png",
+            "images/terrain/blue.png",
+            "images/terrain/green.png",
+            "images/terrain/purple.png",
     };
 
 
