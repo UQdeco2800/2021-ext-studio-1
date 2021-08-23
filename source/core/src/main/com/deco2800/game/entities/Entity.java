@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
  * position and scale, but have no default behaviour. Components should be added to an entity to
  * give it specific behaviour. This class should not be inherited or modified directly.
  *
- * <p>Example use:
+ * <p>Example use:D
  *
  * <pre>
  * Entity player = new Entity()
