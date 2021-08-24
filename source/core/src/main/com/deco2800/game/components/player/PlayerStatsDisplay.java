@@ -17,7 +17,7 @@ import javax.swing.*;
 public class PlayerStatsDisplay extends UIComponent {
   Table table;
   Table notification;
-  Table heart_animat;
+  Table heartAnimat;
   private Image heartImage;
   private Label healthLabel;
   private Image armourImage;
@@ -83,23 +83,24 @@ public class PlayerStatsDisplay extends UIComponent {
     notification.top();
     notification.setFillParent(true);
     notification.padTop(0).padLeft(5f);
-    float noWidth = 173f;
-    float noHeight = 71f;
+    float noWidth = 519f;
+    float noHeight = 213f;
     noImage = new Image(ServiceLocator.getResourceService().getAsset("images/notification.png", Texture.class));
 
-    notification.add(noImage).size(noWidth,noHeight).pad(5);
+    notification.add(noImage).size(noWidth, noHeight).pad(5);
     stage.addActor(notification);
+    notification.setVisible(false);
 
     //Player get treat Animation
-    heart_animat =  new Table();
-    heart_animat.center();
-    heart_animat.setFillParent(true);
+    heartAnimat =  new Table();
+    heartAnimat.center();
+    heartAnimat.setFillParent(true);
     treatImage = new Image(ServiceLocator.getResourceService().getAsset("images/treat0.png", Texture.class));
 
-    heart_animat.add(treatImage).size(64f,64f).pad(5);
-    stage.addActor(heart_animat);
+    heartAnimat.add(treatImage).size(64f,64f).pad(5);
+    stage.addActor(heartAnimat);
+    heartAnimat.setVisible(false);
   }
-
 
   @Override
   public void draw(SpriteBatch batch)  {
@@ -113,6 +114,20 @@ public class PlayerStatsDisplay extends UIComponent {
   public void updatePlayerHealthUI(int health) {
     CharSequence text = String.format("Health: %d", health);
     healthLabel.setText(text);
+
+    //Notification appears and disposes
+    new Thread() {
+      public void run() {
+        try {
+          notification.setVisible(true);
+          heartAnimat.setVisible(true);
+          Thread.sleep(1500);
+          notification.setVisible(false);
+          heartAnimat.setVisible(false);
+        }
+        catch (InterruptedException e) {}
+      }
+    }.start();
   }
 
   @Override
@@ -120,5 +135,9 @@ public class PlayerStatsDisplay extends UIComponent {
     super.dispose();
     heartImage.remove();
     healthLabel.remove();
+    noImage.remove();
   }
+
+
 }
+
