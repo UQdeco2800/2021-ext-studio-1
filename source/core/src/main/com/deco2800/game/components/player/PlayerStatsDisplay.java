@@ -16,6 +16,8 @@ public class PlayerStatsDisplay extends UIComponent {
   Table table;
   private Image heartImage;
   private Label healthLabel;
+  private Image armourImage;
+  private Label armourLabel;
 
   /**
    * Creates reusable ui styles and adds actors to the stage.
@@ -47,8 +49,20 @@ public class PlayerStatsDisplay extends UIComponent {
     CharSequence healthText = String.format("Health: %d", health);
     healthLabel = new Label(healthText, skin, "large");
 
+    // Armour image for when there is an image
+    //float armourSideLength = 60f;
+    //armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour.png", Texture.class));
+
+    // Armour text
+    int armour = entity.getComponent(CombatStatsComponent.class).getArmour();
+    CharSequence armourText = String.format("Armour: %d", armour);
+    armourLabel = new Label(armourText, skin, "large");
+
+
     table.add(heartImage).size(heartSideLength).pad(5);
     table.add(healthLabel);
+    //table.add(armourImage).size(armourSideLength).pad(5);
+    table.add(armourLabel);
     stage.addActor(table);
   }
 

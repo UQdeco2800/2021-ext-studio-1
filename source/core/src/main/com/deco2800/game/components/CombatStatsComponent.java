@@ -13,6 +13,7 @@ public class CombatStatsComponent extends Component {
 
   private static final Logger logger = LoggerFactory.getLogger(CombatStatsComponent.class);
   private int health;
+  private int armour;
   private int baseAttack;
   private long invincibleStart = 0L;
 
@@ -40,6 +41,15 @@ public class CombatStatsComponent extends Component {
   }
 
   /**
+   * Returns the entity's armour.
+   *
+   * @return entity's armour
+   */
+  public int getArmour() {
+    return armour;
+  }
+
+  /**
    * Sets the entity's health. Health has a minimum bound of 0.
    *
    * @param health health
@@ -56,12 +66,37 @@ public class CombatStatsComponent extends Component {
   }
 
   /**
+   * Sets the entity's armour. Armour has a minimum bound of 0.
+   *
+   * @param armour armour
+   */
+  public void setArmour(int armour) {
+    if (armour >= 0) {
+      this.armour = armour;
+    } else {
+      this.armour = 0;
+    }
+    if (entity != null) {
+      entity.getEvents().trigger("updateArmour", this.armour);
+    }
+  }
+
+  /**
    * Adds to the player's health. The amount added can be negative.
    *
    * @param health health to add
    */
   public void addHealth(int health) {
     setHealth(this.health + health);
+  }
+
+  /**
+   * Adds to the player's armour. The amount added can not be negative.
+   *
+   * @param armour armour to add
+   */
+  public void addArmour(int armour) {
+    setArmour(this.armour + armour);
   }
 
   /**
@@ -92,9 +127,16 @@ public class CombatStatsComponent extends Component {
         return;
       }
 
-      int newHealth = getHealth() - attacker.getBaseAttack();
-      setHealth(newHealth);
-      invincibleStart = ServiceLocator.getTimeSource().getTime();
+      if (armour > 0){
+        int newArmour = getArmour() - attacker.getBaseAttack();
+        setArmour(newArmour);
+        invincibleStart = ServiceLocator.getTimeSource().getTime();
+      }
+      else{
+        int newHealth = getHealth() - attacker.getBaseAttack();
+        setHealth(newHealth);
+        invincibleStart = ServiceLocator.getTimeSource().getTime();
+      }
 
     } catch (NullPointerException e) {
       int newHealth = getHealth() - attacker.getBaseAttack();
