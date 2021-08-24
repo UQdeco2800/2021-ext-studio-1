@@ -78,14 +78,14 @@ public class PlayerStatsDisplay extends UIComponent {
     notification.top();
     notification.setFillParent(true);
     notification.padTop(0).padLeft(5f);
-    float noWidth = 173f;
-    float noHeight = 71f;
+    float noWidth = 519f;
+    float noHeight = 213f;
     noImage = new Image(ServiceLocator.getResourceService().getAsset("images/notification.png", Texture.class));
 
-    notification.add(noImage).size(noWidth,noHeight).pad(5);
+    notification.add(noImage).size(noWidth, noHeight).pad(5);
     stage.addActor(notification);
+    notification.setVisible(false);
   }
-
   @Override
   public void draw(SpriteBatch batch)  {
     // draw is handled by the stage
@@ -98,6 +98,18 @@ public class PlayerStatsDisplay extends UIComponent {
   public void updatePlayerHealthUI(int health) {
     CharSequence text = String.format("Health: %d", health);
     healthLabel.setText(text);
+
+    //Notification appears and disposes
+    new Thread() {
+      public void run() {
+        try {
+          notification.setVisible(true);
+          Thread.sleep(1500);
+          notification.setVisible(false);
+        }
+        catch (InterruptedException e) {}
+      }
+    }.start();
   }
 
   @Override
@@ -105,5 +117,6 @@ public class PlayerStatsDisplay extends UIComponent {
     super.dispose();
     heartImage.remove();
     healthLabel.remove();
+    noImage.remove();
   }
 }
