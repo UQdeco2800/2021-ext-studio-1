@@ -9,17 +9,22 @@ import com.deco2800.game.components.CombatStatsComponent;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
 
+import javax.swing.*;
+
 /**
  * A ui component for displaying player stats, e.g. health.
  */
 public class PlayerStatsDisplay extends UIComponent {
   Table table;
   Table notification;
+  Table heart_animat;
   private Image heartImage;
   private Label healthLabel;
   private Image armourImage;
   private Label armourLabel;
   private Image noImage;
+  private Image treatImage;
+
 
   /**
    * Creates reusable ui styles and adds actors to the stage.
@@ -84,7 +89,17 @@ public class PlayerStatsDisplay extends UIComponent {
 
     notification.add(noImage).size(noWidth,noHeight).pad(5);
     stage.addActor(notification);
+
+    //Player get treat Animation
+    heart_animat =  new Table();
+    heart_animat.center();
+    heart_animat.setFillParent(true);
+    treatImage = new Image(ServiceLocator.getResourceService().getAsset("images/treat0.png", Texture.class));
+
+    heart_animat.add(treatImage).size(64f,64f).pad(5);
+    stage.addActor(heart_animat);
   }
+
 
   @Override
   public void draw(SpriteBatch batch)  {
