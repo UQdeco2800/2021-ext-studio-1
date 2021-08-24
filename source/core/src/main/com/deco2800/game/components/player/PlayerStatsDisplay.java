@@ -14,10 +14,12 @@ import com.deco2800.game.ui.UIComponent;
  */
 public class PlayerStatsDisplay extends UIComponent {
   Table table;
+  Table notification;
   private Image heartImage;
   private Label healthLabel;
   private Image armourImage;
   private Label armourLabel;
+  private Image noImage;
 
   /**
    * Creates reusable ui styles and adds actors to the stage.
@@ -58,12 +60,23 @@ public class PlayerStatsDisplay extends UIComponent {
     CharSequence armourText = String.format("Armour: %d", armour);
     armourLabel = new Label(armourText, skin, "large");
 
-
     table.add(heartImage).size(heartSideLength).pad(5);
     table.add(healthLabel);
     //table.add(armourImage).size(armourSideLength).pad(5);
     table.add(armourLabel);
     stage.addActor(table);
+
+    // Notification
+    notification = new Table();
+    notification.top();
+    notification.setFillParent(true);
+    notification.padTop(0).padLeft(5f);
+    float noWidth = 173f;
+    float noHeight = 71f;
+    noImage = new Image(ServiceLocator.getResourceService().getAsset("images/notification.png", Texture.class));
+
+    notification.add(noImage).size(noWidth,noHeight).pad(5);
+    stage.addActor(notification);
   }
 
   @Override
