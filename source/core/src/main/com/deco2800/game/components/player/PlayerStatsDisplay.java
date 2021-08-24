@@ -40,7 +40,7 @@ public class PlayerStatsDisplay extends UIComponent {
     table = new Table();
     table.top().left();
     table.setFillParent(true);
-    table.padTop(45f).padLeft(5f);
+    table.padTop(30).padLeft(5f);
 
     // Heart image
     float heartSideLength = 200f;
@@ -61,10 +61,17 @@ public class PlayerStatsDisplay extends UIComponent {
     armourLabel = new Label(armourText, skin, "large");
 
     table.add(heartImage).size(heartSideLength).pad(5);
-    table.add(healthLabel).pad(20);
-    //table.add(armourImage).size(armourSideLength).pad(5);
-    table.add(armourLabel);
     stage.addActor(table);
+
+    Table healthStats = new Table();
+    healthStats.top().left();
+    healthStats.setFillParent(true);
+    healthStats.padTop(100f).padLeft(5f);
+
+    healthStats.add(healthLabel).pad(20);
+    //table.add(armourImage).size(armourSideLength).pad(5);
+    healthStats.add(armourLabel);
+    stage.addActor(healthStats);
 
     // Notification
     notification = new Table();
