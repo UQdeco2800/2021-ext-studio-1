@@ -163,21 +163,61 @@ public class TerrainFactory {
           TextureRegion blue,
           TextureRegion green,
           TextureRegion purple
+
   ) {
     TiledMap tiledMap = new TiledMap();
     TerrainTile starTile = new TerrainTile(star);
     TerrainTile waterTile = new TerrainTile(blue);
+
+
+    TerrainTile laneOne = new TerrainTile(purple);
+    TerrainTile laneTwo = new TerrainTile(red);
+    TerrainTile laneThree = new TerrainTile(green);
+
+
     TiledMapTileLayer layer = new TiledMapTileLayer(MAP_SIZE.x, MAP_SIZE.y, tileSize.x, tileSize.y);
 
     // Create base star
     fillTopHalfTiles(layer, MAP_SIZE, starTile);
     fillBottomHalfTiles(layer, MAP_SIZE, waterTile);
 
+    //Create lanes
+    fillMiddleTilesOne(layer, MAP_SIZE, laneOne);
+    fillMiddleTilesTwo(layer, MAP_SIZE, laneTwo);
+    fillMiddleTilesThree(layer, MAP_SIZE, laneThree);
+
+
 
     tiledMap.getLayers().add(layer);
     return tiledMap;
   }
-
+  private static void fillMiddleTilesOne(TiledMapTileLayer layer, GridPoint2 mapSize, TerrainTile tile) {
+    for (int x = 0; x < mapSize.x; x++) {
+      for (int y = mapSize.y/8; y < (mapSize.y/8)*2 ; y++) {
+        Cell cell = new Cell();
+        cell.setTile(tile);
+        layer.setCell(x, y, cell);
+      }
+    }
+  }
+  private static void fillMiddleTilesTwo(TiledMapTileLayer layer, GridPoint2 mapSize, TerrainTile tile) {
+    for (int x = 0; x < mapSize.x; x++) {
+      for (int y = (mapSize.y/8)*2; y < (mapSize.y/8)*3 ; y++) {
+        Cell cell = new Cell();
+        cell.setTile(tile);
+        layer.setCell(x, y, cell);
+      }
+    }
+  }
+  private static void fillMiddleTilesThree(TiledMapTileLayer layer, GridPoint2 mapSize, TerrainTile tile) {
+    for (int x = 0; x < mapSize.x; x++) {
+      for (int y = (mapSize.y/8)*3; y < (mapSize.y/8)*4 ; y++) {
+        Cell cell = new Cell();
+        cell.setTile(tile);
+        layer.setCell(x, y, cell);
+      }
+    }
+  }
   private static void fillTilesAtRandom(
           TiledMapTileLayer layer, GridPoint2 mapSize, TerrainTile tile, int amount) {
     GridPoint2 min = new GridPoint2(0, 0);
