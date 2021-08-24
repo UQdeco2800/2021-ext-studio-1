@@ -168,12 +168,9 @@ public class TerrainFactory {
     TiledMap tiledMap = new TiledMap();
     TerrainTile starTile = new TerrainTile(star);
     TerrainTile waterTile = new TerrainTile(blue);
-
-
     TerrainTile laneOne = new TerrainTile(purple);
     TerrainTile laneTwo = new TerrainTile(red);
     TerrainTile laneThree = new TerrainTile(green);
-
 
     TiledMapTileLayer layer = new TiledMapTileLayer(MAP_SIZE.x, MAP_SIZE.y, tileSize.x, tileSize.y);
 
@@ -185,9 +182,7 @@ public class TerrainFactory {
     fillMiddleTilesOne(layer, MAP_SIZE, laneOne);
     fillMiddleTilesTwo(layer, MAP_SIZE, laneTwo);
     fillMiddleTilesThree(layer, MAP_SIZE, laneThree);
-
-
-
+    
     tiledMap.getLayers().add(layer);
     return tiledMap;
   }
