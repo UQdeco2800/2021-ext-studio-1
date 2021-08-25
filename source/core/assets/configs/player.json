@@ -2,5 +2,6 @@
   "health": 3,
   "baseAttack": 10,
   "gold": 50,
-  "favouriteColour": "peach"
+  "favouriteColour": "peach",
+  "armour": 0
 }
