@@ -92,6 +92,34 @@ public class ObstacleFactory {
     return fire;
   }
 
+  public static Entity createFirstAidKit() {
+    Entity FirstAidKit =
+            new Entity()
+                    .addComponent(new TextureRenderComponent("images/FirstAidKit.png"))
+                    .addComponent(new PhysicsComponent())
+                    .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE));
+
+    FirstAidKit.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+    FirstAidKit.getComponent(TextureRenderComponent.class).scaleEntity();
+    FirstAidKit.scaleHeight(2.5f);
+    PhysicsUtils.setScaledCollider(FirstAidKit, 0.5f, 0.2f);
+    return FirstAidKit;
+  }
+
+  public static Entity createFood() {
+    Entity Food =
+            new Entity()
+                    .addComponent(new TextureRenderComponent("images/food.png"))
+                    .addComponent(new PhysicsComponent())
+                    .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE));
+
+    Food.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+    Food.getComponent(TextureRenderComponent.class).scaleEntity();
+    Food.scaleHeight(2.5f);
+    PhysicsUtils.setScaledCollider(Food, 0.5f, 0.2f);
+    return Food;
+  }
+
   /**
    * Creates an invisible physics wall.
    * @param width Wall width in world units
