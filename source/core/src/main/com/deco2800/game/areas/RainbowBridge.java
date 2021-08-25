@@ -15,6 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+
+
 public class RainbowBridge extends GameArea {
     private static final Logger logger = LoggerFactory.getLogger(ForestGameArea.class);
     private static final GridPoint2 PLAYER_SPAWN = new GridPoint2(10, 10);
@@ -26,6 +28,7 @@ public class RainbowBridge extends GameArea {
             "images/terrain/blue.png",
             "images/terrain/green.png",
             "images/terrain/purple.png",
+
     };
 
 
@@ -51,6 +54,7 @@ public class RainbowBridge extends GameArea {
         ui.addComponent(new GameAreaDisplay("Rainbow Bridge"));
         spawnEntity(ui);
     }
+
 
     private void spawnTerrain() {
         // Background terrain
