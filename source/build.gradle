@@ -74,6 +74,7 @@ project(":core") {
         api "net.dermetfan.libgdx-utils:libgdx-utils:$gdxUtilsVersion"
         api "net.dermetfan.libgdx-utils:libgdx-utils-box2d:$gdxUtilsVersion"
 
+
         // Logging
         api  "org.slf4j:slf4j-api:$slf4jVersion"
         api  "org.slf4j:slf4j-jdk14:$slf4jVersion"

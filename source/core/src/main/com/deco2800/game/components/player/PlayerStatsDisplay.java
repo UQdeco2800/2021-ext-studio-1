@@ -93,7 +93,8 @@ public class PlayerStatsDisplay extends UIComponent {
 
     //Player get treat Animation
     heartAnimat =  new Table();
-    heartAnimat.center();
+    heartAnimat.top();
+    heartAnimat.padTop(0f).padRight(1500f);
     heartAnimat.setFillParent(true);
     treatImage = new Image(ServiceLocator.getResourceService().getAsset("images/treat0.png", Texture.class));
 
