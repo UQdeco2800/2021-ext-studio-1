@@ -2,14 +2,17 @@ package com.deco2800.game.components.player;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.deco2800.game.components.CombatStatsComponent;
+import com.deco2800.game.entities.Entity;
+import com.deco2800.game.rendering.AnimationRenderComponent;
+import com.deco2800.game.services.ResourceService;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
 
-import javax.swing.*;
 
 /**
  * A ui component for displaying player stats, e.g. health.
@@ -24,7 +27,8 @@ public class PlayerStatsDisplay extends UIComponent {
   private Label armourLabel;
   private Image noImage;
   private Image treatImage;
-
+  private String treatFileName;
+  private Entity player = new Entity();
 
   /**
    * Creates reusable ui styles and adds actors to the stage.
@@ -91,15 +95,31 @@ public class PlayerStatsDisplay extends UIComponent {
     stage.addActor(notification);
     notification.setVisible(false);
 
-    //Player get treat Animation
+
+  }
+
+  /**
+   * Player treatment Animation
+   */
+  public void treatAnimate() {
     heartAnimat =  new Table();
     heartAnimat.center();
     heartAnimat.setFillParent(true);
-    treatImage = new Image(ServiceLocator.getResourceService().getAsset("images/treat0.png", Texture.class));
-
-    heartAnimat.add(treatImage).size(64f,64f).pad(5);
+    new Thread() {
+      public void run() {
+        try {
+          for (int i = 0; i <= 2;i++) {
+            treatFileName =String.format("images/treat%d.png",i);
+            treatImage = new Image(ServiceLocator.getResourceService().getAsset(treatFileName, Texture.class));
+            heartAnimat.add(treatImage).size(32f,32f).pad(-10);
+            Thread.sleep(100);
+            heartAnimat.clearChildren();
+          }
+        }
+        catch (InterruptedException e) {}
+      }
+    }.start();
     stage.addActor(heartAnimat);
-    heartAnimat.setVisible(false);
   }
 
   @Override
@@ -114,16 +134,15 @@ public class PlayerStatsDisplay extends UIComponent {
   public void updatePlayerHealthUI(int health) {
     CharSequence text = String.format("Health: %d", health);
     healthLabel.setText(text);
+    treatAnimate();
 
     //Notification appears and disposes
     new Thread() {
       public void run() {
         try {
           notification.setVisible(true);
-          heartAnimat.setVisible(true);
           Thread.sleep(1500);
           notification.setVisible(false);
-          heartAnimat.setVisible(false);
         }
         catch (InterruptedException e) {}
       }
@@ -136,8 +155,7 @@ public class PlayerStatsDisplay extends UIComponent {
     heartImage.remove();
     healthLabel.remove();
     noImage.remove();
+    heartAnimat.remove();
   }
-
-
 }
 
