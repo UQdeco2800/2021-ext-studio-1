@@ -103,7 +103,8 @@ public class PlayerStatsDisplay extends UIComponent {
    */
   public void treatAnimate() {
     heartAnimat =  new Table();
-    heartAnimat.center();
+    heartAnimat.top();
+    heartAnimat.padTop(0f).padRight(1500f);
     heartAnimat.setFillParent(true);
     new Thread() {
       public void run() {
