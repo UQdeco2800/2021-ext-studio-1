@@ -29,6 +29,7 @@ public class Bridge {
     public Bridge(int offset, int width) {
         this.offset = offset;
         this.lanes = new ArrayList<>();
+        this.width = width;
     }
 
     /**
@@ -47,16 +48,11 @@ public class Bridge {
         return this.lanes;
     }
 
-    /**
-     * Returns a lane at a given bridge position
-     * @param pos position on the bridge
-     * @return  lane
-     */
-    public Lane getLane(int pos) {
-        if (pos >= this.lanes.size() || pos < 0) {
-            throw new IllegalArgumentException("pos out of bounds of bridge");
+    public Lane getLastLane(){
+        if (this.lanes.size() == 0) {
+            throw new IllegalCallerException("Unable to get a lane from an empty list");
         } else {
-            return this.lanes.get(pos);
+            return this.lanes.get(this.lanes.size() - 1);
         }
     }
 
@@ -68,7 +64,7 @@ public class Bridge {
         if (this.lanes.size() == 0) {
             newLane = new Lane(offset, offset + width);
         } else {
-            int yCoordinate = this.lanes.get(this.lanes.size() - 1).getBot() + 1;
+            int yCoordinate = this.lanes.get(this.lanes.size() - 1).getBot();
             newLane = new Lane(yCoordinate, yCoordinate + width);
         }
         lanes.add(newLane);

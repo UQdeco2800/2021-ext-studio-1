@@ -14,9 +14,13 @@ import com.badlogic.gdx.math.GridPoint2;
 import com.deco2800.game.areas.terrain.TerrainComponent.TerrainOrientation;
 import com.deco2800.game.components.CameraComponent;
 import com.deco2800.game.components.bridge.Bridge;
+import com.deco2800.game.components.bridge.Lane;
 import com.deco2800.game.utils.math.RandomUtils;
 import com.deco2800.game.services.ResourceService;
 import com.deco2800.game.services.ServiceLocator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /** Factory for creating game terrains. */
 public class TerrainFactory {
@@ -122,8 +126,26 @@ public class TerrainFactory {
   ) {
     GridPoint2 tilePixelSize = new GridPoint2(star.getRegionWidth(), star.getRegionHeight());
 
+    // Magic numbers, need to be set in a config file in future
+    // offset - y coordinate to start drawing the bridge
+    // width - width of a lane
+    int offset = 6;
+    int width = 3;
+    int laneCount = 4;
+
     // Fills the tile of the screen, also creates an instance of Bridge
-    TiledMap tiledMap = createRainbowBridgeTiles(tilePixelSize, star, water, red, blue, green, purple);
+    TiledMap tiledMap = createRainbowBridgeTiles(
+            tilePixelSize,
+            offset,
+            width,
+            laneCount,
+            star,
+            water,
+            red,
+            blue,
+            green,
+            purple
+    );
 
     TiledMapRenderer renderer = createRenderer(tiledMap, tileWorldSize / tilePixelSize.x);
     return new TerrainComponent(camera, tiledMap, renderer, orientation, tileWorldSize, bridge);
@@ -163,6 +185,9 @@ public class TerrainFactory {
 
   private TiledMap createRainbowBridgeTiles(
           GridPoint2 tileSize,
+          int offset,
+          int width,
+          int laneCount,
           TextureRegion star,
           TextureRegion water,
           TextureRegion red,
@@ -174,51 +199,41 @@ public class TerrainFactory {
     TiledMap tiledMap = new TiledMap();
     TerrainTile starTile = new TerrainTile(star);
     TerrainTile waterTile = new TerrainTile(water);
-    TerrainTile laneOne = new TerrainTile(purple);
-    TerrainTile laneTwo = new TerrainTile(red);
-    TerrainTile laneThree = new TerrainTile(green);
+
+    // Places a coloured tile in a List
+    List<TerrainTile> bridgeTileColours = new ArrayList<>();
+    bridgeTileColours.add(new TerrainTile(purple));
+    bridgeTileColours.add(new TerrainTile(blue));
+    bridgeTileColours.add(new TerrainTile(green));
+    bridgeTileColours.add(new TerrainTile(red));
 
     TiledMapTileLayer layer = new TiledMapTileLayer(MAP_SIZE.x, MAP_SIZE.y, tileSize.x, tileSize.y);
 
-    // Create base star
+    // Create backdrop
     fillTopHalfTiles(layer, MAP_SIZE, starTile);
     fillBottomHalfTiles(layer, MAP_SIZE, waterTile);
 
-    //Create lanes
-    fillMiddleTilesOne(layer, MAP_SIZE, laneOne);
-    fillMiddleTilesTwo(layer, MAP_SIZE, laneTwo);
-    fillMiddleTilesThree(layer, MAP_SIZE, laneThree);
+    Bridge bridge = new Bridge(offset, width);
+    for (int i = 0; i < laneCount; i++) {
+      bridge.createLane();
+      Lane lane = bridge.getLastLane();
+      fillTilesInRange(layer, bridgeTileColours.get(i), lane.getTop(), lane.getBot(), 0, MAP_SIZE.x);
+    }
 
     tiledMap.getLayers().add(layer);
     return tiledMap;
   }
-  private static void fillMiddleTilesOne(TiledMapTileLayer layer, GridPoint2 mapSize, TerrainTile tile) {
-    for (int x = 0; x < mapSize.x; x++) {
-      for (int y = mapSize.y/8; y < (mapSize.y/8)*2 ; y++) {
+
+  private static void fillTilesInRange(TiledMapTileLayer layer, TerrainTile tile, int y1, int y2, int x1, int x2) {
+    for (int x = x1; x < x2; x++) {
+      for (int y = y1; y < y2 ; y++) {
         Cell cell = new Cell();
         cell.setTile(tile);
         layer.setCell(x, y, cell);
       }
     }
   }
-  private static void fillMiddleTilesTwo(TiledMapTileLayer layer, GridPoint2 mapSize, TerrainTile tile) {
-    for (int x = 0; x < mapSize.x; x++) {
-      for (int y = (mapSize.y/8)*2; y < (mapSize.y/8)*3 ; y++) {
-        Cell cell = new Cell();
-        cell.setTile(tile);
-        layer.setCell(x, y, cell);
-      }
-    }
-  }
-  private static void fillMiddleTilesThree(TiledMapTileLayer layer, GridPoint2 mapSize, TerrainTile tile) {
-    for (int x = 0; x < mapSize.x; x++) {
-      for (int y = (mapSize.y/8)*3; y < (mapSize.y/8)*4 ; y++) {
-        Cell cell = new Cell();
-        cell.setTile(tile);
-        layer.setCell(x, y, cell);
-      }
-    }
-  }
+
   private static void fillTilesAtRandom(
           TiledMapTileLayer layer, GridPoint2 mapSize, TerrainTile tile, int amount) {
     GridPoint2 min = new GridPoint2(0, 0);
