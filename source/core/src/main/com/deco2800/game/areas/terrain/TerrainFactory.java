@@ -13,6 +13,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.GridPoint2;
 import com.deco2800.game.areas.terrain.TerrainComponent.TerrainOrientation;
 import com.deco2800.game.components.CameraComponent;
+import com.deco2800.game.components.bridge.Bridge;
 import com.deco2800.game.utils.math.RandomUtils;
 import com.deco2800.game.services.ResourceService;
 import com.deco2800.game.services.ServiceLocator;
@@ -25,6 +26,8 @@ public class TerrainFactory {
 
   private final OrthographicCamera camera;
   private final TerrainOrientation orientation;
+
+  private Bridge bridge;
 
   /**
    * Create a terrain factory with Orthogonal orientation
@@ -118,9 +121,12 @@ public class TerrainFactory {
           TextureRegion purple
   ) {
     GridPoint2 tilePixelSize = new GridPoint2(star.getRegionWidth(), star.getRegionHeight());
+
+    // Fills the tile of the screen, also creates an instance of Bridge
     TiledMap tiledMap = createRainbowBridgeTiles(tilePixelSize, star, water, red, blue, green, purple);
+
     TiledMapRenderer renderer = createRenderer(tiledMap, tileWorldSize / tilePixelSize.x);
-    return new TerrainComponent(camera, tiledMap, renderer, orientation, tileWorldSize);
+    return new TerrainComponent(camera, tiledMap, renderer, orientation, tileWorldSize, bridge);
   }
 
   private TiledMapRenderer createRenderer(TiledMap tiledMap, float tileScale) {
@@ -167,7 +173,7 @@ public class TerrainFactory {
   ) {
     TiledMap tiledMap = new TiledMap();
     TerrainTile starTile = new TerrainTile(star);
-    TerrainTile waterTile = new TerrainTile(blue);
+    TerrainTile waterTile = new TerrainTile(water);
     TerrainTile laneOne = new TerrainTile(purple);
     TerrainTile laneTwo = new TerrainTile(red);
     TerrainTile laneThree = new TerrainTile(green);
@@ -182,7 +188,7 @@ public class TerrainFactory {
     fillMiddleTilesOne(layer, MAP_SIZE, laneOne);
     fillMiddleTilesTwo(layer, MAP_SIZE, laneTwo);
     fillMiddleTilesThree(layer, MAP_SIZE, laneThree);
-    
+
     tiledMap.getLayers().add(layer);
     return tiledMap;
   }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.GridPoint2;
 import com.badlogic.gdx.math.Vector2;
+import com.deco2800.game.components.bridge.Bridge;
 import com.deco2800.game.rendering.RenderComponent;
 
 /**
@@ -21,18 +22,45 @@ public class TerrainComponent extends RenderComponent {
   private final OrthographicCamera camera;
   private final TerrainOrientation orientation;
   private final float tileSize;
+  private Bridge bridge;
+
 
   public TerrainComponent(
-      OrthographicCamera camera,
-      TiledMap map,
-      TiledMapRenderer renderer,
-      TerrainOrientation orientation,
-      float tileSize) {
+          OrthographicCamera camera,
+          TiledMap map,
+          TiledMapRenderer renderer,
+          TerrainOrientation orientation,
+          float tileSize) {
     this.camera = camera;
     this.tiledMap = map;
     this.orientation = orientation;
     this.tileSize = tileSize;
     this.tiledMapRenderer = renderer;
+  }
+
+  /**
+   * Second constructor to take in an additional parameter Bridge
+   * Used to get obtain an instance of Bridge to place entities on the bridge
+   * @param camera
+   * @param map
+   * @param renderer
+   * @param orientation
+   * @param tileSize
+   * @param bridge
+   */
+  public TerrainComponent(
+          OrthographicCamera camera,
+          TiledMap map,
+          TiledMapRenderer renderer,
+          TerrainOrientation orientation,
+          float tileSize,
+          Bridge bridge) {
+    this.camera = camera;
+    this.tiledMap = map;
+    this.orientation = orientation;
+    this.tileSize = tileSize;
+    this.tiledMapRenderer = renderer;
+    this.bridge = bridge;
   }
 
   public Vector2 tileToWorldPosition(GridPoint2 tilePos) {
@@ -65,6 +93,10 @@ public class TerrainComponent extends RenderComponent {
 
   public TiledMap getMap() {
     return tiledMap;
+  }
+
+  public Bridge getBridge() {
+    return bridge;
   }
 
   @Override

@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.GridPoint2;
 import com.badlogic.gdx.math.Vector2;
 import com.deco2800.game.areas.terrain.TerrainFactory;
 import com.deco2800.game.areas.terrain.TerrainFactory.TerrainType;
+import com.deco2800.game.components.bridge.Bridge;
 import com.deco2800.game.entities.Entity;
 import com.deco2800.game.entities.factories.ObstacleFactory;
 import com.deco2800.game.entities.factories.PlayerFactory;
@@ -13,8 +14,6 @@ import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.components.gamearea.GameAreaDisplay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-
 
 
 public class RainbowBridge extends GameArea {
@@ -33,6 +32,7 @@ public class RainbowBridge extends GameArea {
 
 
     private final TerrainFactory terrainFactory;
+    private Bridge bridge;
 
     public RainbowBridge(TerrainFactory terrainFactory) {
         super();
@@ -43,9 +43,7 @@ public class RainbowBridge extends GameArea {
     @Override
     public void create() {
         loadAssets();
-
         displayUI();
-
         spawnTerrain();
     }
 
@@ -66,7 +64,12 @@ public class RainbowBridge extends GameArea {
         GridPoint2 tileBounds = terrain.getMapBounds(0);
         Vector2 worldBounds = new Vector2(100, 100);
 
+        // Returns the Bridge from TerrainComponent
+        this.bridge = terrain.getBridge();
+    }
 
+    private Bridge getBridge() {
+        return this.bridge;
     }
 
     private Entity spawnPlayer() {
