@@ -22,6 +22,12 @@ public class CombatStatsComponent extends Component {
     setBaseAttack(baseAttack);
   }
 
+  public CombatStatsComponent(int health, int baseAttack, int armour) {
+    setHealth(health);
+    setBaseAttack(baseAttack);
+    setArmour(armour);
+  }
+
   /**
    * Returns true if the entity's has 0 health, otherwise false.
    *
