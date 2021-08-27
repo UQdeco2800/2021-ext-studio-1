@@ -16,11 +16,17 @@ public class Bridge {
      * Used to change where the bridge is drawn on-screen
      * */
     private int offset;
+    private int width;
 
     /** A list of lanes on a bridge */
     private List<Lane> lanes;
 
-    public Bridge(int offset) {
+    /**
+     *
+     * @param offset set a y coordinate to start drawing the bridge from.
+     * @param width set the width size for a lane
+     */
+    public Bridge(int offset, int width) {
         this.offset = offset;
         this.lanes = new ArrayList<>();
     }
@@ -55,10 +61,25 @@ public class Bridge {
     }
 
     /**
-     * Adds a Lane to the bridge
-     * @param lane
+     * Adds a lane to the bridge
      */
-    public void addLane(Lane lane) {
-        lanes.add(lane);
+    public void createLane() {
+        Lane newLane;
+        if (this.lanes.size() == 0) {
+            newLane = new Lane(offset, offset + width);
+        } else {
+            int yCoordinate = this.lanes.get(this.lanes.size() - 1).getBot() + 1;
+            newLane = new Lane(yCoordinate, yCoordinate + width);
+        }
+        lanes.add(newLane);
+    }
+
+    /**
+     * removes the last lane from the bridge
+     */
+    public void removeLane() {
+        if (this.lanes.size() > 0) {
+            this.lanes.remove(this.lanes.size() - 1);
+        }
     }
 }
