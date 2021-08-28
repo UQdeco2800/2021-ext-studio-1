@@ -36,7 +36,7 @@ public class RagnorakRacer extends ScreenAdapter {
         TerrainFactory terrainFactory = new TerrainFactory(renderer.getCamera());
         RainbowBridge rainbowBridge = new RainbowBridge(terrainFactory);
         rainbowBridge.create();
-        rainbowBridge.getRainbowBridge();
+        this.rainbowBridge = rainbowBridge.getRainbowBridge();
     }
 
     @Override
