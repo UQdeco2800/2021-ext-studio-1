@@ -64,6 +64,32 @@ public class NPCFactory {
   }
 
   /**
+   * Creates a littleGreen entity.
+   *
+   * @param target entity to chase
+   * @return entity
+   */
+  public static Entity createLittleGreen(Entity target) {
+    Entity littleGreen = createBaseNPC(target);
+    BaseEntityConfig config = configs.littleGreen;
+
+    AnimationRenderComponent animator =
+            new AnimationRenderComponent(
+                    ServiceLocator.getResourceService().getAsset("images/littleGreen.atlas", TextureAtlas.class));
+    animator.addAnimation("angry_float", 0.1f, Animation.PlayMode.LOOP);
+    animator.addAnimation("float", 0.1f, Animation.PlayMode.LOOP);
+
+    littleGreen
+            .addComponent(new CombatStatsComponent(config.health, config.baseAttack))
+            .addComponent(animator)
+            .addComponent(new GhostAnimationController());
+
+    littleGreen.getComponent(AnimationRenderComponent.class).scaleEntity();
+
+    return littleGreen;
+  }
+
+  /**
    * Creates a ghost king entity.
    *
    * @param target entity to chase
@@ -88,6 +114,7 @@ public class NPCFactory {
     ghostKing.getComponent(AnimationRenderComponent.class).scaleEntity();
     return ghostKing;
   }
+
 
   /**
    * Creates a generic NPC to be used as a base entity by more specific NPC creation methods.

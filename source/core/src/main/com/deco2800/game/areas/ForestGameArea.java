@@ -22,6 +22,7 @@ public class ForestGameArea extends GameArea {
   private static final Logger logger = LoggerFactory.getLogger(ForestGameArea.class);
   private static final int NUM_TREES = 7;
   private static final int NUM_GHOSTS = 2;
+  private static final int NUM_LittleGreen = 5;
   private static final GridPoint2 PLAYER_SPAWN = new GridPoint2(10, 10);
   private static final float WALL_WIDTH = 0.1f;
   private static final String[] forestTextures = {
@@ -40,10 +41,11 @@ public class ForestGameArea extends GameArea {
     "images/iso_grass_3.png",
           "images/dragon.png",
           "images/pixelghost.png",
-          "images/pixelghost1.png"
+          "images/pixelghost1.png",
+          "images/littlegreen.png"
   };
   private static final String[] forestTextureAtlases = {
-    "images/terrain_iso_grass.atlas", "images/ghost.atlas", "images/ghostKing.atlas","images/dragon.atlas"
+    "images/terrain_iso_grass.atlas", "images/ghost.atlas", "images/ghostKing.atlas","images/dragon.atlas","images/littleGreen.atlas"
   };
   private static final String[] forestSounds = {"sounds/Impact4.ogg"};
   private static final String backgroundMusic = "sounds/BGM_03_mp3.mp3";
@@ -70,6 +72,7 @@ public class ForestGameArea extends GameArea {
     player = spawnPlayer();
     spawnGhosts();
     spawnGhostKing();
+    spawnLittleGreen();
 
     playMusic();
   }
@@ -138,6 +141,17 @@ public class ForestGameArea extends GameArea {
       GridPoint2 randomPos = RandomUtils.random(minPos, maxPos);
       Entity ghost = NPCFactory.createGhost(player);
       spawnEntityAt(ghost, randomPos, true, true);
+    }
+  }
+
+  private void spawnLittleGreen() {
+    GridPoint2 minPos = new GridPoint2(0, 0);
+    GridPoint2 maxPos = terrain.getMapBounds(0).sub(2, 2);
+
+    for (int i = 0; i < NUM_LittleGreen; i++) {
+      GridPoint2 randomPos = RandomUtils.random(minPos, maxPos);
+      Entity littleGreen = NPCFactory.createLittleGreen(player);
+      spawnEntityAt(littleGreen, randomPos, true, true);
     }
   }
 
