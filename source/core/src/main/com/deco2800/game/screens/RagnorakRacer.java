@@ -1,13 +1,11 @@
 package com.deco2800.game.screens;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.deco2800.game.GdxGame;
-import com.deco2800.game.areas.ForestGameArea;
 import com.deco2800.game.areas.RainbowBridge;
 import com.deco2800.game.areas.terrain.TerrainFactory;
+import com.deco2800.game.components.bridge.Bridge;
 import com.deco2800.game.entities.EntityService;
 import com.deco2800.game.entities.factories.RenderFactory;
 import com.deco2800.game.input.InputService;
@@ -20,6 +18,7 @@ public class RagnorakRacer extends ScreenAdapter {
 
     private final GdxGame game;
     private final Renderer renderer;
+    private Bridge rainbowBridge;
 
     private static final Vector2 CAMERA_POSITION = new Vector2(7.5f, 7.5f);
 
@@ -28,7 +27,6 @@ public class RagnorakRacer extends ScreenAdapter {
 
         ServiceLocator.registerInputService(new InputService());
         ServiceLocator.registerResourceService(new ResourceService());
-
         ServiceLocator.registerEntityService(new EntityService());
         ServiceLocator.registerRenderService(new RenderService());
 
@@ -38,6 +36,7 @@ public class RagnorakRacer extends ScreenAdapter {
         TerrainFactory terrainFactory = new TerrainFactory(renderer.getCamera());
         RainbowBridge rainbowBridge = new RainbowBridge(terrainFactory);
         rainbowBridge.create();
+        rainbowBridge.getRainbowBridge();
     }
 
     @Override

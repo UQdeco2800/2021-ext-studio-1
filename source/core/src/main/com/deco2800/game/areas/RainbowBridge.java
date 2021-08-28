@@ -6,9 +6,7 @@ import com.deco2800.game.areas.terrain.TerrainFactory;
 import com.deco2800.game.areas.terrain.TerrainFactory.TerrainType;
 import com.deco2800.game.components.bridge.Bridge;
 import com.deco2800.game.entities.Entity;
-import com.deco2800.game.entities.factories.ObstacleFactory;
 import com.deco2800.game.entities.factories.PlayerFactory;
-import com.deco2800.game.utils.math.GridPoint2Utils;
 import com.deco2800.game.services.ResourceService;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.components.gamearea.GameAreaDisplay;
@@ -32,7 +30,7 @@ public class RainbowBridge extends GameArea {
 
 
     private final TerrainFactory terrainFactory;
-    private Bridge bridge;
+    private Bridge rainbowBridge;
 
     public RainbowBridge(TerrainFactory terrainFactory) {
         super();
@@ -64,12 +62,12 @@ public class RainbowBridge extends GameArea {
         GridPoint2 tileBounds = terrain.getMapBounds(0);
         Vector2 worldBounds = new Vector2(100, 100);
 
-        // Returns the Bridge from TerrainComponent
-        this.bridge = terrain.getBridge();
+        // Returns the rainbowBridge from TerrainComponent
+        this.rainbowBridge = terrain.getRainbowBridge();
     }
 
-    private Bridge getBridge() {
-        return this.bridge;
+    public Bridge getRainbowBridge() {
+        return this.rainbowBridge;
     }
 
     private Entity spawnPlayer() {

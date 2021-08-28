@@ -22,7 +22,7 @@ public class TerrainComponent extends RenderComponent {
   private final OrthographicCamera camera;
   private final TerrainOrientation orientation;
   private final float tileSize;
-  private Bridge bridge;
+  private Bridge rainbowBridge;
 
 
   public TerrainComponent(
@@ -60,7 +60,7 @@ public class TerrainComponent extends RenderComponent {
     this.orientation = orientation;
     this.tileSize = tileSize;
     this.tiledMapRenderer = renderer;
-    this.bridge = bridge;
+    this.rainbowBridge = bridge;
   }
 
   public Vector2 tileToWorldPosition(GridPoint2 tilePos) {
@@ -95,8 +95,8 @@ public class TerrainComponent extends RenderComponent {
     return tiledMap;
   }
 
-  public Bridge getBridge() {
-    return bridge;
+  public Bridge getRainbowBridge() {
+    return rainbowBridge;
   }
 
   @Override

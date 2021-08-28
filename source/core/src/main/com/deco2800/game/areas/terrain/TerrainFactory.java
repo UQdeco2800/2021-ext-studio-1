@@ -31,7 +31,7 @@ public class TerrainFactory {
   private final OrthographicCamera camera;
   private final TerrainOrientation orientation;
 
-  private Bridge bridge;
+  private Bridge rainbowBridge;
 
   /**
    * Create a terrain factory with Orthogonal orientation
@@ -148,7 +148,7 @@ public class TerrainFactory {
     );
 
     TiledMapRenderer renderer = createRenderer(tiledMap, tileWorldSize / tilePixelSize.x);
-    return new TerrainComponent(camera, tiledMap, renderer, orientation, tileWorldSize, bridge);
+    return new TerrainComponent(camera, tiledMap, renderer, orientation, tileWorldSize, rainbowBridge);
   }
 
   private TiledMapRenderer createRenderer(TiledMap tiledMap, float tileScale) {
@@ -221,6 +221,7 @@ public class TerrainFactory {
     }
 
     tiledMap.getLayers().add(layer);
+    this.rainbowBridge = bridge;
     return tiledMap;
   }
 
