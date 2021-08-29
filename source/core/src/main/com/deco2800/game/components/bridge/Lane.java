@@ -8,8 +8,8 @@ package com.deco2800.game.components.bridge;
  */
 public class Lane {
 
-    private int top;
-    private int bot;
+    private int y1;
+    private int y2;
     private int mid;
 
     /**
@@ -21,8 +21,8 @@ public class Lane {
         if (top >= bot) {
             throw new IllegalArgumentException("top y-coordinate cannot be bigger or equal to bottom y-coordinate");
         } else {
-            this.top = top;
-            this.bot = bot;
+            this.y1 = top;
+            this.y2 = bot;
             this.mid = (top + bot) / 2;
         }
     }
@@ -31,16 +31,16 @@ public class Lane {
      * returns the top y-coordinate of the lane
      * @return a y-coordinate
      */
-    public int getTop() {
-        return this.top;
+    public int getY1() {
+        return this.y1;
     }
 
     /**
      * returns the bottom y-coordinate of the lane
      * @return a y-coordinate
      */
-    public int getBot() {
-        return this.bot;
+    public int getY2() {
+        return this.y2;
     }
 
     /**
@@ -49,5 +49,23 @@ public class Lane {
      */
     public int getMid() {
         return this.mid;
+    }
+
+    /**
+     * Returns the top of the bridge from the user's perspective
+     * TerrainFactory fills tiles from the bottom up
+     * @return
+     */
+    public int getTop() {
+        return this.y2;
+    }
+
+    /**
+     * Returns the bottom of the bridge from the user's perspective
+     * TerrainFactory fills tiles from the bottom up
+     * @return
+     */
+    public int getBot() {
+        return this.y1;
     }
 }

@@ -239,7 +239,7 @@ public class TerrainFactory {
     for (int i = 0; i < laneCount; i++) {
       bridge.createLane();
       Lane lane = bridge.getLastLane();
-      fillTilesInRange(layer, bridgeTileColours.get(i), lane.getTop(), lane.getBot(), 0, MAP_SIZE.x);
+      fillTilesInRange(layer, bridgeTileColours.get(i), lane.getBot(), lane.getTop(), 0, MAP_SIZE.x);
     }
 
     tiledMap.getLayers().add(layer);

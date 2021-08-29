@@ -1,7 +1,9 @@
 package com.deco2800.game.components.bridge;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The Bridge class representing the rainbow bridge in Ragnorak Racer.
@@ -64,7 +66,7 @@ public class Bridge {
         if (this.lanes.size() == 0) {
             newLane = new Lane(offset, offset + width);
         } else {
-            int yCoordinate = this.lanes.get(this.lanes.size() - 1).getBot();
+            int yCoordinate = this.lanes.get(this.lanes.size() - 1).getY2();
             newLane = new Lane(yCoordinate, yCoordinate + width);
         }
         lanes.add(newLane);
@@ -77,5 +79,16 @@ public class Bridge {
         if (this.lanes.size() > 0) {
             this.lanes.remove(this.lanes.size() - 1);
         }
+    }
+
+    /**
+     * Returns a map of the top and bottom bounds (Integer)
+     * @return a Map with a top and bottom y-coordinate
+     */
+    public Map<String, Integer> getBounds() {
+        Map<String, Integer> bounds = new HashMap<>();
+        bounds.put("top", this.getLastLane().getTop());
+        bounds.put("bot", this.lanes.get(0).getBot());
+        return bounds;
     }
 }
