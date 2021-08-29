@@ -156,7 +156,6 @@ public class TerrainFactory {
             width,
             laneCount,
             stars,
-            water,
             color1,
             color2,
             color3,
@@ -199,13 +198,25 @@ public class TerrainFactory {
     return tiledMap;
   }
 
+  /**
+   * Fills the screen with tiles that makes up the Ragnorak Racer Screen
+   * @param tileSize
+   * @param offset
+   * @param width
+   * @param laneCount
+   * @param stars
+   * @param color1
+   * @param color2
+   * @param color3
+   * @param color4
+   * @return
+   */
   private TiledMap createRainbowBridgeTiles(
           GridPoint2 tileSize,
           int offset,
           int width,
           int laneCount,
           ArrayList<TextureRegion> stars,
-          TextureRegion water,
           TextureRegion color1,
           TextureRegion color2,
           TextureRegion color3,
@@ -213,12 +224,10 @@ public class TerrainFactory {
 
   ) {
     TiledMap tiledMap = new TiledMap();
-//    TerrainTile starTile = new TerrainTile(star);
     ArrayList<TerrainTile> starTiles = new ArrayList<>();
     for (TextureRegion starTexture : stars) {
         starTiles.add(new TerrainTile(starTexture));
     }
-//    TerrainTile waterTile = new TerrainTile(water);
 
     // Places a coloured tile in a List
     List<TerrainTile> bridgeTileColours = new ArrayList<>();
@@ -229,11 +238,7 @@ public class TerrainFactory {
 
     TiledMapTileLayer layer = new TiledMapTileLayer(MAP_SIZE.x, MAP_SIZE.y, tileSize.x, tileSize.y);
 
-    // Create backdrop
-//    fillTopHalfTiles(layer, MAP_SIZE, starTile);
-//    fillBottomHalfTiles(layer, MAP_SIZE, starTile);
-    fillTopHalfTilesRandomly(layer, MAP_SIZE, starTiles);
-    fillBottomHalfTilesRandomly(layer, MAP_SIZE, starTiles);
+    fillTilesRandomly(layer, MAP_SIZE, starTiles);
 
     Bridge bridge = new Bridge(offset, width);
     for (int i = 0; i < laneCount; i++) {
@@ -247,6 +252,15 @@ public class TerrainFactory {
     return tiledMap;
   }
 
+  /**
+   * Fills a specific range of tiles using start and end x and y coordinates
+   * @param layer
+   * @param tile
+   * @param y1
+   * @param y2
+   * @param x1
+   * @param x2
+   */
   private static void fillTilesInRange(TiledMapTileLayer layer, TerrainTile tile, int y1, int y2, int x1, int x2) {
     for (int x = x1; x < x2; x++) {
       for (int y = y1; y < y2 ; y++) {
@@ -279,30 +293,15 @@ public class TerrainFactory {
     }
   }
 
-  private static void fillTopHalfTiles(TiledMapTileLayer layer, GridPoint2 mapSize, TerrainTile tile) {
+  /**
+   * fills the sky with stars randomly
+   * @param layer
+   * @param mapSize
+   * @param tiles
+   */
+  private static void fillTilesRandomly(TiledMapTileLayer layer, GridPoint2 mapSize, ArrayList<TerrainTile> tiles) {
     for (int x = 0; x < mapSize.x; x++) {
-      for (int y = mapSize.y / 2; y < mapSize.y; y++) {
-        Cell cell = new Cell();
-        cell.setTile(tile);
-        layer.setCell(x, y, cell);
-      }
-    }
-  }
-
-  private static void fillBottomHalfTiles(TiledMapTileLayer layer, GridPoint2 mapSize, TerrainTile tile) {
-    for (int x = 0; x < mapSize.x; x++) {
-      for (int y = 0; y < mapSize.y / 2; y++) {
-        Cell cell = new Cell();
-        cell.setTile(tile);
-        layer.setCell(x, y, cell);
-      }
-    }
-  }
-
-//  NEW METHOD
-  private static void fillTopHalfTilesRandomly(TiledMapTileLayer layer, GridPoint2 mapSize, ArrayList<TerrainTile> tiles) {
-    for (int x = 0; x < mapSize.x; x++) {
-      for (int y = mapSize.y / 2; y < mapSize.y; y++) {
+      for (int y = 0; y < mapSize.y; y++) {
         Cell cell = new Cell();
         int index = (int) (Math.random() * tiles.size());
         cell.setTile(tiles.get(index));
@@ -310,20 +309,6 @@ public class TerrainFactory {
       }
     }
   }
-
-//  NEW METHOD
-  private static void fillBottomHalfTilesRandomly(TiledMapTileLayer layer, GridPoint2 mapSize, ArrayList<TerrainTile> tiles) {
-    for (int x = 0; x < mapSize.x; x++) {
-      for (int y = 0; y < mapSize.y / 2; y++) {
-        Cell cell = new Cell();
-        int index = (int) (Math.random() * tiles.size());
-        cell.setTile(tiles.get(index));
-        layer.setCell(x, y, cell);
-      }
-    }
-  }
-
-
 
   /**
    * This enum should contain the different terrains in your game, e.g. forest, cave, home, all with
