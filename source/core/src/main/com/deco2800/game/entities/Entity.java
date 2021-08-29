@@ -46,6 +46,19 @@ public class Entity {
     eventHandler = new EventHandler();
   }
 
+  private Type type = null;
+  public Entity(Type name) {
+    this();
+    this.type = name;
+  }
+
+  public enum Type {
+    PLAYER, GHOST, OBSTACLE
+  }
+
+  public Entity.Type getType() {
+    return this.type;
+  }
   /**
    * Enable or disable an entity. Disabled entities do not run update() or earlyUpdate() on their
    * components, but can still be disposed.
