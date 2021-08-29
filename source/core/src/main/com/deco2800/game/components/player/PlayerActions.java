@@ -3,13 +3,9 @@ package com.deco2800.game.components.player;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.utils.Array;
 import com.deco2800.game.components.Component;
-import com.deco2800.game.entities.Entity;
 import com.deco2800.game.physics.components.PhysicsComponent;
 import com.deco2800.game.services.ServiceLocator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Action component for interacting with the player. Player events should be initialised in create()
@@ -17,7 +13,7 @@ import org.slf4j.LoggerFactory;
  */
 public class PlayerActions extends Component {
   private static final Vector2 MAX_SPEED = new Vector2(3f, 3f); // Metres per second
-  private static final Logger logger = LoggerFactory.getLogger(PlayerActions.class);
+
   private PhysicsComponent physicsComponent;
   private Vector2 walkDirection = Vector2.Zero.cpy();
   private boolean moving = false;
@@ -69,30 +65,7 @@ public class PlayerActions extends Component {
    * Makes the player attack.
    */
   void attack() {
-    logger.info("attack");
-    Array<Entity> entities = ServiceLocator.getEntityService().getEntities();
-    Entity nearest = findNearestTargets(entities);
-    logger.info("attack nearest--{}", nearest);
-    if (nearest != null) {
-      logger.info ("nearest.getType()--{}", nearest.getType());
-      nearest.dispose();
-    }
     Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/Impact4.ogg", Sound.class);
     attackSound.play();
-  }
-
-  private Entity findNearestTargets(Array<Entity> entities) {
-    Entity result = null;
-    float minDst = 1.0f;
-    for (Entity en: entities) {
-      if (en.getType() == Entity.Type.GHOST || en.getType() == Entity.Type.OBSTACLE) {
-        float dst = entity.getPosition().dst(en.getPosition());
-        if (minDst > dst) {
-          minDst = dst;
-          result = en;
-        }
-      }
-    }
-    return result;
   }
 }

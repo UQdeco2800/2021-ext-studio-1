@@ -27,7 +27,6 @@ public class EntityService {
     entity.create();
   }
 
-
   /**
    * Unregister an entity with the entity service. The entity will be removed and stop updating.
    * @param entity entity to be removed.
@@ -45,19 +44,6 @@ public class EntityService {
       entity.earlyUpdate();
       entity.update();
     }
-  }
-
-
-  /**
-   * Get all registered entities
-   * @return all registered entities
-   */
-  public Array<Entity> getEntities() {
-    Array<Entity> result = new Array<>(false, INITIAL_CAPACITY);
-    for (Entity entity:this.entities) {
-      result.add(entity);
-    }
-    return result;
   }
 
   /**
