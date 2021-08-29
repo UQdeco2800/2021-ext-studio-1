@@ -1,15 +1,20 @@
 package com.deco2800.game.components.player;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
+import com.deco2800.game.components.CombatStatsComponent;
 import com.deco2800.game.components.Component;
 import com.deco2800.game.entities.Entity;
 import com.deco2800.game.physics.components.PhysicsComponent;
 import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.security.Key;
+import java.util.Scanner;
 
 /**
  * Action component for interacting with the player. Player events should be initialised in create()
@@ -21,6 +26,7 @@ public class PlayerActions extends Component {
   private PhysicsComponent physicsComponent;
   private Vector2 walkDirection = Vector2.Zero.cpy();
   private boolean moving = false;
+  private  CombatStatsComponent combatStatsComponent;
 
   @Override
   public void create() {
@@ -74,8 +80,13 @@ public class PlayerActions extends Component {
     Entity nearest = findNearestTargets(entities);
     logger.info("attack nearest--{}", nearest);
     if (nearest != null) {
-      logger.info ("nearest.getType()--{}", nearest.getType());
-      nearest.dispose();
+      if (nearest.getType().equals(Entity.Type.GHOSTKING)) {
+        logger.info ("nearest.getType()--{}", nearest.getType());
+        nearest.attack();
+      } else {
+        logger.info ("nearest.getType()--{}", nearest.getType());
+        nearest.dispose();
+      }
     }
     Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/Impact4.ogg", Sound.class);
     attackSound.play();
@@ -83,9 +94,10 @@ public class PlayerActions extends Component {
 
   private Entity findNearestTargets(Array<Entity> entities) {
     Entity result = null;
-    float minDst = 1.0f;
+    float minDst = 2.0f;
     for (Entity en: entities) {
-      if (en.getType() == Entity.Type.GHOST || en.getType() == Entity.Type.OBSTACLE) {
+      if (en.getType() == Entity.Type.GHOST || en.getType() == Entity.Type.OBSTACLE
+                                            || en.getType() == Entity.Type.GHOSTKING) {
         float dst = entity.getPosition().dst(en.getPosition());
         if (minDst > dst) {
           minDst = dst;

@@ -3,8 +3,10 @@ package com.deco2800.game.entities;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.IntMap;
+import com.deco2800.game.components.CombatStatsComponent;
 import com.deco2800.game.components.Component;
 import com.deco2800.game.components.ComponentType;
+import com.deco2800.game.entities.factories.NPCFactory;
 import com.deco2800.game.events.EventHandler;
 import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
@@ -53,7 +55,7 @@ public class Entity {
   }
 
   public enum Type {
-    PLAYER, GHOST, OBSTACLE
+    PLAYER, GHOST, OBSTACLE, GHOSTKING
   }
 
   public Entity.Type getType() {
@@ -218,6 +220,15 @@ public class Entity {
       component.dispose();
     }
     ServiceLocator.getEntityService().unregister(this);
+  }
+
+  /** Attack of the entity. This will attack of all components on this entity. */
+  public void attack() {
+    for (Component component : createdComponents) {
+      component.attackKing();
+    }
+    ServiceLocator.getEntityService().unregister(this);
+    ServiceLocator.getEntityService().register(this);
   }
 
   /**

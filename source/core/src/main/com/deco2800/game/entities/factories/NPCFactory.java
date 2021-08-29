@@ -70,7 +70,7 @@ public class NPCFactory {
    * @return entity
    */
   public static Entity createGhostKing(Entity target) {
-    Entity ghostKing = createBaseNPC(target);
+    Entity ghostKing = createBaseNPC1(target);
     GhostKingConfig config = configs.ghostKing;
 
     AnimationRenderComponent animator =
@@ -110,6 +110,24 @@ public class NPCFactory {
 
     //PhysicsUtils.setScaledCollider(npc, 0.9f, 0.4f);
     return npc;
+  }
+
+  private static Entity createBaseNPC1(Entity target) {
+    AITaskComponent aiComponent =
+            new AITaskComponent()
+                    .addTask(new WanderTask(new Vector2(2f, 2f), 2f))
+                    .addTask(new ChaseTask(target, 10, 3f, 4f));
+    Entity npc1 =
+            new Entity(Entity.Type.GHOSTKING)
+                    .addComponent(new PhysicsComponent())
+                    .addComponent(new PhysicsMovementComponent())
+                    //.addComponent(new ColliderComponent())
+                    .addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
+                    .addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 1.5f))
+                    .addComponent(aiComponent);
+
+    //PhysicsUtils.setScaledCollider(npc, 0.9f, 0.4f);
+    return npc1;
   }
 
   private NPCFactory() {
