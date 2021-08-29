@@ -64,35 +64,33 @@ public class TerrainFactory {
     ResourceService resourceService = ServiceLocator.getResourceService();
     switch (terrainType) {
       case RAINBOW_BRIDGE:
-        TextureRegion starBlank =
-                new TextureRegion(resourceService.getAsset("images/terrain/star-blank.png", Texture.class));
         TextureRegion star1 =
-                new TextureRegion(resourceService.getAsset("images/terrain/star-1.png", Texture.class));
+                new TextureRegion(resourceService.getAsset("images/terrain/star-blank.png", Texture.class));
         TextureRegion star2 =
-                new TextureRegion(resourceService.getAsset("images/terrain/star-2.png", Texture.class));
+                new TextureRegion(resourceService.getAsset("images/terrain/star-1.png", Texture.class));
         TextureRegion star3 =
+                new TextureRegion(resourceService.getAsset("images/terrain/star-2.png", Texture.class));
+        TextureRegion star4 =
                 new TextureRegion(resourceService.getAsset("images/terrain/star-3.png", Texture.class));
-
-        ArrayList<TextureRegion> stars = new ArrayList<>();
-        for (int i = 0; i < 18; i++) {
-          stars.add(starBlank);
-      }
-
-        stars.add(star1);
-        stars.add(star2);
-        stars.add(star3);
-
-        TextureRegion water =
-                new TextureRegion(resourceService.getAsset("images/terrain/water.png", Texture.class));
-        TextureRegion color1 =
+        TextureRegion lane1 =
                 new TextureRegion(resourceService.getAsset("images/terrain/color-1.png", Texture.class));
-        TextureRegion color2 =
+        TextureRegion lane2 =
                 new TextureRegion(resourceService.getAsset("images/terrain/color-2.png", Texture.class));
-        TextureRegion color3 =
+        TextureRegion lane3 =
                 new TextureRegion(resourceService.getAsset("images/terrain/color-3.png", Texture.class));
-        TextureRegion color4 =
+        TextureRegion lane4 =
                 new TextureRegion(resourceService.getAsset("images/terrain/color-4.png", Texture.class));
-        return createRainbowBridgeTerrain(0.5f, stars, water, color1, color2, color3, color4);
+        return createRainbowBridgeTerrain(
+                0.5f,
+                star1,
+                star2,
+                star3,
+                star4,
+                lane1,
+                lane2,
+                lane3,
+                lane4
+        );
 
       case FOREST_DEMO:
         TextureRegion orthoGrass =
@@ -133,21 +131,26 @@ public class TerrainFactory {
 
   private TerrainComponent createRainbowBridgeTerrain(
           float tileWorldSize,
-          ArrayList<TextureRegion> stars,
-          TextureRegion water,
-          TextureRegion color1,
-          TextureRegion color2,
-          TextureRegion color3,
-          TextureRegion color4
+          TextureRegion star1,
+          TextureRegion star2,
+          TextureRegion star3,
+          TextureRegion star4,
+          TextureRegion lane1,
+          TextureRegion lane2,
+          TextureRegion lane3,
+          TextureRegion lane4
   ) {
-    GridPoint2 tilePixelSize = new GridPoint2(stars.get(1).getRegionWidth(), stars.get(1).getRegionHeight());
+    GridPoint2 tilePixelSize = new GridPoint2(star1.getRegionWidth(), star1.getRegionHeight());
 
     // Magic numbers, need to be set in a config file in future
     // offset - y coordinate to start drawing the bridge
     // width - width of a lane
+    // laneCount - amount of lanes to generate
+    // starPopulation - Number of stars to appear in the sky (based on probability, higher value = less stars)
     int offset = 6;
     int width = 3;
     int laneCount = 4;
+    int starPopulation = 20;
 
     // Fills the tile of the screen, also creates an instance of Bridge
     TiledMap tiledMap = createRainbowBridgeTiles(
@@ -155,11 +158,15 @@ public class TerrainFactory {
             offset,
             width,
             laneCount,
-            stars,
-            color1,
-            color2,
-            color3,
-            color4
+            starPopulation,
+            star1,
+            star2,
+            star3,
+            star4,
+            lane1,
+            lane2,
+            lane3,
+            lane4
     );
 
     TiledMapRenderer renderer = createRenderer(tiledMap, tileWorldSize / tilePixelSize.x);
@@ -204,11 +211,15 @@ public class TerrainFactory {
    * @param offset
    * @param width
    * @param laneCount
-   * @param stars
-   * @param color1
-   * @param color2
-   * @param color3
-   * @param color4
+   * @param starPopulation
+   * @param star1
+   * @param star2
+   * @param star3
+   * @param star4
+   * @param lane1
+   * @param lane2
+   * @param lane3
+   * @param lane4
    * @return
    */
   private TiledMap createRainbowBridgeTiles(
@@ -216,31 +227,47 @@ public class TerrainFactory {
           int offset,
           int width,
           int laneCount,
-          ArrayList<TextureRegion> stars,
-          TextureRegion color1,
-          TextureRegion color2,
-          TextureRegion color3,
-          TextureRegion color4
+          int starPopulation,
+          TextureRegion star1,
+          TextureRegion star2,
+          TextureRegion star3,
+          TextureRegion star4,
+          TextureRegion lane1,
+          TextureRegion lane2,
+          TextureRegion lane3,
+          TextureRegion lane4
 
   ) {
     TiledMap tiledMap = new TiledMap();
+
+    // Places a star tile in a list
     ArrayList<TerrainTile> starTiles = new ArrayList<>();
-    for (TextureRegion starTexture : stars) {
-        starTiles.add(new TerrainTile(starTexture));
+    // add duplicate star1(empty star tile) to the list to increase the probability that a star tile is empty
+    for (int i = 0; i < starPopulation; i++) {
+      starTiles.add(new TerrainTile(star1));
     }
+    // add the rest of the star tile
+    starTiles.add(new TerrainTile(star2));
+    starTiles.add(new TerrainTile(star3));
+    starTiles.add(new TerrainTile(star4));
+
 
     // Places a coloured tile in a List
     List<TerrainTile> bridgeTileColours = new ArrayList<>();
-    bridgeTileColours.add(new TerrainTile(color4));
-    bridgeTileColours.add(new TerrainTile(color3));
-    bridgeTileColours.add(new TerrainTile(color2));
-    bridgeTileColours.add(new TerrainTile(color1));
+    bridgeTileColours.add(new TerrainTile(lane4));
+    bridgeTileColours.add(new TerrainTile(lane3));
+    bridgeTileColours.add(new TerrainTile(lane2));
+    bridgeTileColours.add(new TerrainTile(lane1));
 
     TiledMapTileLayer layer = new TiledMapTileLayer(MAP_SIZE.x, MAP_SIZE.y, tileSize.x, tileSize.y);
 
+    // randomly fills the sky with star tiles
     fillTilesRandomly(layer, MAP_SIZE, starTiles);
 
+    // Create a bridge class to store information about the bridge
     Bridge bridge = new Bridge(offset, width);
+
+    //Draw the lane and add the lane in the bridge class
     for (int i = 0; i < laneCount; i++) {
       bridge.createLane();
       Lane lane = bridge.getLastLane();
