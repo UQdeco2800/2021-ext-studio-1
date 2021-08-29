@@ -95,7 +95,6 @@ public class PlayerStatsDisplay extends UIComponent {
     stage.addActor(notification);
     notification.setVisible(false);
 
-
   }
 
   /**
@@ -103,16 +102,17 @@ public class PlayerStatsDisplay extends UIComponent {
    */
   public void treatAnimate() {
     heartAnimat =  new Table();
-    heartAnimat.top();
+    heartAnimat.center();
     heartAnimat.padTop(0f).padRight(1500f);
     heartAnimat.setFillParent(true);
     new Thread() {
       public void run() {
         try {
           for (int i = 0; i <= 2;i++) {
-            treatFileName =String.format("images/treat%d.png",i);
+            treatFileName =String.format("images/treat0.png",i);
             treatImage = new Image(ServiceLocator.getResourceService().getAsset(treatFileName, Texture.class));
             heartAnimat.add(treatImage).size(32f,32f).pad(-10);
+            heartAnimat.setVisible(false);
             Thread.sleep(100);
             heartAnimat.clearChildren();
           }
