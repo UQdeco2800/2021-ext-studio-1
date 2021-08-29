@@ -86,9 +86,13 @@ public class Bridge {
      * @return a Map with a top and bottom y-coordinate
      */
     public Map<String, Integer> getBounds() {
-        Map<String, Integer> bounds = new HashMap<>();
-        bounds.put("top", this.getLastLane().getTop());
-        bounds.put("bot", this.lanes.get(0).getBot());
-        return bounds;
+        if (this.lanes.size() == 0) {
+            throw new IllegalCallerException("Unable to get bridge bounds from a bridge with no lanes");
+        } else {
+            Map<String, Integer> bounds = new HashMap<>();
+            bounds.put("top", this.getLastLane().getTop());
+            bounds.put("bot", this.lanes.get(0).getBot());
+            return bounds;
+        }
     }
 }
