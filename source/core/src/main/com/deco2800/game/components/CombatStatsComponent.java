@@ -149,7 +149,5 @@ public class CombatStatsComponent extends Component {
       setHealth(newHealth);
     }
 
-
-
   }
 }
