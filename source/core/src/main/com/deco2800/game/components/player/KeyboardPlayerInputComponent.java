@@ -61,19 +61,23 @@ public class KeyboardPlayerInputComponent extends InputComponent {
     switch (keycode) {
       case Keys.W:
         walkDirection.sub(Vector2Utils.UP);
-        triggerWalkEvent();
+//        triggerWalkEvent();
+        entity.setPosition(entity.getPosition().x, entity.getPosition().y + 1);
         return true;
       case Keys.A:
         walkDirection.sub(Vector2Utils.LEFT);
-        triggerWalkEvent();
+//        triggerWalkEvent();
+        entity.setPosition(entity.getPosition().x - 1, entity.getPosition().y);
         return true;
       case Keys.S:
         walkDirection.sub(Vector2Utils.DOWN);
-        triggerWalkEvent();
+//        triggerWalkEvent();
+        entity.setPosition(entity.getPosition().x, entity.getPosition().y - 1);
         return true;
       case Keys.D:
         walkDirection.sub(Vector2Utils.RIGHT);
-        triggerWalkEvent();
+//        triggerWalkEvent();
+        entity.setPosition(entity.getPosition().x + 1, entity.getPosition().y);
         return true;
       default:
         return false;
