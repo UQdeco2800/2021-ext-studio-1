@@ -2,18 +2,12 @@ package com.deco2800.game.components.player;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.deco2800.game.components.CombatStatsComponent;
-import com.deco2800.game.entities.Entity;
-import com.deco2800.game.rendering.AnimationRenderComponent;
-import com.deco2800.game.services.ResourceService;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
-
 
 /**
  * A ui component for displaying player stats, e.g. health.
@@ -99,25 +93,26 @@ public class PlayerStatsDisplay extends UIComponent {
   /**
    * Player treatment Animation
    */
-  public void treatAnimate() {
-    heartAnimat =  new Table();
-    heartAnimat.center();
-    heartAnimat.setFillParent(true);
+  private void hurtAnimate() {
+    Table heartAnimate =  new Table();
+    heartAnimate.top().left();
+    heartAnimate.setFillParent(true);
+    heartAnimate.padTop(60f).padLeft(200f);
     new Thread() {
       public void run() {
         try {
           for (int i = 0; i <= 2;i++) {
-            treatFileName =String.format("images/treat%d.png",i);
+            treatFileName =String.format("images/hurt%d.png",i);
             treatImage = new Image(ServiceLocator.getResourceService().getAsset(treatFileName, Texture.class));
-            heartAnimat.add(treatImage).size(32f,32f).pad(-10);
+            heartAnimate.add(treatImage).size(64f,64f).pad(-10);
             Thread.sleep(100);
-            heartAnimat.clearChildren();
+            heartAnimate.clearChildren();
           }
         }
         catch (InterruptedException e) {}
       }
     }.start();
-    stage.addActor(heartAnimat);
+    stage.addActor(heartAnimate);
   }
 
   @Override
@@ -132,7 +127,7 @@ public class PlayerStatsDisplay extends UIComponent {
   public void updatePlayerHealthUI(int health) {
     CharSequence text = String.format("Health: %d", health);
     healthLabel.setText(text);
-    treatAnimate();
+    hurtAnimate();
 
     //Notification appears and disposes
     new Thread() {
