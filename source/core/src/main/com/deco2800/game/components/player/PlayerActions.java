@@ -9,6 +9,7 @@ import com.deco2800.game.components.CombatStatsComponent;
 import com.deco2800.game.components.Component;
 import com.deco2800.game.entities.Entity;
 import com.deco2800.game.physics.components.PhysicsComponent;
+import com.deco2800.game.rendering.AnimationRenderComponent;
 import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,13 +28,16 @@ public class PlayerActions extends Component {
   private Vector2 walkDirection = Vector2.Zero.cpy();
   private boolean moving = false;
   private  CombatStatsComponent combatStatsComponent;
+  AnimationRenderComponent animator;
 
   @Override
   public void create() {
+    animator = this.entity.getComponent(AnimationRenderComponent.class);
     physicsComponent = entity.getComponent(PhysicsComponent.class);
     entity.getEvents().addListener("walk", this::walk);
     entity.getEvents().addListener("walkStop", this::stopWalking);
     entity.getEvents().addListener("attack", this::attack);
+    entity.getEvents().addListener("unAttack", this::unAttack);
   }
 
   @Override
@@ -90,6 +94,11 @@ public class PlayerActions extends Component {
     }
     Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/Impact4.ogg", Sound.class);
     attackSound.play();
+    animator.startAnimation("attack");
+  }
+
+  void unAttack(){
+    animator.stopAnimation();
   }
 
   private Entity findNearestTargets(Array<Entity> entities) {
