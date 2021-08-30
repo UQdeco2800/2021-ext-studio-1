@@ -3,6 +3,8 @@ package com.deco2800.game.components.player;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -28,7 +30,6 @@ public class PlayerStatsDisplay extends UIComponent {
   private Image noImage;
   private Image treatImage;
   private String treatFileName;
-  private Entity player = new Entity();
 
   /**
    * Creates reusable ui styles and adds actors to the stage.
@@ -39,6 +40,7 @@ public class PlayerStatsDisplay extends UIComponent {
     addActors();
 
     entity.getEvents().addListener("updateHealth", this::updatePlayerHealthUI);
+    entity.getEvents().addListener("updateArmour", this::updatePlayerArmourUI);
   }
 
   /**
@@ -49,7 +51,7 @@ public class PlayerStatsDisplay extends UIComponent {
     table = new Table();
     table.top().left();
     table.setFillParent(true);
-    table.padTop(30).padLeft(5f);
+    table.padTop(30f).padLeft(5f);
 
     // Heart image
     float heartSideLength = 200f;
@@ -94,8 +96,6 @@ public class PlayerStatsDisplay extends UIComponent {
     notification.add(noImage).size(noWidth, noHeight).pad(5);
     stage.addActor(notification);
     notification.setVisible(false);
-
-
   }
 
   /**
@@ -103,8 +103,7 @@ public class PlayerStatsDisplay extends UIComponent {
    */
   public void treatAnimate() {
     heartAnimat =  new Table();
-    heartAnimat.top();
-    heartAnimat.padTop(0f).padRight(1500f);
+    heartAnimat.center();
     heartAnimat.setFillParent(true);
     new Thread() {
       public void run() {
@@ -133,9 +132,34 @@ public class PlayerStatsDisplay extends UIComponent {
    * @param health player health
    */
   public void updatePlayerHealthUI(int health) {
+    //Update the number of health
     CharSequence text = String.format("Health: %d", health);
     healthLabel.setText(text);
     treatAnimate();
+
+    //Update the health bar
+    float heartSideLength = 200f;
+    if(health>=0) {
+      table.removeActor(heartImage);
+      heartImage.remove();
+      if (health == 3) {
+        heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_full.png", Texture.class));
+      }
+      if (health == 2) {
+        heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_decrease_one.png", Texture.class));
+      }
+      if (health == 1) {
+        heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_decrease_two.png", Texture.class));
+      }
+      if (health == 0) {
+        heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_empty.png", Texture.class));
+      }
+      table.reset();
+      table.top().left();
+      table.setFillParent(true);
+      table.padTop(30f).padLeft(5f);
+      table.add(heartImage).size(heartSideLength).pad(5);
+    }
 
     //Notification appears and disposes
     new Thread() {
@@ -148,6 +172,15 @@ public class PlayerStatsDisplay extends UIComponent {
         catch (InterruptedException e) {}
       }
     }.start();
+  }
+
+  /**
+   * Updates the player's armour on the ui.
+   * Incomplete function
+   * @param armour player armour
+   */
+  public void updatePlayerArmourUI(int armour) {
+
   }
 
   @Override
