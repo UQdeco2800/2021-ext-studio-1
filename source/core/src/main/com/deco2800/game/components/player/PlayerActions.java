@@ -103,13 +103,19 @@ public class PlayerActions extends Component {
 
   private Entity findNearestTargets(Array<Entity> entities) {
     Entity result = null;
-    float minDst = 2.0f;
+    float minDstEnemy = 2.0f;
+    float minDstObstacle = 1.1f;
     for (Entity en: entities) {
-      if (en.getType() == Entity.Type.GHOST || en.getType() == Entity.Type.OBSTACLE
-                                            || en.getType() == Entity.Type.GHOSTKING) {
+      if (en.getType() == Entity.Type.GHOST || en.getType() == Entity.Type.GHOSTKING) {
         float dst = entity.getPosition().dst(en.getPosition());
-        if (minDst > dst) {
-          minDst = dst;
+        if (minDstEnemy > dst) {
+          minDstEnemy = dst;
+          result = en;
+        }
+      } else if (en.getType() == Entity.Type.OBSTACLE) {
+        float dst = entity.getPosition().dst(en.getPosition());
+        if (minDstObstacle > dst) {
+          minDstObstacle = dst;
           result = en;
         }
       }
