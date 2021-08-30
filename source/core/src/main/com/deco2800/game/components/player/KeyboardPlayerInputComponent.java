@@ -28,19 +28,13 @@ public class KeyboardPlayerInputComponent extends InputComponent {
     switch (keycode) {
       case Keys.W:
         walkDirection.add(Vector2Utils.UP);
-        triggerWalkEvent();
-        return true;
-      case Keys.A:
-        walkDirection.add(Vector2Utils.LEFT);
-        triggerWalkEvent();
+//        triggerWalkEvent();
+        entity.setPosition(entity.getPosition().x, entity.getPosition().y + 1);
         return true;
       case Keys.S:
         walkDirection.add(Vector2Utils.DOWN);
-        triggerWalkEvent();
-        return true;
-      case Keys.D:
-        walkDirection.add(Vector2Utils.RIGHT);
-        triggerWalkEvent();
+//        triggerWalkEvent();
+        entity.setPosition(entity.getPosition().x, entity.getPosition().y - 1);
         return true;
       case Keys.SPACE:
         entity.getEvents().trigger("attack");
@@ -62,22 +56,12 @@ public class KeyboardPlayerInputComponent extends InputComponent {
       case Keys.W:
         walkDirection.sub(Vector2Utils.UP);
 //        triggerWalkEvent();
-        entity.setPosition(entity.getPosition().x, entity.getPosition().y + 1);
-        return true;
-      case Keys.A:
-        walkDirection.sub(Vector2Utils.LEFT);
-//        triggerWalkEvent();
-        entity.setPosition(entity.getPosition().x - 1, entity.getPosition().y);
+//        entity.setPosition(entity.getPosition().x, entity.getPosition().y + 1);
         return true;
       case Keys.S:
         walkDirection.sub(Vector2Utils.DOWN);
 //        triggerWalkEvent();
-        entity.setPosition(entity.getPosition().x, entity.getPosition().y - 1);
-        return true;
-      case Keys.D:
-        walkDirection.sub(Vector2Utils.RIGHT);
-//        triggerWalkEvent();
-        entity.setPosition(entity.getPosition().x + 1, entity.getPosition().y);
+//        entity.setPosition(entity.getPosition().x, entity.getPosition().y - 1);
         return true;
       default:
         return false;
