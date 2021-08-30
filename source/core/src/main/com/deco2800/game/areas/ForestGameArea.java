@@ -114,7 +114,9 @@ public class ForestGameArea extends GameArea {
     for (int i = 0; i < NUM_TREES; i++) {
       GridPoint2 randomPos = RandomUtils.random(minPos, maxPos);
       Entity tree = ObstacleFactory.createTree();
-      spawnEntityAt(tree, randomPos, true, false);
+      if(randomPos != PLAYER_SPAWN){
+        spawnEntityAt(tree, randomPos, true, false);
+      }
     }
   }
 
@@ -131,7 +133,9 @@ public class ForestGameArea extends GameArea {
     for (int i = 0; i < NUM_GHOSTS; i++) {
       GridPoint2 randomPos = RandomUtils.random(minPos, maxPos);
       Entity ghost = NPCFactory.createGhost(player);
-      spawnEntityAt(ghost, randomPos, true, true);
+      if(randomPos != PLAYER_SPAWN){
+        spawnEntityAt(ghost, randomPos, true, true);
+      }
     }
   }
 
