@@ -93,7 +93,7 @@ public class PlayerStatsDisplay extends UIComponent {
   }
 
   /**
-   * Player treatment Animation
+   * Player get hurt Animation
    */
   private void hurtAnimate() {
     Table heartAnimate =  new Table();
