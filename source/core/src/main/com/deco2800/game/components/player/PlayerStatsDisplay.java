@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -39,6 +40,7 @@ public class PlayerStatsDisplay extends UIComponent {
     addActors();
 
     entity.getEvents().addListener("updateHealth", this::updatePlayerHealthUI);
+    entity.getEvents().addListener("updateArmour", this::updatePlayerArmourUI);
   }
 
   /**
@@ -133,6 +135,36 @@ public class PlayerStatsDisplay extends UIComponent {
     CharSequence text = String.format("Health: %d", health);
     healthLabel.setText(text);
     treatAnimate();
+    float heartSideLength = 200f;
+
+    if (health == 3) {
+      table.removeActor(heartImage);
+      heartImage.remove();
+      heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_full.png", Texture.class));
+      table.add(heartImage).size(heartSideLength).pad(5);
+    }
+
+    if (health == 2) {
+      table.removeActor(heartImage);
+      heartImage.remove();
+      heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_decrease_one.png", Texture.class));
+      table.add(heartImage).size(heartSideLength).pad(5);
+
+    }
+
+    if (health == 1) {
+      table.removeActor(heartImage);
+      heartImage.remove();
+      heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_decrease_two.png", Texture.class));
+      table.add(heartImage).size(heartSideLength).pad(5);
+    }
+
+    if (health == 0) {
+      table.removeActor(heartImage);
+      heartImage.remove();
+      heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_empty.png", Texture.class));
+      table.add(heartImage).size(heartSideLength).pad(5);
+    }
 
     //Notification appears and disposes
     new Thread() {
@@ -145,6 +177,15 @@ public class PlayerStatsDisplay extends UIComponent {
         catch (InterruptedException e) {}
       }
     }.start();
+  }
+
+  /**
+   * Updates the player's armour on the ui.
+   * Incomplete function
+   * @param armour player armour
+   */
+  public void updatePlayerArmourUI(int armour) {
+
   }
 
   @Override
