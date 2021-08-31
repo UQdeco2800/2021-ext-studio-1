@@ -21,6 +21,8 @@ import org.slf4j.LoggerFactory;
 public class ForestGameArea extends GameArea {
   private static final Logger logger = LoggerFactory.getLogger(ForestGameArea.class);
   private static final int NUM_TREES = 7;
+  private static final int NUM_OBSTACLES = 12;
+  private static final int NUM_HEALTH_OBJECTS = 10;
   private static final int NUM_GHOSTS = 2;
   private static final GridPoint2 PLAYER_SPAWN = new GridPoint2(10, 10);
   private static final float WALL_WIDTH = 0.1f;
@@ -37,7 +39,13 @@ public class ForestGameArea extends GameArea {
     "images/hex_grass_3.png",
     "images/iso_grass_1.png",
     "images/iso_grass_2.png",
-    "images/iso_grass_3.png"
+    "images/iso_grass_3.png",
+    "images/carObstacle.png",
+    "images/stone.png",
+    "images/FirstAidKit.png",
+    "images/snake.png",
+    "images/fire.png",
+    "images/food.png",
   };
   private static final String[] forestTextureAtlases = {
     "images/terrain_iso_grass.atlas", "images/ghost.atlas", "images/ghostKing.atlas"
@@ -64,6 +72,8 @@ public class ForestGameArea extends GameArea {
 
     spawnTerrain();
     spawnTrees();
+    spawnObstables();
+    spawnHealthObjects();
     player = spawnPlayer();
     spawnGhosts();
     spawnGhostKing();
@@ -117,6 +127,53 @@ public class ForestGameArea extends GameArea {
       spawnEntityAt(tree, randomPos, true, false);
     }
   }
+
+  private void spawnObstables() {
+    GridPoint2 minPos = new GridPoint2(0, 0);
+    GridPoint2 maxPos = terrain.getMapBounds(0).sub(2, 2);
+
+    for (int i = 0; i < NUM_OBSTACLES; i++) {
+      GridPoint2 randomPos = RandomUtils.random(minPos, maxPos);
+      switch(i % 3) {
+        case 0:
+          Entity car = ObstacleFactory.createCarObstacle();
+          spawnEntityAt(car, randomPos, true, false);
+          break;
+        case 1:
+          Entity stone = ObstacleFactory.createStoneObstacle();
+          spawnEntityAt(stone, randomPos, true, false);
+          break;
+        case 2:
+          Entity snake = ObstacleFactory.createSnake();
+          spawnEntityAt(snake, randomPos, true, false);
+          break;
+        case 3:
+          Entity fire = ObstacleFactory.createFire();
+          spawnEntityAt(fire, randomPos, true, false);
+          break;
+      }
+    }
+  }
+
+  private void spawnHealthObjects() {
+    GridPoint2 minPos = new GridPoint2(0, 0);
+    GridPoint2 maxPos = terrain.getMapBounds(0).sub(2, 2);
+
+    for (int i = 0; i < NUM_HEALTH_OBJECTS; i++) {
+      GridPoint2 randomPos = RandomUtils.random(minPos, maxPos);
+      switch(i % 2) {
+        case 0:
+          Entity food = ObstacleFactory.createFood();
+          spawnEntityAt(food, randomPos, true, false);
+          break;
+        case 1:
+          Entity firstAid = ObstacleFactory.createFirstAidKit();
+          spawnEntityAt(firstAid, randomPos, true, false);
+          break;
+      }
+    }
+  }
+
 
   private Entity spawnPlayer() {
     Entity newPlayer = PlayerFactory.createPlayer();
