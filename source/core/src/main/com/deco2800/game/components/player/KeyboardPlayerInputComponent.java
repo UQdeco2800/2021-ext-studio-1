@@ -69,6 +69,9 @@ public class KeyboardPlayerInputComponent extends InputComponent {
 //        triggerWalkEvent();
 //        entity.setPosition(entity.getPosition().x, entity.getPosition().y - 1);
         return true;
+      case Keys.SPACE:
+        entity.getEvents().trigger("unAttack");
+        return true;
       default:
         return false;
     }

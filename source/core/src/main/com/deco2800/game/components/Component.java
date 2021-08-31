@@ -1,6 +1,7 @@
 package com.deco2800.game.components;
 
 import com.deco2800.game.entities.Entity;
+import com.deco2800.game.entities.factories.NPCFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,6 +41,11 @@ public class Component {
 
   /** Called when the component is disposed. Dispose of any internal resources here. */
   public void dispose() {
+    // No action by default.
+  }
+
+  /** Called when the component is attacked. Attack of any internal resources here. */
+  public void attackKing() {
     // No action by default.
   }
 
