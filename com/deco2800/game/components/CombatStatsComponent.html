@@ -19,7 +19,7 @@
 <script type="text/javascript" src="../../../../script-dir/jquery-ui.js"></script>
 </head>
 <body class="class-declaration">
-<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -140,6 +140,12 @@ extends <a href="Component.html" title="class in com.deco2800.game.components">C
 int&nbsp;baseAttack)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
+<tr class="rowColor">
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int,int,int)">CombatStatsComponent</a></span>&#8203;(int&nbsp;health,
+int&nbsp;baseAttack,
+int&nbsp;armour)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -165,45 +171,66 @@ int&nbsp;baseAttack)</code></th>
 <tbody>
 <tr class="altColor" id="i0">
 <td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addArmour(int)">addArmour</a></span>&#8203;(int&nbsp;armour)</code></th>
+<td class="colLast">
+<div class="block">Adds to the player's armour.</div>
+</td>
+</tr>
+<tr class="rowColor" id="i1">
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addHealth(int)">addHealth</a></span>&#8203;(int&nbsp;health)</code></th>
 <td class="colLast">
 <div class="block">Adds to the player's health.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i1">
+<tr class="altColor" id="i2">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getArmour()">getArmour</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns the entity's armour.</div>
+</td>
+</tr>
+<tr class="rowColor" id="i3">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBaseAttack()">getBaseAttack</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the entity's base attack damage.</div>
 </td>
 </tr>
-<tr class="altColor" id="i2">
+<tr class="altColor" id="i4">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getHealth()">getHealth</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the entity's health.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i3">
+<tr class="rowColor" id="i5">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hit(com.deco2800.game.components.CombatStatsComponent)">hit</a></span>&#8203;(<a href="CombatStatsComponent.html" title="class in com.deco2800.game.components">CombatStatsComponent</a>&nbsp;attacker)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor" id="i4">
+<tr class="altColor" id="i6">
 <td class="colFirst"><code>java.lang.Boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isDead()">isDead</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns true if the entity's has 0 health, otherwise false.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i5">
+<tr class="rowColor" id="i7">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setArmour(int)">setArmour</a></span>&#8203;(int&nbsp;armour)</code></th>
+<td class="colLast">
+<div class="block">Sets the entity's armour.</div>
+</td>
+</tr>
+<tr class="altColor" id="i8">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setBaseAttack(int)">setBaseAttack</a></span>&#8203;(int&nbsp;attack)</code></th>
 <td class="colLast">
 <div class="block">Sets the entity's attack damage.</div>
 </td>
 </tr>
-<tr class="altColor" id="i6">
+<tr class="rowColor" id="i9">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setHealth(int)">setHealth</a></span>&#8203;(int&nbsp;health)</code></th>
 <td class="colLast">
@@ -244,6 +271,14 @@ int&nbsp;baseAttack)</code></th>
 int&nbsp;baseAttack)</span></div>
 </section>
 </li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="&lt;init&gt;(int,int,int)">CombatStatsComponent</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="memberName">CombatStatsComponent</span>&#8203;(<span class="arguments">int&nbsp;health,
+int&nbsp;baseAttack,
+int&nbsp;armour)</span></div>
+</section>
+</li>
 </ul>
 </section>
 </li>
@@ -278,6 +313,17 @@ int&nbsp;baseAttack)</span></div>
 </li>
 <li class="blockList">
 <section class="detail">
+<h3><a id="getArmour()">getArmour</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">getArmour</span>()</div>
+<div class="block">Returns the entity's armour.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>entity's armour</dd>
+</dl>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
 <h3><a id="setHealth(int)">setHealth</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">setHealth</span>&#8203;(<span class="arguments">int&nbsp;health)</span></div>
 <div class="block">Sets the entity's health. Health has a minimum bound of 0.</div>
@@ -289,12 +335,34 @@ int&nbsp;baseAttack)</span></div>
 </li>
 <li class="blockList">
 <section class="detail">
+<h3><a id="setArmour(int)">setArmour</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">setArmour</span>&#8203;(<span class="arguments">int&nbsp;armour)</span></div>
+<div class="block">Sets the entity's armour. Armour has a minimum bound of 0.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>armour</code> - armour</dd>
+</dl>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
 <h3><a id="addHealth(int)">addHealth</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">addHealth</span>&#8203;(<span class="arguments">int&nbsp;health)</span></div>
 <div class="block">Adds to the player's health. The amount added can be negative.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>health</code> - health to add</dd>
+</dl>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="addArmour(int)">addArmour</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">addArmour</span>&#8203;(<span class="arguments">int&nbsp;armour)</span></div>
+<div class="block">Adds to the player's armour. The amount added can not be negative.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>armour</code> - armour to add</dd>
 </dl>
 </section>
 </li>
