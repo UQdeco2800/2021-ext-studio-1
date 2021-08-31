@@ -64,6 +64,32 @@ public class NPCFactory {
   }
 
   /**
+   * Creates a littleGreen entity.
+   *
+   * @param target entity to chase
+   * @return entity
+   */
+  public static Entity createLittleGreen(Entity target) {
+    Entity littleGreen = createBaseNPC(target);
+    BaseEntityConfig config = configs.littleGreen;
+
+    AnimationRenderComponent animator =
+            new AnimationRenderComponent(
+                    ServiceLocator.getResourceService().getAsset("images/littleGreen.atlas", TextureAtlas.class));
+    animator.addAnimation("angry_float", 0.1f, Animation.PlayMode.LOOP);
+    animator.addAnimation("float", 0.1f, Animation.PlayMode.LOOP);
+
+    littleGreen
+            .addComponent(new CombatStatsComponent(config.health, config.baseAttack))
+            .addComponent(animator)
+            .addComponent(new GhostAnimationController());
+
+    littleGreen.getComponent(AnimationRenderComponent.class).scaleEntity();
+
+    return littleGreen;
+  }
+
+  /**
    * Creates a ghost king entity.
    *
    * @param target entity to chase
@@ -76,7 +102,7 @@ public class NPCFactory {
     AnimationRenderComponent animator =
         new AnimationRenderComponent(
             ServiceLocator.getResourceService()
-                .getAsset("images/ghostKing.atlas", TextureAtlas.class));
+                .getAsset("images/dragon.atlas", TextureAtlas.class));
     animator.addAnimation("float", 0.1f, Animation.PlayMode.LOOP);
     animator.addAnimation("angry_float", 0.1f, Animation.PlayMode.LOOP);
 
@@ -89,6 +115,7 @@ public class NPCFactory {
     return ghostKing;
   }
 
+
   /**
    * Creates a generic NPC to be used as a base entity by more specific NPC creation methods.
    *
@@ -97,8 +124,8 @@ public class NPCFactory {
   private static Entity createBaseNPC(Entity target) {
     AITaskComponent aiComponent =
         new AITaskComponent()
-            .addTask(new WanderTask(new Vector2(2f, 2f), 2f))
-            .addTask(new ChaseTask(target, 10, 3f, 4f));
+            .addTask(new WanderTask(new Vector2(0, 0), 2f))
+            .addTask(new ChaseTask(target, 10, 0, 0));
     Entity npc =
         new Entity()
             .addComponent(new PhysicsComponent())
