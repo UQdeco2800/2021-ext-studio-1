@@ -1,11 +1,11 @@
 {
   "ghost": {
     "health": 40,
-    "baseAttack": 10
+    "baseAttack": 1
   },
   "ghostKing": {
     "health": 100,
-    "baseAttack": 25,
+    "baseAttack": 1,
     "spookyFactor": 7
   }
 }
