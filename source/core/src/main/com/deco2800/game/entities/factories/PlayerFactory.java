@@ -47,12 +47,13 @@ public class PlayerFactory {
 
     Entity player =
         new Entity(Entity.Type.PLAYER)
-            .addComponent(new TextureRenderComponent("images/new_player.png"))
+            .addComponent(new TextureRenderComponent("images/new_player_2021.png"))
+
             .addComponent(new PhysicsComponent())
             .addComponent(new ColliderComponent())
             .addComponent(new HitboxComponent().setLayer(PhysicsLayer.PLAYER))
             .addComponent(new PlayerActions())
-            .addComponent(new CombatStatsComponent(stats.health, stats.baseAttack))
+            .addComponent(new CombatStatsComponent(stats.health, stats.baseAttack, stats.armour))
             .addComponent(new InventoryComponent(stats.gold))
             .addComponent(inputComponent)
             .addComponent(new PlayerStatsDisplay())
