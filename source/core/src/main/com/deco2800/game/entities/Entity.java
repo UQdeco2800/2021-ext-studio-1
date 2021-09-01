@@ -275,6 +275,7 @@ public class Entity {
     }
   }
 
+
   /**
    * This entity's unique ID. Used for equality checks
    *
@@ -308,4 +309,6 @@ public class Entity {
   public String toString() {
     return String.format("Entity{id=%d}", id);
   }
+
+
 }
