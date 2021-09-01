@@ -22,6 +22,13 @@ sonarqube {
     }
 }
 
+apply plugin: 'java'
+
+javadoc {
+    source = sourceSets.main.allJava
+    classpath = configurations.compile
+}
+
 allprojects {
     apply plugin: "eclipse"
     apply plugin: 'jacoco'
@@ -73,6 +80,7 @@ project(":core") {
         api "com.badlogicgames.gdx-controllers:gdx-controllers-core:$gdxControllersVersion"
         api "net.dermetfan.libgdx-utils:libgdx-utils:$gdxUtilsVersion"
         api "net.dermetfan.libgdx-utils:libgdx-utils-box2d:$gdxUtilsVersion"
+
 
         // Logging
         api  "org.slf4j:slf4j-api:$slf4jVersion"

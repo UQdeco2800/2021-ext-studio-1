@@ -22,7 +22,7 @@ public class ObstacleFactory {
    */
   public static Entity createTree() {
     Entity tree =
-        new Entity()
+        new Entity(Entity.Type.OBSTACLE)
             .addComponent(new TextureRenderComponent("images/tree.png"))
             .addComponent(new PhysicsComponent())
             .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE));

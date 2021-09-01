@@ -3,8 +3,10 @@ package com.deco2800.game.entities;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.IntMap;
+import com.deco2800.game.components.CombatStatsComponent;
 import com.deco2800.game.components.Component;
 import com.deco2800.game.components.ComponentType;
+import com.deco2800.game.entities.factories.NPCFactory;
 import com.deco2800.game.events.EventHandler;
 import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
@@ -46,6 +48,19 @@ public class Entity {
     eventHandler = new EventHandler();
   }
 
+  private Type type = null;
+  public Entity(Type name) {
+    this();
+    this.type = name;
+  }
+
+  public enum Type {
+    PLAYER, GHOST, OBSTACLE, GHOSTKING
+  }
+
+  public Entity.Type getType() {
+    return this.type;
+  }
   /**
    * Enable or disable an entity. Disabled entities do not run update() or earlyUpdate() on their
    * components, but can still be disposed.
@@ -207,6 +222,15 @@ public class Entity {
     ServiceLocator.getEntityService().unregister(this);
   }
 
+  /** Attack of the entity. This will attack of all components on this entity. */
+  public void attack() {
+    for (Component component : createdComponents) {
+      component.attackKing();
+    }
+    ServiceLocator.getEntityService().unregister(this);
+    ServiceLocator.getEntityService().register(this);
+  }
+
   /**
    * Create the entity and start running. This is called when the entity is registered in the world,
    * and should not be called manually.
@@ -251,6 +275,7 @@ public class Entity {
     }
   }
 
+
   /**
    * This entity's unique ID. Used for equality checks
    *
@@ -284,4 +309,6 @@ public class Entity {
   public String toString() {
     return String.format("Entity{id=%d}", id);
   }
+
+
 }
