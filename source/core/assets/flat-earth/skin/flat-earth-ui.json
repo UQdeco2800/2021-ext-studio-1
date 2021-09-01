@@ -22,7 +22,9 @@ com.badlogic.gdx.graphics.Color: {
 		g: 0
 		b: 0
 		a: 1
-	}
+	},
+
+
 	color: {
 		r: 0.3372549
 		g: 0.8
@@ -65,7 +67,7 @@ com.badlogic.gdx.graphics.Color: {
 		b: 0
 		a: 1
 	}
-}
+},
 com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable: {
 	button-c: {
 		name: button
@@ -336,11 +338,16 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	small: {
 		font: font_small,
 		fontColor: black
-	}
+	},
+	titleOne:{
+		font: font_small,
+		fontColor: selection
+	},
 	large: {
 		font: font_large,
 		fontColor: black
 	}
+
 }
 com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
 	default: {
