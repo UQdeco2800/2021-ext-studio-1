@@ -1,0 +1,12 @@
+notification_frames.png
+size: 1400, 475
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Notification frames
+  rotate: false
+  xy: 0, 0
+  size: 1400, 475
+  orig: 1400, 475
+  offset: 0, 0
+  index: -1
