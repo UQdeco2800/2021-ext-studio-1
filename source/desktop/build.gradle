@@ -9,8 +9,13 @@ task run(dependsOn: classes, type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     standardInput = System.in
     workingDir = project.assetsDir
+<<<<<<< Updated upstream
     ignoreExitValue = true
     jvmArgs = ["-Djava.util.logging.config.file=../../logging.properties"]
+=======
+
+    ignoreExitValue = true as JavaExecSpec
+>>>>>>> Stashed changes
 }
 
 task debug(dependsOn: classes, type: JavaExec) {
