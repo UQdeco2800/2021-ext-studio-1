@@ -29,17 +29,17 @@ public class KeyboardPlayerInputComponent extends InputComponent {
       case Keys.W:
         walkDirection.add(Vector2Utils.UP);
 //        triggerWalkEvent();
-        entity.setPosition(entity.getPosition().x, entity.getPosition().y + 1.53f);
+        entity.setPosition(entity.getPosition().x, entity.getPosition().y + 1.5f);
         if (entity.getPosition().y >= 8.5f){
-          entity.setPosition(entity.getPosition().x,entity.getPosition().y - 1.53f);
+          entity.setPosition(entity.getPosition().x,entity.getPosition().y - 1.5f);
         }
         return true;
       case Keys.S:
         walkDirection.add(Vector2Utils.DOWN);
 //        triggerWalkEvent();
-        entity.setPosition(entity.getPosition().x, entity.getPosition().y - 1.53f);
+        entity.setPosition(entity.getPosition().x, entity.getPosition().y - 1.5f);
         if(entity.getPosition().y <= 3){
-          entity.setPosition(entity.getPosition().x, entity.getPosition().y + 1.53f);
+          entity.setPosition(entity.getPosition().x, entity.getPosition().y + 1.5f);
         }
         return true;
       case Keys.SPACE:
