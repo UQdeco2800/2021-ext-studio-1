@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 
 public class RainbowBridge extends GameArea {
     private static final Logger logger = LoggerFactory.getLogger(ForestGameArea.class);
-    private static final GridPoint2 PLAYER_SPAWN = new GridPoint2(10, 10);
+    private static final GridPoint2 PLAYER_SPAWN = new GridPoint2(1, 8);
     private static final float WALL_WIDTH = 0.1f;
     private static final String[] rainbowBridgeTextures = {
             "images/terrain/star-blank.png",
@@ -28,9 +28,15 @@ public class RainbowBridge extends GameArea {
             "images/terrain/color-2.png",
             "images/terrain/color-3.png",
             "images/terrain/color-4.png",
+            "images/new_player_2021.png",
+            "images/new_player.png",
+            "images/attack.png",
 
     };
 
+    private static final String[] rainbowBridgeAtlases = {
+            "images/attack.atlas"
+    };
 
     private final TerrainFactory terrainFactory;
     private Bridge rainbowBridge;
@@ -41,11 +47,13 @@ public class RainbowBridge extends GameArea {
     }
 
 
+
     @Override
     public void create() {
         loadAssets();
         displayUI();
         spawnTerrain();
+        spawnPlayer();
     }
 
     private void displayUI() {
@@ -83,6 +91,7 @@ public class RainbowBridge extends GameArea {
         logger.debug("Loading assets");
         ResourceService resourceService = ServiceLocator.getResourceService();
         resourceService.loadTextures(rainbowBridgeTextures);
+        resourceService.loadTextureAtlases(rainbowBridgeAtlases);
 
         while (!resourceService.loadForMillis(10)) {
             // This could be upgraded to a loading screen
@@ -94,6 +103,8 @@ public class RainbowBridge extends GameArea {
         logger.debug("Unloading assets");
         ResourceService resourceService = ServiceLocator.getResourceService();
         resourceService.unloadAssets(rainbowBridgeTextures);
+        resourceService.unloadAssets(rainbowBridgeAtlases);
+
     }
 
     @Override
