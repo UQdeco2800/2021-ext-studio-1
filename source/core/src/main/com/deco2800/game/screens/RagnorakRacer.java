@@ -29,8 +29,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class RagnorakRacer extends ScreenAdapter {
-
     private static final Logger logger = LoggerFactory.getLogger(MainGameScreen.class);
+
     private static final String[] mainGameTextures = {"images/health_full.png", "images/health_decrease_two.png",
             "images/health_decrease_one.png", "images/health_empty.png", "images/notification.png",
             "images/hurt0.png","images/hurt1.png","images/hurt2.png","images/hurt3.png","images/hurt4.png"};
@@ -56,12 +56,16 @@ public class RagnorakRacer extends ScreenAdapter {
         ServiceLocator.registerEntityService(new EntityService());
         ServiceLocator.registerRenderService(new RenderService());
 
+
+
+
         this.renderer = RenderFactory.createRenderer();
         this.renderer.getCamera().getEntity().setPosition(CAMERA_POSITION);
         renderer.getDebug().renderPhysicsWorld(physicsEngine.getWorld());
 
         loadAssets();
         createUI();
+        loadAssets();
 
         TerrainFactory terrainFactory = new TerrainFactory(renderer.getCamera());
         RainbowBridge rainbowBridge = new RainbowBridge(terrainFactory);
@@ -107,6 +111,7 @@ public class RagnorakRacer extends ScreenAdapter {
 
     @Override
     public void dispose() {
+
         super.dispose();
         logger.debug("Disposing main game screen");
 
@@ -118,19 +123,7 @@ public class RagnorakRacer extends ScreenAdapter {
         ServiceLocator.getResourceService().dispose();
 
         ServiceLocator.clear();
-    }
 
-    private void loadAssets() {
-        logger.debug("Loading assets");
-        ResourceService resourceService = ServiceLocator.getResourceService();
-        resourceService.loadTextures(mainGameTextures);
-        ServiceLocator.getResourceService().loadAll();
-    }
-
-    private void unloadAssets() {
-        logger.debug("Unloading assets");
-        ResourceService resourceService = ServiceLocator.getResourceService();
-        resourceService.unloadAssets(mainGameTextures);
     }
 
     /**
@@ -153,5 +146,18 @@ public class RagnorakRacer extends ScreenAdapter {
                 .addComponent(new TerminalDisplay());
 
         ServiceLocator.getEntityService().register(ui);
+    }
+
+    private void loadAssets() {
+        logger.debug("Loading assets");
+        ResourceService resourceService = ServiceLocator.getResourceService();
+        resourceService.loadTextures(mainGameTextures);
+        ServiceLocator.getResourceService().loadAll();
+    }
+
+    private void unloadAssets() {
+        logger.debug("Unloading assets");
+        ResourceService resourceService = ServiceLocator.getResourceService();
+        resourceService.unloadAssets(mainGameTextures);
     }
 }

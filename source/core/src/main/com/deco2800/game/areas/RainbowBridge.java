@@ -19,8 +19,9 @@ import org.slf4j.LoggerFactory;
 
 
 public class RainbowBridge extends GameArea {
-    private static final Logger logger = LoggerFactory.getLogger(RagnorakRacer.class);
-    private static final GridPoint2 PLAYER_SPAWN = new GridPoint2(10, 10);
+
+    private static final Logger logger = LoggerFactory.getLogger(ForestGameArea.class);
+    private static final GridPoint2 PLAYER_SPAWN = new GridPoint2(1, 8);
     private static final float WALL_WIDTH = 0.1f;
     private static final int NUM_TREES = 7;
     private static final int NUM_OBSTACLES = 12;
@@ -66,7 +67,9 @@ public class RainbowBridge extends GameArea {
     };
 
     private static final String[] rainbowBridgeAtlases = {
+
             "images/terrain_iso_grass.atlas", "images/ghost.atlas", "images/ghostKing.atlas","images/dragon.atlas","images/littleGreen.atlas", "images/attack.atlas"
+
     };
 
     private final TerrainFactory terrainFactory;
@@ -77,6 +80,7 @@ public class RainbowBridge extends GameArea {
         super();
         this.terrainFactory = terrainFactory;
     }
+
 
 
     @Override
@@ -218,6 +222,8 @@ public class RainbowBridge extends GameArea {
         logger.debug("Unloading assets");
         ResourceService resourceService = ServiceLocator.getResourceService();
         resourceService.unloadAssets(rainbowBridgeTextures);
+        resourceService.unloadAssets(rainbowBridgeAtlases);
+
     }
 
     @Override
