@@ -20,6 +20,7 @@ import com.deco2800.game.physics.PhysicsEngine;
 import com.deco2800.game.physics.PhysicsService;
 import com.deco2800.game.rendering.RenderService;
 import com.deco2800.game.rendering.Renderer;
+import com.deco2800.game.services.GameTime;
 import com.deco2800.game.services.ResourceService;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.terminal.Terminal;
@@ -30,18 +31,26 @@ import org.slf4j.LoggerFactory;
 public class RagnorakRacer extends ScreenAdapter {
     private static final Logger logger = LoggerFactory.getLogger(MainGameScreen.class);
 
+    private static final Logger logger = LoggerFactory.getLogger(MainGameScreen.class);
+    private static final String[] mainGameTextures = {"images/health_full.png", "images/health_decrease_two.png",
+            "images/health_decrease_one.png", "images/health_empty.png", "images/notification.png",
+            "images/hurt0.png","images/hurt1.png","images/hurt2.png","images/hurt3.png","images/hurt4.png"};
+    private static final Vector2 CAMERA_POSITION = new Vector2(7.5f, 7.5f);
+
     private final GdxGame game;
     private final Renderer renderer;
     private Bridge rainbowBridge;
     private final PhysicsEngine physicsEngine;
-    private static final String[] mainGameTextures = {"images/health_full.png", "images/health_decrease_two.png",
-            "images/health_decrease_one.png", "images/health_empty.png", "images/notification.png",
-            "images/hurt0.png","images/hurt1.png","images/hurt2.png","images/hurt3.png","images/hurt4.png"};
-
-    private static final Vector2 CAMERA_POSITION = new Vector2(7.5f, 7.5f);
 
     public RagnorakRacer(GdxGame game) {
         this.game = game;
+
+        logger.debug("Initialising main game screen services");
+        ServiceLocator.registerTimeSource(new GameTime());
+
+        PhysicsService physicsService = new PhysicsService();
+        ServiceLocator.registerPhysicsService(physicsService);
+        physicsEngine = physicsService.getPhysics();
 
         ServiceLocator.registerInputService(new InputService());
         ServiceLocator.registerResourceService(new ResourceService());
@@ -55,7 +64,9 @@ public class RagnorakRacer extends ScreenAdapter {
 
         this.renderer = RenderFactory.createRenderer();
         this.renderer.getCamera().getEntity().setPosition(CAMERA_POSITION);
+        renderer.getDebug().renderPhysicsWorld(physicsEngine.getWorld());
 
+        loadAssets();
         createUI();
         loadAssets();
 
@@ -67,6 +78,7 @@ public class RagnorakRacer extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
+        physicsEngine.update();
         ServiceLocator.getEntityService().update();
         renderer.render();
     }
@@ -74,7 +86,9 @@ public class RagnorakRacer extends ScreenAdapter {
     @Override
     public void resize(int width, int height) {
         renderer.resize(width, height);
+        logger.trace("Resized renderer: ({} x {})", width, height);
     }
+
 
     @Override
     public void show() {
@@ -89,15 +103,19 @@ public class RagnorakRacer extends ScreenAdapter {
     @Override
     public void pause() {
         super.pause();
+        logger.info("Game paused");
     }
 
     @Override
     public void resume() {
         super.resume();
+        logger.info("Game resumed");
     }
 
     @Override
     public void dispose() {
+
+        super.dispose();
         logger.debug("Disposing main game screen");
 
         renderer.dispose();
@@ -108,6 +126,7 @@ public class RagnorakRacer extends ScreenAdapter {
         ServiceLocator.getResourceService().dispose();
 
         ServiceLocator.clear();
+
     }
 
     /**
@@ -115,6 +134,7 @@ public class RagnorakRacer extends ScreenAdapter {
      * capturing and handling ui input.
      */
     private void createUI() {
+        logger.debug("Creating ui");
         Stage stage = ServiceLocator.getRenderService().getStage();
         InputComponent inputComponent =
                 ServiceLocator.getInputService().getInputFactory().createForTerminal();
