@@ -17,10 +17,10 @@ com.badlogic.gdx.graphics.g2d.BitmapFont: {
 	}
 }
 com.badlogic.gdx.graphics.Color: {
-	black: {
+	purple: {
 		r: 0.8
 		g: 0
-		b: 0.8
+		b: 1
 		a: 1
 	},
 
@@ -28,7 +28,7 @@ com.badlogic.gdx.graphics.Color: {
 	color: {
 		r: 0.8
 		g: 0
-		b: 0.8
+		b: 1
 		a: 1
 	}
 	gray: {
@@ -201,9 +201,9 @@ com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable: {
 		name: slider-vertical
 		color: pressed
 	}
-	black: {
+	purple: {
 		name: white
-		color: black
+		color: purple
 	}
 	button-close-p: {
 		name: button-close
@@ -325,7 +325,7 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	default: {
 		font: font
-		fontColor: black
+		fontColor: purple
 	}
 	button: {
 		font: button
@@ -337,7 +337,7 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	}
 	small: {
 		font: font_small,
-		fontColor: black
+		fontColor: purple
 	},
 	titleOne:{
 		font: font_small,
@@ -345,7 +345,7 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	},
 	large: {
 		font: font_large,
-		fontColor: black
+		fontColor: purple
 	}
 
 }
