@@ -31,7 +31,6 @@ import org.slf4j.LoggerFactory;
 public class RagnorakRacer extends ScreenAdapter {
     private static final Logger logger = LoggerFactory.getLogger(MainGameScreen.class);
 
-    private static final Logger logger = LoggerFactory.getLogger(MainGameScreen.class);
     private static final String[] mainGameTextures = {"images/health_full.png", "images/health_decrease_two.png",
             "images/health_decrease_one.png", "images/health_empty.png", "images/notification.png",
             "images/hurt0.png","images/hurt1.png","images/hurt2.png","images/hurt3.png","images/hurt4.png"};
@@ -57,9 +56,7 @@ public class RagnorakRacer extends ScreenAdapter {
         ServiceLocator.registerEntityService(new EntityService());
         ServiceLocator.registerRenderService(new RenderService());
 
-        PhysicsService physicsService = new PhysicsService();
-        ServiceLocator.registerPhysicsService(physicsService);
-        physicsEngine = physicsService.getPhysics();
+
 
 
         this.renderer = RenderFactory.createRenderer();
