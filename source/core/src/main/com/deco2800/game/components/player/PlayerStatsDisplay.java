@@ -83,7 +83,7 @@ public class PlayerStatsDisplay extends UIComponent {
     notification.top();
     notification.setFillParent(true);
     notification.padTop(0).padLeft(5f);
-    float noWidth = 519f;
+    float noWidth = 619f;
     float noHeight = 213f;
     noImage = new Image(ServiceLocator.getResourceService().getAsset("images/notification.png", Texture.class));
 
