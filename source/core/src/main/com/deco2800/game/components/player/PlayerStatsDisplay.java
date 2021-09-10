@@ -157,16 +157,18 @@ public class PlayerStatsDisplay extends UIComponent {
     }
 
     //Notification appears and disposes
-    new Thread() {
-      public void run() {
-        try {
-          notification.setVisible(true);
-          Thread.sleep(1500);
-          notification.setVisible(false);
+    if(health>0) {
+      new Thread() {
+        public void run() {
+          try {
+            notification.setVisible(true);
+            Thread.sleep(1500);
+            notification.setVisible(false);
+          }
+          catch (InterruptedException e) {}
         }
-        catch (InterruptedException e) {}
-      }
-    }.start();
+      }.start();
+    }
   }
 
   /**
