@@ -67,7 +67,7 @@ public class RainbowBridge extends GameArea {
 
     };
 
-    private static final String[] rainbowBridgeSounds = {"sounds/Impact4.ogg"};
+    private static final String[] rainbowBridgeSounds = {"sounds/Impact4.ogg", "sounds/buff.ogg"};
     private static final String backgroundMusic = "sounds/BGM_03_mp3.mp3";
     private static final String[] rainbowBridgeMusic = {backgroundMusic};
 
