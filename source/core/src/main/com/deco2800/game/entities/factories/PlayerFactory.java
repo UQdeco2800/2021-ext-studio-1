@@ -48,7 +48,6 @@ public class PlayerFactory {
     Entity player =
         new Entity(Entity.Type.PLAYER)
             .addComponent(new TextureRenderComponent("images/new_player_2021.png"))
-
             .addComponent(new PhysicsComponent())
             .addComponent(new ColliderComponent())
             .addComponent(new HitboxComponent().setLayer(PhysicsLayer.PLAYER))
