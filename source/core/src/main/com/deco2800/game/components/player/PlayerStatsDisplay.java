@@ -83,7 +83,7 @@ public class PlayerStatsDisplay extends UIComponent {
     notification.top();
     notification.setFillParent(true);
     notification.padTop(0).padLeft(5f);
-    float noWidth = 519f;
+    float noWidth = 619f;
     float noHeight = 213f;
     noImage = new Image(ServiceLocator.getResourceService().getAsset("images/notification.png", Texture.class));
 
@@ -157,16 +157,18 @@ public class PlayerStatsDisplay extends UIComponent {
     }
 
     //Notification appears and disposes
-    new Thread() {
-      public void run() {
-        try {
-          notification.setVisible(true);
-          Thread.sleep(1500);
-          notification.setVisible(false);
+    if(health>0) {
+      new Thread() {
+        public void run() {
+          try {
+            notification.setVisible(true);
+            Thread.sleep(1500);
+            notification.setVisible(false);
+          }
+          catch (InterruptedException e) {}
         }
-        catch (InterruptedException e) {}
-      }
-    }.start();
+      }.start();
+    }
   }
 
   /**
