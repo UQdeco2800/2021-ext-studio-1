@@ -1,5 +1,6 @@
 package com.deco2800.game.areas;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.GridPoint2;
 import com.badlogic.gdx.math.Vector2;
 import com.deco2800.game.areas.terrain.TerrainFactory;
@@ -66,10 +67,12 @@ public class RainbowBridge extends GameArea {
 
     };
 
+    private static final String[] rainbowBridgeSounds = {"sounds/Impact4.ogg", "sounds/buff.ogg"};
+    private static final String backgroundMusic = "sounds/BGM_03_mp3.mp3";
+    private static final String[] rainbowBridgeMusic = {backgroundMusic};
+
     private static final String[] rainbowBridgeAtlases = {
-
             "images/terrain_iso_grass.atlas", "images/ghost.atlas", "images/ghostKing.atlas","images/dragon.atlas","images/littleGreen.atlas", "images/attack.atlas"
-
     };
 
     private final TerrainFactory terrainFactory;
@@ -93,6 +96,7 @@ public class RainbowBridge extends GameArea {
         player = spawnPlayer();
         spawnGhostKing();
         spawnLittleGreen();
+        playMusic();
     }
 
     private void displayUI() {
@@ -206,11 +210,21 @@ public class RainbowBridge extends GameArea {
     }
 
 
+
+    private void playMusic() {
+        Music music = ServiceLocator.getResourceService().getAsset(backgroundMusic, Music.class);
+        music.setLooping(true);
+        music.setVolume(0.2f);
+        music.play();
+    }
+
     private void loadAssets() {
         logger.debug("Loading assets");
         ResourceService resourceService = ServiceLocator.getResourceService();
         resourceService.loadTextures(rainbowBridgeTextures);
         resourceService.loadTextureAtlases(rainbowBridgeAtlases);
+        resourceService.loadSounds(rainbowBridgeSounds);
+        resourceService.loadMusic(rainbowBridgeMusic);
 
         while (!resourceService.loadForMillis(10)) {
             // This could be upgraded to a loading screen

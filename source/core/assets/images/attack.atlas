@@ -10,21 +10,21 @@ attack
   orig: 640, 640
   offset: 0, 0
   index: -1
-attack2
+attack
   rotate: false
   xy: 640, 0
   size: 640, 640
   orig: 640, 640
   offset: 0, 0
   index: -1
-attack3
+attack
   rotate: false
   xy: 0, 640
   size: 640, 640
   orig: 640, 640
   offset: 0, 0
   index: -1
-attack4
+attack
   rotate: false
   xy: 640, 640
   size: 640, 640
@@ -38,21 +38,21 @@ attack
   orig: 640, 640
   offset: 0, 0
   index: -1
-attack2
+attack
   rotate: false
   xy: 640, 0
   size: 640, 640
   orig: 640, 640
   offset: 0, 0
   index: -1
-attack3
+attack
   rotate: false
   xy: 0, 640
   size: 640, 640
   orig: 640, 640
   offset: 0, 0
   index: -1
-attack4
+attack
   rotate: false
   xy: 640, 640
   size: 640, 640

@@ -42,7 +42,7 @@ public class PlayerFactory {
                     ServiceLocator.getResourceService()
                             .getAsset("images/attack.atlas",
                                     TextureAtlas.class));
-    animator.addAnimation("attack", 10f, Animation.PlayMode.LOOP);
+    animator.addAnimation("attack", 0.03f, Animation.PlayMode.NORMAL);
 
 
     Entity player =
