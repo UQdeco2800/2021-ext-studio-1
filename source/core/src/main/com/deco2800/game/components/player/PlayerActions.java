@@ -92,7 +92,7 @@ public class PlayerActions extends Component {
         nearest.dispose();
       }
     }
-    Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/Impact4.ogg", Sound.class);
+    Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/attack.ogg", Sound.class);
     attackSound.play();
     animator.startAnimation("attack");
   }
