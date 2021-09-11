@@ -14,9 +14,6 @@ import static org.junit.Assert.assertEquals;
 
 public class Bridge_Test {
 
-    private InsnList lanes;
-    Bridge_Test BT = new Bridge_Test();
-
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         System.out.println("before class");
@@ -27,32 +24,33 @@ public class Bridge_Test {
         System.out.println("before");
     }
 
-    @Test
-    public testBridge(int offset, int width)
-    {
-        System.out.println("test case width,lanes and offset");
-        assertEquals(offset,BT.testgetOffset());
-        assertEquals(lanes, Bridge.);
-        assertEquals(width,Bridge.width());
-
-    }
 
     @Test
-    public double testgetOffset() {
+    public void getOffsetTest() {
         System.out.println("test case offset");
-        assertEquals(offset, BT.testgetOffset());
+        Bridge bridge1 = new Bridge(0, 1);
+        assertEquals(0, bridge1.getOffset());
 
-        return 0;
+        Bridge bridge2 = new Bridge(1, 1);
+        assertEquals(1, bridge2.getOffset());
     }
 
     @Test
-    public List<Lane> getLanes() {
-        System.out.println("test case offset");
-        assertEquals(List, Bridge.listIterator());
+    public void laneTest() {
+        Bridge bridge = new Bridge(0, 1);
+        assertEquals(true, bridge.getLanes().isEmpty());
+
+        bridge.createLane();
+        assertEquals(1, bridge.getLanes().size());
+
+        if (bridge.getLanes().size() > 0) {
+            assertEquals(true, Lane.class.isInstance(bridge.getLanes().get(0)));
+        }
     }
 
+
     @Test
-    public Lane testgetLastLane() {
+    public void testgetLastLane() {
         if (this.lanes.size() == 0) {
             throw new IllegalCallerException("Unable to get a lane from an empty list");
         } else {
