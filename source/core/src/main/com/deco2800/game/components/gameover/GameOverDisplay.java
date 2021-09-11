@@ -1,8 +1,11 @@
 package com.deco2800.game.components.gameover;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Scaling;
@@ -37,7 +40,7 @@ public class GameOverDisplay extends MainMenuDisplay {
 
         TextButton restartBtn = new TextButton("Restart Game", skin);
         TextButton exitBtn = new TextButton("Quit", skin);
-        Image background = new Image(ServiceLocator.getResourceService().getAsset("",
+        Image background = new Image(ServiceLocator.getResourceService().getAsset("Death_Screen_Background.png",
                 Texture.class));
         background.setScaling(Scaling.stretch);
         stack.add(background);
@@ -67,6 +70,7 @@ public class GameOverDisplay extends MainMenuDisplay {
         Image gameOverText = new Image(ServiceLocator.getResourceService().getAsset("Gameover_Visual_Text.png",
                 Texture.class));
 
+        Table table = new Table();
         table.clear();
         table.add(playerDeadImage);
         table.row();
@@ -91,6 +95,10 @@ public class GameOverDisplay extends MainMenuDisplay {
         logger.debug("Unloading assets");
         ResourceService resourceService = ServiceLocator.getResourceService();
         resourceService.unloadAssets(gameOverScreenTextures);
+    }
+
+    @Override
+    public void draw(SpriteBatch batch) {
     }
 
     @Override

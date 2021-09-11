@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.deco2800.game.components.CombatStatsComponent;
+import com.deco2800.game.components.gameover.GameOverDisplay;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
 
@@ -148,6 +149,7 @@ public class PlayerStatsDisplay extends UIComponent {
       }
       if (health == 0) {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_empty.png", Texture.class));
+        getEntity().getEvents().trigger("GameOver");
       }
       table.reset();
       table.top().left();
@@ -179,7 +181,6 @@ public class PlayerStatsDisplay extends UIComponent {
   public void updatePlayerArmourUI(int armour) {
 
   }
-
   @Override
   public void dispose() {
     super.dispose();

@@ -83,7 +83,6 @@ public class MainMenuDisplay extends UIComponent {
                 entity.getEvents().trigger("exit");
               }
             });
-
         table.add(title);
         table.row();
         table.add(startBtn).padTop(30f);
