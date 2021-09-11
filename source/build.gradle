@@ -98,3 +98,8 @@ project(":core") {
         testImplementation "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
     }
 }
+
+dependencies {
+    implementation 'junit:junit:4.13.2'
+    implementation 'org.junit:junit-bom:5.7.2'
+}
