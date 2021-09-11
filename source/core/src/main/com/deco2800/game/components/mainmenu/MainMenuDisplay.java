@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.deco2800.game.services.ServiceLocator;
@@ -18,7 +20,8 @@ import org.slf4j.LoggerFactory;
 public class MainMenuDisplay extends UIComponent {
   private static final Logger logger = LoggerFactory.getLogger(MainMenuDisplay.class);
   private static final float Z_INDEX = 2f;
-  private Table table;
+  protected Table table;
+  protected Stack stack;
 
   @Override
   public void create() {
@@ -26,68 +29,72 @@ public class MainMenuDisplay extends UIComponent {
     addActors();
   }
 
-  private void addActors() {
-    table = new Table();
-    table.setFillParent(true);
-    Image title =
-        new Image(
-            ServiceLocator.getResourceService()
-                .getAsset("images/main_screen_title.png", Texture.class));
+    protected void addActors() {
+        stack = new Stack();
+        stack.setFillParent(true);
+        stack.setTouchable(Touchable.disabled);
 
-    TextButton startBtn = new TextButton("Start", skin);
-    TextButton loadBtn = new TextButton("Load", skin);
-    TextButton settingsBtn = new TextButton("Settings", skin);
-    TextButton exitBtn = new TextButton("Exit", skin);
+        table = new Table();
+        table.setFillParent(true);
+        Image title =
+            new Image(
+                ServiceLocator.getResourceService()
+                    .getAsset("images/main_screen_title.png", Texture.class));
 
-    // Triggers an event when the button is pressed
-    startBtn.addListener(
-        new ChangeListener() {
-          @Override
-          public void changed(ChangeEvent changeEvent, Actor actor) {
-            logger.debug("Start button clicked");
-            entity.getEvents().trigger("start");
-          }
-        });
+        TextButton startBtn = new TextButton("Start", skin);
+        TextButton loadBtn = new TextButton("Load", skin);
+        TextButton settingsBtn = new TextButton("Settings", skin);
+        TextButton exitBtn = new TextButton("Exit", skin);
 
-    loadBtn.addListener(
-        new ChangeListener() {
-          @Override
-          public void changed(ChangeEvent changeEvent, Actor actor) {
-            logger.debug("Load button clicked");
-            entity.getEvents().trigger("load");
-          }
-        });
+        // Triggers an event when the button is pressed
+        startBtn.addListener(
+            new ChangeListener() {
+              @Override
+              public void changed(ChangeEvent changeEvent, Actor actor) {
+                logger.debug("Start button clicked");
+                entity.getEvents().trigger("start");
+              }
+            });
 
-    settingsBtn.addListener(
-        new ChangeListener() {
-          @Override
-          public void changed(ChangeEvent changeEvent, Actor actor) {
-            logger.debug("Settings button clicked");
-            entity.getEvents().trigger("settings");
-          }
-        });
+        loadBtn.addListener(
+            new ChangeListener() {
+              @Override
+              public void changed(ChangeEvent changeEvent, Actor actor) {
+                logger.debug("Load button clicked");
+                entity.getEvents().trigger("load");
+              }
+            });
 
-    exitBtn.addListener(
-        new ChangeListener() {
-          @Override
-          public void changed(ChangeEvent changeEvent, Actor actor) {
+        settingsBtn.addListener(
+            new ChangeListener() {
+              @Override
+              public void changed(ChangeEvent changeEvent, Actor actor) {
+                logger.debug("Settings button clicked");
+                entity.getEvents().trigger("settings");
+              }
+            });
 
-            logger.debug("Exit button clicked");
-            entity.getEvents().trigger("exit");
-          }
-        });
+        exitBtn.addListener(
+            new ChangeListener() {
+              @Override
+              public void changed(ChangeEvent changeEvent, Actor actor) {
 
-    table.add(title);
-    table.row();
-    table.add(startBtn).padTop(30f);
-    table.row();
-    table.add(loadBtn).padTop(15f);
-    table.row();
-    table.add(settingsBtn).padTop(15f);
-    table.row();
-    table.add(exitBtn).padTop(15f);
+                logger.debug("Exit button clicked");
+                entity.getEvents().trigger("exit");
+              }
+            });
 
-    stage.addActor(table);
+        table.add(title);
+        table.row();
+        table.add(startBtn).padTop(30f);
+        table.row();
+        table.add(loadBtn).padTop(15f);
+        table.row();
+        table.add(settingsBtn).padTop(15f);
+        table.row();
+        table.add(exitBtn).padTop(15f);
+
+        stage.addActor(table);
   }
 
   @Override

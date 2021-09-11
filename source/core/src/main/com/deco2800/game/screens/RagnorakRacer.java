@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.deco2800.game.GdxGame;
 import com.deco2800.game.areas.RainbowBridge;
 import com.deco2800.game.areas.terrain.TerrainFactory;
+import com.deco2800.game.components.CombatStatsComponent;
 import com.deco2800.game.components.bridge.Bridge;
 import com.deco2800.game.components.gamearea.PerformanceDisplay;
 import com.deco2800.game.components.maingame.MainGameActions;
@@ -67,6 +68,14 @@ public class RagnorakRacer extends ScreenAdapter {
         RainbowBridge rainbowBridge = new RainbowBridge(terrainFactory);
         rainbowBridge.create();
         this.rainbowBridge = rainbowBridge.getRainbowBridge();
+    }
+
+    private void isPlayerDead() {
+        if (this.rainbowBridge.getPlayer() != null) {
+            if (this.rainbowBridge.getPlayer().getComponent(CombatStatsComponent.class).isDead()) {
+                game.setScreen(GdxGame.ScreenType.GAMEOVER);
+            }
+        }
     }
 
     @Override
