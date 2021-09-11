@@ -62,11 +62,15 @@ public class GameOverDisplay extends MainMenuDisplay {
                     }
                 });
 
-        Image playerDeadImage = new Image(ServiceLocator.getResourceService().getAsset("",
+        Image playerDeadImage = new Image(ServiceLocator.getResourceService().getAsset("Death_Screen_Character.png",
+                Texture.class));
+        Image gameOverText = new Image(ServiceLocator.getResourceService().getAsset("Gameover_Visual_Text.png",
                 Texture.class));
 
         table.clear();
         table.add(playerDeadImage);
+        table.row();
+        table.add(gameOverText);
         table.row();
         table.add(restartBtn).padTop(30f);
         table.row();
