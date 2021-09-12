@@ -67,12 +67,13 @@ public class RainbowBridge extends GameArea {
 
     };
 
-    private static final String[] rainbowBridgeSounds = {"sounds/Impact4.ogg", "sounds/buff.ogg"};
+    private static final String[] rainbowBridgeSounds = {"sounds/Impact4.ogg", "sounds/buff.ogg", "sounds/buff2.ogg" , "sounds/e.ogg", "sounds/attack.ogg"};
     private static final String backgroundMusic = "sounds/BGM_03_mp3.mp3";
-    private static final String[] rainbowBridgeMusic = {backgroundMusic};
+    private static final String backgroundMusic1 = "sounds/backgroundMusic1.mp3";
+    private static final String[] rainbowBridgeMusic = {backgroundMusic, backgroundMusic1};
 
     private static final String[] rainbowBridgeAtlases = {
-            "images/terrain_iso_grass.atlas", "images/ghost.atlas", "images/ghostKing.atlas","images/dragon.atlas","images/littleGreen.atlas", "images/attack.atlas"
+            "images/terrain_iso_grass.atlas", "images/ghost.atlas", "images/ghostKing.atlas","images/dragon.atlas","images/littleGreen.atlas", "images/attack.atlas", "images/touch.atlas"
     };
 
     private final TerrainFactory terrainFactory;
@@ -212,9 +213,9 @@ public class RainbowBridge extends GameArea {
 
 
     private void playMusic() {
-        Music music = ServiceLocator.getResourceService().getAsset(backgroundMusic, Music.class);
+        Music music = ServiceLocator.getResourceService().getAsset(backgroundMusic1, Music.class);
         music.setLooping(true);
-        music.setVolume(0.2f);
+        music.setVolume(0.8f);
         music.play();
     }
 

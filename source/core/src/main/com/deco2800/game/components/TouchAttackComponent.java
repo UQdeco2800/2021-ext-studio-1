@@ -19,6 +19,7 @@ import com.deco2800.game.physics.components.PhysicsComponent;
  */
 public class TouchAttackComponent extends Component {
   private short targetLayer;
+  private short anotherTargetLayer = 0;
   private float knockbackForce = 0f;
   private CombatStatsComponent combatStats;
   private HitboxComponent hitboxComponent;
@@ -41,6 +42,11 @@ public class TouchAttackComponent extends Component {
     this.knockbackForce = knockback;
   }
 
+  public TouchAttackComponent(short targetLayer, short anotherTargetLayer, float knockback) {
+    this.targetLayer = targetLayer;
+    this.anotherTargetLayer = anotherTargetLayer;
+    this.knockbackForce = knockback;
+  }
   @Override
   public void create() {
     entity.getEvents().addListener("collisionStart", this::onCollisionStart);
@@ -54,10 +60,18 @@ public class TouchAttackComponent extends Component {
       return;
     }
 
-    if (!PhysicsLayer.contains(targetLayer, other.getFilterData().categoryBits)) {
+
+
+    if (!PhysicsLayer.contains(targetLayer, other.getFilterData().categoryBits)
+            && ((anotherTargetLayer == 0) || (!PhysicsLayer.contains(anotherTargetLayer, other.getFilterData().categoryBits)))) {
       // Doesn't match our target layer, ignore
       return;
     }
+
+//    if (!PhysicsLayer.contains(targetLayer, other.getFilterData().categoryBits)) {
+//      // Doesn't match our target layer, ignore
+//      return;
+//    }
 
     // Try to attack target.
     Entity target = ((BodyUserData) other.getBody().getUserData()).entity;
