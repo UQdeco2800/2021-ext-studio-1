@@ -3,35 +3,35 @@ size: 1645, 1791
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-touch1
+touch
   rotate: false
   xy: 1, 1
   size: 728, 877
   orig: 936, 936
   offset: 208, 0
   index: -1
-touch2
+touch
   rotate: false
   xy: 1, 880
   size: 519, 910
   orig: 936, 936
   offset: 341, 4
   index: -1
-touch3
+touch
   rotate: true
   xy: 731, 1
   size: 555, 913
   orig: 936, 936
   offset: 381, 0
   index: -1
-touch4
+touch
   rotate: true
   xy: 522, 1173
   size: 561, 924
   orig: 936, 936
   offset: 369, 0
   index: -1
-touch5
+touch
   rotate: true
   xy: 731, 558
   size: 613, 911

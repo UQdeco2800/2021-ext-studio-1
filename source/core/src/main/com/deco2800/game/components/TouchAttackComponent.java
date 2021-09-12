@@ -19,6 +19,7 @@ import com.deco2800.game.physics.components.PhysicsComponent;
  */
 public class TouchAttackComponent extends Component {
   private short targetLayer;
+  private short anotherTargetLayer = 0;
   private float knockbackForce = 0f;
   private CombatStatsComponent combatStats;
   private HitboxComponent hitboxComponent;
@@ -41,6 +42,11 @@ public class TouchAttackComponent extends Component {
     this.knockbackForce = knockback;
   }
 
+  public TouchAttackComponent(short targetLayer, short anotherTargetLayer, float knockback) {
+    this.targetLayer = targetLayer;
+    this.anotherTargetLayer = targetLayer;
+    this.knockbackForce = knockback;
+  }
   @Override
   public void create() {
     entity.getEvents().addListener("collisionStart", this::onCollisionStart);
@@ -51,6 +57,11 @@ public class TouchAttackComponent extends Component {
   private void onCollisionStart(Fixture me, Fixture other) {
     if (hitboxComponent.getFixture() != me) {
       // Not triggered by hitbox, ignore
+      return;
+    }
+
+    if (!PhysicsLayer.contains(targetLayer, other.getFilterData().categoryBits) && (anotherTargetLayer != 0 && !PhysicsLayer.contains(anotherTargetLayer, other.getFilterData().categoryBits))) {
+      //Doesn't match target layer, ignore
       return;
     }
 
