@@ -5,6 +5,7 @@ import com.deco2800.game.entities.Entity;
 import com.deco2800.game.physics.PhysicsLayer;
 import com.deco2800.game.physics.PhysicsUtils;
 import com.deco2800.game.physics.components.ColliderComponent;
+import com.deco2800.game.physics.components.HitboxComponent;
 import com.deco2800.game.physics.components.PhysicsComponent;
 import com.deco2800.game.rendering.TextureRenderComponent;
 import com.deco2800.game.components.CombatStatsComponent;
@@ -25,7 +26,9 @@ public class ObstacleFactory {
         new Entity(Entity.Type.OBSTACLE)
             .addComponent(new TextureRenderComponent("images/tree.png"))
             .addComponent(new PhysicsComponent())
-            .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE));
+                .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
+                .addComponent(new CombatStatsComponent(100,0))
+                .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE));
 
     tree.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
     tree.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -36,10 +39,12 @@ public class ObstacleFactory {
 
   public static Entity createCarObstacle() {
     Entity car =
-        new Entity()
+        new Entity(Entity.Type.OBSTACLE)
             .addComponent(new TextureRenderComponent("images/carObstacle.png"))
             .addComponent(new PhysicsComponent())
-            .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE));
+            .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
+                .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
+            .addComponent(new CombatStatsComponent(100,0));
 
     car.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
     car.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -50,10 +55,12 @@ public class ObstacleFactory {
 
   public static Entity createStoneObstacle() { //CombatStatsComponent combat) {
     Entity stone =
-        new Entity()
+        new Entity(Entity.Type.OBSTACLE)
             .addComponent(new TextureRenderComponent("images/stone.png"))
             .addComponent(new PhysicsComponent())
-            .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE));
+            .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
+                .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
+                .addComponent(new CombatStatsComponent(100,0));
 
     stone.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
     stone.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -66,10 +73,12 @@ public class ObstacleFactory {
 
   public static Entity createSnake() {
     Entity snake =
-        new Entity()
+        new Entity(Entity.Type.OBSTACLE)
             .addComponent(new TextureRenderComponent("images/snake.png"))
             .addComponent(new PhysicsComponent())
-            .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE));
+            .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
+                .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
+                .addComponent(new CombatStatsComponent(100,0));
 
     snake.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
     snake.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -82,10 +91,11 @@ public class ObstacleFactory {
 
   public static Entity createFire() {
     Entity fire =
-        new Entity()
+        new Entity(Entity.Type.OBSTACLE)
             .addComponent(new TextureRenderComponent("images/fire.png"))
-            .addComponent(new PhysicsComponent())
-            .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE));
+                .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
+                .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
+                .addComponent(new CombatStatsComponent(100,0));
 
     fire.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
     fire.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -101,7 +111,9 @@ public class ObstacleFactory {
             new Entity()
                     .addComponent(new TextureRenderComponent("images/FirstAidKit.png"))
                     .addComponent(new PhysicsComponent())
-                    .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE));
+                    .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
+                    .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
+                    .addComponent(new CombatStatsComponent(100,0));
 
     firstAidKit.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
     firstAidKit.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -114,8 +126,10 @@ public class ObstacleFactory {
     Entity food =
             new Entity()
                     .addComponent(new TextureRenderComponent("images/food.png"))
-                    .addComponent(new PhysicsComponent())
-                    .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE));
+                    .addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
+                    .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
+                    .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
+                    .addComponent(new CombatStatsComponent(100,0));
 
     food.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
     food.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -137,6 +151,20 @@ public class ObstacleFactory {
     wall.setScale(width, height);
     return wall;
   }
+
+  private static Entity createBaseObstacle(String texturePath) {
+    Entity obstacle = new Entity(Entity.Type.OBSTACLE)
+            .addComponent(new TextureRenderComponent(texturePath))
+            .addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
+            .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
+            .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
+            .addComponent(new CombatStatsComponent(100,0));
+    PhysicsUtils.setScaledCollider(obstacle,0.5f,0.2f);
+    obstacle.getComponent(TextureRenderComponent.class).scaleEntity();
+    obstacle.scaleHeight(2.5f);
+    return obstacle;
+  }
+
 
   private ObstacleFactory() {
     throw new IllegalStateException("Instantiating static util class");
