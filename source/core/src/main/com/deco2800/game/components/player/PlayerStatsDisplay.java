@@ -57,9 +57,9 @@ public class PlayerStatsDisplay extends UIComponent {
     CharSequence healthText = String.format("Health: %d", health);
     healthLabel = new Label(healthText, skin, "large");
 
-    // Armour image for when there is an image
-    //float armourSideLength = 60f;
-    //armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour.png", Texture.class));
+    //Armour image
+    float armourSideLength = 200f;
+    armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_full.png", Texture.class));
 
     // Armour text
     int armour = entity.getComponent(CombatStatsComponent.class).getArmour();
@@ -75,7 +75,7 @@ public class PlayerStatsDisplay extends UIComponent {
     healthStats.padTop(100f).padLeft(5f);
 
     healthStats.add(healthLabel).pad(20);
-    //table.add(armourImage).size(armourSideLength).pad(5);
+    table.add(armourImage).size(armourSideLength).pad(5);
     healthStats.add(armourLabel);
     stage.addActor(healthStats);
 
@@ -179,6 +179,34 @@ public class PlayerStatsDisplay extends UIComponent {
    * @param armour player armour
    */
   public void updatePlayerArmourUI(int armour) {
+    //Update the number of armour
+    CharSequence text = String.format("Armour: %d", armour);
+    armourLabel.setText(text);
+    hurtAnimate();
+
+    //Update the armour bar
+    float armourSideLength = 200f;
+    if(armour>=0) {
+      table.removeActor(armourImage);
+      armourImage.remove();
+      if (armour == 3) {
+        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_full.png", Texture.class));
+      }
+      if (armour == 2) {
+        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_decrease_one.png", Texture.class));
+      }
+      if (armour == 1) {
+        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_decrease_two.png", Texture.class));
+      }
+      if (armour == 0) {
+        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_empty.png", Texture.class));
+      }
+      table.reset();
+      table.top().left();
+      table.setFillParent(true);
+      table.padTop(30f).padLeft(5f);
+      table.add(armourImage).size(armourSideLength).pad(5);
+    }
 
   }
   @Override
@@ -186,6 +214,8 @@ public class PlayerStatsDisplay extends UIComponent {
     super.dispose();
     heartImage.remove();
     healthLabel.remove();
+    armourImage.remove();
+    armourLabel.remove();
     noImage.remove();
     heartAnimat.remove();
   }
