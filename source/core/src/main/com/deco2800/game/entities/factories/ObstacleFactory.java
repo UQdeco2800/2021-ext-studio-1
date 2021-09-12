@@ -43,7 +43,7 @@ public class ObstacleFactory {
 
     car.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
     car.getComponent(TextureRenderComponent.class).scaleEntity();
-    car.scaleHeight(2.5f);
+    // car.scaleHeight(2.5f);
     PhysicsUtils.setScaledCollider(car, 0.5f, 0.2f);
     return car;
   }
@@ -57,7 +57,7 @@ public class ObstacleFactory {
 
     stone.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
     stone.getComponent(TextureRenderComponent.class).scaleEntity();
-    stone.scaleHeight(2.5f);
+    //stone.scaleHeight(2.5f);
     PhysicsUtils.setScaledCollider(stone, 0.5f, 0.2f);
     //demote health by smallest amount
     // combat.addHealth(-1);
@@ -73,7 +73,7 @@ public class ObstacleFactory {
 
     snake.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
     snake.getComponent(TextureRenderComponent.class).scaleEntity();
-    snake.scaleHeight(2.5f);
+    //snake.scaleHeight(2.5f);
     PhysicsUtils.setScaledCollider(snake, 0.5f, 0.2f);
     //demote health medium
     // CombatStatsComponent.addHealth(-3);
@@ -89,41 +89,39 @@ public class ObstacleFactory {
 
     fire.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
     fire.getComponent(TextureRenderComponent.class).scaleEntity();
-    fire.scaleHeight(2.5f);
+    //fire.scaleHeight(2.5f);
     PhysicsUtils.setScaledCollider(fire, 0.5f, 0.2f);
     //demote health the most
-    // combat.addHealth(-3);
+    //combat.addHealth(-3);
     return fire;
   }
 
   public static Entity createFirstAidKit() {
-    Entity FirstAidKit =
+    Entity firstAidKit =
             new Entity()
                     .addComponent(new TextureRenderComponent("images/FirstAidKit.png"))
                     .addComponent(new PhysicsComponent())
                     .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE));
 
-    FirstAidKit.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
-    FirstAidKit.getComponent(TextureRenderComponent.class).scaleEntity();
-    FirstAidKit.scaleHeight(2.5f);
-    PhysicsUtils.setScaledCollider(FirstAidKit, 0.5f, 0.2f);
-    // combat.addHealth(2);
-    return FirstAidKit;
+    firstAidKit.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+    firstAidKit.getComponent(TextureRenderComponent.class).scaleEntity();
+    PhysicsUtils.setScaledCollider(firstAidKit, 0.5f, 0.2f);
+    //combat.addHealth(2);
+    return firstAidKit;
   }
 
   public static Entity createFood() {
-    Entity Food =
+    Entity food =
             new Entity()
                     .addComponent(new TextureRenderComponent("images/food.png"))
                     .addComponent(new PhysicsComponent())
                     .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE));
 
-    Food.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
-    Food.getComponent(TextureRenderComponent.class).scaleEntity();
-    Food.scaleHeight(2.5f);
-    PhysicsUtils.setScaledCollider(Food, 0.5f, 0.2f);
+    food.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+    food.getComponent(TextureRenderComponent.class).scaleEntity();
+    PhysicsUtils.setScaledCollider(food, 0.5f, 0.2f);
     // combat.addHealth(1);
-    return Food;
+    return food;
   }
 
   /**
