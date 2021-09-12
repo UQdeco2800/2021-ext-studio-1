@@ -4,16 +4,24 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Scaling;
 import com.deco2800.game.components.mainmenu.MainMenuDisplay;
 import com.deco2800.game.services.ResourceService;
 import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 
 /**
@@ -38,14 +46,24 @@ public class GameOverDisplay extends MainMenuDisplay {
     protected void addActors() {
         super.addActors();
 
-        TextButton restartBtn = new TextButton("Restart Game", skin);
-        TextButton exitBtn = new TextButton("Quit", skin);
+        //Restart button
+        //TextButton restartBtn = new TextButton("Restart Game", skin);
+        Button restartBtn = new Button((Drawable) new ImageIcon("images/btn_restart1.png"),
+                (Drawable) new ImageIcon("images/btn_restart2.png"));
+
+        //Exit button
+        //TextButton exitBtn = new TextButton("Exit", skin);
+        Button exitBtn = new Button((Drawable) new ImageIcon("images/btn_exit1.png"),
+                (Drawable) new ImageIcon("images/btn_exit2.png"));
+
+        //Background
         Image background = new Image(ServiceLocator.getResourceService().getAsset("Death_Screen_Background.png",
                 Texture.class));
         background.setScaling(Scaling.stretch);
         stack.add(background);
 
         // when the user presses restart button
+
         restartBtn.addListener(
                 new ChangeListener() {
                     @Override
