@@ -1,5 +1,6 @@
 package com.deco2800.game.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -29,6 +30,8 @@ import com.deco2800.game.ui.terminal.TerminalDisplay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.deco2800.game.GdxGame.ScreenType.GAME_WIN;
+
 public class RagnorakRacer extends ScreenAdapter {
     private static final Logger logger = LoggerFactory.getLogger(MainGameScreen.class);
 
@@ -45,7 +48,7 @@ public class RagnorakRacer extends ScreenAdapter {
 
     public RagnorakRacer(GdxGame game) {
         this.game = game;
-        this.gameTimer = 5000;
+        this.gameTimer = 10000;
 
         logger.debug("Initialising main game screen services");
         ServiceLocator.registerTimeSource(new GameTime());
@@ -77,6 +80,7 @@ public class RagnorakRacer extends ScreenAdapter {
     @Override
     public void render(float delta) {
         if (ServiceLocator.getTimeSource().getTime() >= this.gameTimer) {
+            game.setScreen(GAME_WIN);
             // Switch to new Win game screen
         }
         physicsEngine.update();
