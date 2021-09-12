@@ -126,15 +126,15 @@ public class NPCFactory {
   private static Entity createBaseNPC(Entity target) {
     AITaskComponent aiComponent =
         new AITaskComponent()
-            .addTask(new WanderTask(new Vector2(0, 0), 2f))
-            .addTask(new ChaseTask(target, 10, 0, 0));
+            .addTask(new WanderTask(new Vector2(30, 0), 0f))
+            .addTask(new ChaseTask(target, 0, 0, 0));
     Entity npc =
         new Entity(Entity.Type.GHOST)
             .addComponent(new PhysicsComponent())
             .addComponent(new PhysicsMovementComponent())
             //.addComponent(new ColliderComponent())
             .addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
-            .addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 1.5f))
+            .addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
             .addComponent(aiComponent);
 
     //PhysicsUtils.setScaledCollider(npc, 0.9f, 0.4f);
@@ -144,15 +144,15 @@ public class NPCFactory {
   private static Entity createBaseNPC1(Entity target) {
     AITaskComponent aiComponent =
             new AITaskComponent()
-                    .addTask(new WanderTask(new Vector2(2f, 2f), 2f))
-                    .addTask(new ChaseTask(target, 10, 3f, 4f));
+                    .addTask(new WanderTask(new Vector2(30f, 0f), 0f))
+                    .addTask(new ChaseTask(target, 0, 0f, 0f));
     Entity npc1 =
             new Entity(Entity.Type.GHOSTKING)
                     .addComponent(new PhysicsComponent())
                     .addComponent(new PhysicsMovementComponent())
                     //.addComponent(new ColliderComponent())
                     .addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
-                    .addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 1.5f))
+                    .addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
                     .addComponent(aiComponent);
 
     //PhysicsUtils.setScaledCollider(npc, 0.9f, 0.4f);
