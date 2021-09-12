@@ -20,7 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class GameWinScreen extends ScreenAdapter {
-    private static final Logger logger = LoggerFactory.getLogger(MainGameScreen.class);
+    private static final Logger logger = LoggerFactory.getLogger(GameWinScreen.class);
 
     private final GdxGame game;
     private final Renderer renderer;
@@ -95,8 +95,8 @@ public class GameWinScreen extends ScreenAdapter {
         Stage stage = ServiceLocator.getRenderService().getStage();
         Entity ui = new Entity();
         ui.addComponent(new GameWinDisplay())
-                .addComponent(new GameWinActions(game))
-                .addComponent(new InputDecorator(stage, 10));
+                .addComponent(new InputDecorator(stage, 10))
+                .addComponent(new GameWinActions(game));
         ServiceLocator.getEntityService().register(ui);
     }
 }

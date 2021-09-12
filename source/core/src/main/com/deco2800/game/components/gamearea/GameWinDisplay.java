@@ -47,7 +47,7 @@ public class GameWinDisplay extends UIComponent {
                     @Override
                     public void changed(ChangeEvent changeEvent, Actor actor) {
                         logger.info("replay game button clicked");
-                        entity.getEvents().trigger("replay game");
+                        entity.getEvents().trigger("replay");
                     }
                 });
 
