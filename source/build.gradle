@@ -99,7 +99,7 @@ project(":core") {
     }
 }
 
-dependencies {
-    testImplementation 'junit:junit:4.13.2'
-    testImplementation platform('org.junit:junit-bom:5.7.2')
-}
+//dependencies {
+//    testImplementation 'junit:junit:4.13.2'
+//    testImplementation platform('org.junit:junit-bom:5.7.2')
+//}
