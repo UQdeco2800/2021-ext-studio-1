@@ -42,7 +42,7 @@ allprojects {
         ashleyVersion = '1.7.3'
         aiVersion = '1.8.2'
         gdxControllersVersion = '2.1.0'
-        junitVersion = '5.7.1'
+        junitVersion = '5.7.2'
         mockitoVersion = '3.8.0'
         gdxUtilsVersion = '0.13.4'
         slf4jVersion = '1.7.30'
@@ -100,6 +100,6 @@ project(":core") {
 }
 
 dependencies {
-    implementation 'junit:junit:4.13.2'
-    implementation 'org.junit:junit-bom:5.7.2'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation platform('org.junit:junit-bom:5.7.2')
 }
