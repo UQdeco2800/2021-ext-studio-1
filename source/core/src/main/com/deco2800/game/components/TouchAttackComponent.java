@@ -44,7 +44,7 @@ public class TouchAttackComponent extends Component {
 
   public TouchAttackComponent(short targetLayer, short anotherTargetLayer, float knockback) {
     this.targetLayer = targetLayer;
-    this.anotherTargetLayer = targetLayer;
+    this.anotherTargetLayer = anotherTargetLayer;
     this.knockbackForce = knockback;
   }
   @Override
@@ -60,15 +60,13 @@ public class TouchAttackComponent extends Component {
       return;
     }
 
-    if (!PhysicsLayer.contains(targetLayer, other.getFilterData().categoryBits) && (anotherTargetLayer != 0 && !PhysicsLayer.contains(anotherTargetLayer, other.getFilterData().categoryBits))) {
+    if (!PhysicsLayer.contains(targetLayer, other.getFilterData().categoryBits)
+            && (anotherTargetLayer != 0 && !PhysicsLayer.contains(anotherTargetLayer, other.getFilterData().categoryBits))) {
       //Doesn't match target layer, ignore
       return;
     }
 
-    if (!PhysicsLayer.contains(targetLayer, other.getFilterData().categoryBits)) {
-      // Doesn't match our target layer, ignore
-      return;
-    }
+
 
     // Try to attack target.
     Entity target = ((BodyUserData) other.getBody().getUserData()).entity;
