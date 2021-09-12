@@ -65,7 +65,10 @@ public class TouchAttackComponent extends Component {
       return;
     }
 
-
+    if (!PhysicsLayer.contains(targetLayer, other.getFilterData().categoryBits)) {
+      // Doesn't match our target layer, ignore
+      return;
+    }
 
     // Try to attack target.
     Entity target = ((BodyUserData) other.getBody().getUserData()).entity;
