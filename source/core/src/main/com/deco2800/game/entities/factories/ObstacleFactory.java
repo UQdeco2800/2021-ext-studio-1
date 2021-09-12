@@ -7,6 +7,7 @@ import com.deco2800.game.physics.PhysicsUtils;
 import com.deco2800.game.physics.components.ColliderComponent;
 import com.deco2800.game.physics.components.PhysicsComponent;
 import com.deco2800.game.rendering.TextureRenderComponent;
+import com.deco2800.game.components.CombatStatsComponent;
 
 /**
  * Factory to create obstacle entities.
@@ -47,7 +48,7 @@ public class ObstacleFactory {
     return car;
   }
 
-  public static Entity createStoneObstacle() {
+  public static Entity createStoneObstacle() { //CombatStatsComponent combat) {
     Entity stone =
         new Entity()
             .addComponent(new TextureRenderComponent("images/stone.png"))
@@ -59,6 +60,7 @@ public class ObstacleFactory {
     stone.scaleHeight(2.5f);
     PhysicsUtils.setScaledCollider(stone, 0.5f, 0.2f);
     //demote health by smallest amount
+    // combat.addHealth(-1);
     return stone;
   }
 
@@ -74,6 +76,7 @@ public class ObstacleFactory {
     snake.scaleHeight(2.5f);
     PhysicsUtils.setScaledCollider(snake, 0.5f, 0.2f);
     //demote health medium
+    // CombatStatsComponent.addHealth(-3);
     return snake;
   }
 
@@ -89,6 +92,7 @@ public class ObstacleFactory {
     fire.scaleHeight(2.5f);
     PhysicsUtils.setScaledCollider(fire, 0.5f, 0.2f);
     //demote health the most
+    // combat.addHealth(-3);
     return fire;
   }
 
@@ -103,6 +107,7 @@ public class ObstacleFactory {
     FirstAidKit.getComponent(TextureRenderComponent.class).scaleEntity();
     FirstAidKit.scaleHeight(2.5f);
     PhysicsUtils.setScaledCollider(FirstAidKit, 0.5f, 0.2f);
+    // combat.addHealth(2);
     return FirstAidKit;
   }
 
@@ -117,6 +122,7 @@ public class ObstacleFactory {
     Food.getComponent(TextureRenderComponent.class).scaleEntity();
     Food.scaleHeight(2.5f);
     PhysicsUtils.setScaledCollider(Food, 0.5f, 0.2f);
+    // combat.addHealth(1);
     return Food;
   }
 

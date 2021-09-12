@@ -5,3 +5,4 @@
 
 ### Gradle ###
 .gradle/
+source/desktop/build.gradle
