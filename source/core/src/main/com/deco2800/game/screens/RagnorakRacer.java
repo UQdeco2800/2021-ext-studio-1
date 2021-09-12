@@ -7,6 +7,7 @@ import com.deco2800.game.GdxGame;
 import com.deco2800.game.areas.RainbowBridge;
 import com.deco2800.game.areas.terrain.TerrainFactory;
 import com.deco2800.game.components.bridge.Bridge;
+import com.deco2800.game.components.gamearea.GameWinDisplay;
 import com.deco2800.game.components.gamearea.PerformanceDisplay;
 import com.deco2800.game.components.maingame.MainGameActions;
 import com.deco2800.game.components.maingame.MainGameExitDisplay;
