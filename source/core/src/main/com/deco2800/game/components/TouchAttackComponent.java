@@ -61,7 +61,6 @@ public class TouchAttackComponent extends Component {
     }
 
 
-
     if (!PhysicsLayer.contains(targetLayer, other.getFilterData().categoryBits)
             && ((anotherTargetLayer == 0) || (!PhysicsLayer.contains(anotherTargetLayer, other.getFilterData().categoryBits)))) {
       // Doesn't match our target layer, ignore
