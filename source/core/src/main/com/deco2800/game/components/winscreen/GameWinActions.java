@@ -1,8 +1,9 @@
-package com.deco2800.game.components.gamearea;
+package com.deco2800.game.components.winscreen;
 
 import com.deco2800.game.GdxGame;
 import com.deco2800.game.components.Component;
 //import com.deco2800.game.components.maingame.MainGameActions;
+import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +29,7 @@ public class GameWinActions  extends Component {
      */
     private void onExit() {
         logger.info("Exiting main game screen");
-        //game.setScreen(GdxGame.ScreenType.MAIN_MENU);
+        ServiceLocator.clear();
         game.setScreen(MAIN_MENU);
     }
 
@@ -38,7 +39,7 @@ public class GameWinActions  extends Component {
      */
     private void onReplay() {
         logger.info("Restart Game");
-        //game.setScreen(GdxGame.ScreenType.MAIN_GAME);
+        ServiceLocator.clear();
         game.setScreen(MAIN_GAME);
     }
 }

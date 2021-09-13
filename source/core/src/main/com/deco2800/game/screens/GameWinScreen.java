@@ -1,15 +1,13 @@
 package com.deco2800.game.screens;
 
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.deco2800.game.GdxGame;
-import com.deco2800.game.components.gamearea.GameWinActions;
-import com.deco2800.game.components.gamearea.GameWinDisplay;
+import com.deco2800.game.components.winscreen.GameWinActions;
+import com.deco2800.game.components.winscreen.GameWinDisplay;
 import com.deco2800.game.entities.Entity;
 import com.deco2800.game.entities.EntityService;
 import com.deco2800.game.entities.factories.RenderFactory;
-import com.deco2800.game.input.InputComponent;
 import com.deco2800.game.input.InputDecorator;
 import com.deco2800.game.input.InputService;
 import com.deco2800.game.rendering.RenderService;
@@ -64,11 +62,7 @@ public class GameWinScreen extends ScreenAdapter {
         super.dispose();
         logger.debug("Disposing win game screen");
         renderer.dispose();
-        ServiceLocator.getRenderService().dispose();
-        ServiceLocator.getEntityService().dispose();
         ServiceLocator.clear();
-
-        unloadAssets();
     }
 
     private void loadAssets() {

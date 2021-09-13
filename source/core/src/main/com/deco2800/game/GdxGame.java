@@ -69,6 +69,7 @@ public class GdxGame extends Game {
         return new RagnorakRacer(this);
       case GAME_WIN:
         return new GameWinScreen(this);
+
       case SETTINGS:
         return new SettingsScreen(this);
       default:

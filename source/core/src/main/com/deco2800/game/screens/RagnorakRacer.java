@@ -1,6 +1,5 @@
 package com.deco2800.game.screens;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -8,7 +7,6 @@ import com.deco2800.game.GdxGame;
 import com.deco2800.game.areas.RainbowBridge;
 import com.deco2800.game.areas.terrain.TerrainFactory;
 import com.deco2800.game.components.bridge.Bridge;
-import com.deco2800.game.components.gamearea.GameWinDisplay;
 import com.deco2800.game.components.gamearea.PerformanceDisplay;
 import com.deco2800.game.components.maingame.MainGameActions;
 import com.deco2800.game.components.maingame.MainGameExitDisplay;
@@ -48,7 +46,7 @@ public class RagnorakRacer extends ScreenAdapter {
 
     public RagnorakRacer(GdxGame game) {
         this.game = game;
-        this.gameTimer = 10000;
+        this.gameTimer = 60000;
 
         logger.debug("Initialising main game screen services");
         ServiceLocator.registerTimeSource(new GameTime());
