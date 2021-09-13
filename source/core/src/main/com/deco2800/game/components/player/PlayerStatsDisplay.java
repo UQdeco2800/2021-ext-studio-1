@@ -7,6 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.deco2800.game.components.CombatStatsComponent;
+import com.deco2800.game.components.gameover.GameOverDisplay;
+import com.deco2800.game.entities.Entity;
+import com.deco2800.game.services.GameTime;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
 
@@ -16,7 +19,7 @@ import com.deco2800.game.ui.UIComponent;
 public class PlayerStatsDisplay extends UIComponent {
   Table table;
   Table notification;
-  Table heartAnimate;
+  Table heartAnimat;
   private Image heartImage;
   private Label healthLabel;
   private Image armourImage;
@@ -24,7 +27,6 @@ public class PlayerStatsDisplay extends UIComponent {
   private Image noImage;
   private Image treatImage;
   private String treatFileName;
-
 
   /**
    * Creates reusable ui styles and adds actors to the stage.
@@ -65,16 +67,17 @@ public class PlayerStatsDisplay extends UIComponent {
     int armour = entity.getComponent(CombatStatsComponent.class).getArmour();
     CharSequence armourText = String.format("Armour: %d", armour);
     armourLabel = new Label(armourText, skin, "large");
+
     table.add(heartImage).size(heartSideLength).pad(5);
-    table.add(armourImage).size(armourSideLength).padLeft(15);
     stage.addActor(table);
 
     Table healthStats = new Table();
     healthStats.top().left();
     healthStats.setFillParent(true);
     healthStats.padTop(100f).padLeft(5f);
-    healthStats.add(healthLabel).pad(20);
 
+    healthStats.add(healthLabel).pad(20);
+    table.add(armourImage).size(armourSideLength).pad(5);
     healthStats.add(armourLabel);
     stage.addActor(healthStats);
 
@@ -96,7 +99,7 @@ public class PlayerStatsDisplay extends UIComponent {
    * Player get hurt Animation
    */
   private void hurtAnimate() {
-    heartAnimate =  new Table();
+    Table heartAnimate =  new Table();
     heartAnimate.top().left();
     heartAnimate.setFillParent(true);
     heartAnimate.padTop(60f).padLeft(200f);
@@ -136,33 +139,25 @@ public class PlayerStatsDisplay extends UIComponent {
       hurtAnimate();
     }
 
-    //Update the health bar & Armour Bar
+    //Update the health bar
     float heartSideLength = 200f;
-    float armourSideLength = 200f;
     if(health>=0) {
       table.removeActor(heartImage);
-      table.removeActor(armourImage);
       heartImage.remove();
-      armourImage.remove();
       if (health == 3) {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_full.png", Texture.class));
-        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_full.png", Texture.class));
       }
       if (health == 2) {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_decrease_one.png", Texture.class));
-        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_decrease_one.png", Texture.class));
       }
       if (health == 1) {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_decrease_two.png", Texture.class));
-        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_decrease_two.png", Texture.class));
       }
       if (health == 0) {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_empty.png", Texture.class));
-        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_empty.png", Texture.class));
         long currentTime = ServiceLocator.getTimeSource().getTime();
         while (ServiceLocator.getTimeSource().getTime() - currentTime < 1000L) {
-          //Game win screen
-          break;
+          //pass
         }
         getEntity().getEvents().trigger("GameOver");
       }
@@ -171,7 +166,6 @@ public class PlayerStatsDisplay extends UIComponent {
       table.setFillParent(true);
       table.padTop(30f).padLeft(5f);
       table.add(heartImage).size(heartSideLength).pad(5);
-      table.add(armourImage).size(armourSideLength).padLeft(15);
     }
 
     //Notification appears and disposes
@@ -191,14 +185,40 @@ public class PlayerStatsDisplay extends UIComponent {
 
   /**
    * Updates the player's armour on the ui.
+   * Incomplete function
    * @param armour player armour
    */
   public void updatePlayerArmourUI(int armour) {
     //Update the number of armour
     CharSequence text = String.format("Armour: %d", armour);
     armourLabel.setText(text);
-  }
+    hurtAnimate();
 
+    //Update the armour bar
+    float armourSideLength = 200f;
+    if(armour>=0) {
+      table.removeActor(armourImage);
+      armourImage.remove();
+      if (armour == 3) {
+        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_full.png", Texture.class));
+      }
+      if (armour == 2) {
+        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_decrease_one.png", Texture.class));
+      }
+      if (armour == 1) {
+        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_decrease_two.png", Texture.class));
+      }
+      if (armour == 0) {
+        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_empty.png", Texture.class));
+      }
+      table.reset();
+      table.top().left();
+      table.setFillParent(true);
+      table.padTop(30f).padLeft(5f);
+      table.add(armourImage).size(armourSideLength).pad(5);
+    }
+
+  }
   @Override
   public void dispose() {
     super.dispose();
@@ -207,7 +227,7 @@ public class PlayerStatsDisplay extends UIComponent {
     armourImage.remove();
     armourLabel.remove();
     noImage.remove();
-    heartAnimate.remove();
+    heartAnimat.remove();
     treatImage.remove();
   }
 }
