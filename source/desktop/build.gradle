@@ -11,7 +11,8 @@ task run(dependsOn: classes, type: JavaExec) {
     workingDir = project.assetsDir
 
     ignoreExitValue = true as JavaExecSpec
-    jvmArgs = ["-Djava.util.logging.config.file=../../logging.properties", "-XstartOnFirstThread"]
+    jvmArgs = ["-Djava.util.logging.config.file=../../logging.properties"]
+//    jvmArgs = ["-Djava.util.logging.config.file=../../logging.properties", "-XstartOnFirstThread"]
 }
 
 task debug(dependsOn: classes, type: JavaExec) {
@@ -37,3 +38,7 @@ task dist(type: Jar) {
 dist.dependsOn classes
 
 eclipse.project.name = appName + "-desktop"
+
+dependencies {
+    implementation 'junit:junit:4.13.2'
+}

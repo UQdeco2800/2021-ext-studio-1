@@ -21,6 +21,9 @@ public class MainGameActions extends Component {
   public void create() {
     entity.getEvents().addListener("exit", this::onExit);
     entity.getEvents().addListener("restarting game", this::onRestart);
+
+
+
   }
 
 
@@ -31,6 +34,7 @@ public class MainGameActions extends Component {
     logger.info("Exiting main game screen");
     game.setScreen(GdxGame.ScreenType.MAIN_MENU);
   }
+
 
   /**
    * Swaps to the Main Game Screen when the character dies.
