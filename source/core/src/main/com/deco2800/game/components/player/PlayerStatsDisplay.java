@@ -108,7 +108,7 @@ public class PlayerStatsDisplay extends UIComponent {
             treatFileName =String.format("images/hurt%d.png",i);
             treatImage = new Image(ServiceLocator.getResourceService().getAsset(treatFileName, Texture.class));
             heartAnimate.add(treatImage).size(64f,64f).pad(-10);
-            Thread.sleep(100);
+            Thread.sleep(120);
             heartAnimate.clearChildren();
           }
         }
@@ -131,7 +131,11 @@ public class PlayerStatsDisplay extends UIComponent {
     //Update the number of health
     CharSequence text = String.format("Health: %d", health);
     healthLabel.setText(text);
-    hurtAnimate();
+
+    //Hurt animation
+    if (health > 0) {
+      hurtAnimate();
+    }
 
     //Update the health bar
     float heartSideLength = 200f;
@@ -218,6 +222,7 @@ public class PlayerStatsDisplay extends UIComponent {
     armourLabel.remove();
     noImage.remove();
     heartAnimat.remove();
+    treatImage.remove();
   }
 }
 
