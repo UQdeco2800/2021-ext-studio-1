@@ -108,7 +108,7 @@ public class ObstacleFactory {
 
   public static Entity createFirstAidKit() {
     Entity FirstAidKit =
-            new Entity(Entity.Type.OBSTACLE)
+            new Entity(Entity.Type.AID)
                     .addComponent(new TextureRenderComponent("images/FirstAidKit.png"))
                     .addComponent(new PhysicsComponent())
                     .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
@@ -125,7 +125,7 @@ public class ObstacleFactory {
 
   public static Entity createFood() {
     Entity Food =
-            new Entity(Entity.Type.OBSTACLE)
+            new Entity(Entity.Type.BREAD)
                     .addComponent(new TextureRenderComponent("images/food.png"))
                     .addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
                     .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))

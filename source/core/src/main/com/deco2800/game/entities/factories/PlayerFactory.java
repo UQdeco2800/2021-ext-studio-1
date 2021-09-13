@@ -55,6 +55,13 @@ public class PlayerFactory {
                                     TextureAtlas.class));
     animator.addAnimation("attack", 0.03f, Animation.PlayMode.NORMAL);
 
+//    AnimationRenderComponent animator1 =
+//            new AnimationRenderComponent(
+//                    ServiceLocator.getResourceService()
+//                            .getAsset("images/posipuff.atlas",
+//                                    TextureAtlas.class));
+//    animator1.addAnimation("buff", 0.1f, Animation.PlayMode.NORMAL);
+
 
     Entity player =
         new Entity(Entity.Type.PLAYER)
@@ -70,6 +77,7 @@ public class PlayerFactory {
                 .addComponent(animator)
             .addComponent(new PlayerStatsDisplay())
                 .addComponent(animator2);
+//                .addComponent(animator1);
 
     PhysicsUtils.setScaledCollider(player, 0.6f, 0.3f);
     player.getComponent(ColliderComponent.class).setDensity(1.5f);
