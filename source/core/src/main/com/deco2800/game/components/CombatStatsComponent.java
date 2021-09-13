@@ -1,5 +1,8 @@
 package com.deco2800.game.components;
 
+import com.deco2800.game.entities.Entity;
+import com.deco2800.game.rendering.AnimationRenderComponent;
+import com.deco2800.game.rendering.AnimationRenderComponent2;
 import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -131,6 +134,13 @@ public class CombatStatsComponent extends Component {
     try {
       if (ServiceLocator.getTimeSource().getTimeSince(invincibleStart) < 1000L) {
         return;
+      }
+
+      if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
+        logger.error("attacker--{}", attacker.getEntity().getType());
+        AnimationRenderComponent2 animator = attacker.getEntity().getComponent(AnimationRenderComponent2.class);
+        animator.startAnimation("touch");
+        logger.error("--end--attacker--{}",attacker.getEntity().getType());
       }
 
       if (armour > 0){
