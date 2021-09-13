@@ -39,7 +39,6 @@ dist.dependsOn classes
 
 eclipse.project.name = appName + "-desktop"
 
-//dependencies {
-//    implementation 'junit:junit:4.13.2'
-//    implementation 'org.junit:junit-bom:5.7.2'
-//}
+dependencies {
+    implementation 'junit:junit:4.13.2'
+}
