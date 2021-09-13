@@ -61,6 +61,15 @@ public class PlayerFactory {
 //                            .getAsset("images/posipuff.atlas",
 //                                    TextureAtlas.class));
 //    animator1.addAnimation("buff", 0.1f, Animation.PlayMode.NORMAL);
+//    AnimationRenderComponent animator3 =
+//            new AnimationRenderComponent(
+//                    ServiceLocator.getResourceService()
+//                            .getAsset("images/player.atlas",
+//                                    TextureAtlas.class));
+//    animator.addAnimation("attack", 0.03f, Animation.PlayMode.NORMAL);
+//    animator.addAnimation("TouchObstacle", 0.03f, Animation.PlayMode.NORMAL);
+//    animator.addAnimation("positiveBuff", 0.03f, Animation.PlayMode.NORMAL);
+//    animator.addAnimation("negativeBuff", 0.03f, Animation.PlayMode.NORMAL);
 
 
     Entity player =
@@ -75,6 +84,7 @@ public class PlayerFactory {
             .addComponent(inputComponent)
                 .addComponent(new TouchAttackComponent(PhysicsLayer.NPC, PhysicsLayer.OBSTACLE, 1.5f))
                 .addComponent(animator)
+//                .addComponent(animator3)
             .addComponent(new PlayerStatsDisplay())
                 .addComponent(animator2);
 //                .addComponent(animator1);

@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class ForestGameArea extends GameArea {
+public class ForestGameArea<praivate> extends GameArea {
   private static final Logger logger = LoggerFactory.getLogger(ForestGameArea.class);
   private static final GridPoint2 PLAYER_SPAWN = new GridPoint2(1, 7);
   private static final float WALL_WIDTH = 0.1f;
