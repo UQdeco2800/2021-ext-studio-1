@@ -87,9 +87,13 @@ public class GameOverDisplay extends MainMenuDisplay {
                 Texture.class));
         Image gameOverText = new Image(ServiceLocator.getResourceService().getAsset("Gameover_Visual_Text.png",
                 Texture.class));
+        Image gameOverBackground = new Image(ServiceLocator.getResourceService().getAsset("Death_Screen_Background",
+                Texture.class));
 
         Table table = new Table();
         table.clear();
+        table.add(gameOverBackground);
+        table.row();
         table.add(playerDeadImage);
         table.row();
         table.add(gameOverText);
