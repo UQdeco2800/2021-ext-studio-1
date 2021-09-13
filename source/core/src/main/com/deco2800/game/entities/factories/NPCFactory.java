@@ -126,7 +126,7 @@ public class NPCFactory {
   private static Entity createBaseNPC(Entity target) {
     AITaskComponent aiComponent =
         new AITaskComponent()
-            .addTask(new WanderTask(new Vector2(30, 0), 0f))
+            .addTask(new WanderTask(new Vector2(50, 0), 0f))
             .addTask(new ChaseTask(target, 0, 0, 0));
     Entity npc =
         new Entity(Entity.Type.GHOST)
