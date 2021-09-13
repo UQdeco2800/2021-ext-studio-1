@@ -150,7 +150,7 @@ public class RainbowBridge extends GameArea {
                     spawnEntityAt(stone, randomPos, true, false);
                     break;
                 case 2:
-                    Entity thunderCloud = ObstacleFactory.createSnake();
+                    Entity thunderCloud = ObstacleFactory.createthunderCloud();
                     spawnEntityAt(thunderCloud, randomPos, true, false);
                     break;
                 case 3:
