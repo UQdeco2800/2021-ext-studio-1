@@ -101,6 +101,8 @@ public class RainbowBridge extends GameArea {
         spawnTerrain();
         spawnObstables();
         spawnHealthObjects();
+        spawnWeaponObjects();
+        spawnCollectableObjects();
         player = spawnPlayer();
         spawnGhostKing();
         spawnLittleGreen();
@@ -182,15 +184,15 @@ public class RainbowBridge extends GameArea {
             GridPoint2 randomPos = RandomUtils.random(minPos, maxPos);
             switch(i % 2) {
                 case 0:
-                    Entity food = ObstacleFactory.createAxe();
+                    Entity axe = ObstacleFactory.createAxe();
                     spawnEntityAt(axe, randomPos, true, false);
                     break;
                 case 1:
-                    Entity firstAid = ObstacleFactory.createBow();
+                    Entity bow = ObstacleFactory.createBow();
                     spawnEntityAt(bow, randomPos, true, false);
                     break;
                 case 2:
-                    Entity firstAid = ObstacleFactory.createSword();
+                    Entity sword = ObstacleFactory.createSword();
                     spawnEntityAt(sword, randomPos, true, false);
                     break;
 
@@ -205,11 +207,11 @@ public class RainbowBridge extends GameArea {
             GridPoint2 randomPos = RandomUtils.random(minPos, maxPos);
             switch(i % 2) {
                 case 0:
-                    Entity food = ObstacleFactory.createCoin();
+                    Entity coin = ObstacleFactory.createCoin();
                     spawnEntityAt(coin, randomPos, true, false);
                     break;
                 case 1:
-                    Entity firstAid = ObstacleFactory.createDiamond();
+                    Entity diamond = ObstacleFactory.createDiamond();
                     spawnEntityAt(diamond, randomPos, true, false);
                     break;
 
