@@ -71,8 +71,6 @@ public class RagnorakRacer extends ScreenAdapter {
         RainbowBridge rainbowBridge = new RainbowBridge(terrainFactory);
         rainbowBridge.create();
         this.rainbowBridge = rainbowBridge.getRainbowBridge();
-
-        ServiceLocator.getInputService().setBridge(this.rainbowBridge);
     }
 
     @Override

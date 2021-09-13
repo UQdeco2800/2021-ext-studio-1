@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
-import com.deco2800.game.components.bridge.Bridge;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
@@ -29,8 +28,6 @@ public class InputService implements InputProcessor, GestureDetector.GestureList
   private final List<InputComponent> inputHandlers = new ArrayList<>();
   private final InputFactory inputFactory;
 
-  private Bridge rainbowBridge;
-
   public InputService() {
     this(InputFactory.createFromInputType(inputType));
   }
@@ -47,10 +44,6 @@ public class InputService implements InputProcessor, GestureDetector.GestureList
    */
   public InputFactory getInputFactory() {
     return inputFactory;
-  }
-
-  public void setBridge(Bridge bridge) {
-    this.rainbowBridge = bridge;
   }
 
   /**
