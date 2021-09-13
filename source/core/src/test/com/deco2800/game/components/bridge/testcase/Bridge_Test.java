@@ -2,18 +2,15 @@ package com.deco2800.game.components.bridge.testcase;
 
 import com.deco2800.game.components.bridge.Bridge;
 import com.deco2800.game.components.bridge.Lane;
-import jdk.internal.org.objectweb.asm.tree.InsnList;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class Bridge_Test {
 
+    private Lane lanes ;
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         System.out.println("before class");
@@ -21,6 +18,7 @@ public class Bridge_Test {
 
     @Before
     public void setUp() throws Exception {
+        lanes = new Lane(1,2);
         System.out.println("before");
     }
 
@@ -50,12 +48,8 @@ public class Bridge_Test {
 
 
     @Test
-    public void testgetLastLane() {
-        if (this.lanes.size() == 0) {
-            throw new IllegalCallerException("Unable to get a lane from an empty list");
-        } else {
-            return this.lanes.get(this.lanes.size() - 1);
-        }
+    public void GetMidPointTest() {
+        assertEquals(1.5,lanes.getMid());
     }
 
     /**
