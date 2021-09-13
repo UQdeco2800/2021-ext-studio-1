@@ -111,8 +111,8 @@ public class ObstacleFactory {
             new Entity(Entity.Type.AID)
                     .addComponent(new TextureRenderComponent("images/FirstAidKit.png"))
                     .addComponent(new PhysicsComponent())
-                    .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
-                    .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
+                    .addComponent(new ColliderComponent().setLayer(PhysicsLayer.AID))
+                    .addComponent(new HitboxComponent().setLayer(PhysicsLayer.AID))
                     .addComponent(new CombatStatsComponent(100,0));
 
     FirstAidKit.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
@@ -128,8 +128,8 @@ public class ObstacleFactory {
             new Entity(Entity.Type.BREAD)
                     .addComponent(new TextureRenderComponent("images/food.png"))
                     .addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
-                    .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
-                    .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
+                    .addComponent(new ColliderComponent().setLayer(PhysicsLayer.BREAD))
+                    .addComponent(new HitboxComponent().setLayer(PhysicsLayer.BREAD))
                     .addComponent(new CombatStatsComponent(100,0));
 
     PhysicsUtils.setScaledCollider(Food, 0.5f, 0.2f);
