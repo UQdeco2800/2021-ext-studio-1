@@ -27,6 +27,8 @@ public class RainbowBridge extends GameArea {
     private static final int NUM_TREES = 7;
     private static final int NUM_OBSTACLES = 12;
     private static final int NUM_HEALTH_OBJECTS = 10;
+    private static final int NUM_WEAPON = 2;
+    private static final int NUM_COLLECTABLES = 5;
     private static final int NUM_GHOSTS = 2;
     private static final int NUM_LittleGreen = 5;
     private static final String[] rainbowBridgeTextures = {
@@ -58,6 +60,11 @@ public class RainbowBridge extends GameArea {
             "images/snake.png",
             "images/fire.png",
             "images/food.png",
+            "images/axe.png",
+            "images/sword.png",
+            "images/bow.png",
+            "images/coin.png",
+            "images/diamond.png",
             "images/dragon.png",
             "images/pixelghost.png",
             "images/pixelghost1.png",
@@ -163,6 +170,49 @@ public class RainbowBridge extends GameArea {
                     Entity firstAid = ObstacleFactory.createFirstAidKit();
                     spawnEntityAt(firstAid, randomPos, true, false);
                     break;
+
+            }
+        }
+    }
+    private void spawnWeaponObjects() {
+        GridPoint2 minPos = new GridPoint2(0, 0);
+        GridPoint2 maxPos = terrain.getMapBounds(0).sub(2, 2);
+
+        for (int i = 0; i < NUM_WEAPON; i++) {
+            GridPoint2 randomPos = RandomUtils.random(minPos, maxPos);
+            switch(i % 2) {
+                case 0:
+                    Entity food = ObstacleFactory.createAxe();
+                    spawnEntityAt(axe, randomPos, true, false);
+                    break;
+                case 1:
+                    Entity firstAid = ObstacleFactory.createBow();
+                    spawnEntityAt(bow, randomPos, true, false);
+                    break;
+                case 2:
+                    Entity firstAid = ObstacleFactory.createSword();
+                    spawnEntityAt(sword, randomPos, true, false);
+                    break;
+
+            }
+        }
+    }
+    private void spawnCollectableObjects() {
+        GridPoint2 minPos = new GridPoint2(0, 0);
+        GridPoint2 maxPos = terrain.getMapBounds(0).sub(2, 2);
+
+        for (int i = 0; i < NUM_COLLECTABLES; i++) {
+            GridPoint2 randomPos = RandomUtils.random(minPos, maxPos);
+            switch(i % 2) {
+                case 0:
+                    Entity food = ObstacleFactory.createCoin();
+                    spawnEntityAt(coin, randomPos, true, false);
+                    break;
+                case 1:
+                    Entity firstAid = ObstacleFactory.createDiamond();
+                    spawnEntityAt(diamond, randomPos, true, false);
+                    break;
+
             }
         }
     }
