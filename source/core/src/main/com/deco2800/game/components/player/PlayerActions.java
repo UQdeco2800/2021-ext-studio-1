@@ -38,7 +38,6 @@ public class PlayerActions extends Component {
     entity.getEvents().addListener("walkStop", this::stopWalking);
     entity.getEvents().addListener("attack", this::attack);
     entity.getEvents().addListener("unAttack", this::unAttack);
-    entity.getEvents().addListener("touch", this::touch);
   }
 
   @Override
@@ -88,13 +87,15 @@ public class PlayerActions extends Component {
       if (nearest.getType().equals(Entity.Type.GHOSTKING)) {
         logger.info ("nearest.getType()--{}", nearest.getType());
         nearest.attack();
-      } else if (nearest.getType().equals(Entity.Type.BREAD) || nearest.getType().equals(Entity.Type.AID)) {
-        logger.info ("nearest.getType()--{}", nearest.getType());
-        nearest.dispose();
-        Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/buff.ogg", Sound.class);
-        attSound.play();
-        animator.startAnimation("buff");
-      } else {
+      }
+//      else if (nearest.getType().equals(Entity.Type.BREAD) || nearest.getType().equals(Entity.Type.AID)) {
+//        logger.info ("nearest.getType()--{}", nearest.getType());
+//        nearest.dispose();
+//        Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/buff.ogg", Sound.class);
+//        attSound.play();
+//        animator.startAnimation("buff");
+//      }
+      else if (nearest.getType().equals(Entity.Type.GHOST) || nearest.getType().equals(Entity.Type.OBSTACLE)) {
         logger.info ("nearest.getType()--{}", nearest.getType());
         nearest.dispose();
         Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/buff2.ogg", Sound.class);
@@ -122,7 +123,8 @@ public class PlayerActions extends Component {
           minDstEnemy = dst;
           result = en;
         }
-      } else if (en.getType() == Entity.Type.OBSTACLE || en.getType() == Entity.Type.BREAD) {
+      } else if (en.getType() == Entity.Type.OBSTACLE || en.getType() == Entity.Type.BREAD
+                          || en.getType() == Entity.Type.AID) {
         float dst = entity.getPosition().dst(en.getPosition());
         if (minDstObstacle > dst) {
           minDstObstacle = dst;
@@ -138,7 +140,7 @@ public class PlayerActions extends Component {
     Entity nearest = findNearestTargets(entities);
     if (nearest != null) {
       if (nearest.getType().equals(Entity.Type.BREAD) || nearest.getType().equals(Entity.Type.AID)) {
-        entities.removeValue(entity, true);
+        entities.removeValue(nearest, true);
         Sound attackSound1 = ServiceLocator.getResourceService().getAsset("sounds/buff.ogg", Sound.class);
         attackSound1.play();
         animator.startAnimation("buff");
