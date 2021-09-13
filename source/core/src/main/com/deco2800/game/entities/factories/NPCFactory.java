@@ -137,14 +137,14 @@ public class NPCFactory {
             .addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
             .addComponent(aiComponent);
 
-    //PhysicsUtils.setScaledCollider(npc, 0.9f, 0.4f);
+//    PhysicsUtils.setScaledCollider(npc, 0.9f, 0.4f);
     return npc;
   }
 
   private static Entity createBaseNPC1(Entity target) {
     AITaskComponent aiComponent =
             new AITaskComponent()
-                    .addTask(new WanderTask(new Vector2(30f, 0f), 0f))
+                    .addTask(new WanderTask(new Vector2(50f, 0f), 0f))
                     .addTask(new ChaseTask(target, 0, 0f, 0f));
     Entity npc1 =
             new Entity(Entity.Type.GHOSTKING)
