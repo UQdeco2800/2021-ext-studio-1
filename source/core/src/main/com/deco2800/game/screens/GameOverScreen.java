@@ -24,6 +24,8 @@ public class GameOverScreen extends ScreenAdapter {
     private final GdxGame game;
     private final Renderer renderer;
 
+    private static final String[] gameOverTextures = {"images/Death_Screen_Background.png", "images/Death_Screen_Character.png", "images/Gameover_Visual_Text.png"};
+
     public GameOverScreen(GdxGame game) {
         this.game = game;
 
@@ -32,10 +34,10 @@ public class GameOverScreen extends ScreenAdapter {
         ServiceLocator.registerResourceService(new ResourceService());
         ServiceLocator.registerEntityService(new EntityService());
         ServiceLocator.registerRenderService(new RenderService());
-        ServiceLocator.registerTimeSource(new GameTime());
 
         renderer = RenderFactory.createRenderer();
-        renderer.getCamera().getEntity().setPosition(5f, 5f);
+
+        loadAssets();
 
         createUI();
     }
@@ -54,12 +56,27 @@ public class GameOverScreen extends ScreenAdapter {
 
     @Override
     public void dispose() {
+        unloadAssets();
         renderer.dispose();
         ServiceLocator.getRenderService().dispose();
         ServiceLocator.getEntityService().dispose();
 
         ServiceLocator.clear();
     }
+
+    private void loadAssets() {
+        logger.debug("Loading assets");
+        ResourceService resourceService = ServiceLocator.getResourceService();
+        resourceService.loadTextures(gameOverTextures);
+        ServiceLocator.getResourceService().loadAll();
+    }
+
+    private void unloadAssets() {
+        logger.debug("Unloading assets");
+        ResourceService resourceService = ServiceLocator.getResourceService();
+        resourceService.unloadAssets(gameOverTextures);
+    }
+
 
     /**
      * Creates the setting screen's ui including components for rendering ui elements to the screen

@@ -36,7 +36,7 @@ public class RagnorakRacer extends ScreenAdapter {
     private static final String[] mainGameTextures = {"images/health_full.png", "images/health_decrease_two.png",
             "images/health_decrease_one.png", "images/health_empty.png", "images/armour_full.png", "images/armour_decrease_two.png",
             "images/armour_decrease_one.png", "images/armour_empty.png", "images/notification.png",
-            "images/hurt0.png","images/hurt1.png","images/hurt2.png","images/hurt3.png","images/hurt4.png"};
+            "images/hurt0.png","images/hurt1.png","images/hurt2.png","images/hurt3.png","images/hurt4.png", "images/dragon.png"};
     private static final Vector2 CAMERA_POSITION = new Vector2(7.5f, 7.5f);
 
     private final GdxGame game;
@@ -83,7 +83,7 @@ public class RagnorakRacer extends ScreenAdapter {
     }
 
     private void gameOver() {
-        game.setScreen(new MainMenuScreen(game));
+        game.setScreen(new GameOverScreen(game));
     }
 
     @Override
