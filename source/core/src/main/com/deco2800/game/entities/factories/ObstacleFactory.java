@@ -143,6 +143,82 @@ public class ObstacleFactory {
 		return food;
 	}
 
+	public static Entity createAxe() {
+		Entity axe =
+				new Entity()
+						.addComponent(new TextureRenderComponent("images/axe.png"))
+						.addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
+						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
+						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
+						.addComponent(new CombatStatsComponent(100, 0));
+
+		food.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+		food.getComponent(TextureRenderComponent.class).scaleEntity();
+		PhysicsUtils.setScaledCollider(axe, 0.5f, 0.2f);
+		// combat.addHealth(1);
+		return axe;
+	}
+	public static Entity createSword() {
+		Entity sword =
+				new Entity()
+						.addComponent(new TextureRenderComponent("images/sword.png"))
+						.addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
+						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
+						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
+						.addComponent(new CombatStatsComponent(100, 0));
+
+		food.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+		food.getComponent(TextureRenderComponent.class).scaleEntity();
+		PhysicsUtils.setScaledCollider(sword, 0.5f, 0.2f);
+		// combat.addHealth(1);
+		return sword;
+	}
+	public static Entity createBow() {
+		Entity bow =
+				new Entity()
+						.addComponent(new TextureRenderComponent("images/bow.png"))
+						.addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
+						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
+						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
+						.addComponent(new CombatStatsComponent(100, 0));
+
+		food.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+		food.getComponent(TextureRenderComponent.class).scaleEntity();
+		PhysicsUtils.setScaledCollider(bow, 0.5f, 0.2f);
+		// combat.addHealth(1);
+		return bow;
+	}
+	public static Entity createCoin() {
+		Entity coin =
+				new Entity()
+						.addComponent(new TextureRenderComponent("images/coin.png"))
+						.addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
+						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
+						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
+						.addComponent(new CombatStatsComponent(100, 0));
+
+		food.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+		food.getComponent(TextureRenderComponent.class).scaleEntity();
+		PhysicsUtils.setScaledCollider(coin, 0.5f, 0.2f);
+		// combat.addHealth(1);
+		return coin;
+	}
+	public static Entity createDiamond() {
+		Entity diamond =
+				new Entity()
+						.addComponent(new TextureRenderComponent("images/diamond.png"))
+						.addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
+						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
+						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
+						.addComponent(new CombatStatsComponent(100, 0));
+
+		food.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+		food.getComponent(TextureRenderComponent.class).scaleEntity();
+		PhysicsUtils.setScaledCollider(diamond, 0.5f, 0.2f);
+		// combat.addHealth(1);
+		return diamond;
+	}
+
 	/**
 	 * Creates an invisible physics wall.
 	 *
@@ -169,87 +245,5 @@ public class ObstacleFactory {
 		obstacle.getComponent(TextureRenderComponent.class).scaleEntity();
 		obstacle.scaleHeight(2.5f);
 		return obstacle;
-	}
-	public static Entity createSwordWeapon() { //CombatStatsComponent combat) {
-		Entity sword =
-				new Entity(Entity.Type.WEAPON)
-						.addComponent(new TextureRenderComponent("images/sword.png"))
-						.addComponent(new PhysicsComponent())
-						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.WEAPON))
-						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.WEAPON))
-						.addComponent(new CombatStatsComponent(100, 0));
-
-		stone.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
-		stone.getComponent(TextureRenderComponent.class).scaleEntity();
-		//stone.scaleHeight(2.5f);
-		PhysicsUtils.setScaledCollider(sword, 0.5f, 0.2f);
-		//Add 2 atk status, 1 hp heal
-		// combat.addHealth(1);
-		return sword;
-	}
-	public static Entity createAxeWeapon() { //CombatStatsComponent combat) {
-		Entity axe =
-				new Entity(Entity.Type.WEAPON)
-						.addComponent(new TextureRenderComponent("images/axe.png"))
-						.addComponent(new PhysicsComponent())
-						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.WEAPON))
-						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.WEAPON))
-						.addComponent(new CombatStatsComponent(100, 0));
-
-		stone.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
-		stone.getComponent(TextureRenderComponent.class).scaleEntity();
-		//stone.scaleHeight(2.5f);
-		PhysicsUtils.setScaledCollider(axe, 0.5f, 0.2f);
-		//Add 3 atk status
-		return axe;
-	}
-
-	public static Entity createBowWeapon() { //CombatStatsComponent combat) {
-		Entity bow =
-				new Entity(Entity.Type.WEAPON)
-						.addComponent(new TextureRenderComponent("images/bow.png"))
-						.addComponent(new PhysicsComponent())
-						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.WEAPON))
-						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.WEAPON))
-						.addComponent(new CombatStatsComponent(100, 0));
-
-		stone.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
-		stone.getComponent(TextureRenderComponent.class).scaleEntity();
-		PhysicsUtils.setScaledCollider(bow, 0.5f, 0.2f);
-		//Add 1 atk status, 2 hp heal
-		// combat.addHealth(2);
-		return bow;
-	}
-	public static Entity createGoldCollectable() { //CombatStatsComponent combat) {
-		Entity gold =
-				new Entity(Entity.Type.COLLECTABLE)
-						.addComponent(new TextureRenderComponent("images/gold.png"))
-						.addComponent(new PhysicsComponent())
-						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.WEAPON))
-						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.WEAPON))
-						.addComponent(new CombatStatsComponent(100, 0));
-
-		stone.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
-		stone.getComponent(TextureRenderComponent.class).scaleEntity();
-		PhysicsUtils.setScaledCollider(gold, 0.5f, 0.2f);
-		//Add 1 atk status, 2 hp heal
-		// combat.addHealth(2);
-		return gold;
-	}
-	public static Entity createDiamondCollectable() { //CombatStatsComponent combat) {
-		Entity diamond =
-				new Entity(Entity.Type.COLLECTABLE)
-						.addComponent(new TextureRenderComponent("images/diamond.png"))
-						.addComponent(new PhysicsComponent())
-						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.WEAPON))
-						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.WEAPON))
-						.addComponent(new CombatStatsComponent(100, 0));
-
-		stone.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
-		stone.getComponent(TextureRenderComponent.class).scaleEntity();
-		PhysicsUtils.setScaledCollider(diamond, 0.5f, 0.2f);
-		//Add 1 atk status, 2 hp heal
-		// combat.addHealth(2);
-		return diamond;
 	}
 }
