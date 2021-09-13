@@ -251,4 +251,5 @@ public class ObstacleFactory {
 		//Add 1 atk status, 2 hp heal
 		// combat.addHealth(2);
 		return diamond;
+	}
 }
