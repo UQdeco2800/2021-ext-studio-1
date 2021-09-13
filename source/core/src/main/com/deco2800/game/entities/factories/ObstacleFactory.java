@@ -54,7 +54,7 @@ public class ObstacleFactory {
 		RunesGate.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
 		RunesGate.getComponent(TextureRenderComponent.class).scaleEntity();
 		// car.scaleHeight(2.5f);
-		PhysicsUtils.setScaledCollider(car, 0.5f, 0.2f);
+		PhysicsUtils.setScaledCollider(RunesGate, 0.5f, 0.2f);
 		return RunesGate;
 	}
 
