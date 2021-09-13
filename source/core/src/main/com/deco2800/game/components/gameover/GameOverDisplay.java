@@ -1,28 +1,16 @@
 package com.deco2800.game.components.gameover;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.utils.Scaling;
-import com.deco2800.game.components.mainmenu.MainMenuDisplay;
-import com.deco2800.game.services.ResourceService;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 
 /**
@@ -74,7 +62,7 @@ public class GameOverDisplay extends UIComponent {
                     @Override
                     public void changed(ChangeEvent changeEvent, Actor actor) {
                         logger.debug("Restart button pressed");
-                        entity.getEvents().trigger("restart");
+                        entity.getEvents().trigger("restarting game");
                     }
                 });
 
@@ -93,18 +81,13 @@ public class GameOverDisplay extends UIComponent {
         Image gameOverText = new Image(ServiceLocator.getResourceService().getAsset("images/Gameover_Visual_Text.png",
                 Texture.class));
 
-        table = new Table();
-        table.clear();
-        table.add(background);
+        table.add(playerDeadImage).size(350f,300f).padBottom(50f);
         table.row();
-        table.add(playerDeadImage);
+        table.add(gameOverText).size(500f,150f);
         table.row();
-        table.add(gameOverText);
+        table.add(restartBtn).padTop(30f).size(200f,50f).padTop(50f);
         table.row();
-        table.add(restartBtn).padTop(30f);
-        table.row();
-        table.add(exitBtn).padTop(30f);
-        table.row();
+        table.add(exitBtn).padTop(30f).size(200f,50f);
 
         stage.addActor(table);
     }

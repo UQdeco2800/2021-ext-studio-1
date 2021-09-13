@@ -38,7 +38,6 @@ public class GameOverScreen extends ScreenAdapter {
         renderer = RenderFactory.createRenderer();
 
         loadAssets();
-
         createUI();
     }
 
