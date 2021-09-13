@@ -55,9 +55,11 @@ public class RainbowBridge extends GameArea {
             "images/iso_grass_2.png",
             "images/iso_grass_3.png",
             "images/carObstacle.png",
+            "images/RunesGate.gif",
             "images/stone.png",
             "images/FirstAidKit.png",
             "images/snake.png",
+            "images/thunderCloud.gif",
             "images/fire.png",
             "images/food.png",
             "images/axe.png",
@@ -65,6 +67,8 @@ public class RainbowBridge extends GameArea {
             "images/bow.png",
             "images/coin.png",
             "images/diamond.png",
+            "images/coin.gif",
+            "images/diamond.gif",
             "images/dragon.png",
             "images/pixelghost.png",
             "images/pixelghost1.png",
@@ -138,16 +142,16 @@ public class RainbowBridge extends GameArea {
             GridPoint2 randomPos = RandomUtils.random(minPos, maxPos);
             switch(i % 3) {
                 case 0:
-                    Entity car = ObstacleFactory.createCarObstacle();
-                    spawnEntityAt(car, randomPos, true, false);
+                    Entity RunesGate = ObstacleFactory.createRunesGate();
+                    spawnEntityAt(RunesGate, randomPos, true, false);
                     break;
                 case 1:
                     Entity stone = ObstacleFactory.createStoneObstacle();
                     spawnEntityAt(stone, randomPos, true, false);
                     break;
                 case 2:
-                    Entity snake = ObstacleFactory.createSnake();
-                    spawnEntityAt(snake, randomPos, true, false);
+                    Entity thunderCloud = ObstacleFactory.createSnake();
+                    spawnEntityAt(thunderCloud, randomPos, true, false);
                     break;
                 case 3:
                     Entity fire = ObstacleFactory.createFire();
