@@ -4,10 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
 import org.slf4j.Logger;
@@ -46,14 +48,14 @@ public class GameOverDisplay extends UIComponent {
 
 
         //Restart button
-        TextButton restartBtn = new TextButton("Restart Game", skin);
-        //Button restartBtn = new Button((Drawable) new ImageIcon("images/btn_restart1.png"),
-                //(Drawable) new ImageIcon("images/btn_restart2.png"));
+        //TextButton restartBtn = new TextButton("Restart Game", skin);
+        Image restartBtn = new Image(ServiceLocator.getResourceService().getAsset("images/btn_restart1.png",
+                Texture.class));
 
         //Exit button
-        TextButton exitBtn = new TextButton("Exit", skin);
-        //Button exitBtn = new Button((Drawable) new ImageIcon("images/btn_exit1.png"),
-                //(Drawable) new ImageIcon("images/btn_exit2.png"));
+        //TextButton exitBtn = new TextButton("Exit", skin);
+        Image exitBtn = new Image(ServiceLocator.getResourceService().getAsset("images/btn_exit1.png",
+                Texture.class));
 
         //Background
         Image background = new Image(ServiceLocator.getResourceService().getAsset("images/Death_Screen_Background.png",
@@ -62,21 +64,20 @@ public class GameOverDisplay extends UIComponent {
         //stack.add(background);
 
         // when the user presses restart button
-
         restartBtn.addListener(
-                new ChangeListener() {
+                new ClickListener() {
                     @Override
-                    public void changed(ChangeEvent changeEvent, Actor actor) {
+                    public void clicked(InputEvent e,float x,float y) {
                         logger.debug("Restart button pressed");
                         entity.getEvents().trigger("restarting game");
                     }
                 });
 
-        // when the user presses exit button
+// when the user presses exit button
         exitBtn.addListener(
-                new ChangeListener() {
+                new ClickListener() {
                     @Override
-                    public void changed(ChangeEvent changeEvent, Actor actor) {
+                    public void clicked(InputEvent e, float x, float y) {
                         logger.debug("Exit button pressed");
                         entity.getEvents().trigger("exit");
                     }
@@ -91,9 +92,9 @@ public class GameOverDisplay extends UIComponent {
         table.row();
         table.add(gameOverText).size(500f,50f);
         table.row();
-        table.add(restartBtn).padTop(30f).size(200f,50f).padTop(50f);
+        table.add(restartBtn).padTop(30f).size(200f,80f).padTop(50f);
         table.row();
-        table.add(exitBtn).padTop(30f).size(200f,50f);
+        table.add(exitBtn).padTop(30f).size(200f,80f);
 
         tablebackGround.add(background).size(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
