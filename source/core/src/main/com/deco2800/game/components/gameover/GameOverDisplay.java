@@ -87,9 +87,13 @@ public class GameOverDisplay extends MainMenuDisplay {
                 Texture.class));
         Image gameOverText = new Image(ServiceLocator.getResourceService().getAsset("Gameover_Visual_Text.png",
                 Texture.class));
+        Image gameOverBackground = new Image(ServiceLocator.getResourceService().getAsset("Death_Screen_Background",
+                Texture.class));
 
         Table table = new Table();
         table.clear();
+        table.add(gameOverBackground);
+        table.row();
         table.add(playerDeadImage);
         table.row();
         table.add(gameOverText);
@@ -98,6 +102,9 @@ public class GameOverDisplay extends MainMenuDisplay {
         table.row();
         table.add(exitBtn).padTop(30f);
         table.row();
+
+        //stack.setVisible(false);
+        //table.setVisible(false);
     }
 
     private void loadAssets() {
@@ -124,5 +131,10 @@ public class GameOverDisplay extends MainMenuDisplay {
         super.dispose();
         stack.clear();
         this.unloadAssets();
+    }
+
+    public void showDeath() {
+        stack.setVisible(true);
+        table.setVisible(true);
     }
 }

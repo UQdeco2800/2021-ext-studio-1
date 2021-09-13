@@ -201,6 +201,10 @@ public class RainbowBridge extends GameArea {
         return this.rainbowBridge;
     }
 
+    public Entity getPlayer() {
+        return this.player;
+    }
+
 
     private void loadAssets() {
         logger.debug("Loading assets");

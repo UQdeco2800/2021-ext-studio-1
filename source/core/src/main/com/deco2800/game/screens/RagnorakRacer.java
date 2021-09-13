@@ -9,6 +9,7 @@ import com.deco2800.game.areas.terrain.TerrainFactory;
 import com.deco2800.game.components.CombatStatsComponent;
 import com.deco2800.game.components.bridge.Bridge;
 import com.deco2800.game.components.gamearea.PerformanceDisplay;
+import com.deco2800.game.components.gameover.GameOverDisplay;
 import com.deco2800.game.components.maingame.MainGameActions;
 import com.deco2800.game.components.maingame.MainGameExitDisplay;
 import com.deco2800.game.entities.Entity;
@@ -69,6 +70,8 @@ public class RagnorakRacer extends ScreenAdapter {
         RainbowBridge rainbowBridge = new RainbowBridge(terrainFactory);
         rainbowBridge.create();
         this.rainbowBridge = rainbowBridge.getRainbowBridge();
+
+        rainbowBridge.getPlayer().getEvents().addListener("GameOver", this::gameOver);
     }
 
     private void isPlayerDead() {
@@ -77,6 +80,10 @@ public class RagnorakRacer extends ScreenAdapter {
                 game.setScreen(GdxGame.ScreenType.GAMEOVER);
             }
         }
+    }
+
+    private void gameOver() {
+        game.setScreen(new MainMenuScreen(game));
     }
 
     @Override
@@ -161,6 +168,7 @@ public class RagnorakRacer extends ScreenAdapter {
                 .addComponent(new Terminal())
                 .addComponent(inputComponent)
                 .addComponent(new TerminalDisplay());
+
 
         ServiceLocator.getEntityService().register(ui);
     }
