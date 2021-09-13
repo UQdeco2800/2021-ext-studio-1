@@ -83,7 +83,7 @@ public class GameOverDisplay extends UIComponent {
 
         table.add(playerDeadImage).size(350f,300f).padBottom(50f);
         table.row();
-        table.add(gameOverText).size(500f,150f);
+        table.add(gameOverText).size(500f,50f);
         table.row();
         table.add(restartBtn).padTop(30f).size(200f,50f).padTop(50f);
         table.row();
