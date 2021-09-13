@@ -152,8 +152,8 @@ public class ObstacleFactory {
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0));
 
-		food.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
-		food.getComponent(TextureRenderComponent.class).scaleEntity();
+		axe.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+		axe.getComponent(TextureRenderComponent.class).scaleEntity();
 		PhysicsUtils.setScaledCollider(axe, 0.5f, 0.2f);
 		// combat.addHealth(1);
 		return axe;
@@ -167,8 +167,8 @@ public class ObstacleFactory {
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0));
 
-		food.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
-		food.getComponent(TextureRenderComponent.class).scaleEntity();
+		sword.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+		sword.getComponent(TextureRenderComponent.class).scaleEntity();
 		PhysicsUtils.setScaledCollider(sword, 0.5f, 0.2f);
 		// combat.addHealth(1);
 		return sword;
@@ -182,8 +182,8 @@ public class ObstacleFactory {
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0));
 
-		food.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
-		food.getComponent(TextureRenderComponent.class).scaleEntity();
+		bow.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+		bow.getComponent(TextureRenderComponent.class).scaleEntity();
 		PhysicsUtils.setScaledCollider(bow, 0.5f, 0.2f);
 		// combat.addHealth(1);
 		return bow;
@@ -197,8 +197,8 @@ public class ObstacleFactory {
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0));
 
-		food.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
-		food.getComponent(TextureRenderComponent.class).scaleEntity();
+		coin.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+		coin.getComponent(TextureRenderComponent.class).scaleEntity();
 		PhysicsUtils.setScaledCollider(coin, 0.5f, 0.2f);
 		// combat.addHealth(1);
 		return coin;
@@ -212,8 +212,8 @@ public class ObstacleFactory {
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0));
 
-		food.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
-		food.getComponent(TextureRenderComponent.class).scaleEntity();
+		diamond.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+		diamond.getComponent(TextureRenderComponent.class).scaleEntity();
 		PhysicsUtils.setScaledCollider(diamond, 0.5f, 0.2f);
 		// combat.addHealth(1);
 		return diamond;
