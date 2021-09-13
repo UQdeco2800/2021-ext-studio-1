@@ -138,27 +138,20 @@ public class PlayerStatsDisplay extends UIComponent {
 
     //Update the health bar & Armour Bar
     float heartSideLength = 200f;
-    float armourSideLength = 200f;
     if(health>=0) {
       table.removeActor(heartImage);
-      table.removeActor(armourImage);
       heartImage.remove();
-      armourImage.remove();
       if (health == 3) {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_full.png", Texture.class));
-        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_full.png", Texture.class));
       }
       if (health == 2) {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_decrease_one.png", Texture.class));
-        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_decrease_one.png", Texture.class));
       }
       if (health == 1) {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_decrease_two.png", Texture.class));
-        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_decrease_two.png", Texture.class));
       }
       if (health == 0) {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_empty.png", Texture.class));
-        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_empty.png", Texture.class));
         long currentTime = ServiceLocator.getTimeSource().getTime();
         while (ServiceLocator.getTimeSource().getTime() - currentTime < 1000L) {
           //Game win screen
@@ -171,7 +164,6 @@ public class PlayerStatsDisplay extends UIComponent {
       table.setFillParent(true);
       table.padTop(30f).padLeft(5f);
       table.add(heartImage).size(heartSideLength).pad(5);
-      table.add(armourImage).size(armourSideLength).padLeft(15);
     }
 
     //Notification appears and disposes
@@ -197,6 +189,29 @@ public class PlayerStatsDisplay extends UIComponent {
     //Update the number of armour
     CharSequence text = String.format("Armour: %d", armour);
     armourLabel.setText(text);
+
+    float armourSideLength = 200f;
+    if (armour >= 0) {
+      table.removeActor(armourImage);
+      armourImage.remove();
+      if (armour == 3) {
+        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_full.png", Texture.class));
+      }
+      if (armour == 2) {
+        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_decrease_one.png", Texture.class));
+      }
+      if (armour == 1) {
+        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_decrease_two.png", Texture.class));
+      }
+      if (armour == 0) {
+        armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_empty.png", Texture.class));
+      }
+      table.reset();
+      table.top().left();
+      table.setFillParent(true);
+      table.padTop(30f).padLeft(5f);
+      table.add(armourImage).size(armourSideLength).padLeft(15);
+    }
   }
 
   @Override
