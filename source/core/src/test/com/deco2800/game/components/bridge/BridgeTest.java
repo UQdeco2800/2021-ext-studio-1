@@ -51,7 +51,7 @@ public class BridgeTest {
     }
 
     @Test
-    public void testremoveLane() {
+    public void testRemoveLane() {
         Bridge bridge = setUpBridge(1, 1, 3);
         assertEquals(3, bridge.getLanes().size());
         bridge.removeLane();
