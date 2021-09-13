@@ -42,20 +42,20 @@ public class ObstacleFactory {
 		return tree;
 	}
 
-	public static Entity createCarObstacle() {
-		Entity car =
+	public static Entity createRunesGate() {
+		Entity RunesGate =
 				new Entity(Entity.Type.OBSTACLE)
-						.addComponent(new TextureRenderComponent("images/carObstacle.png"))
+						.addComponent(new TextureRenderComponent("images/RunesGate.gif"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0));
 
-		car.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
-		car.getComponent(TextureRenderComponent.class).scaleEntity();
+		RunesGate.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+		RunesGate.getComponent(TextureRenderComponent.class).scaleEntity();
 		// car.scaleHeight(2.5f);
 		PhysicsUtils.setScaledCollider(car, 0.5f, 0.2f);
-		return car;
+		return RunesGate;
 	}
 
 	public static Entity createStoneObstacle() { //CombatStatsComponent combat) {
@@ -76,22 +76,22 @@ public class ObstacleFactory {
 		return stone;
 	}
 
-	public static Entity createSnake() {
-		Entity snake =
+	public static Entity createthunderCloud() {
+		Entity thunderCloud =
 				new Entity(Entity.Type.OBSTACLE)
-						.addComponent(new TextureRenderComponent("images/snake.png"))
+						.addComponent(new TextureRenderComponent("images/thunderCloud.gif"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0));
 
-		snake.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
-		snake.getComponent(TextureRenderComponent.class).scaleEntity();
+		thunderCloud.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+		thunderCloud.getComponent(TextureRenderComponent.class).scaleEntity();
 		//snake.scaleHeight(2.5f);
-		PhysicsUtils.setScaledCollider(snake, 0.5f, 0.2f);
+		PhysicsUtils.setScaledCollider(thunderCloud, 0.5f, 0.2f);
 		//demote health medium
 		// CombatStatsComponent.addHealth(-3);
-		return snake;
+		return thunderCloud;
 	}
 
 	public static Entity createFire() {
@@ -191,7 +191,7 @@ public class ObstacleFactory {
 	public static Entity createCoin() {
 		Entity coin =
 				new Entity()
-						.addComponent(new TextureRenderComponent("images/coin.png"))
+						.addComponent(new TextureRenderComponent("images/coin.gif"))
 						.addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
@@ -206,7 +206,7 @@ public class ObstacleFactory {
 	public static Entity createDiamond() {
 		Entity diamond =
 				new Entity()
-						.addComponent(new TextureRenderComponent("images/diamond.png"))
+						.addComponent(new TextureRenderComponent("images/diamond.gif"))
 						.addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
