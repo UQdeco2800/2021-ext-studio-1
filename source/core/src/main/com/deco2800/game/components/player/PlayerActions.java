@@ -14,7 +14,9 @@ import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.crypto.EncryptedPrivateKeyInfo;
 import java.security.Key;
+import java.util.EmptyStackException;
 import java.util.Scanner;
 
 /**
@@ -84,10 +86,6 @@ public class PlayerActions extends Component {
     Entity nearest = findNearestTargets(entities);
     logger.info("attack nearest--{}", nearest);
     if (nearest != null) {
-      if (nearest.getType().equals(Entity.Type.GHOSTKING)) {
-        logger.info("nearest.getType()--{}", nearest.getType());
-        nearest.attack();
-      }
 //      else if (nearest.getType().equals(Entity.Type.BREAD) || nearest.getType().equals(Entity.Type.AID)) {
 //        logger.info ("nearest.getType()--{}", nearest.getType());
 //        nearest.dispose();
@@ -95,26 +93,13 @@ public class PlayerActions extends Component {
 //        attSound.play();
 //        animator.startAnimation("buff");
 //      }
-      else if (nearest.getType().equals(Entity.Type.GHOST) || nearest.getType().equals(Entity.Type.OBSTACLE)) {
+      if (nearest.getType().equals(Entity.Type.GHOST) || nearest.getType().equals(Entity.Type.GHOSTKING)) {
         logger.info ("nearest.getType()--{}", nearest.getType());
         nearest.dispose();
         Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/buff2.ogg", Sound.class);
         attSound.play();
         animator.startAnimation("buff2");
       }
-//      } else if (nearest.getType().equals(Entity.Type.BREAD) || nearest.getType().equals(Entity.Type.AID)) {
-//        logger.info ("nearest.getType()--{}", nearest.getType());
-//        nearest.dispose();
-//        Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/buff.ogg", Sound.class);
-//        attSound.play();
-//        animator.startAnimation("buff");
-//      } else {
-//        logger.info ("nearest.getType()--{}", nearest.getType());
-//        nearest.dispose();
-//        Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/buff2.ogg", Sound.class);
-//        attSound.play();
-//        animator.startAnimation("buff2");
-
     }
     Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/attack.ogg", Sound.class);
     attackSound.play();
@@ -127,8 +112,8 @@ public class PlayerActions extends Component {
 
   private Entity findNearestTargets(Array<Entity> entities) {
     Entity result = null;
-    float minDstEnemy = 2.0f;
-    float minDstObstacle = 2.0f;
+    float minDstEnemy = 1.8f;
+    float minDstObstacle = 1.8f;
     for (Entity en: entities) {
       if (en.getType() == Entity.Type.GHOST || en.getType() == Entity.Type.GHOSTKING) {
         float dst = entity.getPosition().dst(en.getPosition());
