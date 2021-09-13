@@ -22,7 +22,6 @@ public class GameWinScreen extends ScreenAdapter {
 
     private final GdxGame game;
     private final Renderer renderer;
-    //private final GameWinDisplay gameWinDisplay;
     private static final String[] GameWinScreenTextures = {"images/Win-screen-2-transparent.png"};
 
     public GameWinScreen(GdxGame game) {
