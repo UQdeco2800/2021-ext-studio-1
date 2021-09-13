@@ -147,8 +147,8 @@ public class TerrainFactory {
     // width - width of a lane
     // laneCount - amount of lanes to generate
     // starPopulation - Number of stars to appear in the sky (based on probability, higher value = less stars)
-    int offset = 6;
-    int width = 3;
+    int offset = 20;
+    int width = 2;
     int laneCount = 4;
     int starPopulation = 20;
 
