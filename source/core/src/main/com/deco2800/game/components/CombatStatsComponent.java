@@ -1,5 +1,6 @@
 package com.deco2800.game.components;
 
+import com.badlogic.gdx.audio.Sound;
 import com.deco2800.game.entities.Entity;
 import com.deco2800.game.rendering.AnimationRenderComponent;
 import com.deco2800.game.rendering.AnimationRenderComponent2;
@@ -140,6 +141,8 @@ public class CombatStatsComponent extends Component {
         logger.error("attacker--{}", attacker.getEntity().getType());
         AnimationRenderComponent2 animator = attacker.getEntity().getComponent(AnimationRenderComponent2.class);
         animator.startAnimation("touch");
+        Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/e.ogg", Sound.class);
+        attackSound.play();
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
       }
 
