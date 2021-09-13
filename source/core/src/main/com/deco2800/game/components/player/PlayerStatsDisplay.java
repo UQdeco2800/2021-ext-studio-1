@@ -106,7 +106,7 @@ public class PlayerStatsDisplay extends UIComponent {
           for (int i = 0; i <= 2;i++) {
             treatFileName =String.format("images/hurt%d.png",i);
             treatImage = new Image(ServiceLocator.getResourceService().getAsset(treatFileName, Texture.class));
-            heartAnimate.add(treatImage).size(64f,64f).pad(-10);
+            heartAnimate.add(treatImage).size(70f,70f).pad(-15);
             Thread.sleep(120);
             heartAnimate.clearChildren();
           }
