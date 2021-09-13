@@ -76,15 +76,15 @@ public class TouchAttackComponent extends Component {
     Entity target = ((BodyUserData) other.getBody().getUserData()).entity;
     CombatStatsComponent targetStats = target.getComponent(CombatStatsComponent.class);
     if (targetStats != null) {
-      if(targetStats.getEntity().getType() == Entity.Type.BREAD){
-        targetStats.hitBread(combatStats);
+      if(targetStats.getEntity().getType() == Entity.Type.BUFF){
+        targetStats.hitBuff(combatStats);
       }
-      else if(targetStats.getEntity().getType() == Entity.Type.AID){
-        targetStats.hitAID(combatStats);
+      else if(targetStats.getEntity().getType() == Entity.Type.DEBUFF){
+        targetStats.hitDeBuff(combatStats);
       }
-//      else{
-//        targetStats.hit(combatStats);
-//      }
+      else{
+        targetStats.hit(combatStats);
+      }
     }
 
     // Apply knockback

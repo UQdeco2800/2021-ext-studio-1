@@ -167,7 +167,7 @@ public class CombatStatsComponent extends Component {
   }
 
 
-  public void hitAID(CombatStatsComponent attacker) {
+  public void hitBuff(CombatStatsComponent attacker) {
     try {
       if (ServiceLocator.getTimeSource().getTimeSince(invincibleStart) < 1000L) {
         return;
@@ -181,11 +181,9 @@ public class CombatStatsComponent extends Component {
         Sound attackSound = ServiceLocator.getResourceService().getAsset(
                 "sounds/buff.ogg", Sound.class);
         attackSound.play();
-//        AnimationRenderComponent2 animator = attacker.getEntity().getComponent(AnimationRenderComponent2.class);
-//        animator.startAnimation("touch");
-//        Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/e.ogg", Sound.class);
-//        attackSound.play();
+
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
+
       }
 
       if (armour > 0){
@@ -205,7 +203,7 @@ public class CombatStatsComponent extends Component {
     }
   }
 
-  public void hitBread(CombatStatsComponent attacker) {
+  public void hitDeBuff(CombatStatsComponent attacker) {
     try {
       if (ServiceLocator.getTimeSource().getTimeSince(invincibleStart) < 1000L) {
         return;
@@ -237,6 +235,7 @@ public class CombatStatsComponent extends Component {
       int newHealth = getHealth() - attacker.getBaseAttack();
       setHealth(newHealth);
     }
+
   }
 }
 

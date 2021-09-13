@@ -136,8 +136,7 @@ public class PlayerActions extends Component {
           minDstEnemy = dst;
           result = en;
         }
-      } else if (en.getType() == Entity.Type.OBSTACLE || en.getType() == Entity.Type.BREAD
-                          || en.getType() == Entity.Type.AID) {
+      } else if (en.getType() == Entity.Type.OBSTACLE ) {
         float dst = entity.getPosition().dst(en.getPosition());
         if (minDstObstacle > dst) {
           minDstObstacle = dst;
@@ -148,16 +147,16 @@ public class PlayerActions extends Component {
     return result;
   }
 
-  void touch() {
-    Array<Entity> entities = ServiceLocator.getEntityService().getEntities();
-    Entity nearest = findNearestTargets(entities);
-    if (nearest != null) {
-      if (nearest.getType().equals(Entity.Type.BREAD) || nearest.getType().equals(Entity.Type.AID)) {
-        entities.removeValue(nearest, true);
-        Sound attackSound1 = ServiceLocator.getResourceService().getAsset("sounds/buff.ogg", Sound.class);
-        attackSound1.play();
-        animator.startAnimation("attack");
-      }
-    }
-  }
+//  void touch() {
+//    Array<Entity> entities = ServiceLocator.getEntityService().getEntities();
+//    Entity nearest = findNearestTargets(entities);
+//    if (nearest != null) {
+//      if (nearest.getType().equals(Entity.Type.BREAD) || nearest.getType().equals(Entity.Type.AID)) {
+//        entities.removeValue(nearest, true);
+//        Sound attackSound1 = ServiceLocator.getResourceService().getAsset("sounds/buff.ogg", Sound.class);
+//        attackSound1.play();
+//        animator.startAnimation("attack");
+//      }
+//    }
+//  }
 }
