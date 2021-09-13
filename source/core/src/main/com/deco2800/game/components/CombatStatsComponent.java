@@ -161,6 +161,75 @@ public class CombatStatsComponent extends Component {
       int newHealth = getHealth() - attacker.getBaseAttack();
       setHealth(newHealth);
     }
+  }
 
+
+  public void hitAID(CombatStatsComponent attacker) {
+    try {
+      if (ServiceLocator.getTimeSource().getTimeSince(invincibleStart) < 1000L) {
+        return;
+      }
+
+      if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
+        logger.error("attacker--{}", attacker.getEntity().getType());
+        AnimationRenderComponent animator =
+                attacker.getEntity().getComponent(AnimationRenderComponent.class);
+        animator.startAnimation("Attack");
+        Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/attack.ogg", Sound.class);
+        attackSound.play();
+        logger.error("--end--attacker--{}",attacker.getEntity().getType());
+      }
+
+      if (armour > 0){
+        int newArmour = getArmour() - attacker.getBaseAttack();
+        setArmour(newArmour);
+        invincibleStart = ServiceLocator.getTimeSource().getTime();
+      }
+      else{
+        int newHealth = getHealth() - attacker.getBaseAttack();
+        setHealth(newHealth);
+        invincibleStart = ServiceLocator.getTimeSource().getTime();
+      }
+
+    } catch (NullPointerException e) {
+      int newHealth = getHealth() - attacker.getBaseAttack();
+      setHealth(newHealth);
+    }
+  }
+
+  public void hitBread(CombatStatsComponent attacker) {
+    try {
+      if (ServiceLocator.getTimeSource().getTimeSince(invincibleStart) < 1000L) {
+        return;
+      }
+
+      if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
+        logger.error("attacker--{}", attacker.getEntity().getType());
+        AnimationRenderComponent animator =
+                attacker.getEntity().getComponent(AnimationRenderComponent.class);
+        animator.startAnimation("Attack");
+        Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/attack.ogg", Sound.class);
+        attackSound.play();
+        logger.error("--end--attacker--{}",attacker.getEntity().getType());
+      }
+
+      if (armour > 0){
+        int newArmour = getArmour() - attacker.getBaseAttack();
+        setArmour(newArmour);
+        invincibleStart = ServiceLocator.getTimeSource().getTime();
+      }
+      else{
+        int newHealth = getHealth() - attacker.getBaseAttack();
+        setHealth(newHealth);
+        invincibleStart = ServiceLocator.getTimeSource().getTime();
+      }
+
+    } catch (NullPointerException e) {
+      int newHealth = getHealth() - attacker.getBaseAttack();
+      setHealth(newHealth);
+    }
   }
 }
+
+
+

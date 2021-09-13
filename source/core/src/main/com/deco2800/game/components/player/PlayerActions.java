@@ -86,21 +86,22 @@ public class PlayerActions extends Component {
     logger.info("attack nearest--{}", nearest);
     if (nearest != null) {
       if (nearest.getType().equals(Entity.Type.GHOSTKING)) {
-        logger.info ("nearest.getType()--{}", nearest.getType());
+        logger.info("nearest.getType()--{}", nearest.getType());
         nearest.attack();
-      } else if (nearest.getType().equals(Entity.Type.BREAD) || nearest.getType().equals(Entity.Type.AID)) {
-        logger.info ("nearest.getType()--{}", nearest.getType());
-        nearest.dispose();
-        Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/buff.ogg", Sound.class);
-        attSound.play();
-        animator.startAnimation("buff");
-      } else {
-        logger.info ("nearest.getType()--{}", nearest.getType());
-        nearest.dispose();
-        Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/buff2.ogg", Sound.class);
-        attSound.play();
-        animator.startAnimation("buff2");
       }
+//      } else if (nearest.getType().equals(Entity.Type.BREAD) || nearest.getType().equals(Entity.Type.AID)) {
+//        logger.info ("nearest.getType()--{}", nearest.getType());
+//        nearest.dispose();
+//        Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/buff.ogg", Sound.class);
+//        attSound.play();
+//        animator.startAnimation("buff");
+//      } else {
+//        logger.info ("nearest.getType()--{}", nearest.getType());
+//        nearest.dispose();
+//        Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/buff2.ogg", Sound.class);
+//        attSound.play();
+//        animator.startAnimation("buff2");
+
     }
     Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/attack.ogg", Sound.class);
     attackSound.play();
@@ -141,7 +142,7 @@ public class PlayerActions extends Component {
         entities.removeValue(entity, true);
         Sound attackSound1 = ServiceLocator.getResourceService().getAsset("sounds/buff.ogg", Sound.class);
         attackSound1.play();
-        animator.startAnimation("buff");
+        animator.startAnimation("attack");
       }
     }
   }
