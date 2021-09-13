@@ -102,6 +102,9 @@ public class GameOverDisplay extends MainMenuDisplay {
         table.row();
         table.add(exitBtn).padTop(30f);
         table.row();
+
+        //stack.setVisible(false);
+        //table.setVisible(false);
     }
 
     private void loadAssets() {
@@ -128,5 +131,10 @@ public class GameOverDisplay extends MainMenuDisplay {
         super.dispose();
         stack.clear();
         this.unloadAssets();
+    }
+
+    public void showDeath() {
+        stack.setVisible(true);
+        table.setVisible(true);
     }
 }
