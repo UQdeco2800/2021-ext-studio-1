@@ -82,9 +82,9 @@ public class TouchAttackComponent extends Component {
       else if(targetStats.getEntity().getType() == Entity.Type.AID){
         targetStats.hitAID(combatStats);
       }
-      else{
-        targetStats.hit(combatStats);
-      }
+//      else{
+//        targetStats.hit(combatStats);
+//      }
     }
 
     // Apply knockback

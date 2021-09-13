@@ -16,9 +16,7 @@ import com.deco2800.game.physics.PhysicsUtils;
 import com.deco2800.game.physics.components.ColliderComponent;
 import com.deco2800.game.physics.components.HitboxComponent;
 import com.deco2800.game.physics.components.PhysicsComponent;
-import com.deco2800.game.rendering.AnimationRenderComponent;
-import com.deco2800.game.rendering.AnimationRenderComponent2;
-import com.deco2800.game.rendering.TextureRenderComponent;
+import com.deco2800.game.rendering.*;
 import com.deco2800.game.services.ServiceLocator;
 
 /**
@@ -55,6 +53,20 @@ public class PlayerFactory {
                                     TextureAtlas.class));
     animator.addAnimation("attack", 0.03f, Animation.PlayMode.NORMAL);
 
+    AnimationRenderComponent3 animator3 =
+            new AnimationRenderComponent3(
+                    ServiceLocator.getResourceService()
+                            .getAsset("images/posipuff.atlas",
+                                    TextureAtlas.class));
+    animator3.addAnimation("buff", 0.03f, Animation.PlayMode.NORMAL);
+
+    AnimationRenderComponent4 animator4 =
+            new AnimationRenderComponent4(
+                    ServiceLocator.getResourceService()
+                            .getAsset("images/negbuff.atlas",
+                                    TextureAtlas.class));
+    animator4.addAnimation("deBuff", 0.03f, Animation.PlayMode.NORMAL);
+
 //    AnimationRenderComponent animator1 =
 //            new AnimationRenderComponent(
 //                    ServiceLocator.getResourceService()
@@ -86,8 +98,10 @@ public class PlayerFactory {
                 .addComponent(animator)
 //                .addComponent(animator3)
             .addComponent(new PlayerStatsDisplay())
-                .addComponent(animator2);
+                .addComponent(animator2)
 //                .addComponent(animator1);
+                .addComponent(animator3)
+                .addComponent(animator4);
 
     PhysicsUtils.setScaledCollider(player, 0.6f, 0.3f);
     player.getComponent(ColliderComponent.class).setDensity(1.5f);

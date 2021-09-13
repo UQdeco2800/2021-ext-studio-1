@@ -63,8 +63,9 @@ public class RainbowBridge extends GameArea {
             "images/pixelghost1.png",
             "images/littlegreen.png",
             "images/attack.png",
-            "images/new_player.png"
-
+            "images/new_player.png",
+            "images/negbuff.png",
+            "images/posipuff.png"
     };
 
     private static final String[] rainbowBridgeSounds = {"sounds/Impact4.ogg", "sounds/buff.ogg", "sounds/buff2.ogg" , "sounds/e.ogg", "sounds/attack.ogg"};
@@ -73,7 +74,10 @@ public class RainbowBridge extends GameArea {
     private static final String[] rainbowBridgeMusic = {backgroundMusic, backgroundMusic1};
 
     private static final String[] rainbowBridgeAtlases = {
-            "images/terrain_iso_grass.atlas", "images/ghost.atlas", "images/ghostKing.atlas","images/dragon.atlas","images/littleGreen.atlas", "images/attack.atlas", "images/touch.atlas"
+            "images/terrain_iso_grass.atlas", "images/ghost.atlas", "images" +
+            "/ghostKing.atlas","images/dragon.atlas","images/littleGreen" +
+            ".atlas", "images/attack.atlas", "images/touch.atlas","images" +
+            "/negbuff.atlas", "images/posipuff.atlas"
     };
 
     private final TerrainFactory terrainFactory;
