@@ -1,6 +1,5 @@
 package com.deco2800.game.components.gameover;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -21,7 +20,6 @@ public class GameOverDisplay extends UIComponent {
     private static final Logger logger = LoggerFactory.getLogger(GameOverDisplay.class);
     private static final float Z_INDEX = 2f;
     protected Table table;
-    protected Table table2;
     protected Stack stack;
 
     @Override
@@ -40,9 +38,6 @@ public class GameOverDisplay extends UIComponent {
 
         table = new Table();
         table.setFillParent(true);
-
-        table2 = new Table();
-        table2.setFillParent(true);
 
         //Restart button
         TextButton restartBtn = new TextButton("Restart Game", skin);
@@ -85,7 +80,7 @@ public class GameOverDisplay extends UIComponent {
                 Texture.class));
         Image gameOverText = new Image(ServiceLocator.getResourceService().getAsset("images/Gameover_Visual_Text.png",
                 Texture.class));
-        table2.add(background).size(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
         table.add(playerDeadImage).size(350f,300f).padBottom(50f);
         table.row();
         table.add(gameOverText).size(500f,50f);
@@ -93,9 +88,8 @@ public class GameOverDisplay extends UIComponent {
         table.add(restartBtn).padTop(30f).size(200f,50f).padTop(50f);
         table.row();
         table.add(exitBtn).padTop(30f).size(200f,50f);
-        stage.addActor(table2);
-        stage.addActor(table);
 
+        stage.addActor(table);
     }
 
     @Override
