@@ -4,10 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.deco2800.game.files.UserSettings;
-import com.deco2800.game.screens.MainGameScreen;
-import com.deco2800.game.screens.MainMenuScreen;
-import com.deco2800.game.screens.RagnorakRacer;
-import com.deco2800.game.screens.SettingsScreen;
+import com.deco2800.game.screens.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,8 +23,9 @@ public class GdxGame extends Game {
     logger.info("Creating game");
     loadSettings();
 
-    // Sets background to light yellow
+    // Sets background to black
     Gdx.gl.glClearColor(0f/255f, 0/255f, 0/255f, 1);
+
 
     setScreen(ScreenType.MAIN_MENU);
   }
@@ -70,7 +68,10 @@ public class GdxGame extends Game {
       case MAIN_MENU:
         return new MainMenuScreen(this);
       case MAIN_GAME:
-        return new MainGameScreen(this);
+        return new RagnorakRacer(this);
+      case GAME_WIN:
+        return new GameWinScreen(this);
+
       case SETTINGS:
         return new SettingsScreen(this);
       default:
@@ -79,7 +80,7 @@ public class GdxGame extends Game {
   }
 
   public enum ScreenType {
-    MAIN_MENU, MAIN_GAME, SETTINGS
+    MAIN_MENU, MAIN_GAME, SETTINGS,GAME_WIN
   }
 
   /**

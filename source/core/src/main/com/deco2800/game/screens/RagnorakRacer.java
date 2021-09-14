@@ -28,6 +28,8 @@ import com.deco2800.game.ui.terminal.TerminalDisplay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.deco2800.game.GdxGame.ScreenType.GAME_WIN;
+
 public class RagnorakRacer extends ScreenAdapter {
     private static final Logger logger = LoggerFactory.getLogger(MainGameScreen.class);
 
@@ -37,12 +39,14 @@ public class RagnorakRacer extends ScreenAdapter {
     private static final Vector2 CAMERA_POSITION = new Vector2(7.5f, 7.5f);
 
     private final GdxGame game;
+    private final long gameTimer;
     private final Renderer renderer;
     private Bridge rainbowBridge;
     private final PhysicsEngine physicsEngine;
 
     public RagnorakRacer(GdxGame game) {
         this.game = game;
+        this.gameTimer = 60000;
 
         logger.debug("Initialising main game screen services");
         ServiceLocator.registerTimeSource(new GameTime());
@@ -55,9 +59,7 @@ public class RagnorakRacer extends ScreenAdapter {
         ServiceLocator.registerResourceService(new ResourceService());
         ServiceLocator.registerEntityService(new EntityService());
         ServiceLocator.registerRenderService(new RenderService());
-
-
-
+        ServiceLocator.registerTimeSource(new GameTime());
 
         this.renderer = RenderFactory.createRenderer();
         this.renderer.getCamera().getEntity().setPosition(CAMERA_POSITION);
@@ -75,6 +77,10 @@ public class RagnorakRacer extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
+        if (ServiceLocator.getTimeSource().getTime() >= this.gameTimer) {
+            game.setScreen(GAME_WIN);
+            // Switch to new Win game screen
+        }
         physicsEngine.update();
         ServiceLocator.getEntityService().update();
         renderer.render();

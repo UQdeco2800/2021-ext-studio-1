@@ -1,0 +1,26 @@
+negbuff.png
+size: 617, 999
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+negativebuff1
+  rotate: false
+  xy: 1, 1
+  size: 421, 574
+  orig: 640, 640
+  offset: 219, 7
+  index: -1
+negativebuff2
+  rotate: false
+  xy: 424, 1
+  size: 192, 502
+  orig: 640, 640
+  offset: 219, 79
+  index: -1
+negativebuff3
+  rotate: true
+  xy: 1, 577
+  size: 421, 574
+  orig: 640, 640
+  offset: 219, 7
+  index: -1
