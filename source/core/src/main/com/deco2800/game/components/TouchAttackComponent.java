@@ -61,7 +61,6 @@ public class TouchAttackComponent extends Component {
     }
 
 
-
     if (!PhysicsLayer.contains(targetLayer, other.getFilterData().categoryBits)
             && ((anotherTargetLayer == 0) || (!PhysicsLayer.contains(anotherTargetLayer, other.getFilterData().categoryBits)))) {
       // Doesn't match our target layer, ignore
@@ -77,7 +76,15 @@ public class TouchAttackComponent extends Component {
     Entity target = ((BodyUserData) other.getBody().getUserData()).entity;
     CombatStatsComponent targetStats = target.getComponent(CombatStatsComponent.class);
     if (targetStats != null) {
-      targetStats.hit(combatStats);
+      if(targetStats.getEntity().getType() == Entity.Type.BUFF){
+        targetStats.hitBuff(combatStats);
+      }
+      else if(targetStats.getEntity().getType() == Entity.Type.DEBUFF){
+        targetStats.hitDeBuff(combatStats);
+      }
+      else{
+        targetStats.hit(combatStats);
+      }
     }
 
     // Apply knockback
