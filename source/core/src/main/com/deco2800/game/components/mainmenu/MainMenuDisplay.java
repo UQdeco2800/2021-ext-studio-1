@@ -33,10 +33,9 @@ public class MainMenuDisplay extends UIComponent {
         new Image(
             ServiceLocator.getResourceService()
                 .getAsset("images/Ragnarok_main_title.png", Texture.class));
-        TextButton startBtn = new TextButton("Start", skin);
-        TextButton loadBtn = new TextButton("Load", skin);
-        TextButton settingsBtn = new TextButton("Settings", skin);
-        TextButton exitBtn = new TextButton("Exit", skin);
+      TextButton startBtn = new TextButton("Start", skin);
+      TextButton settingsBtn = new TextButton("Settings", skin);
+      TextButton exitBtn = new TextButton("Exit", skin);
         // Triggers an event when the button is pressed
         startBtn.addListener(
             new ChangeListener() {
@@ -64,15 +63,6 @@ public class MainMenuDisplay extends UIComponent {
                 entity.getEvents().trigger("exit");
               }
             });
-        table.add(title);
-        table.row();
-        table.add(startBtn).padTop(30f);
-        table.row();
-        table.add(loadBtn).padTop(15f);
-        table.row();
-        table.add(settingsBtn).padTop(15f);
-        table.row();
-        table.add(exitBtn).padTop(15f);
 
     table.add(title);
     table.row();
