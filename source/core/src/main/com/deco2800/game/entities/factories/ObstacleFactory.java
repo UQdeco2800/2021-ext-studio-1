@@ -9,6 +9,12 @@ import com.deco2800.game.physics.components.HitboxComponent;
 import com.deco2800.game.physics.components.PhysicsComponent;
 import com.deco2800.game.rendering.TextureRenderComponent;
 import com.deco2800.game.components.CombatStatsComponent;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.deco2800.game.services.ServiceLocator;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.deco2800.game.components.map_contents.ContentsAnimationController;
+
+import com.deco2800.game.rendering.AnimationRenderComponent;
 
 /**
  * Factory to create obstacle entities.
@@ -73,6 +79,7 @@ public class ObstacleFactory {
 		PhysicsUtils.setScaledCollider(stone, 0.5f, 0.2f);
 		//demote health by smallest amount
 		// combat.addHealth(-1);
+    
 		return stone;
 	}
 
@@ -112,34 +119,49 @@ public class ObstacleFactory {
 	}
 
 	public static Entity createFirstAidKit() {
+    AnimationRenderComponent animator =
+            new AnimationRenderComponent(
+                    ServiceLocator.getResourceService().getAsset("images/food.atlas", TextureAtlas.class));
+    animator.addAnimation("move_left", 0.1f, Animation.PlayMode.LOOP);
 		Entity firstAidKit =
 				new Entity()
 						.addComponent(new TextureRenderComponent("images/FirstAidKit.png"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
-						.addComponent(new CombatStatsComponent(100, 0));
-
-		firstAidKit.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
-		firstAidKit.getComponent(TextureRenderComponent.class).scaleEntity();
-		PhysicsUtils.setScaledCollider(firstAidKit, 0.5f, 0.2f);
+						.addComponent(new CombatStatsComponent(100, 0))
+            .addComponent(animator)
+        ;
+		// firstAidKit.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+		// firstAidKit.getComponent(TextureRenderComponent.class).scaleEntity();
+		// PhysicsUtils.setScaledCollider(firstAidKit, 0.5f, 0.2f);
 		//combat.addHealth(2);
 		return firstAidKit;
 	}
 
 	public static Entity createFood() {
+		AnimationRenderComponent animator =
+				new AnimationRenderComponent(
+						ServiceLocator.getResourceService().getAsset("images/food.atlas", TextureAtlas.class));
+		animator.addAnimation("move_left", 0.1f, Animation.PlayMode.LOOP);
+		// animator.addAnimation("float", 0.1f, Animation.PlayMode.LOOP);
 		Entity food =
 				new Entity()
 						.addComponent(new TextureRenderComponent("images/food.png"))
+            			.addComponent(animator)
+						.addComponent(new ContentsAnimationController())
 						.addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0));
 
-		food.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
-		food.getComponent(TextureRenderComponent.class).scaleEntity();
-		PhysicsUtils.setScaledCollider(food, 0.5f, 0.2f);
+    	food.getComponent(AnimationRenderComponent.class).scaleEntity();
+
+		// food.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+		// food.getComponent(TextureRenderComponent.class).scaleEntity();
+		// PhysicsUtils.setScaledCollider(food, 0.5f, 0.2f);
 		// combat.addHealth(1);
+
 		return food;
 	}
 
