@@ -5,7 +5,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.deco2800.game.GdxGame;
 import com.deco2800.game.areas.ForestGameArea;
+import com.deco2800.game.areas.GameArea;
 import com.deco2800.game.areas.terrain.TerrainFactory;
+import com.deco2800.game.components.gameover.GameOverDisplay;
 import com.deco2800.game.components.maingame.MainGameActions;
 import com.deco2800.game.entities.Entity;
 import com.deco2800.game.entities.EntityService;
@@ -35,13 +37,16 @@ import org.slf4j.LoggerFactory;
 public class MainGameScreen extends ScreenAdapter {
   private static final Logger logger = LoggerFactory.getLogger(MainGameScreen.class);
   private static final String[] mainGameTextures = {"images/health_full.png", "images/health_decrease_two.png",
-          "images/health_decrease_one.png", "images/health_empty.png", "images/notification.png",
+          "images/health_decrease_one.png", "images/health_empty.png", "images/armour_full.png", "images/armour_decrease_two.png",
+          "images/armour_decrease_one.png", "images/armour_empty.png", "images/notification.png",
           "images/hurt0.png","images/hurt1.png","images/hurt2.png","images/hurt3.png","images/hurt4.png"};
   private static final Vector2 CAMERA_POSITION = new Vector2(7.5f, 7.5f);
 
   private final GdxGame game;
   private final Renderer renderer;
   private final PhysicsEngine physicsEngine;
+
+  private ForestGameArea forestGameArea;
 
   public MainGameScreen(GdxGame game) {
     this.game = game;
@@ -68,8 +73,17 @@ public class MainGameScreen extends ScreenAdapter {
 
     logger.debug("Initialising main game screen entities");
     TerrainFactory terrainFactory = new TerrainFactory(renderer.getCamera());
-    ForestGameArea forestGameArea = new ForestGameArea(terrainFactory);
+    this.forestGameArea = new ForestGameArea(terrainFactory);
     forestGameArea.create();
+    this.forestGameArea.player.getEvents().addListener("GameOver", this::gameover);
+
+
+  }
+
+  public void gameover() {
+    Entity uiDead = new Entity();
+    uiDead.addComponent(new GameOverDisplay());
+    ServiceLocator.getEntityService().register(uiDead);
   }
 
   @Override

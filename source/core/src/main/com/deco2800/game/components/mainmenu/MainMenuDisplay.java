@@ -3,9 +3,8 @@ package com.deco2800.game.components.mainmenu;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
@@ -18,7 +17,8 @@ import org.slf4j.LoggerFactory;
 public class MainMenuDisplay extends UIComponent {
   private static final Logger logger = LoggerFactory.getLogger(MainMenuDisplay.class);
   private static final float Z_INDEX = 2f;
-  private Table table;
+  protected Table table;
+  protected Stack stack;
 
   @Override
   public void create() {
@@ -33,21 +33,19 @@ public class MainMenuDisplay extends UIComponent {
         new Image(
             ServiceLocator.getResourceService()
                 .getAsset("images/Ragnarok_main_title.png", Texture.class));
-
-    TextButton startBtn = new TextButton("Start", skin);
-    TextButton settingsBtn = new TextButton("Settings", skin);
-    TextButton exitBtn = new TextButton("Exit", skin);
-
-    // Triggers an event when the button is pressed
-    startBtn.addListener(
-        new ChangeListener() {
-          @Override
-          public void changed(ChangeEvent changeEvent, Actor actor) {
-            logger.debug("Start button clicked");
-            entity.getEvents().trigger("start");
-          }
-        });
-
+        TextButton startBtn = new TextButton("Start", skin);
+        TextButton loadBtn = new TextButton("Load", skin);
+        TextButton settingsBtn = new TextButton("Settings", skin);
+        TextButton exitBtn = new TextButton("Exit", skin);
+        // Triggers an event when the button is pressed
+        startBtn.addListener(
+            new ChangeListener() {
+              @Override
+              public void changed(ChangeEvent changeEvent, Actor actor) {
+                logger.debug("Start button clicked");
+                entity.getEvents().trigger("start");
+              }
+            });
     settingsBtn.addListener(
         new ChangeListener() {
           @Override
@@ -57,15 +55,24 @@ public class MainMenuDisplay extends UIComponent {
           }
         });
 
-    exitBtn.addListener(
-        new ChangeListener() {
-          @Override
-          public void changed(ChangeEvent changeEvent, Actor actor) {
+        exitBtn.addListener(
+            new ChangeListener() {
+              @Override
+              public void changed(ChangeEvent changeEvent, Actor actor) {
 
-            logger.debug("Exit button clicked");
-            entity.getEvents().trigger("exit");
-          }
-        });
+                logger.debug("Exit button clicked");
+                entity.getEvents().trigger("exit");
+              }
+            });
+        table.add(title);
+        table.row();
+        table.add(startBtn).padTop(30f);
+        table.row();
+        table.add(loadBtn).padTop(15f);
+        table.row();
+        table.add(settingsBtn).padTop(15f);
+        table.row();
+        table.add(exitBtn).padTop(15f);
 
     table.add(title);
     table.row();
