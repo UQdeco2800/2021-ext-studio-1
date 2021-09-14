@@ -1,6 +1,10 @@
 package com.deco2800.game.components.bridge;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,6 +19,15 @@ public class BridgeTest {
         }
         return bridge;
     }
+    private static Bridge bridge;
+
+    @BeforeAll
+    public static void setUp() throws Exception {
+        System.out.println("setup bridge");
+        bridge = new Bridge(0, 1);
+        bridge.createLane();
+    }
+
 
 
     @Test
@@ -61,4 +74,53 @@ public class BridgeTest {
         bridge.removeLane();
         assertEquals(0, bridge.getLanes().size());
     }
+    @Test
+    public void getOffsetTest() {
+        Bridge bridge1 = new Bridge(0, 1);
+        assertEquals(0, bridge1.getOffset());
+
+        Bridge bridge2 = new Bridge(1, 1);
+        assertEquals(1, bridge2.getOffset());
+    }
+
+    @Test
+    public void laneTest() {
+        Bridge bridge = new Bridge(0, 1);
+        assertEquals(true, bridge.getLanes().isEmpty());
+
+        bridge.createLane();
+        assertEquals(1, bridge.getLanes().size());
+
+        if (bridge.getLanes().size() > 0) {
+            assertEquals(true, Lane.class.isInstance(bridge.getLanes().get(0)));
+        }
+    }
+
+    @Test
+    public void testgetLastLane() {
+        Lane lane = bridge.getLanes().get(bridge.getLanes().size() - 1);
+        assertEquals(0, lane.getY1());
+        assertEquals(1, lane.getY2());
+    }
+
+    @Test
+    public void testgetBounds() {
+        bridge.createLane();
+        Map<String, Integer> bounds = new HashMap<>();
+        bounds.put("top", bridge.getLanes().get(0).getTop());
+        bounds.put("bot", bridge.getLanes().get(0).getBot());
+        assertEquals(1, bounds.get("top"));
+        assertEquals(0, bounds.get("bot"));
+
+    }
+
+    @Test
+    public void testremoveLane() {
+        if (bridge.getLanes().size() > 0) {
+            bridge.getLanes().remove(bridge.getLanes().size() - 1);
+            assertEquals(0, bridge.getLanes().size());
+        }
+    }
+
 }
+
