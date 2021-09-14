@@ -6,8 +6,10 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.deco2800.game.GdxGame;
 import com.deco2800.game.areas.RainbowBridge;
 import com.deco2800.game.areas.terrain.TerrainFactory;
+import com.deco2800.game.components.CombatStatsComponent;
 import com.deco2800.game.components.bridge.Bridge;
 import com.deco2800.game.components.gamearea.PerformanceDisplay;
+import com.deco2800.game.components.gameover.GameOverDisplay;
 import com.deco2800.game.components.maingame.MainGameActions;
 import com.deco2800.game.components.maingame.MainGameExitDisplay;
 import com.deco2800.game.entities.Entity;
@@ -34,8 +36,9 @@ public class RagnorakRacer extends ScreenAdapter {
     private static final Logger logger = LoggerFactory.getLogger(MainGameScreen.class);
 
     private static final String[] mainGameTextures = {"images/health_full.png", "images/health_decrease_two.png",
-            "images/health_decrease_one.png", "images/health_empty.png", "images/notification.png",
-            "images/hurt0.png","images/hurt1.png","images/hurt2.png","images/hurt3.png","images/hurt4.png"};
+            "images/health_decrease_one.png", "images/health_empty.png", "images/armour_full.png", "images/armour_decrease_two.png",
+            "images/armour_decrease_one.png", "images/armour_empty.png", "images/notification.png",
+            "images/hurt0.png","images/hurt1.png","images/hurt2.png","images/hurt3.png","images/hurt4.png", "images/dragon.png"};
     private static final Vector2 CAMERA_POSITION = new Vector2(7.5f, 7.5f);
 
     private final GdxGame game;
@@ -73,6 +76,20 @@ public class RagnorakRacer extends ScreenAdapter {
         RainbowBridge rainbowBridge = new RainbowBridge(terrainFactory);
         rainbowBridge.create();
         this.rainbowBridge = rainbowBridge.getRainbowBridge();
+
+        rainbowBridge.getPlayer().getEvents().addListener("GameOver", this::gameOver);
+    }
+
+    private void isPlayerDead() {
+        if (this.rainbowBridge.getPlayer() != null) {
+            if (this.rainbowBridge.getPlayer().getComponent(CombatStatsComponent.class).isDead()) {
+                game.setScreen(GdxGame.ScreenType.GAMEOVER);
+            }
+        }
+    }
+
+    private void gameOver() {
+        game.setScreen(new GameOverScreen(game));
     }
 
     @Override
@@ -150,6 +167,7 @@ public class RagnorakRacer extends ScreenAdapter {
                 .addComponent(new Terminal())
                 .addComponent(inputComponent)
                 .addComponent(new TerminalDisplay());
+
 
         ServiceLocator.getEntityService().register(ui);
     }

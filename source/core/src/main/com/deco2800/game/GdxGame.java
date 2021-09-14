@@ -4,6 +4,10 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.deco2800.game.files.UserSettings;
+import com.deco2800.game.screens.MainMenuScreen;
+import com.deco2800.game.screens.RagnorakRacer;
+import com.deco2800.game.screens.SettingsScreen;
+import com.deco2800.game.screens.GameOverScreen;
 import com.deco2800.game.screens.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,13 +78,15 @@ public class GdxGame extends Game {
 
       case SETTINGS:
         return new SettingsScreen(this);
+      case GAMEOVER:
+        return new GameOverScreen(this);
       default:
         return null;
     }
   }
 
   public enum ScreenType {
-    MAIN_MENU, MAIN_GAME, SETTINGS,GAME_WIN
+    MAIN_MENU, MAIN_GAME, SETTINGS, GAMEOVER, GAME_WIN;
   }
 
   /**

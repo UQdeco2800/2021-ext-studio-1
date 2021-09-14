@@ -214,6 +214,10 @@ public class RainbowBridge extends GameArea {
         return this.rainbowBridge;
     }
 
+    public Entity getPlayer() {
+        return this.player;
+    }
+
 
 
     private void playMusic() {
