@@ -46,7 +46,7 @@ public class RagnorakRacer extends ScreenAdapter {
 
     public RagnorakRacer(GdxGame game) {
         this.game = game;
-        this.gameTimer = 1000;
+        this.gameTimer = 60000;
 
         logger.debug("Initialising main game screen services");
         ServiceLocator.registerTimeSource(new GameTime());
