@@ -26,17 +26,17 @@ public class MainMenuDisplay extends UIComponent {
     addActors();
   }
 
-    protected void addActors() {
-        stack = new Stack();
-        stack.setFillParent(true);
-        stack.setTouchable(Touchable.disabled);
+  private void addActors() {
+    table = new Table();
+    table.setFillParent(true);
+    Image title =
+        new Image(
+            ServiceLocator.getResourceService()
+                .getAsset("images/Ragnarok_main_title.png", Texture.class));
 
-        table = new Table();
-        table.setFillParent(true);
-        Image title =
-            new Image(
-                ServiceLocator.getResourceService()
-                    .getAsset("images/main_screen_title.png", Texture.class));
+    TextButton startBtn = new TextButton("Start", skin);
+    TextButton settingsBtn = new TextButton("Settings", skin);
+    TextButton exitBtn = new TextButton("Exit", skin);
 
         TextButton startBtn = new TextButton("Start", skin);
         TextButton loadBtn = new TextButton("Load", skin);
@@ -51,24 +51,14 @@ public class MainMenuDisplay extends UIComponent {
                 entity.getEvents().trigger("start");
               }
             });
-
-        loadBtn.addListener(
-            new ChangeListener() {
-              @Override
-              public void changed(ChangeEvent changeEvent, Actor actor) {
-                logger.debug("Load button clicked");
-                entity.getEvents().trigger("load");
-              }
-            });
-
-        settingsBtn.addListener(
-            new ChangeListener() {
-              @Override
-              public void changed(ChangeEvent changeEvent, Actor actor) {
-                logger.debug("Settings button clicked");
-                entity.getEvents().trigger("settings");
-              }
-            });
+    settingsBtn.addListener(
+        new ChangeListener() {
+          @Override
+          public void changed(ChangeEvent changeEvent, Actor actor) {
+            logger.debug("Settings button clicked");
+            entity.getEvents().trigger("settings");
+          }
+        });
 
         exitBtn.addListener(
             new ChangeListener() {
@@ -89,7 +79,15 @@ public class MainMenuDisplay extends UIComponent {
         table.row();
         table.add(exitBtn).padTop(15f);
 
-        stage.addActor(table);
+    table.add(title);
+    table.row();
+    table.add(startBtn).padTop(30f);
+    table.row();
+    table.add(settingsBtn).padTop(15f);
+    table.row();
+    table.add(exitBtn).padTop(15f);
+
+    stage.addActor(table);
   }
 
   @Override

@@ -1,5 +1,6 @@
 package com.deco2800.game.areas;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.GridPoint2;
 import com.badlogic.gdx.math.Vector2;
 import com.deco2800.game.areas.terrain.TerrainFactory;
@@ -19,8 +20,9 @@ import org.slf4j.LoggerFactory;
 
 
 public class RainbowBridge extends GameArea {
-    private static final Logger logger = LoggerFactory.getLogger(RagnorakRacer.class);
-    private static final GridPoint2 PLAYER_SPAWN = new GridPoint2(10, 10);
+
+    private static final Logger logger = LoggerFactory.getLogger(ForestGameArea.class);
+    private static final GridPoint2 PLAYER_SPAWN = new GridPoint2(1, 8);
     private static final float WALL_WIDTH = 0.1f;
     private static final int NUM_TREES = 7;
     private static final int NUM_OBSTACLES = 12;
@@ -61,12 +63,21 @@ public class RainbowBridge extends GameArea {
             "images/pixelghost1.png",
             "images/littlegreen.png",
             "images/attack.png",
-            "images/new_player.png"
-
+            "images/new_player.png",
+            "images/negbuff.png",
+            "images/posipuff.png"
     };
 
+    private static final String[] rainbowBridgeSounds = {"sounds/Impact4.ogg", "sounds/buff.ogg", "sounds/buff2.ogg" , "sounds/e.ogg", "sounds/attack.ogg"};
+    private static final String backgroundMusic = "sounds/BGM_03_mp3.mp3";
+    private static final String backgroundMusic1 = "sounds/backgroundMusic1.mp3";
+    private static final String[] rainbowBridgeMusic = {backgroundMusic, backgroundMusic1};
+
     private static final String[] rainbowBridgeAtlases = {
-            "images/terrain_iso_grass.atlas", "images/ghost.atlas", "images/ghostKing.atlas","images/dragon.atlas","images/littleGreen.atlas", "images/attack.atlas"
+            "images/terrain_iso_grass.atlas", "images/ghost.atlas", "images" +
+            "/ghostKing.atlas","images/dragon.atlas","images/littleGreen" +
+            ".atlas", "images/attack.atlas", "images/touch.atlas","images" +
+            "/negbuff.atlas", "images/posipuff.atlas"
     };
 
     private final TerrainFactory terrainFactory;
@@ -79,6 +90,7 @@ public class RainbowBridge extends GameArea {
     }
 
 
+
     @Override
     public void create() {
         loadAssets();
@@ -89,6 +101,7 @@ public class RainbowBridge extends GameArea {
         player = spawnPlayer();
         spawnGhostKing();
         spawnLittleGreen();
+        playMusic();
     }
 
     private void displayUI() {
@@ -206,11 +219,21 @@ public class RainbowBridge extends GameArea {
     }
 
 
+
+    private void playMusic() {
+        Music music = ServiceLocator.getResourceService().getAsset(backgroundMusic1, Music.class);
+        music.setLooping(true);
+        music.setVolume(0.8f);
+        music.play();
+    }
+
     private void loadAssets() {
         logger.debug("Loading assets");
         ResourceService resourceService = ServiceLocator.getResourceService();
         resourceService.loadTextures(rainbowBridgeTextures);
         resourceService.loadTextureAtlases(rainbowBridgeAtlases);
+        resourceService.loadSounds(rainbowBridgeSounds);
+        resourceService.loadMusic(rainbowBridgeMusic);
 
         while (!resourceService.loadForMillis(10)) {
             // This could be upgraded to a loading screen
@@ -222,6 +245,8 @@ public class RainbowBridge extends GameArea {
         logger.debug("Unloading assets");
         ResourceService resourceService = ServiceLocator.getResourceService();
         resourceService.unloadAssets(rainbowBridgeTextures);
+        resourceService.unloadAssets(rainbowBridgeAtlases);
+
     }
 
     @Override

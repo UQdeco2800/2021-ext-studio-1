@@ -30,9 +30,11 @@ import com.deco2800.game.ui.terminal.TerminalDisplay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class RagnorakRacer extends ScreenAdapter {
+import static com.deco2800.game.GdxGame.ScreenType.GAME_WIN;
 
+public class RagnorakRacer extends ScreenAdapter {
     private static final Logger logger = LoggerFactory.getLogger(MainGameScreen.class);
+
     private static final String[] mainGameTextures = {"images/health_full.png", "images/health_decrease_two.png",
             "images/health_decrease_one.png", "images/health_empty.png", "images/armour_full.png", "images/armour_decrease_two.png",
             "images/armour_decrease_one.png", "images/armour_empty.png", "images/notification.png",
@@ -40,12 +42,14 @@ public class RagnorakRacer extends ScreenAdapter {
     private static final Vector2 CAMERA_POSITION = new Vector2(7.5f, 7.5f);
 
     private final GdxGame game;
+    private final long gameTimer;
     private final Renderer renderer;
     private Bridge rainbowBridge;
     private final PhysicsEngine physicsEngine;
 
     public RagnorakRacer(GdxGame game) {
         this.game = game;
+        this.gameTimer = 1000;
 
         logger.debug("Initialising main game screen services");
         ServiceLocator.registerTimeSource(new GameTime());
@@ -58,6 +62,7 @@ public class RagnorakRacer extends ScreenAdapter {
         ServiceLocator.registerResourceService(new ResourceService());
         ServiceLocator.registerEntityService(new EntityService());
         ServiceLocator.registerRenderService(new RenderService());
+        ServiceLocator.registerTimeSource(new GameTime());
 
         this.renderer = RenderFactory.createRenderer();
         this.renderer.getCamera().getEntity().setPosition(CAMERA_POSITION);
@@ -65,6 +70,7 @@ public class RagnorakRacer extends ScreenAdapter {
 
         loadAssets();
         createUI();
+        loadAssets();
 
         TerrainFactory terrainFactory = new TerrainFactory(renderer.getCamera());
         RainbowBridge rainbowBridge = new RainbowBridge(terrainFactory);
@@ -88,6 +94,10 @@ public class RagnorakRacer extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
+        if (ServiceLocator.getTimeSource().getTime() >= this.gameTimer) {
+            game.setScreen(GAME_WIN);
+            // Switch to new Win game screen
+        }
         physicsEngine.update();
         ServiceLocator.getEntityService().update();
         renderer.render();
@@ -124,6 +134,7 @@ public class RagnorakRacer extends ScreenAdapter {
 
     @Override
     public void dispose() {
+
         super.dispose();
         logger.debug("Disposing main game screen");
 
@@ -135,19 +146,7 @@ public class RagnorakRacer extends ScreenAdapter {
         ServiceLocator.getResourceService().dispose();
 
         ServiceLocator.clear();
-    }
 
-    private void loadAssets() {
-        logger.debug("Loading assets");
-        ResourceService resourceService = ServiceLocator.getResourceService();
-        resourceService.loadTextures(mainGameTextures);
-        ServiceLocator.getResourceService().loadAll();
-    }
-
-    private void unloadAssets() {
-        logger.debug("Unloading assets");
-        ResourceService resourceService = ServiceLocator.getResourceService();
-        resourceService.unloadAssets(mainGameTextures);
     }
 
     /**
@@ -171,5 +170,18 @@ public class RagnorakRacer extends ScreenAdapter {
 
 
         ServiceLocator.getEntityService().register(ui);
+    }
+
+    private void loadAssets() {
+        logger.debug("Loading assets");
+        ResourceService resourceService = ServiceLocator.getResourceService();
+        resourceService.loadTextures(mainGameTextures);
+        ServiceLocator.getResourceService().loadAll();
+    }
+
+    private void unloadAssets() {
+        logger.debug("Unloading assets");
+        ResourceService resourceService = ServiceLocator.getResourceService();
+        resourceService.unloadAssets(mainGameTextures);
     }
 }

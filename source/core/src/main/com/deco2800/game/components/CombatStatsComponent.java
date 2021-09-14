@@ -1,5 +1,11 @@
 package com.deco2800.game.components;
 
+import com.badlogic.gdx.audio.Sound;
+import com.deco2800.game.entities.Entity;
+import com.deco2800.game.rendering.AnimationRenderComponent;
+import com.deco2800.game.rendering.AnimationRenderComponent2;
+import com.deco2800.game.rendering.AnimationRenderComponent3;
+import com.deco2800.game.rendering.AnimationRenderComponent4;
 import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +22,7 @@ public class CombatStatsComponent extends Component {
   private int armour;
   private int baseAttack;
   private long invincibleStart = 0L;
+
 
   public CombatStatsComponent(int health, int baseAttack) {
     setHealth(health);
@@ -133,6 +140,86 @@ public class CombatStatsComponent extends Component {
         return;
       }
 
+      if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
+        logger.error("attacker--{}", attacker.getEntity().getType());
+        AnimationRenderComponent2 animator = attacker.getEntity().getComponent(AnimationRenderComponent2.class);
+        animator.startAnimation("touch");
+        Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/e.ogg", Sound.class);
+        attackSound.play();
+        logger.error("--end--attacker--{}",attacker.getEntity().getType());
+      }
+
+      if (armour > 0){
+        int newArmour = getArmour() - attacker.getBaseAttack();
+        setArmour(newArmour);
+        invincibleStart = ServiceLocator.getTimeSource().getTime();
+      }
+      else{
+        int newHealth = getHealth() - attacker.getBaseAttack();
+        setHealth(newHealth);
+        invincibleStart = ServiceLocator.getTimeSource().getTime();
+      }
+
+    } catch (NullPointerException e) {
+      int newHealth = getHealth() - attacker.getBaseAttack();
+      setHealth(newHealth);
+    }
+  }
+
+
+  public void hitBuff(CombatStatsComponent attacker) {
+    try {
+      if (ServiceLocator.getTimeSource().getTimeSince(invincibleStart) < 1000L) {
+        return;
+      }
+
+      if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
+        logger.error("attacker--{}", attacker.getEntity().getType());
+        AnimationRenderComponent3 animator =
+                attacker.getEntity().getComponent(AnimationRenderComponent3.class);
+        animator.startAnimation("buff");
+        Sound attackSound = ServiceLocator.getResourceService().getAsset(
+                "sounds/buff.ogg", Sound.class);
+        attackSound.play();
+
+        logger.error("--end--attacker--{}",attacker.getEntity().getType());
+
+      }
+
+      if (armour > 0){
+        int newArmour = getArmour() - attacker.getBaseAttack();
+        setArmour(newArmour);
+        invincibleStart = ServiceLocator.getTimeSource().getTime();
+      }
+      else{
+        int newHealth = getHealth() - attacker.getBaseAttack();
+        setHealth(newHealth);
+        invincibleStart = ServiceLocator.getTimeSource().getTime();
+      }
+
+    } catch (NullPointerException e) {
+      int newHealth = getHealth() - attacker.getBaseAttack();
+      setHealth(newHealth);
+    }
+  }
+
+  public void hitDeBuff(CombatStatsComponent attacker) {
+    try {
+      if (ServiceLocator.getTimeSource().getTimeSince(invincibleStart) < 1000L) {
+        return;
+      }
+
+      if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
+        logger.error("attacker--{}", attacker.getEntity().getType());
+        AnimationRenderComponent4 animator =
+                attacker.getEntity().getComponent(AnimationRenderComponent4.class);
+        animator.startAnimation("deBuff");
+        Sound attackSound = ServiceLocator.getResourceService().getAsset(
+                "sounds/buff2.ogg", Sound.class);
+        attackSound.play();
+        logger.error("--end--attacker--{}",attacker.getEntity().getType());
+      }
+
       if (armour > 0){
         int newArmour = getArmour() - attacker.getBaseAttack();
         setArmour(newArmour);
@@ -151,3 +238,6 @@ public class CombatStatsComponent extends Component {
 
   }
 }
+
+
+

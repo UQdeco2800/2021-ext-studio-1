@@ -3,6 +3,7 @@ package com.deco2800.game.entities.factories;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.deco2800.game.components.CombatStatsComponent;
+import com.deco2800.game.components.TouchAttackComponent;
 import com.deco2800.game.components.player.InventoryComponent;
 import com.deco2800.game.components.player.PlayerActions;
 import com.deco2800.game.components.player.PlayerStatsDisplay;
@@ -15,8 +16,7 @@ import com.deco2800.game.physics.PhysicsUtils;
 import com.deco2800.game.physics.components.ColliderComponent;
 import com.deco2800.game.physics.components.HitboxComponent;
 import com.deco2800.game.physics.components.PhysicsComponent;
-import com.deco2800.game.rendering.AnimationRenderComponent;
-import com.deco2800.game.rendering.TextureRenderComponent;
+import com.deco2800.game.rendering.*;
 import com.deco2800.game.services.ServiceLocator;
 
 /**
@@ -37,18 +37,56 @@ public class PlayerFactory {
     InputComponent inputComponent =
         ServiceLocator.getInputService().getInputFactory().createForPlayer();
 
+
+    AnimationRenderComponent2 animator2 =
+            new AnimationRenderComponent2(
+                    ServiceLocator.getResourceService()
+                            .getAsset("images/touch.atlas",
+                                    TextureAtlas.class));
+    animator2.addAnimation("touch", 0.1f, Animation.PlayMode.NORMAL);
+
+
     AnimationRenderComponent animator =
             new AnimationRenderComponent(
                     ServiceLocator.getResourceService()
                             .getAsset("images/attack.atlas",
                                     TextureAtlas.class));
-    animator.addAnimation("attack", 10f, Animation.PlayMode.LOOP);
+    animator.addAnimation("attack", 0.03f, Animation.PlayMode.NORMAL);
+
+    AnimationRenderComponent3 animator3 =
+            new AnimationRenderComponent3(
+                    ServiceLocator.getResourceService()
+                            .getAsset("images/posipuff.atlas",
+                                    TextureAtlas.class));
+    animator3.addAnimation("buff", 0.03f, Animation.PlayMode.NORMAL);
+
+    AnimationRenderComponent4 animator4 =
+            new AnimationRenderComponent4(
+                    ServiceLocator.getResourceService()
+                            .getAsset("images/negbuff.atlas",
+                                    TextureAtlas.class));
+    animator4.addAnimation("deBuff", 0.03f, Animation.PlayMode.NORMAL);
+
+//    AnimationRenderComponent animator1 =
+//            new AnimationRenderComponent(
+//                    ServiceLocator.getResourceService()
+//                            .getAsset("images/posipuff.atlas",
+//                                    TextureAtlas.class));
+//    animator1.addAnimation("buff", 0.1f, Animation.PlayMode.NORMAL);
+//    AnimationRenderComponent animator3 =
+//            new AnimationRenderComponent(
+//                    ServiceLocator.getResourceService()
+//                            .getAsset("images/player.atlas",
+//                                    TextureAtlas.class));
+//    animator.addAnimation("attack", 0.03f, Animation.PlayMode.NORMAL);
+//    animator.addAnimation("TouchObstacle", 0.03f, Animation.PlayMode.NORMAL);
+//    animator.addAnimation("positiveBuff", 0.03f, Animation.PlayMode.NORMAL);
+//    animator.addAnimation("negativeBuff", 0.03f, Animation.PlayMode.NORMAL);
 
 
     Entity player =
         new Entity(Entity.Type.PLAYER)
             .addComponent(new TextureRenderComponent("images/new_player_2021.png"))
-
             .addComponent(new PhysicsComponent())
             .addComponent(new ColliderComponent())
             .addComponent(new HitboxComponent().setLayer(PhysicsLayer.PLAYER))
@@ -56,8 +94,14 @@ public class PlayerFactory {
             .addComponent(new CombatStatsComponent(stats.health, stats.baseAttack, stats.armour))
             .addComponent(new InventoryComponent(stats.gold))
             .addComponent(inputComponent)
+                .addComponent(new TouchAttackComponent(PhysicsLayer.NPC, PhysicsLayer.OBSTACLE, 1.5f))
+                .addComponent(animator)
+//                .addComponent(animator3)
             .addComponent(new PlayerStatsDisplay())
-                .addComponent(animator);
+                .addComponent(animator2)
+//                .addComponent(animator1);
+                .addComponent(animator3)
+                .addComponent(animator4);
 
     PhysicsUtils.setScaledCollider(player, 0.6f, 0.3f);
     player.getComponent(ColliderComponent.class).setDensity(1.5f);
