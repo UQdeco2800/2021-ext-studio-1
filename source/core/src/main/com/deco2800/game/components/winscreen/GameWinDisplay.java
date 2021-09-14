@@ -31,9 +31,6 @@ public class GameWinDisplay extends UIComponent {
 
         table = new Table();
         table.setFillParent(true);
-        //Label gameWinLable = new Label("YOU WIN",skin);
-        //Label gameWinTextLable = new Label("You have survived the horders of terror on " +
-        //        "the Bifrost. Theevil hela awaits you.",skin);
         Image title =
                 new Image(
                         ServiceLocator.getResourceService()
@@ -62,11 +59,9 @@ public class GameWinDisplay extends UIComponent {
 
         table.add(title).top();
         table.row();
-        //table.add(replayButton).padTop(-30f);
         table.add(replayButton).padTop(30f);
         table.row();
-        table.add(exitButton).padTop(15f);
-        //table.setTransform(false);
+        table.add(exitButton).padTop(15f);;
 
         stage.addActor(table);
     }
