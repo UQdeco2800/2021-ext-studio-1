@@ -175,35 +175,26 @@ public class RainbowBridge extends GameArea {
     }
 
     private void spawnGhosts() {
-//        GridPoint2 minPos = new GridPoint2(0, 0);
-//        GridPoint2 maxPos = terrain.getMapBounds(0).sub(2, 2);
+
 
         for (int i = 0; i < 5; i++) {
             Entity ghost = NPCFactory.createGhost(player);
             spawnEntityAt(ghost, NUM_GHOST, true, true);
-//            ghost.setScale(2,2);
+
         }
     }
 
     private void spawnLittleGreen() {
-//        GridPoint2 minPos = new GridPoint2(0, 0);
-//        GridPoint2 maxPos = terrain.getMapBounds(0).sub(2, 2);
-
         for (int i = 0; i < 5; i++) {
-//            GridPoint2 randomPos = RandomUtils.random(minPos, maxPos);
+
             Entity littleGreen = NPCFactory.createLittleGreen(player);
             spawnEntityAt(littleGreen, NUM_LittleGreen, true, true);
         }
     }
 
     private void spawnGhostKing() {
-//        GridPoint2 minPos = new GridPoint2(0, 0);
-//        GridPoint2 maxPos = terrain.getMapBounds(0).sub(2, 2);
-
-//        GridPoint2 randomPos = RandomUtils.random(minPos, maxPos);
         Entity ghostKing = NPCFactory.createGhostKing(player);
         spawnEntityAt(ghostKing, GHOST_KING, true, true);
-//        ghostKing.setScale(14,14);
     }
 
     public Bridge getRainbowBridge() {
