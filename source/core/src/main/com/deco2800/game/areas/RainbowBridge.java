@@ -27,8 +27,9 @@ public class RainbowBridge extends GameArea {
     private static final int NUM_TREES = 7;
     private static final int NUM_OBSTACLES = 12;
     private static final int NUM_HEALTH_OBJECTS = 10;
-    private static final int NUM_GHOSTS = 2;
-    private static final int NUM_LittleGreen = 5;
+    private static final GridPoint2 NUM_LittleGreen = new GridPoint2(30, 7);
+    private static final GridPoint2 GHOST_KING = new GridPoint2(30, 15);
+    private static final GridPoint2 NUM_GHOST = new GridPoint2(30, 10);
     private static final String[] rainbowBridgeTextures = {
             "images/terrain/star-blank.png",
             "images/terrain/star-1.png",
@@ -96,11 +97,12 @@ public class RainbowBridge extends GameArea {
         loadAssets();
         displayUI();
         spawnTerrain();
-        spawnObstables();
-        spawnHealthObjects();
+//        spawnObstables();
+//        spawnHealthObjects();
         player = spawnPlayer();
         spawnGhostKing();
         spawnLittleGreen();
+        spawnGhosts();
         playMusic();
     }
 
@@ -178,36 +180,26 @@ public class RainbowBridge extends GameArea {
     }
 
     private void spawnGhosts() {
-        GridPoint2 minPos = new GridPoint2(0, 0);
-        GridPoint2 maxPos = terrain.getMapBounds(0).sub(2, 2);
 
-        for (int i = 0; i < NUM_GHOSTS; i++) {
-            GridPoint2 randomPos = RandomUtils.random(minPos, maxPos);
+
+        for (int i = 0; i < 5; i++) {
             Entity ghost = NPCFactory.createGhost(player);
-            if(randomPos != PLAYER_SPAWN){
-                spawnEntityAt(ghost, randomPos, true, true);
-            }
+            spawnEntityAt(ghost, NUM_GHOST, true, true);
+
         }
     }
 
     private void spawnLittleGreen() {
-        GridPoint2 minPos = new GridPoint2(0, 0);
-        GridPoint2 maxPos = terrain.getMapBounds(0).sub(2, 2);
+        for (int i = 0; i < 5; i++) {
 
-        for (int i = 0; i < NUM_LittleGreen; i++) {
-            GridPoint2 randomPos = RandomUtils.random(minPos, maxPos);
             Entity littleGreen = NPCFactory.createLittleGreen(player);
-            spawnEntityAt(littleGreen, randomPos, true, true);
+            spawnEntityAt(littleGreen, NUM_LittleGreen, true, true);
         }
     }
 
     private void spawnGhostKing() {
-        GridPoint2 minPos = new GridPoint2(0, 0);
-        GridPoint2 maxPos = terrain.getMapBounds(0).sub(2, 2);
-
-        GridPoint2 randomPos = RandomUtils.random(minPos, maxPos);
         Entity ghostKing = NPCFactory.createGhostKing(player);
-        spawnEntityAt(ghostKing, randomPos, true, true);
+        spawnEntityAt(ghostKing, GHOST_KING, true, true);
     }
 
     public Bridge getRainbowBridge() {
