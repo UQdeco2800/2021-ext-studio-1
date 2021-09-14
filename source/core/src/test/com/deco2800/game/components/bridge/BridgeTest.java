@@ -138,9 +138,9 @@ public class BridgeTest {
      */
     @Test
     public void testGetLastLane() {
-        Lane lane = bridge.getLanes().get(bridge.getLanes().size() - 1);
-        assertEquals(0, lane.getY1());
-        assertEquals(1, lane.getY2());
+        Bridge bridge = setUpBridge(1, 1, 3);
+        Lane lane = bridge.getLastLane();
+        assertEquals(true, Lane.class.isInstance(lane));
     }
 
     /**
