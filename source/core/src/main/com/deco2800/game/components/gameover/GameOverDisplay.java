@@ -82,7 +82,7 @@ public class GameOverDisplay extends UIComponent {
                     }
                 });
 
-// when the user presses exit button
+        // when the user presses exit button
         exitBtn.addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent e, float x, float y) {
