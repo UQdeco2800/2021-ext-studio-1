@@ -3,6 +3,7 @@ package com.deco2800.game.components.gameover;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
@@ -10,6 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
 import org.slf4j.Logger;
@@ -46,16 +49,23 @@ public class GameOverDisplay extends UIComponent {
         tablebackGround = new Table();
         tablebackGround.setFillParent(true);
 
-
         //Restart button
         //TextButton restartBtn = new TextButton("Restart Game", skin);
-        Image restartBtn = new Image(ServiceLocator.getResourceService().getAsset("images/btn_restart1.png",
-                Texture.class));
+        Button.ButtonStyle restartStyle = new Button.ButtonStyle();
+        restartStyle.up= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/btn_restart1.png"))));
+        restartStyle.over= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/btn_restart2.png"))));
+        Button restartBtn = new Button(restartStyle);
 
         //Exit button
         //TextButton exitBtn = new TextButton("Exit", skin);
-        Image exitBtn = new Image(ServiceLocator.getResourceService().getAsset("images/btn_exit1.png",
-                Texture.class));
+        Button.ButtonStyle exitStyle = new Button.ButtonStyle();
+        exitStyle.up= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/btn_exit1.png"))));
+        exitStyle.over= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/btn_exit2.png"))));
+        Button exitBtn = new Button(exitStyle);
 
         //Background
         Image background = new Image(ServiceLocator.getResourceService().getAsset("images/Death_Screen_Background.png",
@@ -64,8 +74,7 @@ public class GameOverDisplay extends UIComponent {
         //stack.add(background);
 
         // when the user presses restart button
-        restartBtn.addListener(
-                new ClickListener() {
+        restartBtn.addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent e,float x,float y) {
                         logger.debug("Restart button pressed");
@@ -74,8 +83,7 @@ public class GameOverDisplay extends UIComponent {
                 });
 
 // when the user presses exit button
-        exitBtn.addListener(
-                new ClickListener() {
+        exitBtn.addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent e, float x, float y) {
                         logger.debug("Exit button pressed");
