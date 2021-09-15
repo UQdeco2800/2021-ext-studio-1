@@ -55,7 +55,7 @@ public class Entity {
   }
 
   public enum Type {
-    PLAYER, GHOST, OBSTACLE, GHOSTKING,WEAPON,COLLECTABLES,BUFF,DEBUFF
+    PLAYER, GHOST, OBSTACLE, GHOSTKING,WEAPON,COLLECTABLES
   }
 
   public Entity.Type getType() {

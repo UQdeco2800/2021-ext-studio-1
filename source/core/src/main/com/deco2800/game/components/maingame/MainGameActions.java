@@ -31,7 +31,7 @@ public class MainGameActions extends Component {
     logger.info("Exiting main game screen");
     game.setScreen(GdxGame.ScreenType.MAIN_MENU);
   }
- 
+
   /**
    * Swaps to the Main Game Screen when the character dies.
    */
