@@ -28,9 +28,3 @@ javadoc {
         links 'https://libgdx.badlogicgames.com/ci/nightlies/docs/api/'
     }
 }
-
-//dependencies {
-//    testImplementation 'junit:junit:4.13.2'
-//    testImplementation platform('org.junit:junit-bom:5.7.2')
-//    testImplementation 'org.testng:testng:7.1.0'
-//}

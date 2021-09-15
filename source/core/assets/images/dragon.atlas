@@ -1,5 +1,5 @@
 resized dragon.png
-size: 3600, 3600
+size: 3600, 1036
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
