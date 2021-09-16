@@ -35,7 +35,11 @@ public class RainbowBridge extends GameArea {
     private static final int NUM_WEAPON = 2;
     private static final int NUM_COLLECTABLES = 5;
     private static final int NUM_GHOSTS = 2;
-    private static final int NUM_LittleGreen = 5;
+//    private static final int NUM_LittleGreen = 5;
+    private static final GridPoint2 NUM_LittleGreen = new GridPoint2(30, 7);
+    private static final GridPoint2 GHOST_KING = new GridPoint2(30, 15);
+    private static final GridPoint2 NUM_GHOST = new GridPoint2(30, 10);
+
     private static final String[] rainbowBridgeTextures = {
             "images/terrain/star-blank.png",
             "images/terrain/star-1.png",
@@ -266,7 +270,7 @@ public class RainbowBridge extends GameArea {
         GridPoint2 minPos = new GridPoint2(0, 0);
         GridPoint2 maxPos = terrain.getMapBounds(0).sub(2, 2);
 
-        for (int i = 0; i < NUM_LittleGreen; i++) {
+        for (int i = 0; i < 5; i++) {
             GridPoint2 randomPos = RandomUtils.random(minPos, maxPos);
             Entity littleGreen = NPCFactory.createLittleGreen(player);
             spawnEntityAt(littleGreen, randomPos, true, true);
