@@ -66,12 +66,13 @@ public class MainMenuDisplay extends UIComponent {
       Button settingsBtn = new Button(settingStyle);
 
       // Tutorial button
-//    Button.ButtonStyle tutorialStyle = new Button.ButtonStyle();
-//    tutorialStyle.up= new TextureRegionDrawable(new TextureRegion(
-//            new Texture(Gdx.files.internal("images/btn_tutorial1.png"))));
-//    tutorialStyle.over= new TextureRegionDrawable(new TextureRegion(
-//            new Texture(Gdx.files.internal("images/btn_tutorial2.png"))));
-//    Button tutorialBtn = new Button(tutorialStyle);
+    Button.ButtonStyle tutorialStyle = new Button.ButtonStyle();
+    tutorialStyle.up= new TextureRegionDrawable(new TextureRegion(
+            new Texture(Gdx.files.internal("images/btn_tutorial1.png"))));
+    tutorialStyle.over= new TextureRegionDrawable(new TextureRegion(
+            new Texture(Gdx.files.internal("images/btn_tutorial2.png"))));
+    Button tutorialBtn = new Button(tutorialStyle);
+
       // exit button
       Button.ButtonStyle exitStyle = new Button.ButtonStyle();
       exitStyle.up= new TextureRegionDrawable(new TextureRegion(
@@ -89,6 +90,17 @@ public class MainMenuDisplay extends UIComponent {
                 entity.getEvents().trigger("start");
               }
             });
+
+        // for tutorial
+    tutorialBtn.addListener(
+            new ChangeListener() {
+              @Override
+              public void changed(ChangeEvent changeEvent, Actor actor) {
+                logger.debug("Tutorial button clicked");
+                entity.getEvents().trigger("tutorial");
+              }
+            });
+
     settingsBtn.addListener(
         new ChangeListener() {
           @Override
@@ -115,8 +127,8 @@ public class MainMenuDisplay extends UIComponent {
     table.row();
     table.add(settingsBtn).size(200f,80f).padTop(15f);
     table.row();
-//    table.add(tutorialBtn).size(200f,80f).padTop(15f);
-//    table.row();
+    table.add(tutorialBtn).size(200f,80f).padTop(15f);
+    table.row();
     table.add(exitBtn).size(200f,80f).padTop(15f);
 
     stage.addActor(table);

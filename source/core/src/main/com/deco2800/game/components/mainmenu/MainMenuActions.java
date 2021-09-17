@@ -22,6 +22,7 @@ public class MainMenuActions extends Component {
     entity.getEvents().addListener("start", this::onStart);
     entity.getEvents().addListener("exit", this::onExit);
     entity.getEvents().addListener("settings", this::onSettings);
+    entity.getEvents().addListener("tutorial", this::onTutorial);
   }
 
   /**
@@ -38,6 +39,14 @@ public class MainMenuActions extends Component {
   private void onExit() {
     logger.info("Exit game");
     game.exit();
+  }
+
+  /**
+   * Swaps to Tutorial Screen.
+   */
+  private void onTutorial() {
+    logger.info("Launching tutorial screen");
+    game.setScreen(GdxGame.ScreenType.TUTORIAL);
   }
 
   /**
