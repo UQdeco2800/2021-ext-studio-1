@@ -45,7 +45,7 @@ public class TutorialDisplay extends UIComponent {
         Label instruction1 = new Label("W :  To move up on the lane", skin);
         Label instruction2 = new Label("S :  To move down on the lane", skin);
         Label instruction3 = new Label("Q :  To jump up to top lane", skin);
-        Label instruction4 = new Label("E :  To down on bottom lane", skin);
+        Label instruction4 = new Label("E :  To jump down on bottom lane", skin);
         Label instruction5 = new Label("Press ' Space Bar ' to Attack", skin);
 
         stack = new Stack();
