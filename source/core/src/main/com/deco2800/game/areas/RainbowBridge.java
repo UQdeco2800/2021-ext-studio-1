@@ -79,6 +79,7 @@ public class RainbowBridge extends GameArea {
     private final TerrainFactory terrainFactory;
     private Bridge rainbowBridge;
     private Entity player;
+    private Entity ghost;
 
     public RainbowBridge(TerrainFactory terrainFactory) {
         super();
@@ -97,7 +98,7 @@ public class RainbowBridge extends GameArea {
         player = spawnPlayer();
         spawnGhostKing();
         spawnLittleGreen();
-        spawnGhosts();
+        ghost = spawnGhosts();
         playMusic();
     }
 
@@ -174,18 +175,18 @@ public class RainbowBridge extends GameArea {
         return newPlayer;
     }
 
-    private void spawnGhosts() {
+    private Entity spawnGhosts() {
 
 
-        for (int i = 0; i < 5; i++) {
-            Entity ghost = NPCFactory.createGhost(player);
-            spawnEntityAt(ghost, NUM_GHOST, true, true);
+        for (int i = 0; i < 20; i++) {
+            Entity ghosts = NPCFactory.createGhost(player);
+            spawnEntityAt(ghosts, NUM_GHOST, true, true);
 
-        }
+        } return ghost;
     }
 
     private void spawnLittleGreen() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i <20; i++) {
 
             Entity littleGreen = NPCFactory.createLittleGreen(player);
             spawnEntityAt(littleGreen, NUM_LittleGreen, true, true);

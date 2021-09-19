@@ -52,7 +52,7 @@ public class NPCFactory {
             ServiceLocator.getResourceService().getAsset("images/ghost.atlas",
                     TextureAtlas.class));
     animator.addAnimation("angry_float", 0.1f, Animation.PlayMode.LOOP);
-    animator.addAnimation("float", 0.1f, Animation.PlayMode.LOOP);
+    animator.addAnimation("float", 0.5f, Animation.PlayMode.LOOP);
 
     ghost
         .addComponent(new CombatStatsComponent(config.health, config.baseAttack))
@@ -78,7 +78,7 @@ public class NPCFactory {
             new AnimationRenderComponent(
                     ServiceLocator.getResourceService().getAsset("images/littleGreen.atlas", TextureAtlas.class));
     animator.addAnimation("angry_float", 0.1f, Animation.PlayMode.LOOP);
-    animator.addAnimation("float", 0.1f, Animation.PlayMode.LOOP);
+    animator.addAnimation("float", 0.5f, Animation.PlayMode.LOOP);
 
     littleGreen
             .addComponent(new CombatStatsComponent(config.health, config.baseAttack))
@@ -104,7 +104,7 @@ public class NPCFactory {
         new AnimationRenderComponent(
             ServiceLocator.getResourceService()
                 .getAsset("images/dragon.atlas", TextureAtlas.class));
-    animator.addAnimation("float", 0.1f, Animation.PlayMode.LOOP);
+    animator.addAnimation("float", 0.5f, Animation.PlayMode.LOOP);
     animator.addAnimation("angry_float", 0.1f, Animation.PlayMode.LOOP);
 
 
@@ -132,7 +132,7 @@ public class NPCFactory {
         new Entity(Entity.Type.GHOST)
             .addComponent(new PhysicsComponent())
             .addComponent(new PhysicsMovementComponent())
-            //.addComponent(new ColliderComponent())
+//            .addComponent(new ColliderComponent())
             .addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
             .addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
             .addComponent(aiComponent);
@@ -150,12 +150,12 @@ public class NPCFactory {
             new Entity(Entity.Type.GHOSTKING)
                     .addComponent(new PhysicsComponent())
                     .addComponent(new PhysicsMovementComponent())
-                    //.addComponent(new ColliderComponent())
+//                    .addComponent(new ColliderComponent())
                     .addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
                     .addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
                     .addComponent(aiComponent);
 
-    //PhysicsUtils.setScaledCollider(npc, 0.9f, 0.4f);
+//    PhysicsUtils.setScaledCollider(npc1, 0.9f, 0.4f);
     return npc1;
   }
 
