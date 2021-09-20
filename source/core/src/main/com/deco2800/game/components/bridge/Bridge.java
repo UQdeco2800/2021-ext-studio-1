@@ -1,5 +1,7 @@
 package com.deco2800.game.components.bridge;
 
+import com.deco2800.game.entities.Entity;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +21,7 @@ public class Bridge {
      * */
     private int offset;
     private int width;
+    protected Entity player;
 
     /** A list of lanes on a bridge */
     private List<Lane> lanes;
@@ -94,5 +97,14 @@ public class Bridge {
             bounds.put("bot", this.lanes.get(0).getBot());
             return bounds;
         }
+    }
+
+    /**
+     * Returns player entity.
+     *
+     * @return player entity
+     */
+    public Entity getPlayer() {
+        return player;
     }
 }
