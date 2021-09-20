@@ -34,9 +34,9 @@ public class KeyboardPlayerInputComponent extends InputComponent {
   public boolean keyDown(int keycode) {
     Bridge bridge = RagnorakRacer.rainbowBridge;
     List<Lane> lanes = bridge.getLanes();
-    for (Lane lane : lanes){
-      System.out.println(lane.getMid());
-    }
+//    for (Lane lane : lanes){
+//      System.out.println(lane.getMid());
+//    }
     float newY = 0;
     if (keycode == Keys.W){
       if(entity.getPosition().y <= lanes.get(3).getMid() - 9){
