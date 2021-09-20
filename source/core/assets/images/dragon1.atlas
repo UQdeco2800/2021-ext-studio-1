@@ -1,0 +1,47 @@
+dragon1.png
+size: 1280, 1280
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dragon
+  rotate: false
+  xy: 0, 0
+  size: 480, 480
+  orig: 480, 480
+  offset: 0, 0
+  index: -1
+dragon
+  rotate: false
+  xy: 480, 0
+  size: 480, 480
+  orig: 480, 480
+  offset: 0, 0
+  index: -1
+dragon
+  rotate: false
+  xy: 0, 480
+  size: 480, 480
+  orig: 480, 480
+  offset: 0, 0
+  index: -1
+dragon
+  rotate: false
+  xy: 0, 0
+  size: 480, 480
+  orig: 480, 480
+  offset: 0, 0
+  index: -1
+dragon
+  rotate: false
+  xy: 480, 0
+  size: 480, 480
+  orig: 480, 480
+  offset: 0, 0
+  index: -1
+dragon
+  rotate: false
+  xy: 0, 480
+  size: 480, 480
+  orig: 480, 480
+  offset: 0, 0
+  index: -1
