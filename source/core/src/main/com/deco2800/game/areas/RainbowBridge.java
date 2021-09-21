@@ -1,5 +1,6 @@
 package com.deco2800.game.areas;
 
+import com.deco2800.game.components.tasks.MovementTask;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.GridPoint2;
 import com.badlogic.gdx.math.Vector2;
@@ -16,6 +17,7 @@ import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.components.gamearea.GameAreaDisplay;
 import com.deco2800.game.utils.math.RandomUtils;
 import org.slf4j.Logger;
+import com.deco2800.game.physics.components.PhysicsMovementComponent;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
@@ -139,6 +141,53 @@ public class RainbowBridge extends GameArea {
         this.rainbowBridge = terrain.getRainbowBridge();
     }
 
+    private void startMapContentsMovement(Entity entity, int lane_index) {
+        List<Lane> lanes = terrain.getRainbowBridge().getLanes();
+        int y_target = 0;
+        if (lane_index == 0) {
+            y_target = 3;
+        } else if (lane_index == 1) {
+            y_target = 5;
+            Vector2 target = new Vector2(0, y_target);
+            MovementTask task = new MovementTask(target);
+            
+            task.create(() -> entity);
+            task.start();
+        } else if (lane_index == 2) {
+            y_target = 6;
+            Vector2 target = new Vector2(0, y_target);
+            MovementTask task = new MovementTask(target);
+            
+            task.create(() -> entity);
+            task.start();
+        } else if (lane_index == 3) {
+            y_target = 8;
+            Vector2 target = new Vector2(0, y_target);
+            MovementTask task = new MovementTask(target);
+            
+            task.create(() -> entity);
+            task.start();
+        }
+
+        // switch(lane_index) { // lane/getMid not working for target vector v component (objects not staying within lane). 
+        //             // So I'm hardcoding y target for each lane
+        //     case 0:
+        //         y_target = lanes.get(lane_index).getMid() - 3;
+        //     case 1:
+        //         y_target = lanes.get(lane_index).getMid() - 5;
+        //     case 2:
+        //         y_target = lanes.get(lane_index).getMid() - 5;
+        //     case 3:
+        //         y_target = 50;
+        // }
+
+        // Vector2 target = new Vector2(0, y_target);
+        //     MovementTask task = new MovementTask(target);
+            
+        //     task.create(() -> entity);
+        //     task.start();
+    }
+
     private void spawnObstables() {
         GridPoint2 minPos = new GridPoint2(0, 0);
         List<Lane> lanes = terrain.getRainbowBridge().getLanes();
@@ -154,20 +203,26 @@ public class RainbowBridge extends GameArea {
             switch(i) {
                 case 0:
                     Entity RunesGate = ObstacleFactory.createRunesGate();
+
                     spawnEntityAt(RunesGate, randomPosInLane, true, false);
+                    this.startMapContentsMovement(RunesGate, i);
+                    
                     break;
                 case 1:
                     Entity stone = ObstacleFactory.createStoneObstacle();
                     spawnEntityAt(stone, randomPosInLane, true, false);
+                    this.startMapContentsMovement(stone, i);
                     break;
                 case 2:
                     Entity thunderCloud = ObstacleFactory.createthunderCloud();
                     spawnEntityAt(thunderCloud, randomPosInLane, true, false);
+                    this.startMapContentsMovement(thunderCloud, i);
                     break;
-                // case 3:
-                //     Entity fire = ObstacleFactory.createFire();
-                //     spawnEntityAt(fire, randomPosInLane, true, false);
-                //     break;
+                case 3:
+                    Entity fire = ObstacleFactory.createFire();
+                    spawnEntityAt(fire, randomPosInLane, true, false);
+                    this.startMapContentsMovement(fire, i);
+                    break;
             }
         }
     }
@@ -186,10 +241,12 @@ public class RainbowBridge extends GameArea {
                 case 0:
                     Entity food = ObstacleFactory.createFood();
                     spawnEntityAt(food, randomPosInLane, true, false);
+                    this.startMapContentsMovement(food, i);
                     break;
                 case 1:
                     Entity firstAid = ObstacleFactory.createFirstAidKit();
                     spawnEntityAt(firstAid, randomPosInLane, true, false);
+                    this.startMapContentsMovement(firstAid, i);
                     break;
             }
         }
@@ -207,19 +264,23 @@ public class RainbowBridge extends GameArea {
                 case 0:
                     Entity axe = ObstacleFactory.createAxe();
                     spawnEntityAt(axe, randomPosInLane, true, false);
+                    this.startMapContentsMovement(axe, i);
                     break;
                 case 1:
                     Entity bow = ObstacleFactory.createBow();
                     spawnEntityAt(bow, randomPosInLane, true, false);
+                    this.startMapContentsMovement(bow, i);
                     break;
                 case 2:
                     Entity sword = ObstacleFactory.createSword();
                     spawnEntityAt(sword, randomPosInLane, true, false);
+                    this.startMapContentsMovement(sword, i);
                     break;
             }
             i++;
         }
     }
+
     private void spawnCollectableObjects() {
         GridPoint2 minPos = new GridPoint2(0, 0);
         List<Lane> lanes = terrain.getRainbowBridge().getLanes();
@@ -228,16 +289,18 @@ public class RainbowBridge extends GameArea {
             int d = 0;
             int y_coordinate = lanes.get(i).getMid();
             int x_random = ThreadLocalRandom.current().nextInt(5, 28 + 1);  // min x=5, max x=28
-            GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
+            GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);            
         
             switch(i) {
                 case 0:
                     Entity coin = ObstacleFactory.createCoin();
                     spawnEntityAt(coin, randomPosInLane, true, false);
+                    this.startMapContentsMovement(coin, i);
                     break;
                 case 1:
                     Entity diamond = ObstacleFactory.createDiamond();
                     spawnEntityAt(diamond, randomPosInLane, true, false);
+                    this.startMapContentsMovement(diamond, i);
                     break;
             }
         }

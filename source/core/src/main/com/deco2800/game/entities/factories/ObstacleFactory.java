@@ -7,14 +7,11 @@ import com.deco2800.game.physics.PhysicsUtils;
 import com.deco2800.game.physics.components.ColliderComponent;
 import com.deco2800.game.physics.components.HitboxComponent;
 import com.deco2800.game.physics.components.PhysicsComponent;
+import com.deco2800.game.physics.components.PhysicsMovementComponent;
 import com.deco2800.game.rendering.TextureRenderComponent;
 import com.deco2800.game.components.CombatStatsComponent;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.deco2800.game.services.ServiceLocator;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.deco2800.game.components.map_contents.ContentsAnimationController;
-
-import com.deco2800.game.rendering.AnimationRenderComponent;
 
 /**
  * Factory to create obstacle entities.
@@ -37,11 +34,11 @@ public class ObstacleFactory {
 				new Entity(Entity.Type.OBSTACLE)
 						.addComponent(new TextureRenderComponent("images/tree.png"))
 						.addComponent(new PhysicsComponent())
+						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0))
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE));
 
-		tree.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
 		tree.getComponent(TextureRenderComponent.class).scaleEntity();
 		tree.scaleHeight(2.5f);
 		PhysicsUtils.setScaledCollider(tree, 0.5f, 0.2f);
@@ -53,11 +50,11 @@ public class ObstacleFactory {
 				new Entity(Entity.Type.OBSTACLE)
 						.addComponent(new TextureRenderComponent("images/RunesGate.gif"))
 						.addComponent(new PhysicsComponent())
+						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0));
 
-		RunesGate.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
 		RunesGate.getComponent(TextureRenderComponent.class).scaleEntity();
 		// car.scaleHeight(2.5f);
 		PhysicsUtils.setScaledCollider(RunesGate, 0.5f, 0.2f);
@@ -69,11 +66,11 @@ public class ObstacleFactory {
 				new Entity(Entity.Type.OBSTACLE)
 						.addComponent(new TextureRenderComponent("images/stone.png"))
 						.addComponent(new PhysicsComponent())
+						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0));
 
-		stone.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
 		stone.getComponent(TextureRenderComponent.class).scaleEntity();
 		//stone.scaleHeight(2.5f);
 		PhysicsUtils.setScaledCollider(stone, 0.5f, 0.2f);
@@ -88,11 +85,11 @@ public class ObstacleFactory {
 				new Entity(Entity.Type.OBSTACLE)
 						.addComponent(new TextureRenderComponent("images/thunderCloud.gif"))
 						.addComponent(new PhysicsComponent())
+						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0));
 
-		thunderCloud.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
 		thunderCloud.getComponent(TextureRenderComponent.class).scaleEntity();
 		//snake.scaleHeight(2.5f);
 		PhysicsUtils.setScaledCollider(thunderCloud, 0.5f, 0.2f);
@@ -105,11 +102,13 @@ public class ObstacleFactory {
 		Entity fire =
 				new Entity(Entity.Type.OBSTACLE)
 						.addComponent(new TextureRenderComponent("images/fire.png"))
+						.addComponent(new PhysicsComponent())
+						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0));
 
-		fire.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+		// fire.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
 		fire.getComponent(TextureRenderComponent.class).scaleEntity();
 		//fire.scaleHeight(2.5f);
 		PhysicsUtils.setScaledCollider(fire, 0.5f, 0.2f);
@@ -119,18 +118,14 @@ public class ObstacleFactory {
 	}
 
 	public static Entity createFirstAidKit() {
-    AnimationRenderComponent animator =
-            new AnimationRenderComponent(
-                    ServiceLocator.getResourceService().getAsset("images/food.atlas", TextureAtlas.class));
-    animator.addAnimation("move_left", 0.1f, Animation.PlayMode.LOOP);
 		Entity firstAidKit =
 				new Entity()
 						.addComponent(new TextureRenderComponent("images/FirstAidKit.png"))
 						.addComponent(new PhysicsComponent())
+						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0))
-            .addComponent(animator)
         ;
 		// firstAidKit.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
 		// firstAidKit.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -140,22 +135,14 @@ public class ObstacleFactory {
 	}
 
 	public static Entity createFood() {
-		AnimationRenderComponent animator =
-				new AnimationRenderComponent(
-						ServiceLocator.getResourceService().getAsset("images/food.atlas", TextureAtlas.class));
-		animator.addAnimation("move_left", 0.1f, Animation.PlayMode.LOOP);
-		// animator.addAnimation("float", 0.1f, Animation.PlayMode.LOOP);
 		Entity food =
 				new Entity()
 						.addComponent(new TextureRenderComponent("images/food.png"))
-            			.addComponent(animator)
-						.addComponent(new ContentsAnimationController())
-						.addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
+						.addComponent(new PhysicsComponent())
+						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0));
-
-    	food.getComponent(AnimationRenderComponent.class).scaleEntity();
 
 		// food.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
 		// food.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -169,12 +156,12 @@ public class ObstacleFactory {
 		Entity axe =
 				new Entity()
 						.addComponent(new TextureRenderComponent("images/axe.png"))
-						.addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
+						.addComponent(new PhysicsComponent())
+						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0));
 
-		axe.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
 		axe.getComponent(TextureRenderComponent.class).scaleEntity();
 		PhysicsUtils.setScaledCollider(axe, 0.5f, 0.2f);
 		// combat.addHealth(1);
@@ -184,12 +171,12 @@ public class ObstacleFactory {
 		Entity sword =
 				new Entity()
 						.addComponent(new TextureRenderComponent("images/sword.png"))
-						.addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
+						.addComponent(new PhysicsComponent())
+						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0));
 
-		sword.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
 		sword.getComponent(TextureRenderComponent.class).scaleEntity();
 		PhysicsUtils.setScaledCollider(sword, 0.5f, 0.2f);
 		// combat.addHealth(1);
@@ -199,12 +186,12 @@ public class ObstacleFactory {
 		Entity bow =
 				new Entity()
 						.addComponent(new TextureRenderComponent("images/bow.png"))
-						.addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
+						.addComponent(new PhysicsComponent())
+						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0));
 
-		bow.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
 		bow.getComponent(TextureRenderComponent.class).scaleEntity();
 		PhysicsUtils.setScaledCollider(bow, 0.5f, 0.2f);
 		// combat.addHealth(1);
@@ -214,12 +201,12 @@ public class ObstacleFactory {
 		Entity coin =
 				new Entity()
 						.addComponent(new TextureRenderComponent("images/coin.gif"))
-						.addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
+						.addComponent(new PhysicsComponent())
+						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0));
 
-		coin.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
 		coin.getComponent(TextureRenderComponent.class).scaleEntity();
 		PhysicsUtils.setScaledCollider(coin, 0.5f, 0.2f);
 		// combat.addHealth(1);
@@ -229,12 +216,12 @@ public class ObstacleFactory {
 		Entity diamond =
 				new Entity()
 						.addComponent(new TextureRenderComponent("images/diamond.gif"))
-						.addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
+						.addComponent(new PhysicsComponent())
+						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new CombatStatsComponent(100, 0));
 
-		diamond.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
 		diamond.getComponent(TextureRenderComponent.class).scaleEntity();
 		PhysicsUtils.setScaledCollider(diamond, 0.5f, 0.2f);
 		// combat.addHealth(1);
