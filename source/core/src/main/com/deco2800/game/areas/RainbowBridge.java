@@ -144,48 +144,21 @@ public class RainbowBridge extends GameArea {
     private void startMapContentsMovement(Entity entity, int lane_index) {
         List<Lane> lanes = terrain.getRainbowBridge().getLanes();
         int y_target = 0;
-        if (lane_index == 0) {
+        if (lane_index == 0) {  //hard coding y coordinate targets for object movement because lanes.getMid is off
             y_target = 3;
         } else if (lane_index == 1) {
             y_target = 5;
-            Vector2 target = new Vector2(0, y_target);
-            MovementTask task = new MovementTask(target);
-            
-            task.create(() -> entity);
-            task.start();
         } else if (lane_index == 2) {
             y_target = 6;
-            Vector2 target = new Vector2(0, y_target);
-            MovementTask task = new MovementTask(target);
-            
-            task.create(() -> entity);
-            task.start();
         } else if (lane_index == 3) {
             y_target = 8;
-            Vector2 target = new Vector2(0, y_target);
-            MovementTask task = new MovementTask(target);
-            
-            task.create(() -> entity);
-            task.start();
         }
 
-        // switch(lane_index) { // lane/getMid not working for target vector v component (objects not staying within lane). 
-        //             // So I'm hardcoding y target for each lane
-        //     case 0:
-        //         y_target = lanes.get(lane_index).getMid() - 3;
-        //     case 1:
-        //         y_target = lanes.get(lane_index).getMid() - 5;
-        //     case 2:
-        //         y_target = lanes.get(lane_index).getMid() - 5;
-        //     case 3:
-        //         y_target = 50;
-        // }
-
-        // Vector2 target = new Vector2(0, y_target);
-        //     MovementTask task = new MovementTask(target);
-            
-        //     task.create(() -> entity);
-        //     task.start();
+        Vector2 target = new Vector2(0, y_target);
+        MovementTask task = new MovementTask(target);
+        
+        task.create(() -> entity);
+        task.start();
     }
 
     private void spawnObstables() {
