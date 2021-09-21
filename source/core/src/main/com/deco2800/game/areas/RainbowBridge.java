@@ -95,7 +95,7 @@ public class RainbowBridge extends GameArea {
             "images/terrain_iso_grass.atlas", "images/ghost.atlas", "images" +
             "/ghostKing.atlas","images/dragon.atlas","images/littleGreen" +
             ".atlas", "images/attack.atlas", "images/touch.atlas","images" +
-            "/negbuff.atlas", "images/posipuff.atlas"
+            "/negbuff.atlas", "images/posipuff.atlas",  "images/food.atlas"
     };
 
     private final TerrainFactory terrainFactory;

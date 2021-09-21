@@ -23,6 +23,33 @@ import com.deco2800.game.rendering.AnimationRenderComponent;
  */
 public class ObstacleFactory {
 
+<<<<<<< HEAD
+=======
+	private ObstacleFactory() {
+		throw new IllegalStateException("Instantiating static util class");
+	}
+
+	/**
+	 * Creates a tree entity.
+	 *
+	 * @return entity
+	 */
+	public static Entity createTree() {
+		Entity tree =
+				new Entity(Entity.Type.OBSTACLE)
+						.addComponent(new TextureRenderComponent("images/tree.png"))
+						.addComponent(new PhysicsComponent())
+						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
+						.addComponent(new CombatStatsComponent(100, 0))
+						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE));
+
+		tree.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
+		tree.getComponent(TextureRenderComponent.class).scaleEntity();
+		tree.scaleHeight(2.5f);
+		PhysicsUtils.setScaledCollider(tree, 0.5f, 0.2f);
+		return tree;
+	}
+
 	public static Entity createRunesGate() {
 		Entity RunesGate =
 				new Entity(Entity.Type.OBSTACLE)
