@@ -17,7 +17,6 @@ import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-//import com.deco2800.game.components.tutorialmenu;
 
 
 /**
@@ -60,15 +59,14 @@ public class TutorialDisplay extends UIComponent {
 
 
         //Exit button
-        //TextButton exitBtn = new TextButton("Exit", skin);
-//        Button.ButtonStyle exitStyle = new Button.ButtonStyle();
-//        exitStyle.up= new TextureRegionDrawable(new TextureRegion(
-//                new Texture(Gdx.files.internal("images/btn_exit1.png"))));
-//        exitStyle.over= new TextureRegionDrawable(new TextureRegion(
-//                new Texture(Gdx.files.internal("images/btn_exit2.png"))));
-//        Button exitBtn = new Button(exitStyle);
+        Button.ButtonStyle exitStyle = new Button.ButtonStyle();
+        exitStyle.up= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/btn_exit1.png"))));
+        exitStyle.over= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/btn_exit2.png"))));
+        Button exitBtn = new Button(exitStyle);
 
-        TextButton exitBtn = new TextButton("Exit", skin);
+       // TextButton exitBtn = new TextButton("Exit", skin);
 
 
 
@@ -94,7 +92,7 @@ public class TutorialDisplay extends UIComponent {
         table.row();
         table.add(instruction5).expandX().padTop(30f);
         table.row();
-        table.add(exitBtn).pad(50f, 15f, 15f, 0f);
+        table.add(exitBtn).size(200f,80f).pad(50f, 15f, 15f, 0f);
 
 
         stage.addActor(tablebackGround);
