@@ -67,8 +67,6 @@ public class GameWinDisplay extends UIComponent {
         //Background
         Image background = new Image(ServiceLocator.getResourceService().getAsset("images/Win-screen-2-transparent.png",
                 Texture.class));
-        //background.setScaling(Scaling.stretch);
-        //stack.add(background);
 
         // when the user presses restart button
         restartBtn.addListener(new ClickListener() {
@@ -90,24 +88,7 @@ public class GameWinDisplay extends UIComponent {
 
         Image winMessage = new Image(ServiceLocator.getResourceService().getAsset("images/Win-screen-2-transparent.png",
                 Texture.class));
-//        Image gameOverText = new Image(ServiceLocator.getResourceService().getAsset("images/Gameover_Visual_Text.png",
-//                Texture.class));
 
-//        table.add(playerDeadImage).size(350f,300f).padBottom(50f);
-//        table.row();
-//        table.add(gameOverText).size(500f,50f);
-//        table.row();
-
-//        table.add(winMessage).top();
-//        table.row();
-//        table.add(restartBtn).padTop(30f).size(200f,80f).padTop(50f);
-//        table.row();
-//        table.add(exitBtn).padTop(30f).size(200f,80f);
-//
-//        tablebackGround.add(background).size(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-//
-//        stage.addActor(tablebackGround);
-//        stage.addActor(table);
         table.add(winMessage).top();
         table.row();
         table.add(restartBtn).padTop(30f).size(200f, 80f);
@@ -127,69 +108,4 @@ public class GameWinDisplay extends UIComponent {
         stack.clear();
     }
 
-//    private static final Logger logger = LoggerFactory.getLogger(GameWinDisplay.class);
-//    private static final float Z_INDEX = 2f;
-//    private Table table;
-//
-//
-//    @Override
-//    public void create(){
-//        super.create();
-//        createGameWin();
-//    }
-//
-//    private void createGameWin() {
-//
-//        table = new Table();
-//        table.setFillParent(true);
-//        Image title =
-//                new Image(
-//                        ServiceLocator.getResourceService()
-//                                .getAsset("images/Win-screen-2-transparent.png", Texture.class));
-//        TextButton replayButton = new TextButton("Replay", skin);
-//        TextButton exitButton = new TextButton("Exit", skin);
-//
-//        replayButton.addListener(
-//                new ChangeListener() {
-//                    @Override
-//                    public void changed(ChangeEvent changeEvent, Actor actor) {
-//                        logger.info("replay game button clicked");
-//                        entity.getEvents().trigger("replay");
-//                    }
-//                });
-//
-//        exitButton.addListener(
-//                new ChangeListener() {
-//                    @Override
-//                    public void changed(ChangeEvent changeEvent, Actor actor) {
-//                        logger.info("exit button clicked");
-//                        entity.getEvents().trigger("exit");
-//                    }
-//                });
-//
-//
-//        table.add(title).top();
-//        table.row();
-//        table.add(replayButton).padTop(30f);
-//        table.row();
-//        table.add(exitButton).padTop(15f);;
-//
-//        stage.addActor(table);
-//    }
-//
-//    @Override
-//    public void dispose() {
-//        table.clear();
-//        super.dispose();
-//    }
-//
-//    @Override
-//    public float getZIndex() {
-//        return Z_INDEX;
-//    }
-//
-//    @Override
-//    protected void draw(SpriteBatch batch) {
-//
-//    }
 }
