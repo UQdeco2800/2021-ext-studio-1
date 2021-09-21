@@ -75,7 +75,7 @@ public class GameWinDisplay extends UIComponent {
             @Override
             public void clicked(InputEvent e, float x, float y) {
                 logger.debug("Restart button pressed");
-                entity.getEvents().trigger("restarting game");
+                entity.getEvents().trigger("replay");
             }
         });
 
