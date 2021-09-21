@@ -255,4 +255,5 @@ public class ObstacleFactory {
 		obstacle.scaleHeight(2.5f);
 		return obstacle;
 	}
+
 }

@@ -1,0 +1,26 @@
+thor_moving.png
+size: 1782, 1494
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+new_player_2021_V2
+  rotate: false
+  xy: 615, 1
+  size: 582, 1492
+  orig: 1920, 1920
+  offset: 649, 239
+  index: -1
+red left up
+  rotate: false
+  xy: 1199, 1
+  size: 582, 1492
+  orig: 1920, 1920
+  offset: 649, 239
+  index: -1
+red right up
+  rotate: false
+  xy: 1, 1
+  size: 612, 1492
+  orig: 1920, 1920
+  offset: 619, 239
+  index: -1
