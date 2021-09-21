@@ -8,6 +8,25 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.deco2800.game.ui.UIComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.Graphics.DisplayMode;
+import com.badlogic.gdx.Graphics.Monitor;
+import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.deco2800.game.GdxGame;
+import com.deco2800.game.GdxGame.ScreenType;
+import com.deco2800.game.services.ServiceLocator;
+import com.deco2800.game.ui.UIComponent;
+import com.deco2800.game.utils.StringDecorator;
+
+
 
 /**
  * Displays a button to exit the Main Game screen to the Main Menu screen.
@@ -28,7 +47,14 @@ public class MainGameExitDisplay extends UIComponent {
     table.top().right();
     table.setFillParent(true);
 
-    TextButton mainMenuBtn = new TextButton("Exit", skin);
+   // TextButton mainMenuBtn = new TextButton("Exit", skin);
+
+    Button.ButtonStyle exitStyle = new Button.ButtonStyle();
+    exitStyle.up= new TextureRegionDrawable(new TextureRegion(
+            new Texture(Gdx.files.internal("images/btn_exit1.png"))));
+    exitStyle.over= new TextureRegionDrawable(new TextureRegion(
+            new Texture(Gdx.files.internal("images/btn_exit2.png"))));
+    Button mainMenuBtn = new Button(exitStyle);
 
     // Triggers an event when the button is pressed.
     mainMenuBtn.addListener(
@@ -41,7 +67,7 @@ public class MainGameExitDisplay extends UIComponent {
       });
 
 
-    table.add(mainMenuBtn).padTop(10f).padRight(10f);
+    table.add(mainMenuBtn).size(200f,80f).padTop(10f).padRight(10f);
     stage.addActor(table);
   }
 
