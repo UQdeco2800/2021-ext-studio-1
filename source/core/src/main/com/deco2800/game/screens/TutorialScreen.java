@@ -24,7 +24,7 @@ public class TutorialScreen extends ScreenAdapter {
 
     private final GdxGame game;
     private final Renderer renderer;
-    private static final String[] TutorialScreenTextures = {"images/Untitled design.png"};
+    private static final String[] TutorialScreenTextures = {"images/Untitled design.png", "images/btn_exit1.png", "images/btn_exit1.png"};
 
     public TutorialScreen(GdxGame game) {
 
