@@ -48,7 +48,7 @@ public class MainMenuDisplay extends UIComponent {
     Image title =
         new Image(
             ServiceLocator.getResourceService()
-                .getAsset("images/ragnarok_title.png", Texture.class));
+                .getAsset("images/Ragnarok_main_title.png", Texture.class));
     //  TextButton startBtn = new TextButton("Start", skin);
     //  TextButton settingsBtn = new TextButton("Settings", skin);
     //  TextButton exitBtn = new TextButton("Exit", skin);
