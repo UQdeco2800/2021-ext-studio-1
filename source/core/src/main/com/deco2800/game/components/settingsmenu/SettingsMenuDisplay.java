@@ -19,7 +19,6 @@ import com.deco2800.game.utils.StringDecorator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
