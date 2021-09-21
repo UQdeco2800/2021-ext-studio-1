@@ -168,7 +168,7 @@ public class SettingsMenuDisplay extends UIComponent {
 
   private Table makeMenuBtns() {
    // TextButton exitBtn = new TextButton("Exit", skin);
-    TextButton applyBtn = new TextButton("Apply", skin);
+   // TextButton applyBtn = new TextButton("Apply", skin);
 
     Button.ButtonStyle exitStyle = new Button.ButtonStyle();
     exitStyle.up= new TextureRegionDrawable(new TextureRegion(
@@ -176,6 +176,13 @@ public class SettingsMenuDisplay extends UIComponent {
     exitStyle.over= new TextureRegionDrawable(new TextureRegion(
             new Texture(Gdx.files.internal("images/btn_exit2.png"))));
     Button exitBtn = new Button(exitStyle);
+
+    Button.ButtonStyle applyStyle = new Button.ButtonStyle();
+    applyStyle.up= new TextureRegionDrawable(new TextureRegion(
+            new Texture(Gdx.files.internal("images/btn_apply1.png"))));
+    applyStyle.over= new TextureRegionDrawable(new TextureRegion(
+            new Texture(Gdx.files.internal("images/btn_apply2.png"))));
+    Button applyBtn = new Button(applyStyle);
 
     exitBtn.addListener(
         new ChangeListener() {
@@ -197,8 +204,9 @@ public class SettingsMenuDisplay extends UIComponent {
 
     Table table = new Table();
    // table.add(exitBtn).expandX().left().pad(0f, 15f, 15f, 0f);
-    table.add(exitBtn).left().size(200f,80f).pad(0f, 15f, 15f, 0f);
-    table.add(applyBtn).expandX().right().pad(0f, 0f, 15f, 15f);
+    table.add(exitBtn).left().expandX().size(200f,80f).pad(0f, 15f, 15f, 0f);
+    table.add(applyBtn).right().expandX().size(200f,80f).pad(0f, 0f, 15f, 15f);
+    //  table.add(applyBtn).expandX().right().pad(0f, 0f, 15f, 15f);
     return table;
   }
 
