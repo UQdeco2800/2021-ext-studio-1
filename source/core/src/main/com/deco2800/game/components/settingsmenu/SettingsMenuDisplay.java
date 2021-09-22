@@ -19,6 +19,14 @@ import com.deco2800.game.utils.StringDecorator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
+import com.badlogic.gdx.graphics.Texture;
+
 /**
  * Settings menu display and logic. If you bork the settings, they can be changed manually in
  * DECO2800Game/settings.json under your home directory (This is C:/users/[username] on Windows).
@@ -158,8 +166,22 @@ public class SettingsMenuDisplay extends UIComponent {
   }
 
   private Table makeMenuBtns() {
-    TextButton exitBtn = new TextButton("Exit", skin);
-    TextButton applyBtn = new TextButton("Apply", skin);
+   // TextButton exitBtn = new TextButton("Exit", skin);
+   // TextButton applyBtn = new TextButton("Apply", skin);
+
+    Button.ButtonStyle exitStyle = new Button.ButtonStyle();
+    exitStyle.up= new TextureRegionDrawable(new TextureRegion(
+            new Texture(Gdx.files.internal("images/btn_exit1.png"))));
+    exitStyle.over= new TextureRegionDrawable(new TextureRegion(
+            new Texture(Gdx.files.internal("images/btn_exit2.png"))));
+    Button exitBtn = new Button(exitStyle);
+
+    Button.ButtonStyle applyStyle = new Button.ButtonStyle();
+    applyStyle.up= new TextureRegionDrawable(new TextureRegion(
+            new Texture(Gdx.files.internal("images/btn_apply1.png"))));
+    applyStyle.over= new TextureRegionDrawable(new TextureRegion(
+            new Texture(Gdx.files.internal("images/btn_apply2.png"))));
+    Button applyBtn = new Button(applyStyle);
 
     exitBtn.addListener(
         new ChangeListener() {
@@ -180,8 +202,10 @@ public class SettingsMenuDisplay extends UIComponent {
         });
 
     Table table = new Table();
-    table.add(exitBtn).expandX().left().pad(0f, 15f, 15f, 0f);
-    table.add(applyBtn).expandX().right().pad(0f, 0f, 15f, 15f);
+   // table.add(exitBtn).expandX().left().pad(0f, 15f, 15f, 0f);
+    table.add(exitBtn).left().expandX().size(200f,80f).pad(0f, 15f, 15f, 0f);
+    table.add(applyBtn).right().expandX().size(200f,80f).pad(0f, 0f, 15f, 15f);
+    //  table.add(applyBtn).expandX().right().pad(0f, 0f, 15f, 15f);
     return table;
   }
 

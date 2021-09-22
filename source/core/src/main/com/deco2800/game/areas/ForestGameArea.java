@@ -39,6 +39,8 @@ public class ForestGameArea<praivate> extends GameArea {
   };
 
   private final TerrainFactory terrainFactory;
+
+  public Entity player;
   private Bridge rainbowBridge;
 
   public ForestGameArea(TerrainFactory terrainFactory) {
