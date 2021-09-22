@@ -61,7 +61,6 @@ public class ObstacleFactory {
 		return RunesGate;
 	}
 
-<<<<<<< HEAD
 	public static Entity createStoneObstacle() { //CombatStatsComponent combat) {
 		Entity stone =
 				new Entity(Entity.Type.OBSTACLE)
@@ -81,8 +80,6 @@ public class ObstacleFactory {
 		return stone;
 	}
 
-=======
->>>>>>> main
 	public static Entity createthunderCloud() {
 		Entity thunderCloud =
 				new Entity(Entity.Type.OBSTACLE)
@@ -101,7 +98,6 @@ public class ObstacleFactory {
 		return thunderCloud;
 	}
 
-<<<<<<< HEAD
 	public static Entity createFire() {
 		Entity fire =
 				new Entity(Entity.Type.OBSTACLE)
@@ -156,8 +152,6 @@ public class ObstacleFactory {
 		return food;
 	}
 
-=======
->>>>>>> main
 	public static Entity createAxe() {
 		Entity axe =
 				new Entity()
