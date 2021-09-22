@@ -10,6 +10,10 @@ import com.deco2800.game.components.CombatStatsComponent;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
 
+import javax.swing.*;
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * A ui component for displaying player stats, e.g. health.
  */
@@ -132,7 +136,7 @@ public class PlayerStatsDisplay extends UIComponent {
     healthLabel.setText(text);
 
     //Hurt animation
-    if (health > 0) {
+    if (health >= 0) {
       hurtAnimate();
     }
 
@@ -157,7 +161,14 @@ public class PlayerStatsDisplay extends UIComponent {
           //Game win screen
           break;
         }
-        getEntity().getEvents().trigger("GameOver");
+        Timer timer = new Timer();
+        TimerTask gameOver = new TimerTask() {
+          @Override
+          public void run() {
+            getEntity().getEvents().trigger("GameOver");
+          }
+        };
+        timer.schedule(gameOver,2000);
       }
       table.reset();
       table.top().left();
@@ -167,7 +178,7 @@ public class PlayerStatsDisplay extends UIComponent {
     }
 
     //Notification appears and disposes
-    if(health>0) {
+    if(health>=0) {
       new Thread() {
         public void run() {
           try {
