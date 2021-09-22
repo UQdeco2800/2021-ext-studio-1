@@ -37,7 +37,6 @@ public class RainbowBridge extends GameArea {
     private static final int NUM_WEAPON = 2;
     private static final int NUM_COLLECTABLES = 5;
     private static final int NUM_GHOSTS = 2;
-//    private static final int NUM_LittleGreen = 5;
     private static final GridPoint2 NUM_LittleGreen = new GridPoint2(30, 7);
     private static final GridPoint2 GHOST_KING = new GridPoint2(30, 15);
     private static final GridPoint2 NUM_GHOST = new GridPoint2(30, 10);
@@ -95,7 +94,6 @@ public class RainbowBridge extends GameArea {
     private static final String[] rainbowBridgeMusic = {backgroundMusic, backgroundMusic1};
 
     private static final String[] rainbowBridgeAtlases = {
-
             "images/terrain_iso_grass.atlas", "images/ghost.atlas", "images" +
             "/ghostKing.atlas","images/dragon.atlas","images/littleGreen" +
             ".atlas", "images/attack.atlas", "images/touch.atlas","images" +
@@ -122,7 +120,6 @@ public class RainbowBridge extends GameArea {
         spawnHealthObjects();
         spawnWeaponObjects();
         spawnCollectableObjects();
-
         player = spawnPlayer();
         spawnGhostKing();
         spawnLittleGreen();
