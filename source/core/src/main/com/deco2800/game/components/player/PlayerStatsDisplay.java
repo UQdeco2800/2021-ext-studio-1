@@ -161,6 +161,7 @@ public class PlayerStatsDisplay extends UIComponent {
           //Game win screen
           break;
         }
+        //Game over screen delay
         Timer timer = new Timer();
         TimerTask gameOver = new TimerTask() {
           @Override
