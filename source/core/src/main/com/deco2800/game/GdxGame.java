@@ -93,7 +93,7 @@ public class GdxGame extends Game {
    * Exit the game.
    */
   public void exit() {
-    System.exit(0);
+
     app.exit();
   }
 }
