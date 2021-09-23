@@ -28,7 +28,7 @@ public class RainbowBridge extends GameArea {
     private static final int NUM_OBSTACLES = 12;
     private static final int NUM_HEALTH_OBJECTS = 10;
     private static final GridPoint2 NUM_LittleGreen = new GridPoint2(30, 7);
-    private static final GridPoint2 GHOST_KING = new GridPoint2(30, 15);
+    private static final GridPoint2 GHOST_KING = new GridPoint2(30, 9);
     private static final GridPoint2 NUM_GHOST = new GridPoint2(30, 10);
     private static final String[] rainbowBridgeTextures = {
             "images/terrain/star-blank.png",
@@ -196,6 +196,7 @@ public class RainbowBridge extends GameArea {
     private void spawnGhostKing() {
         Entity ghostKing = NPCFactory.createGhostKing(player);
         spawnEntityAt(ghostKing, GHOST_KING, true, true);
+        ghostKing.setScale(3,3);
     }
 
     public Bridge getRainbowBridge() {
