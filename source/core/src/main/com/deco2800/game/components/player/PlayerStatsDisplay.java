@@ -2,13 +2,14 @@ package com.deco2800.game.components.player;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.deco2800.game.components.CombatStatsComponent;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
+
+import java.util.Date;
 
 /**
  * A ui component for displaying player stats, e.g. health.
@@ -19,6 +20,7 @@ public class PlayerStatsDisplay extends UIComponent {
   Table heartAnimate;
   private Image heartImage;
   private Label healthLabel;
+  private Label timerLabel;
   private Image armourImage;
   private Label armourLabel;
   private Image noImage;
@@ -55,8 +57,9 @@ public class PlayerStatsDisplay extends UIComponent {
     // Health text
     int health = entity.getComponent(CombatStatsComponent.class).getHealth();
     CharSequence healthText = String.format("Health: %d", health);
+    CharSequence timerText = String.format("Timer: 60 sec");
     healthLabel = new Label(healthText, skin, "large");
-
+    timerLabel = new Label(timerText, skin, "large");
     //Armour image
     float armourSideLength = 200f;
     armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_full.png", Texture.class));
@@ -74,7 +77,7 @@ public class PlayerStatsDisplay extends UIComponent {
     healthStats.setFillParent(true);
     healthStats.padTop(100f).padLeft(5f);
     healthStats.add(healthLabel).pad(20);
-
+    healthStats.add(timerLabel).pad(20);
     healthStats.add(armourLabel);
     stage.addActor(healthStats);
 
@@ -90,6 +93,19 @@ public class PlayerStatsDisplay extends UIComponent {
     notification.add(noImage).size(noWidth, noHeight).pad(5);
     stage.addActor(notification);
     notification.setVisible(false);
+
+    new Thread() {
+      public void run() {
+        try {
+          for(int i=60;i>0;i--){
+            timerLabel.setText("Timer :"+ i+" sec");
+            Thread.sleep(1000);
+          }
+        }
+        catch (InterruptedException e) {}
+      }
+    }.start();
+
   }
 
   /**
@@ -189,7 +205,6 @@ public class PlayerStatsDisplay extends UIComponent {
     //Update the number of armour
     CharSequence text = String.format("Armour: %d", armour);
     armourLabel.setText(text);
-
     float armourSideLength = 200f;
     if (armour >= 0) {
       table.removeActor(armourImage);
@@ -219,6 +234,7 @@ public class PlayerStatsDisplay extends UIComponent {
     super.dispose();
     heartImage.remove();
     healthLabel.remove();
+    timerLabel.remove();
     armourImage.remove();
     armourLabel.remove();
     noImage.remove();
@@ -226,4 +242,3 @@ public class PlayerStatsDisplay extends UIComponent {
     treatImage.remove();
   }
 }
-
