@@ -5,11 +5,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.deco2800.game.services.ServiceLocator;
@@ -47,7 +45,6 @@ public class GameWinDisplay extends UIComponent {
         tablebackGround.setFillParent(true);
 
         //Restart button
-        //TextButton restartBtn = new TextButton("Restart Game", skin);
         Button.ButtonStyle restartStyle = new Button.ButtonStyle();
         restartStyle.up= new TextureRegionDrawable(new TextureRegion(
                 new Texture(Gdx.files.internal("images/btn_restart1.png"))));
@@ -56,7 +53,6 @@ public class GameWinDisplay extends UIComponent {
         Button restartBtn = new Button(restartStyle);
 
         //Exit button
-        //TextButton exitBtn = new TextButton("Exit", skin);
         Button.ButtonStyle exitStyle = new Button.ButtonStyle();
         exitStyle.up= new TextureRegionDrawable(new TextureRegion(
                 new Texture(Gdx.files.internal("images/btn_exit1.png"))));
@@ -65,8 +61,7 @@ public class GameWinDisplay extends UIComponent {
         Button exitBtn = new Button(exitStyle);
 
         //Background
-        Image background = new Image(ServiceLocator.getResourceService().getAsset("images/Win-screen-2-transparent.png",
-                Texture.class));
+
 
         // when the user presses restart button
         restartBtn.addListener(new ClickListener() {
@@ -106,6 +101,11 @@ public class GameWinDisplay extends UIComponent {
     public void dispose() {
         super.dispose();
         stack.clear();
+    }
+
+    @Override
+    public float getZIndex() {
+        return Z_INDEX;
     }
 
 }
