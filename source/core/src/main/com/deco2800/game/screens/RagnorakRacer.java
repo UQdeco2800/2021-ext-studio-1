@@ -44,7 +44,7 @@ public class RagnorakRacer extends ScreenAdapter {
     private final GdxGame game;
     private final long gameTimer;
     private final Renderer renderer;
-    private Bridge rainbowBridge;
+    public static Bridge rainbowBridge;
     private final PhysicsEngine physicsEngine;
 
     public RagnorakRacer(GdxGame game) {
