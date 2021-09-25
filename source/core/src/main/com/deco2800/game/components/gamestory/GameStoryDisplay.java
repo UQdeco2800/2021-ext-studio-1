@@ -84,7 +84,7 @@ public class GameStoryDisplay extends UIComponent {
                     }
                 });
 
-        table.add(startBtn).size(200f,80f).padTop(30f);
+        table.add(startBtn).size(200f,80f).padTop(550f);
         table.row();
         table.add(exitBtn).size(200f,80f).padTop(15f);
 

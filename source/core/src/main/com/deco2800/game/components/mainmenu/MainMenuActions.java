@@ -30,7 +30,8 @@ public class MainMenuActions extends Component {
    */
   private void onStart() {
     logger.info("Start game");
-    game.setScreen(GdxGame.ScreenType.MAIN_GAME);
+    //Goes to story screen before main game screen
+    game.setScreen(GdxGame.ScreenType.GAME_STORY);
   }
 
   /**
