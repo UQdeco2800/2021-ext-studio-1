@@ -3,8 +3,10 @@ package com.deco2800.game.screens;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.deco2800.game.GdxGame;
-import com.deco2800.game.components.winscreen.GameWinActions;
-import com.deco2800.game.components.winscreen.GameWinDisplay;
+import com.deco2800.game.components.mainmenu.MainMenuActions;
+import com.deco2800.game.components.mainmenu.MainMenuDisplay;
+import com.deco2800.game.components.gamestory.GameStoryActions;
+import com.deco2800.game.components.gamestory.GameStoryDisplay;
 import com.deco2800.game.entities.Entity;
 import com.deco2800.game.entities.EntityService;
 import com.deco2800.game.entities.factories.RenderFactory;
@@ -17,35 +19,32 @@ import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GameWinScreen extends ScreenAdapter {
-    private static final Logger logger = LoggerFactory.getLogger(GameWinScreen.class);
-
+/**
+ * The game screen containing the game's story.
+ */
+public class GameStoryScreen extends ScreenAdapter {
+    private static final Logger logger = LoggerFactory.getLogger(GameStoryScreen.class);
     private final GdxGame game;
     private final Renderer renderer;
-    private static final String[] GameWinScreenTextures = {"images/Win-screen-2-transparent.png", "images/btn_restart1.png","images/btn_exit1.png"};
+    private static final String[] storyScreenTextures = {"images/story-screen-bg"};
 
-    public GameWinScreen(GdxGame game) {
-
+    public GameStoryScreen(GdxGame game) {
         this.game = game;
-        logger.debug("drawing game win ui");
-        ServiceLocator.registerInputService(new InputService());
 
+        logger.debug("Initialising main menu screen services");
+        ServiceLocator.registerInputService(new InputService());
         ServiceLocator.registerResourceService(new ResourceService());
         ServiceLocator.registerEntityService(new EntityService());
         ServiceLocator.registerRenderService(new RenderService());
+
         renderer = RenderFactory.createRenderer();
 
         loadAssets();
         createUI();
-
-
     }
-
-
 
     @Override
     public void render(float delta) {
-
         ServiceLocator.getEntityService().update();
         renderer.render();
     }
@@ -57,59 +56,52 @@ public class GameWinScreen extends ScreenAdapter {
     }
 
     @Override
+    public void pause() {
+        logger.info("Game paused");
+    }
+
+    @Override
+    public void resume() {
+        logger.info("Game resumed");
+    }
+
+    @Override
     public void dispose() {
-        super.dispose();
-        logger.debug("Disposing win game screen");
+        logger.debug("Disposing main menu screen");
+
         renderer.dispose();
+        unloadAssets();
+        ServiceLocator.getRenderService().dispose();
+        ServiceLocator.getEntityService().dispose();
+
         ServiceLocator.clear();
     }
 
     private void loadAssets() {
-
         logger.debug("Loading assets");
         ResourceService resourceService = ServiceLocator.getResourceService();
-        resourceService.loadTextures(GameWinScreenTextures);
+        resourceService.loadTextures(storyScreenTextures);
         ServiceLocator.getResourceService().loadAll();
-
-        while (!resourceService.loadForMillis(10)) {
-            // This could be upgraded to a loading screen
-            logger.info("Loading... {}%", resourceService.getProgress());
-        }
-
     }
+
     private void unloadAssets() {
         logger.debug("Unloading assets");
         ResourceService resourceService = ServiceLocator.getResourceService();
-        resourceService.unloadAssets(GameWinScreenTextures);
+        resourceService.unloadAssets(storyScreenTextures);
     }
 
-//    private void createUI() {
-//        logger.debug("Creating ui");
-//        Stage stage = ServiceLocator.getRenderService().getStage();
-//        Entity ui = new Entity();
-//        ui.addComponent(new GameOverDisplay())
-//                .addComponent(new InputDecorator(stage, 10))
-//                .addComponent(new GameOverActions(game));
-//        ServiceLocator.getEntityService().register(ui);
-//    }
-
+    /**
+     * Creates the main menu's ui including components for rendering ui elements to the screen and
+     * capturing and handling ui input.
+     */
     private void createUI() {
         logger.debug("Creating ui");
         Stage stage = ServiceLocator.getRenderService().getStage();
         Entity ui = new Entity();
-        ui.addComponent(new GameWinDisplay())
+        ui.addComponent(new GameStoryDisplay())
                 .addComponent(new InputDecorator(stage, 10))
-                .addComponent(new GameWinActions(game));
+                .addComponent(new MainMenuActions(game));
         ServiceLocator.getEntityService().register(ui);
     }
 
-//    private void createUI() {
-//        logger.debug("Creating ui");
-//        Stage stage = ServiceLocator.getRenderService().getStage();
-//        Entity ui = new Entity();
-//        ui.addComponent(new GameWinDisplay())
-//                .addComponent(new InputDecorator(stage, 10))
-//                .addComponent(new GameWinActions(game));
-//        ServiceLocator.getEntityService().register(ui);
-//    }
 }
