@@ -3,8 +3,6 @@ package com.deco2800.game.screens;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.deco2800.game.GdxGame;
-import com.deco2800.game.components.mainmenu.MainMenuActions;
-import com.deco2800.game.components.mainmenu.MainMenuDisplay;
 import com.deco2800.game.components.gamestory.GameStoryActions;
 import com.deco2800.game.components.gamestory.GameStoryDisplay;
 import com.deco2800.game.entities.Entity;
@@ -26,12 +24,12 @@ public class GameStoryScreen extends ScreenAdapter {
     private static final Logger logger = LoggerFactory.getLogger(GameStoryScreen.class);
     private final GdxGame game;
     private final Renderer renderer;
-    private static final String[] storyScreenTextures = {"images/story-screen-bg"};
+    private static final String[] storyScreenTextures = {"images/story-screen-bg.png"};
 
     public GameStoryScreen(GdxGame game) {
         this.game = game;
 
-        logger.debug("Initialising main menu screen services");
+        logger.debug("Initialising story screen services");
         ServiceLocator.registerInputService(new InputService());
         ServiceLocator.registerResourceService(new ResourceService());
         ServiceLocator.registerEntityService(new EntityService());
@@ -100,7 +98,7 @@ public class GameStoryScreen extends ScreenAdapter {
         Entity ui = new Entity();
         ui.addComponent(new GameStoryDisplay())
                 .addComponent(new InputDecorator(stage, 10))
-                .addComponent(new MainMenuActions(game));
+                .addComponent(new GameStoryActions(game));
         ServiceLocator.getEntityService().register(ui);
     }
 
