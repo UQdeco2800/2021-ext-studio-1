@@ -28,6 +28,7 @@ public class RainbowBridge extends GameArea {
     private static final int NUM_OBSTACLES = 12;
     private static final int NUM_HEALTH_OBJECTS = 10;
     private static final GridPoint2 NUM_LittleGreen = new GridPoint2(30, 7);
+    private static final GridPoint2 Demon = new GridPoint2(30, 8);
     private static final GridPoint2 GHOST_KING = new GridPoint2(30, 9);
     private static final GridPoint2 NUM_GHOST = new GridPoint2(30, 10);
     private static final String[] rainbowBridgeTextures = {
@@ -63,6 +64,7 @@ public class RainbowBridge extends GameArea {
             "images/pixelghost.png",
             "images/pixelghost1.png",
             "images/littlegreen.png",
+            "images/demon1.png",
             "images/attack.png",
             "images/new_player.png"
 
@@ -73,7 +75,7 @@ public class RainbowBridge extends GameArea {
     private static final String[] rainbowBridgeMusic = {backgroundMusic};
 
     private static final String[] rainbowBridgeAtlases = {
-            "images/terrain_iso_grass.atlas", "images/ghost.atlas", "images/ghostKing.atlas","images/dragon.atlas","images/littleGreen.atlas", "images/attack.atlas"
+            "images/terrain_iso_grass.atlas", "images/demon1.png","images/ghost.atlas", "images/ghostKing.atlas","images/dragon.atlas","images/littleGreen.atlas", "images/attack.atlas"
     };
 
     private final TerrainFactory terrainFactory;
@@ -98,6 +100,7 @@ public class RainbowBridge extends GameArea {
         player = spawnPlayer();
         spawnGhostKing();
         spawnLittleGreen();
+        spawnDemon();
         ghost = spawnGhosts();
         playMusic();
     }
@@ -190,6 +193,13 @@ public class RainbowBridge extends GameArea {
 
             Entity littleGreen = NPCFactory.createLittleGreen(player);
             spawnEntityAt(littleGreen, NUM_LittleGreen, true, true);
+        }
+    }
+    private void spawnDemon() {
+        for (int i = 0; i <20; i++) {
+
+            Entity demon = NPCFactory.createDemon(player);
+            spawnEntityAt(demon,Demon, true, true);
         }
     }
 
