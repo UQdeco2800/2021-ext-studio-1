@@ -66,11 +66,10 @@ public class TutorialDisplay extends UIComponent {
                 new Texture(Gdx.files.internal("images/btn_exit2.png"))));
         Button exitBtn = new Button(exitStyle);
 
-       // TextButton exitBtn = new TextButton("Exit", skin);
 
 
 
-        // when the user presses exit button
+        // Event listener for exit button
         exitBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent e, float x, float y) {

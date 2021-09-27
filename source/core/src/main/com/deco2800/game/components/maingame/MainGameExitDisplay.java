@@ -47,8 +47,7 @@ public class MainGameExitDisplay extends UIComponent {
     table.top().right();
     table.setFillParent(true);
 
-   // TextButton mainMenuBtn = new TextButton("Exit", skin);
-
+   //Creates exit button
     Button.ButtonStyle exitStyle = new Button.ButtonStyle();
     exitStyle.up= new TextureRegionDrawable(new TextureRegion(
             new Texture(Gdx.files.internal("images/btn_exit1.png"))));
