@@ -3,6 +3,7 @@ package com.deco2800.game.components.player;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -10,9 +11,9 @@ import com.deco2800.game.components.CombatStatsComponent;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
 
-import javax.swing.*;
 import java.util.Timer;
 import java.util.TimerTask;
+
 
 /**
  * A ui component for displaying player stats, e.g. health.
@@ -157,19 +158,19 @@ public class PlayerStatsDisplay extends UIComponent {
       if (health == 0) {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_empty.png", Texture.class));
         long currentTime = ServiceLocator.getTimeSource().getTime();
-        while (ServiceLocator.getTimeSource().getTime() - currentTime < 1000L) {
-          //Game win screen
-          break;
+        while (ServiceLocator.getTimeSource().getTime() - currentTime < 2000L) {
+            getEntity().getEvents().trigger("GameOver");
         }
-        //Game over screen delay
-        Timer timer = new Timer();
+
+        //Old Game over screen delay
+        /**Timer timer = new Timer();
         TimerTask gameOver = new TimerTask() {
           @Override
           public void run() {
             getEntity().getEvents().trigger("GameOver");
           }
         };
-        timer.schedule(gameOver,2000);
+        timer.schedule(gameOver,2000);**/
       }
       table.reset();
       table.top().left();
@@ -192,6 +193,7 @@ public class PlayerStatsDisplay extends UIComponent {
       }.start();
     }
   }
+
 
   /**
    * Updates the player's armour on the ui.
