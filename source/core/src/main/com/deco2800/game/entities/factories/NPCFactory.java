@@ -132,6 +132,8 @@ public class NPCFactory {
         .addComponent(new GhostAnimationController());
 
     ghostKing.getComponent(AnimationRenderComponent.class).scaleEntity();
+    ghostKing.setScale(3,3);
+    PhysicsUtils.setScaledCollider(ghostKing, 0.9f, 0.4f);
     return ghostKing;
   }
 
@@ -168,7 +170,7 @@ public class NPCFactory {
             new Entity(Entity.Type.GHOSTKING)
                     .addComponent(new PhysicsComponent())
                     .addComponent(new PhysicsMovementComponent())
-//                    .addComponent(new ColliderComponent())
+                    .addComponent(new ColliderComponent())
                     .addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
                     .addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
                     .addComponent(aiComponent);
