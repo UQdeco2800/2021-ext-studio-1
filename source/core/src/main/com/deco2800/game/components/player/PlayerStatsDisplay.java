@@ -29,6 +29,7 @@ public class PlayerStatsDisplay extends UIComponent {
   private Image noImage;
   private Image treatImage;
   private String treatFileName;
+  private Label goldLabel;
 
 
   /**
@@ -41,6 +42,7 @@ public class PlayerStatsDisplay extends UIComponent {
 
     entity.getEvents().addListener("updateHealth", this::updatePlayerHealthUI);
     entity.getEvents().addListener("updateArmour", this::updatePlayerArmourUI);
+    entity.getEvents().addListener("updateGold", this::updatePlayerGoldUI);
   }
 
   /**
@@ -62,6 +64,11 @@ public class PlayerStatsDisplay extends UIComponent {
     CharSequence healthText = String.format("Health: %d", health);
     healthLabel = new Label(healthText, skin, "large");
 
+    // Gold text
+    int gold = entity.getComponent(InventoryComponent.class).getGold();
+    CharSequence goldText = String.format("Gold: %d", gold);
+    goldLabel = new Label(goldText, skin, "large");
+
     //Armour image
     float armourSideLength = 200f;
     armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_full.png", Texture.class));
@@ -72,15 +79,16 @@ public class PlayerStatsDisplay extends UIComponent {
     armourLabel = new Label(armourText, skin, "large");
     table.add(heartImage).size(heartSideLength).pad(5);
     table.add(armourImage).size(armourSideLength).padLeft(15);
+    table.add(goldLabel).size(0).padLeft(15);
     stage.addActor(table);
 
     Table healthStats = new Table();
     healthStats.top().left();
     healthStats.setFillParent(true);
     healthStats.padTop(100f).padLeft(5f);
-    healthStats.add(healthLabel).pad(20);
+    //healthStats.add(healthLabel).pad(20);
 
-    healthStats.add(armourLabel);
+   // healthStats.add(armourLabel);
     stage.addActor(healthStats);
 
     // Notification
@@ -133,8 +141,8 @@ public class PlayerStatsDisplay extends UIComponent {
    */
   public void updatePlayerHealthUI(int health) {
     //Update the number of health
-    CharSequence text = String.format("Health: %d", health);
-    healthLabel.setText(text);
+    //CharSequence text = String.format("Health: %d", health);
+    //healthLabel.setText(text);
 
     //Hurt animation
     if (health >= 0) {
@@ -201,8 +209,8 @@ public class PlayerStatsDisplay extends UIComponent {
    */
   public void updatePlayerArmourUI(int armour) {
     //Update the number of armour
-    CharSequence text = String.format("Armour: %d", armour);
-    armourLabel.setText(text);
+    //CharSequence text = String.format("Armour: %d", armour);
+    //armourLabel.setText(text);
 
     float armourSideLength = 200f;
     if (armour >= 0) {
@@ -228,6 +236,24 @@ public class PlayerStatsDisplay extends UIComponent {
     }
   }
 
+  /**
+   * Updates the player's gold on the ui.
+   * @param gold player gold
+   */
+  public void updatePlayerGoldUI(int gold) {
+    CharSequence text = String.format("Gold: %d", gold);
+    goldLabel.setText(text);
+
+    float goldSideLength = 200f;
+      table.removeActor(armourImage);
+      armourImage.remove();
+      table.reset();
+      table.top().left();
+      table.setFillParent(true);
+      table.padTop(30f).padLeft(5f);
+      table.add(goldLabel).size(goldSideLength).padLeft(15);
+  }
+
   @Override
   public void dispose() {
     super.dispose();
@@ -238,6 +264,7 @@ public class PlayerStatsDisplay extends UIComponent {
     noImage.remove();
     heartAnimate.remove();
     treatImage.remove();
+    goldLabel.remove();
   }
 }
 
