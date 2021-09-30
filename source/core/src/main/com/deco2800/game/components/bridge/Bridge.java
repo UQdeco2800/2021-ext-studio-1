@@ -1,4 +1,5 @@
 package com.deco2800.game.components.bridge;
+import com.deco2800.game.entities.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,9 @@ public class Bridge implements Location {
      * */
     private int offset;
     private int width;
+
+    
+    protected Entity player;
 
     /** A list of lanes on a bridge */
     private List<Lane> lanes;
@@ -104,5 +108,14 @@ public class Bridge implements Location {
      */
     public int getMid() {
         return (this.getTop() + this.getBot()) / 2;
+    }
+
+    /**
+     * Returns player entity.
+     *
+     * @return player entity
+     */
+    public Entity getPlayer() {
+        return player;
     }
 }
