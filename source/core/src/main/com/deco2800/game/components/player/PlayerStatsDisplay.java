@@ -8,12 +8,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.deco2800.game.components.CombatStatsComponent;
+import com.deco2800.game.components.TouchAttackComponent;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
-
-import java.util.Timer;
-import java.util.TimerTask;
-
 
 /**
  * A ui component for displaying player stats, e.g. health.
@@ -31,6 +28,7 @@ public class PlayerStatsDisplay extends UIComponent {
   private String treatFileName;
   private Label goldLabel;
   private final float armourSideLength = 200f;
+  private final float heartSideLength = 200f;
 
 
   /**
@@ -57,7 +55,6 @@ public class PlayerStatsDisplay extends UIComponent {
     table.padTop(30f).padLeft(5f);
 
     // Heart image
-    float heartSideLength = 200f;
     heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_full.png", Texture.class));
 
     // Health text
@@ -66,6 +63,7 @@ public class PlayerStatsDisplay extends UIComponent {
     healthLabel = new Label(healthText, skin, "large");
 
     // Gold text
+    entity.getComponent(InventoryComponent.class).setGold(0);
     int gold = entity.getComponent(InventoryComponent.class).getGold();
     CharSequence goldText = String.format("Gold: %d", gold);
     goldLabel = new Label(goldText, skin, "large");
@@ -125,7 +123,9 @@ public class PlayerStatsDisplay extends UIComponent {
             heartAnimate.clearChildren();
           }
         }
-        catch (InterruptedException e) {}
+        catch (InterruptedException e) {
+          //pass
+        }
       }
     }.start();
     stage.addActor(heartAnimate);
@@ -146,7 +146,6 @@ public class PlayerStatsDisplay extends UIComponent {
     //healthLabel.setText(text);
 
     //Update the health bar & Armour Bar
-    float heartSideLength = 200f;
     if(health>=0) {
       table.removeActor(heartImage);
       heartImage.remove();
@@ -166,13 +165,7 @@ public class PlayerStatsDisplay extends UIComponent {
           getEntity().getEvents().trigger("GameOver");
         }
       }
-      table.reset();
-      table.top().left();
-      table.setFillParent(true);
-      table.padTop(30f).padLeft(5f);
-      table.add(heartImage).size(heartSideLength).pad(5);
-      table.add(armourImage).size(armourSideLength).padLeft(15);
-      table.add(goldLabel).size(0).padLeft(15);
+      refreshDisplay();
     }
 
     //Hurt animation
@@ -189,7 +182,9 @@ public class PlayerStatsDisplay extends UIComponent {
             Thread.sleep(1500);
             notification.setVisible(false);
           }
-          catch (InterruptedException e) {}
+          catch (InterruptedException e) {
+            //pass
+          }
         }
       }.start();
     }
@@ -204,7 +199,6 @@ public class PlayerStatsDisplay extends UIComponent {
     //CharSequence text = String.format("Armour: %d", armour);
     //armourLabel.setText(text);
 
-    float armourSideLength = 200f;
     if (armour >= 0) {
       table.removeActor(armourImage);
       armourImage.remove();
@@ -220,30 +214,19 @@ public class PlayerStatsDisplay extends UIComponent {
       if (armour == 0) {
         armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_empty.png", Texture.class));
       }
-      table.reset();
-      table.top().left();
-      table.setFillParent(true);
-      table.padTop(30f).padLeft(5f);
-      table.add(armourImage).size(armourSideLength).padLeft(15);
+      refreshDisplay();
     }
   }
 
   /**
    * Updates the player's gold on the ui.
-   * @param gold player gold
    */
-  public void updatePlayerGoldUI(int gold) {
+  public void updatePlayerGoldUI() {
+    entity.getComponent(InventoryComponent.class).setGold(entity.getComponent(InventoryComponent.class).getGold() + 10);
+    int gold = entity.getComponent(InventoryComponent.class).getGold();
     CharSequence text = String.format("Gold: %d", gold);
     goldLabel.setText(text);
-
-    float goldSideLength = 200f;
-      table.removeActor(armourImage);
-      armourImage.remove();
-      table.reset();
-      table.top().left();
-      table.setFillParent(true);
-      table.padTop(30f).padLeft(5f);
-      table.add(goldLabel).size(goldSideLength).padLeft(15);
+    refreshDisplay();
   }
 
   @Override
@@ -257,6 +240,17 @@ public class PlayerStatsDisplay extends UIComponent {
     heartAnimate.remove();
     treatImage.remove();
     goldLabel.remove();
+  }
+
+  //Refreshes the display redrawing all components
+  public void refreshDisplay() {
+    table.reset();
+    table.top().left();
+    table.setFillParent(true);
+    table.padTop(30f).padLeft(5f);
+    table.add(heartImage).size(heartSideLength).pad(5);
+    table.add(armourImage).size(armourSideLength).padLeft(15);
+    table.add(goldLabel).size(0).padLeft(15);
   }
 }
 
