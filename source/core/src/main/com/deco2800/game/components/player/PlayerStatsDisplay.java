@@ -30,6 +30,7 @@ public class PlayerStatsDisplay extends UIComponent {
   private Image treatImage;
   private String treatFileName;
   private Label goldLabel;
+  private final float armourSideLength = 200f;
 
 
   /**
@@ -70,7 +71,7 @@ public class PlayerStatsDisplay extends UIComponent {
     goldLabel = new Label(goldText, skin, "large");
 
     //Armour image
-    float armourSideLength = 200f;
+
     armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_full.png", Texture.class));
 
     // Armour text
@@ -185,6 +186,8 @@ public class PlayerStatsDisplay extends UIComponent {
       table.setFillParent(true);
       table.padTop(30f).padLeft(5f);
       table.add(heartImage).size(heartSideLength).pad(5);
+      table.add(armourImage).size(armourSideLength).padLeft(15);
+      table.add(goldLabel).size(0).padLeft(15);
     }
 
     //Notification appears and disposes
