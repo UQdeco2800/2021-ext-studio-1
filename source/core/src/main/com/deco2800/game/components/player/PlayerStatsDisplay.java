@@ -8,7 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.deco2800.game.components.CombatStatsComponent;
-import com.deco2800.game.components.TouchAttackComponent;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
 
@@ -19,17 +18,24 @@ public class PlayerStatsDisplay extends UIComponent {
   Table table;
   Table notification;
   Table heartAnimate;
+  Table goldAnimate;
+  Table goldBoard;
+
   private Image heartImage;
-  private Label healthLabel;
   private Image armourImage;
-  private Label armourLabel;
   private Image noImage;
   private Image treatImage;
-  private String treatFileName;
+  private Image goldImage;
+
+  private Label healthLabel;
+  private Label armourLabel;
   private Label goldLabel;
+
+  private String treatFileName;
+  private String goldFileName;
+
   private final float armourSideLength = 200f;
   private final float heartSideLength = 200f;
-
 
   /**
    * Creates reusable ui styles and adds actors to the stage.
@@ -38,7 +44,6 @@ public class PlayerStatsDisplay extends UIComponent {
   public void create() {
     super.create();
     addActors();
-
     entity.getEvents().addListener("updateHealth", this::updatePlayerHealthUI);
     entity.getEvents().addListener("updateArmour", this::updatePlayerArmourUI);
     entity.getEvents().addListener("updateGold", this::updatePlayerGoldUI);
@@ -62,14 +67,7 @@ public class PlayerStatsDisplay extends UIComponent {
     CharSequence healthText = String.format("Health: %d", health);
     healthLabel = new Label(healthText, skin, "large");
 
-    // Gold text
-    entity.getComponent(InventoryComponent.class).setGold(0);
-    int gold = entity.getComponent(InventoryComponent.class).getGold();
-    CharSequence goldText = String.format("Gold: %d", gold);
-    goldLabel = new Label(goldText, skin, "large");
-
     //Armour image
-
     armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_full.png", Texture.class));
 
     // Armour text
@@ -81,14 +79,17 @@ public class PlayerStatsDisplay extends UIComponent {
     table.add(goldLabel).size(0).padLeft(15);
     stage.addActor(table);
 
-    Table healthStats = new Table();
-    healthStats.top().left();
-    healthStats.setFillParent(true);
-    healthStats.padTop(100f).padLeft(5f);
-    //healthStats.add(healthLabel).pad(20);
-
-   // healthStats.add(armourLabel);
-    stage.addActor(healthStats);
+    // Gold board
+    entity.getComponent(InventoryComponent.class).setGold(0);
+    int gold = entity.getComponent(InventoryComponent.class).getGold();
+    CharSequence goldText = String.format("Gold: %d", gold);
+    goldLabel = new Label(goldText, skin, "large");
+    goldBoard = new Table();
+    goldBoard.top().left();
+    goldBoard.setFillParent(true);
+    goldBoard.padTop(110f).padLeft(10f);
+    goldBoard.add(goldLabel).pad(20);
+    stage.addActor(goldBoard);
 
     // Notification
     notification = new Table();
@@ -98,7 +99,6 @@ public class PlayerStatsDisplay extends UIComponent {
     float noWidth = 519f;
     float noHeight = 160f;
     noImage = new Image(ServiceLocator.getResourceService().getAsset("images/notification.png", Texture.class));
-
     notification.add(noImage).size(noWidth, noHeight).pad(5);
     stage.addActor(notification);
     notification.setVisible(false);
@@ -111,15 +111,15 @@ public class PlayerStatsDisplay extends UIComponent {
     heartAnimate =  new Table();
     heartAnimate.top().left();
     heartAnimate.setFillParent(true);
-    heartAnimate.padTop(60f).padLeft(200f);
+    heartAnimate.padTop(70f).padLeft(210f);
     new Thread() {
       public void run() {
         try {
-          for (int i = 0; i <= 2;i++) {
+          for (int i = 0; i <= 4;i++) {
             treatFileName =String.format("images/hurt%d.png",i);
             treatImage = new Image(ServiceLocator.getResourceService().getAsset(treatFileName, Texture.class));
-            heartAnimate.add(treatImage).size(70f,70f).pad(-15);
-            Thread.sleep(120);
+            heartAnimate.add(treatImage).size(50f,50f).pad(-15);
+            Thread.sleep(70);
             heartAnimate.clearChildren();
           }
         }
@@ -129,6 +129,33 @@ public class PlayerStatsDisplay extends UIComponent {
       }
     }.start();
     stage.addActor(heartAnimate);
+  }
+
+  /**
+   * Player get gold Animation
+   */
+  private void goldAnimate() {
+    goldAnimate =  new Table();
+    goldAnimate.top().left();
+    goldAnimate.setFillParent(true);
+    goldAnimate.padTop(125f).padLeft(180f);
+    new Thread() {
+      public void run() {
+        try {
+          for (int i = 0; i <= 4;i++) {
+            goldFileName =String.format("images/10coin%d.png",i);
+            goldImage = new Image(ServiceLocator.getResourceService().getAsset(goldFileName, Texture.class));
+            goldAnimate.add(goldImage).size(70f,70f).pad(-15);
+            Thread.sleep(70);
+            goldAnimate.clearChildren();
+          }
+        }
+        catch (InterruptedException e) {
+          //pass
+        }
+      }
+    }.start();
+    stage.addActor(goldAnimate);
   }
 
   @Override
@@ -226,7 +253,7 @@ public class PlayerStatsDisplay extends UIComponent {
     int gold = entity.getComponent(InventoryComponent.class).getGold();
     CharSequence text = String.format("Gold: %d", gold);
     goldLabel.setText(text);
-    refreshDisplay();
+    goldAnimate();
   }
 
   @Override
@@ -250,7 +277,6 @@ public class PlayerStatsDisplay extends UIComponent {
     table.padTop(30f).padLeft(5f);
     table.add(heartImage).size(heartSideLength).pad(5);
     table.add(armourImage).size(armourSideLength).padLeft(15);
-    table.add(goldLabel).size(0).padLeft(15);
   }
 }
 
