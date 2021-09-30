@@ -145,11 +145,6 @@ public class PlayerStatsDisplay extends UIComponent {
     //CharSequence text = String.format("Health: %d", health);
     //healthLabel.setText(text);
 
-    //Hurt animation
-    if (health >= 0) {
-      hurtAnimate();
-    }
-
     //Update the health bar & Armour Bar
     float heartSideLength = 200f;
     if(health>=0) {
@@ -168,18 +163,16 @@ public class PlayerStatsDisplay extends UIComponent {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_empty.png", Texture.class));
         long currentTime = ServiceLocator.getTimeSource().getTime();
         while (ServiceLocator.getTimeSource().getTime() - currentTime < 2000L) {
-            getEntity().getEvents().trigger("GameOver");
+          //Game over screen delay
+          Timer timer = new Timer();
+          TimerTask gameOver = new TimerTask() {
+            @Override
+            public void run() {
+              getEntity().getEvents().trigger("GameOver");
+            }
+          };
+          timer.schedule(gameOver,3000);
         }
-
-        //Old Game over screen delay
-        /**Timer timer = new Timer();
-        TimerTask gameOver = new TimerTask() {
-          @Override
-          public void run() {
-            getEntity().getEvents().trigger("GameOver");
-          }
-        };
-        timer.schedule(gameOver,2000);**/
       }
       table.reset();
       table.top().left();
@@ -188,6 +181,11 @@ public class PlayerStatsDisplay extends UIComponent {
       table.add(heartImage).size(heartSideLength).pad(5);
       table.add(armourImage).size(armourSideLength).padLeft(15);
       table.add(goldLabel).size(0).padLeft(15);
+    }
+
+    //Hurt animation
+    if (health >= 0) {
+      hurtAnimate();
     }
 
     //Notification appears and disposes
@@ -204,7 +202,6 @@ public class PlayerStatsDisplay extends UIComponent {
       }.start();
     }
   }
-
 
   /**
    * Updates the player's armour on the ui.
