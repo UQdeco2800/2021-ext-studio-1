@@ -163,15 +163,7 @@ public class PlayerStatsDisplay extends UIComponent {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_empty.png", Texture.class));
         long currentTime = ServiceLocator.getTimeSource().getTime();
         while (ServiceLocator.getTimeSource().getTime() - currentTime < 2000L) {
-          //Game over screen delay
-          Timer timer = new Timer();
-          TimerTask gameOver = new TimerTask() {
-            @Override
-            public void run() {
-              getEntity().getEvents().trigger("GameOver");
-            }
-          };
-          timer.schedule(gameOver,3000);
+          getEntity().getEvents().trigger("GameOver");
         }
       }
       table.reset();
