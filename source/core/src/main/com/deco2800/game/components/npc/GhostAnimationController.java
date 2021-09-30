@@ -25,4 +25,5 @@ public class GhostAnimationController extends Component {
   void animateChase() {
     animator.startAnimation("dragon");
   }
+
 }

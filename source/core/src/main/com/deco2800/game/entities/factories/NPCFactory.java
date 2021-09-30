@@ -76,7 +76,7 @@ public class NPCFactory {
 
     AnimationRenderComponent animator =
             new AnimationRenderComponent(
-                    ServiceLocator.getResourceService().getAsset("images/littleGreen.atlas", TextureAtlas.class));
+                    ServiceLocator.getResourceService().getAsset("images/littleGreen1.atlas", TextureAtlas.class));
     animator.addAnimation("angry_float", 0.1f, Animation.PlayMode.LOOP);
     animator.addAnimation("float", 0.5f, Animation.PlayMode.LOOP);
 
@@ -95,7 +95,7 @@ public class NPCFactory {
 
     AnimationRenderComponent animator =
             new AnimationRenderComponent(
-                    ServiceLocator.getResourceService().getAsset("images/demon1.png", TextureAtlas.class));
+                    ServiceLocator.getResourceService().getAsset("images/demon2.png", TextureAtlas.class));
     animator.addAnimation("angry_float", 0.1f, Animation.PlayMode.LOOP);
     animator.addAnimation("float", 0.5f, Animation.PlayMode.LOOP);
 
