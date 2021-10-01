@@ -81,7 +81,6 @@ public class PlayerStatsDisplay extends UIComponent {
     armourLabel = new Label(armourText, skin, "large");
     table.add(heartImage).size(heartSideLength).pad(5);
     table.add(armourImage).size(armourSideLength).padLeft(15);
-    table.add(coinCollectorImage).size(coinSideLength).padLeft(15);
     table.add(goldLabel).size(0).padLeft(15);
     stage.addActor(table);
 
@@ -91,10 +90,13 @@ public class PlayerStatsDisplay extends UIComponent {
     CharSequence goldText = String.format("Gold: %d", gold);
     goldLabel = new Label(goldText, skin, "large");
     goldBoard = new Table();
-    goldBoard.top().left();
+    goldBoard.top().right();
     goldBoard.setFillParent(true);
-    goldBoard.padTop(110f).padLeft(10f);
-    goldBoard.add(goldLabel).pad(20);
+    goldBoard.padTop(50f).padRight(250f);
+    float coinWidth = 375f;
+    float coinHeight = 120f;
+    table.add(coinCollectorImage).size(coinWidth, coinHeight).padLeft(468f);
+    goldBoard.add(goldLabel);
     stage.addActor(goldBoard);
 
     // Notification
