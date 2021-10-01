@@ -26,6 +26,7 @@ public class PlayerStatsDisplay extends UIComponent {
   private Image noImage;
   private Image treatImage;
   private Image goldImage;
+  private Image coinCollectorImage;
 
   private Label healthLabel;
   private Label armourLabel;
@@ -36,6 +37,7 @@ public class PlayerStatsDisplay extends UIComponent {
 
   private final float armourSideLength = 200f;
   private final float heartSideLength = 200f;
+  private final float coinSideLength = 200f;
 
   /**
    * Creates reusable ui styles and adds actors to the stage.
@@ -70,12 +72,16 @@ public class PlayerStatsDisplay extends UIComponent {
     //Armour image
     armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_full.png", Texture.class));
 
+    //Coin Collector System
+    coinCollectorImage = new Image(ServiceLocator.getResourceService().getAsset("images/coincollectortransparentvisual.png", Texture.class));
+
     // Armour text
     int armour = entity.getComponent(CombatStatsComponent.class).getArmour();
     CharSequence armourText = String.format("Armour: %d", armour);
     armourLabel = new Label(armourText, skin, "large");
     table.add(heartImage).size(heartSideLength).pad(5);
     table.add(armourImage).size(armourSideLength).padLeft(15);
+    table.add(coinCollectorImage).size(coinSideLength).padLeft(15);
     table.add(goldLabel).size(0).padLeft(15);
     stage.addActor(table);
 
@@ -264,6 +270,7 @@ public class PlayerStatsDisplay extends UIComponent {
     armourImage.remove();
     armourLabel.remove();
     noImage.remove();
+    coinCollectorImage.remove();
     heartAnimate.remove();
     treatImage.remove();
     goldLabel.remove();

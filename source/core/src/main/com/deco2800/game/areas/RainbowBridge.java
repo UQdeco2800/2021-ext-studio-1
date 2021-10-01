@@ -84,7 +84,8 @@ public class RainbowBridge extends GameArea {
             "images/attack.png",
             "images/new_player.png",
             "images/negbuff.png",
-            "images/posipuff.png"
+            "images/posipuff.png",
+            "images/coincollectortransparentvisual.png"
     };
 
     private static final String[] rainbowBridgeSounds = {"sounds/Impact4.ogg", "sounds/buff.ogg", "sounds/buff2.ogg" , "sounds/e.ogg", "sounds/attack.ogg"};
