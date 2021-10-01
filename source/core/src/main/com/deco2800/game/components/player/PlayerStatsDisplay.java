@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.deco2800.game.components.CombatStatsComponent;
 import com.deco2800.game.services.ServiceLocator;
@@ -38,6 +39,8 @@ public class PlayerStatsDisplay extends UIComponent {
   private final float armourSideLength = 200f;
   private final float heartSideLength = 200f;
   private final float coinSideLength = 200f;
+  private final float coinWidth = 375f;
+  private final float coinHeight = 120f;
 
   /**
    * Creates reusable ui styles and adds actors to the stage.
@@ -79,10 +82,12 @@ public class PlayerStatsDisplay extends UIComponent {
     int armour = entity.getComponent(CombatStatsComponent.class).getArmour();
     CharSequence armourText = String.format("Armour: %d", armour);
     armourLabel = new Label(armourText, skin, "large");
-    table.add(heartImage).size(heartSideLength).pad(5);
-    table.add(armourImage).size(armourSideLength).padLeft(15);
-    table.add(goldLabel).size(0).padLeft(15);
-    stage.addActor(table);
+    table.add(heartImage).size(heartSideLength).padRight(50);
+    table.add(armourImage).size(armourSideLength).padRight(50);
+
+
+
+
 
     // Gold board
     entity.getComponent(InventoryComponent.class).setGold(0);
@@ -92,12 +97,20 @@ public class PlayerStatsDisplay extends UIComponent {
     goldBoard = new Table();
     goldBoard.top().right();
     goldBoard.setFillParent(true);
-    goldBoard.padTop(50f).padRight(250f);
-    float coinWidth = 375f;
-    float coinHeight = 120f;
-    table.add(coinCollectorImage).size(coinWidth, coinHeight).padLeft(468f);
-    goldBoard.add(goldLabel);
+    goldBoard.padTop(45).padRight(172);
+
+    goldBoard.add(goldLabel).padLeft(50);
     stage.addActor(goldBoard);
+    Stack goldCount = new Stack();
+
+    coinCollectorImage.setSize(coinWidth, coinHeight);
+
+    goldCount.add(coinCollectorImage);
+    goldCount.add(goldBoard);
+    goldCount.setSize(coinWidth, coinHeight);
+    //table.row();
+    table.add(goldCount).size(coinWidth, coinHeight).padTop(30).padLeft(-600);
+    stage.addActor(table);
 
     // Notification
     notification = new Table();
@@ -280,12 +293,21 @@ public class PlayerStatsDisplay extends UIComponent {
 
   //Refreshes the display redrawing all components
   public void refreshDisplay() {
+    Stack goldCount = new Stack();
+
+    coinCollectorImage.setSize(coinWidth, coinHeight);
+
+    goldCount.add(coinCollectorImage);
+    goldCount.add(goldBoard);
+    goldCount.setSize(coinWidth, coinHeight);
+
     table.reset();
     table.top().left();
     table.setFillParent(true);
     table.padTop(30f).padLeft(5f);
-    table.add(heartImage).size(heartSideLength).pad(5);
-    table.add(armourImage).size(armourSideLength).padLeft(15);
+    table.add(heartImage).size(heartSideLength).padRight(50);
+    table.add(armourImage).size(armourSideLength).padRight(50);
+    table.add(goldCount).size(coinWidth, coinHeight).padTop(30).padLeft(-600);
   }
 }
 
