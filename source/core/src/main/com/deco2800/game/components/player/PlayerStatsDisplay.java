@@ -159,7 +159,7 @@ public class PlayerStatsDisplay extends UIComponent {
     goldAnimate =  new Table();
     goldAnimate.top().left();
     goldAnimate.setFillParent(true);
-    goldAnimate.padTop(125f).padLeft(180f);
+    goldAnimate.padTop(125f).padLeft(250f);
     new Thread() {
       public void run() {
         try {
