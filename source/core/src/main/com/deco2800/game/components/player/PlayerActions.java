@@ -118,13 +118,11 @@ public class PlayerActions extends Component {
       if (en.getType() == Entity.Type.GHOST || en.getType() == Entity.Type.GHOSTKING) {
         float dst = entity.getPosition().dst(en.getPosition());
         if (minDstEnemy > dst) {
-          minDstEnemy = dst;
           result = en;
         }
       } else if (en.getType() == Entity.Type.OBSTACLE ) {
         float dst = entity.getPosition().dst(en.getPosition());
         if (minDstObstacle > dst) {
-          minDstObstacle = dst;
           result = en;
         }
       }
