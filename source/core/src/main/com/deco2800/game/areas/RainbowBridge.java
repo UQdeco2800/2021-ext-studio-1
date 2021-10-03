@@ -60,12 +60,17 @@ public class RainbowBridge extends GameArea {
             "images/snake.png",
             "images/fire.png",
             "images/food.png",
+            "images/dragon.png",
+            "images/pixelghost.png",
+            "images/pixelghost1.png",
+            "images/littlegreen.png",
             "images/demon1.png",
             "images/attack.png",
             "images/new_player.png",
             "images/dragon1.png",
             "images/demon2.png",
             "images/littlegreen1.png",
+            "images/demon1.png",
 
 
     };
@@ -76,6 +81,10 @@ public class RainbowBridge extends GameArea {
 
     private static final String[] rainbowBridgeAtlases = {
             "images/terrain_iso_grass.atlas",
+            "images/demon1.png","images/ghost.atlas",
+            "images/ghostKing.atlas",
+            "images/dragon.atlas",
+            "images/littleGreen.atlas",
             "images/attack.atlas",
             "images/dragon1.atlas",
             "images/demon2.atlas",
