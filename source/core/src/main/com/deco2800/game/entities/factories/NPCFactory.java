@@ -37,9 +37,9 @@ public class NPCFactory {
   private static final NPCConfigs configs =
       FileLoader.readClass(NPCConfigs.class, "configs/NPCs.json");
 
-  /**
-   * Creates a ghost entity.
-   *
+  /** 
+   * Creates a ghost entity. 
+   * 
    * @param target entity to chase
    * @return entity
    */

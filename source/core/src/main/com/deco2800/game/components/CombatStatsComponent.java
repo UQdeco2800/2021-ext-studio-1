@@ -174,7 +174,8 @@ public class CombatStatsComponent extends Component {
       }
 
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
-        logger.error("attacker--{}", attacker.getEntity().getType());
+        logger.error("attacker--{}", attacker.getEntity().getType(),
+                attacker.getEntity());
         AnimationRenderComponent3 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent3.class);
         animator.startAnimation("buff");
@@ -210,7 +211,7 @@ public class CombatStatsComponent extends Component {
       }
 
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
-        logger.error("attacker--{}", attacker.getEntity().getType());
+        logger.error("attacker--{}", attacker.getEntity().getType(),attacker.getEntity());
         AnimationRenderComponent4 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent4.class);
         animator.startAnimation("deBuff");
@@ -236,6 +237,50 @@ public class CombatStatsComponent extends Component {
       setHealth(newHealth);
     }
 
+  }
+//  public void hitCoins(CombatStatsComponent attacker) {
+//    try {
+//      if (ServiceLocator.getTimeSource().getTimeSince(invincibleStart) < 1000L) {
+//        return;
+//      }
+//
+//      if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
+//        logger.error("attacker--{}", attacker.getEntity().getType(),attacker.getEntity());
+//        AnimationRenderComponent4 animator =
+//                attacker.getEntity().getComponent(AnimationRenderComponent4.class);
+//        animator.startAnimation("deBuff");
+//        Sound attackSound = ServiceLocator.getResourceService().getAsset(
+//                "sounds/buff2.ogg", Sound.class);
+//        attackSound.play();
+//        logger.error("--end--attacker--{}",attacker.getEntity().getType());
+//      }
+//
+//      if (armour > 0){
+//        int newArmour = getArmour() - attacker.getBaseAttack();
+//        setArmour(newArmour);
+//        invincibleStart = ServiceLocator.getTimeSource().getTime();
+//      }
+//      else{
+//        int newHealth = getHealth() - attacker.getBaseAttack();
+//        setHealth(newHealth);
+//        invincibleStart = ServiceLocator.getTimeSource().getTime();
+//      }
+//
+//    } catch (NullPointerException e) {
+//      int newHealth = getHealth() - attacker.getBaseAttack();
+//      setHealth(newHealth);
+//    }
+//
+//  }
+
+
+
+  public void getBackNormal(CombatStatsComponent attacker){
+    logger.error("attacker--{}", attacker.getEntity().getType());
+    AnimationRenderComponent4 animator =
+            attacker.getEntity().getComponent(AnimationRenderComponent4.class);
+    animator.startAnimation("default");
+    logger.error("--end--attacker--{}",attacker.getEntity().getType());
   }
 }
 
