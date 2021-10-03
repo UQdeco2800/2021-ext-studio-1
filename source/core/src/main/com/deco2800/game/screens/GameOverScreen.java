@@ -25,7 +25,7 @@ public class GameOverScreen extends ScreenAdapter {
     private final Renderer renderer;
 
     private static final String[] gameOverTextures = {"images/Death_Screen_Background.png", "images/Death_Screen_Character.png", "images/Gameover_Visual_Text.png",
-            "images/btn_restart1.png","images/btn_exit1.png"};
+            "images/btn_restart1.png","images/btn_exit1.png", "images/Gameover_Coincollector.png"};
 
     public GameOverScreen(GdxGame game) {
         this.game = game;

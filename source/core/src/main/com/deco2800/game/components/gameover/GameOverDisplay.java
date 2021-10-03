@@ -95,10 +95,14 @@ public class GameOverDisplay extends UIComponent {
                 Texture.class));
         Image gameOverText = new Image(ServiceLocator.getResourceService().getAsset("images/Gameover_Visual_Text.png",
                 Texture.class));
+        Image gameOverCoin = new Image(ServiceLocator.getResourceService().getAsset("images/Gameover_Coincollector.png",
+                Texture.class));
 
         table.add(playerDeadImage).size(350f,300f).padBottom(50f);
         table.row();
         table.add(gameOverText).size(500f,50f);
+        table.row();
+        table.add(gameOverCoin).size(600f,200f);
         table.row();
         table.add(restartBtn).padTop(30f).size(200f,80f).padTop(50f);
         table.row();
