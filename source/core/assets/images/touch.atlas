@@ -1,5 +1,5 @@
 touch.png
-size: 1280,1280
+size: 1280, 1280
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
