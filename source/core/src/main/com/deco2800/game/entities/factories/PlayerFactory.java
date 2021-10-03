@@ -74,6 +74,13 @@ public class PlayerFactory {
                                     TextureAtlas.class));
     animator4.addAnimation("deBuff", 0.15f, Animation.PlayMode.NORMAL);
 
+    AnimationRenderComponent6 animator6 =
+            new AnimationRenderComponent6(
+                    ServiceLocator.getResourceService()
+                            .getAsset("images/playercoin.atlas",
+                                    TextureAtlas.class));
+    animator6.addAnimation("coin", 0.1f, Animation.PlayMode.NORMAL);
+
 //    AnimationRenderComponent animator1 =
 //            new AnimationRenderComponent(
 //                    ServiceLocator.getResourceService()
@@ -107,7 +114,8 @@ public class PlayerFactory {
                 .addComponent(animator2)
                 .addComponent(animator3)
                 .addComponent(animator4)
-                .addComponent(animator5);
+                .addComponent(animator5)
+            .addComponent((animator6));
 
     PhysicsUtils.setScaledCollider(player, 0.6f, 0.3f);
     player.getComponent(ColliderComponent.class).setDensity(1.5f);

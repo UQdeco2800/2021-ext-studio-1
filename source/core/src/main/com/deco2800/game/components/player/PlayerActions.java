@@ -14,6 +14,7 @@ import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.deco2800.game.rendering.AnimationRenderComponent5;
+import com.deco2800.game.rendering.AnimationRenderComponent6;
 
 import javax.crypto.EncryptedPrivateKeyInfo;
 import java.security.Key;
@@ -45,6 +46,7 @@ public class PlayerActions extends Component {
     entity.getEvents().addListener("unAttack", this::unAttack);
     entity.getEvents().addListener("run", this::attack);
     entity.getEvents().addListener("run", this::run);
+    entity.getEvents().addListener("coin", this::attack);
   }
 
   @Override
@@ -114,6 +116,7 @@ public class PlayerActions extends Component {
     attackSound.play();
     animator2.stopAnimation();
     animator.startAnimation("attack");
+
 
   }
 
