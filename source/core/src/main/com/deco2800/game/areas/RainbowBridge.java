@@ -68,6 +68,10 @@ public class RainbowBridge extends GameArea {
             "images/attack.png",
             "images/new_player.png",
             "images/dragon1.png",
+            "images/demon2.png",
+            "images/littlegreen1.png",
+            "images/demon1.png",
+
 
     };
 
@@ -76,7 +80,16 @@ public class RainbowBridge extends GameArea {
     private static final String[] rainbowBridgeMusic = {backgroundMusic};
 
     private static final String[] rainbowBridgeAtlases = {
-            "images/terrain_iso_grass.atlas", "images/demon1.png","images/ghost.atlas", "images/ghostKing.atlas","images/dragon.atlas","images/littleGreen.atlas", "images/attack.atlas","images/dragon1.atlas"
+            "images/terrain_iso_grass.atlas",
+            "images/demon1.png","images/ghost.atlas",
+            "images/ghostKing.atlas",
+            "images/dragon.atlas",
+            "images/littleGreen.atlas",
+            "images/attack.atlas",
+            "images/dragon1.atlas",
+            "images/demon2.atlas",
+            "images/littlegreen1.atlas",
+            "images/demon1.atlas",
     };
 
     private final TerrainFactory terrainFactory;
