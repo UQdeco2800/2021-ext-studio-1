@@ -269,7 +269,7 @@ public class RainbowBridge extends GameArea {
             switch(i) {
                 case 0:
                     Timer ghost = new Timer();
-                    ghost.scheduleAtFixedRate(new TimerTask() {
+                    ghost.schedule(new TimerTask() {
                         @Override
                         public void run() {
                             Entity ghost = NPCFactory.createGhost(player);
@@ -279,7 +279,7 @@ public class RainbowBridge extends GameArea {
                     break;
                 case 1:
                     Timer littleGreen= new Timer();
-                    littleGreen.scheduleAtFixedRate(new TimerTask() {
+                    littleGreen.schedule(new TimerTask() {
                         @Override
                         public void run() {
                             Entity littleGreen = NPCFactory.createLittleGreen(player);
