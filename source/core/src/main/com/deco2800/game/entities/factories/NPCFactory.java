@@ -88,6 +88,24 @@ public class NPCFactory {
     return littleGreen;
   }
 
+  public static Entity createDemon(Entity target) {
+    Entity Demon = createBaseNPC(target);
+    BaseEntityConfig config = configs.Demon;
+
+    AnimationRenderComponent animator =
+            new AnimationRenderComponent(
+                    ServiceLocator.getResourceService().getAsset("images/demon1.atlas", TextureAtlas.class));
+    animator.addAnimation("dragon", 0.1f, Animation.PlayMode.LOOP);
+
+    Demon
+            .addComponent(new CombatStatsComponent(config.health, config.baseAttack))
+            .addComponent(animator)
+            .addComponent(new GhostAnimationController());
+
+    //littleGreen.getComponent(AnimationRenderComponent.class).scaleEntity();//
+
+    return Demon;
+  }
   /**
    * Creates a ghost king entity.
    *
