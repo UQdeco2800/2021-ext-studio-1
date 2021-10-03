@@ -123,7 +123,7 @@ public class RainbowBridge extends GameArea {
         player = spawnPlayer();
         spawnGhostKing();
      //   spawnLittleGreen();
-        spawnGhosts();
+        spawnMonster();
         playMusic();
     }
 
@@ -258,7 +258,7 @@ public class RainbowBridge extends GameArea {
         return newPlayer;
     }
 
-    private void spawnGhosts() {
+    private void spawnMonster() {
         List<Lane> lanes = terrain.getRainbowBridge().getLanes();
         for (int i = 0; i < lanes.size(); i++) {
             int y_coordinate = lanes.get(i).getMid();
@@ -268,18 +268,24 @@ public class RainbowBridge extends GameArea {
 
             switch(i) {
                 case 0:
-                    Timer timer = new Timer();
-                    timer.scheduleAtFixedRate(new TimerTask() {
+                    Timer ghost = new Timer();
+                    ghost.scheduleAtFixedRate(new TimerTask() {
                         @Override
                         public void run() {
                             Entity ghost = NPCFactory.createGhost(player);
                             spawnEntityAt(ghost, NUM_GHOST, true, true);
                         }
-                    },1000,1000);
+                    },1000,3000);
                     break;
                 case 1:
-                    Entity littleGreen = NPCFactory.createLittleGreen(player);
-                    spawnEntityAt(littleGreen, NUM_LITTLEGREEN, true, true);
+                    Timer littleGreen= new Timer();
+                    littleGreen.scheduleAtFixedRate(new TimerTask() {
+                        @Override
+                        public void run() {
+                            Entity littleGreen = NPCFactory.createLittleGreen(player);
+                            spawnEntityAt(littleGreen, NUM_LITTLEGREEN, true, true);
+                        }
+                    },1000,4000);
                     break;
             }
 
