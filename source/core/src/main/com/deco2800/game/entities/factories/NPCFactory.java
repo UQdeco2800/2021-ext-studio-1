@@ -49,7 +49,7 @@ public class NPCFactory {
 
     AnimationRenderComponent animator =
         new AnimationRenderComponent(
-            ServiceLocator.getResourceService().getAsset("images/ghost.atlas",
+            ServiceLocator.getResourceService().getAsset("images/demon1.atlas",
                     TextureAtlas.class));
     animator.addAnimation("angry_float", 0.1f, Animation.PlayMode.LOOP);
     animator.addAnimation("float", 0.5f, Animation.PlayMode.LOOP);
