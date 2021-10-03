@@ -103,9 +103,9 @@ public class NPCFactory {
     AnimationRenderComponent animator =
         new AnimationRenderComponent(
             ServiceLocator.getResourceService()
-                .getAsset("images/dragon.atlas", TextureAtlas.class));
-    animator.addAnimation("float", 0.1f, Animation.PlayMode.LOOP);
-    animator.addAnimation("angry_float", 0.1f, Animation.PlayMode.LOOP);
+                .getAsset("images/dragon1.atlas", TextureAtlas.class));
+    animator.addAnimation("dragon", 0.1f, Animation.PlayMode.LOOP);
+
 
 
     ghostKing
@@ -113,7 +113,7 @@ public class NPCFactory {
         .addComponent(animator)
         .addComponent(new GhostAnimationController());
 
-    ghostKing.getComponent(AnimationRenderComponent.class).scaleEntity();
+    /**ghostKing.getComponent(AnimationRenderComponent.class).scaleEntity();*/
     return ghostKing;
   }
 
