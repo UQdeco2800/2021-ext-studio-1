@@ -182,7 +182,7 @@ public class CombatStatsComponent extends Component {
                 attacker.getEntity().getComponent(AnimationRenderComponent3.class);
         animator.startAnimation("buff");
         Sound attackSound = ServiceLocator.getResourceService().getAsset(
-                "sounds/buff.ogg", Sound.class);
+                "sounds/buff_recover.ogg", Sound.class);
         attackSound.play();
 
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
@@ -218,7 +218,7 @@ public class CombatStatsComponent extends Component {
                 attacker.getEntity().getComponent(AnimationRenderComponent4.class);
         animator.startAnimation("deBuff");
         Sound attackSound = ServiceLocator.getResourceService().getAsset(
-                "sounds/buff2.ogg", Sound.class);
+                "sounds/e.ogg", Sound.class);
         attackSound.play();
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
       }
@@ -251,9 +251,9 @@ public class CombatStatsComponent extends Component {
         AnimationRenderComponent6 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent6.class);
         animator.startAnimation("coin");
-//        Sound attackSound = ServiceLocator.getResourceService().getAsset(
-//                "sounds/buff2.ogg", Sound.class);
-//        attackSound.play();
+        Sound attackSound = ServiceLocator.getResourceService().getAsset(
+                "sounds/coin.ogg", Sound.class);
+        attackSound.play();
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
       }
 
