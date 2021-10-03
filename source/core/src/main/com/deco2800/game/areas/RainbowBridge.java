@@ -6,17 +6,18 @@ import com.badlogic.gdx.math.Vector2;
 import com.deco2800.game.areas.terrain.TerrainFactory;
 import com.deco2800.game.areas.terrain.TerrainFactory.TerrainType;
 import com.deco2800.game.components.bridge.Bridge;
+import com.deco2800.game.components.bridge.Lane;
+import com.deco2800.game.components.gamearea.GameAreaDisplay;
 import com.deco2800.game.entities.Entity;
 import com.deco2800.game.entities.factories.NPCFactory;
 import com.deco2800.game.entities.factories.ObstacleFactory;
 import com.deco2800.game.entities.factories.PlayerFactory;
 import com.deco2800.game.services.ResourceService;
 import com.deco2800.game.services.ServiceLocator;
-import com.deco2800.game.components.gamearea.GameAreaDisplay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.util.List;
-import com.deco2800.game.components.bridge.Lane;
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -84,9 +85,9 @@ public class RainbowBridge extends GameArea {
     };
 
     private static final String[] rainbowBridgeSounds = {"sounds/Impact4.ogg", "sounds/buff.ogg", "sounds/buff2.ogg" , "sounds/e.ogg", "sounds/attack.ogg"};
-    private static final String backgroundMusic = "sounds/BGM_03_mp3.mp3";
-    private static final String backgroundMusic1 = "sounds/backgroundMusic1.mp3";
-    private static final String[] rainbowBridgeMusic = {backgroundMusic, backgroundMusic1};
+    private static final String backGroundMusic = "sounds/BGM_03_mp3.mp3";
+    private static final String backGroundMusic1 = "sounds/backGroundMusic1.mp3";
+    private static final String[] rainbowBridgeMusic = {backGroundMusic, backGroundMusic1};
 
     private static final String[] rainbowBridgeAtlases = {
 
@@ -170,6 +171,8 @@ public class RainbowBridge extends GameArea {
                     Entity thunderCloud = ObstacleFactory.createthunderCloud();
                     spawnEntityAt(thunderCloud, randomPosInLane, true, false);
                     break;
+                default:
+                    System.out.println("An error or exception might have occurred. Please check the switch case again");
                 // case 3:
                 //     Entity fire = ObstacleFactory.createFire();
                 //     spawnEntityAt(fire, randomPosInLane, true, false);
@@ -197,6 +200,8 @@ public class RainbowBridge extends GameArea {
                     Entity firstAid = ObstacleFactory.createFirstAidKit();
                     spawnEntityAt(firstAid, randomPosInLane, true, false);
                     break;
+                default:
+                    System.out.println("An error or exception might have occurred. Please check the switch case again");
             }
         }
     }
@@ -222,6 +227,8 @@ public class RainbowBridge extends GameArea {
                     Entity sword = ObstacleFactory.createSword();
                     spawnEntityAt(sword, randomPosInLane, true, false);
                     break;
+                default:
+                    System.out.println("An error or exception might have occurred. Please check the switch case again");
             }
             i++;
         }
@@ -245,6 +252,8 @@ public class RainbowBridge extends GameArea {
                     Entity diamond = ObstacleFactory.createDiamond();
                     spawnEntityAt(diamond, randomPosInLane, true, false);
                     break;
+                default:
+                    System.out.println("An error or exception might have occurred. Please check the switch case again");
             }
         }
     }
@@ -289,7 +298,7 @@ public class RainbowBridge extends GameArea {
 
 
     private void playMusic() {
-        Music music = ServiceLocator.getResourceService().getAsset(backgroundMusic1, Music.class);
+        Music music = ServiceLocator.getResourceService().getAsset(backGroundMusic1, Music.class);
         music.setLooping(true);
         music.setVolume(0.8f);
         music.play();
