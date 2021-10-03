@@ -49,17 +49,16 @@ public class NPCFactory {
 
     AnimationRenderComponent animator =
         new AnimationRenderComponent(
-            ServiceLocator.getResourceService().getAsset("images/ghost.atlas",
+            ServiceLocator.getResourceService().getAsset("images/ghost1.atlas",
                     TextureAtlas.class));
-    animator.addAnimation("angry_float", 0.1f, Animation.PlayMode.LOOP);
-    animator.addAnimation("float", 0.1f, Animation.PlayMode.LOOP);
+    animator.addAnimation("dragon", 0.1f, Animation.PlayMode.LOOP);
 
     ghost
         .addComponent(new CombatStatsComponent(config.health, config.baseAttack))
         .addComponent(animator)
         .addComponent(new GhostAnimationController());
 
-    ghost.getComponent(AnimationRenderComponent.class).scaleEntity();
+    //ghost.getComponent(AnimationRenderComponent.class).scaleEntity();//
 
     return ghost;
   }
@@ -76,16 +75,15 @@ public class NPCFactory {
 
     AnimationRenderComponent animator =
             new AnimationRenderComponent(
-                    ServiceLocator.getResourceService().getAsset("images/littleGreen.atlas", TextureAtlas.class));
-    animator.addAnimation("angry_float", 0.1f, Animation.PlayMode.LOOP);
-    animator.addAnimation("float", 0.1f, Animation.PlayMode.LOOP);
+                    ServiceLocator.getResourceService().getAsset("images/littlegreen1.atlas", TextureAtlas.class));
+    animator.addAnimation("dragon", 0.1f, Animation.PlayMode.LOOP);
 
     littleGreen
             .addComponent(new CombatStatsComponent(config.health, config.baseAttack))
             .addComponent(animator)
             .addComponent(new GhostAnimationController());
 
-    littleGreen.getComponent(AnimationRenderComponent.class).scaleEntity();
+    //littleGreen.getComponent(AnimationRenderComponent.class).scaleEntity();//
 
     return littleGreen;
   }
@@ -113,7 +111,7 @@ public class NPCFactory {
         .addComponent(animator)
         .addComponent(new GhostAnimationController());
 
-    /**ghostKing.getComponent(AnimationRenderComponent.class).scaleEntity();*/
+    //ghostKing.getComponent(AnimationRenderComponent.class).scaleEntity();//
     return ghostKing;
   }
 
