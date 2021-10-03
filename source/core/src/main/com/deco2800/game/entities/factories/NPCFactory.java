@@ -52,7 +52,7 @@ public class NPCFactory {
             ServiceLocator.getResourceService().getAsset("images/ghost1.atlas",
                     TextureAtlas.class));
     animator.addAnimation("ghost1", 0.5f, Animation.PlayMode.LOOP);
-
+    animator.addAnimation("ghost1", 0.1f, Animation.PlayMode.LOOP);
 
     ghost
         .addComponent(new CombatStatsComponent(config.health, config.baseAttack))
@@ -78,7 +78,7 @@ public class NPCFactory {
             new AnimationRenderComponent(
                     ServiceLocator.getResourceService().getAsset("images/littleGreen1.atlas", TextureAtlas.class));
     animator.addAnimation("littleGreen1", 0.5f, Animation.PlayMode.LOOP);
-
+    animator.addAnimation("littleGreen1", 0.1f, Animation.PlayMode.LOOP);
 
     littleGreen
             .addComponent(new CombatStatsComponent(config.health, config.baseAttack))
@@ -97,6 +97,7 @@ public class NPCFactory {
             new AnimationRenderComponent(
                     ServiceLocator.getResourceService().getAsset("images/demon1.png", TextureAtlas.class));
     animator.addAnimation("demon1", 0.5f, Animation.PlayMode.LOOP);
+    animator.addAnimation("demon1", 0.1f, Animation.PlayMode.LOOP);
 
     Demon
             .addComponent(new CombatStatsComponent(config.health, config.baseAttack))

@@ -3,28 +3,28 @@ size: 1280, 640
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-dragon
+ghost1
   rotate: false
   xy: 0, 0
   size: 640, 640
   orig: 640, 640
   offset: 0, 0
   index: -1
-dragon
+ghost1
   rotate: false
   xy: 640, 0
   size: 640, 640
   orig: 640, 640
   offset: 0, 0
   index: -1
-dragon
+ghost1
   rotate: false
   xy: 0, 0
   size: 640, 640
   orig: 640, 640
   offset: 0, 0
   index: -1
-dragon
+ghost1
   rotate: false
   xy: 640, 0
   size: 640, 640
