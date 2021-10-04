@@ -33,7 +33,8 @@ public class RainbowBridge extends GameArea {
     private static final int NUM_GHOSTS = 2;
 //    private static final int NUM_LittleGreen = 5;
     private static final GridPoint2 NUM_LittleGreen = new GridPoint2(30, 7);
-    private static final GridPoint2 GHOST_KING = new GridPoint2(30, 15);
+    private static final GridPoint2 GHOST_KING = new GridPoint2(30, 16);
+    private static final GridPoint2 Demon = new GridPoint2(30, 13);
     private static final GridPoint2 NUM_GHOST = new GridPoint2(30, 10);
     private static final String[] rainbowBridgeTextures = {
             "images/terrain/star-blank.png",
@@ -73,17 +74,18 @@ public class RainbowBridge extends GameArea {
             "images/diamond.png",
             "images/coin.gif",
             "images/diamond.gif",
-            "images/dragon.png",
             "images/pixelghost.png",
             "images/pixelghost1.png",
-            "images/littlegreen.png",
+            "images/littlegreen1.png",
             "images/attack.png",
-            "images/new_player.png",
             "images/negbuff.png",
             "images/posipuff.png",
             "images/run.png",
             "images/blank.png",
-            "images/playercoin.png"
+            "images/playercoin.png",
+            "images/dragon1.png",
+            "images/demon1.png",
+            "images/ghost1.png"
 
     };
 
@@ -94,11 +96,10 @@ public class RainbowBridge extends GameArea {
 
     private static final String[] rainbowBridgeAtlases = {
 
-            "images/terrain_iso_grass.atlas", "images/ghost.atlas", "images" +
-            "/ghostKing.atlas","images/dragon.atlas","images/littleGreen" +
+            "images/terrain_iso_grass.atlas", "images/ghost1.atlas", "images" +
+            "/ghostKing.atlas","images/demon1.atlas","images/dragon1.atlas","images/littlegreen1" +
             ".atlas", "images/attack.atlas", "images/touch.atlas","images" +
-            "/negbuff.atlas", "images/posipuff.atlas",  "images/food.atlas",
-            "images/run.atlas", "images/playercoin.atlas"
+            "/negbuff.atlas", "images/posipuff.atlas","images/run.atlas", "images/playercoin.atlas"
     };
 
     private final TerrainFactory terrainFactory;
@@ -125,6 +126,7 @@ public class RainbowBridge extends GameArea {
         player = spawnPlayer();
         spawnGhostKing();
         spawnLittleGreen();
+        spawnDemon();
         spawnGhosts();
         playMusic();
     }
@@ -263,7 +265,7 @@ public class RainbowBridge extends GameArea {
     private void spawnGhosts() {
 
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 20; i++) {
             Entity ghost = NPCFactory.createGhost(player);
             spawnEntityAt(ghost, NUM_GHOST, true, true);
 
@@ -271,16 +273,28 @@ public class RainbowBridge extends GameArea {
     }
 
     private void spawnLittleGreen() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 20; i++) {
 
             Entity littleGreen = NPCFactory.createLittleGreen(player);
             spawnEntityAt(littleGreen, NUM_LittleGreen, true, true);
         }
     }
 
+    private void spawnDemon() {
+        for (int i = 0; i < 20; i++) {
+
+            Entity demon = NPCFactory.createDemon(player);
+            spawnEntityAt(demon,Demon, true, true);
+        }
+    }
+
+//    private void removeMonster(){
+//        if()
+//    }
+
     private void spawnGhostKing() {
         Entity ghostKing = NPCFactory.createGhostKing(player);
-        spawnEntityAt(ghostKing, GHOST_KING, true, true);
+            spawnEntityAt(ghostKing, GHOST_KING, true, true);
     }
 
     public Bridge getRainbowBridge() {

@@ -38,7 +38,7 @@ public class RagnorakRacer extends ScreenAdapter {
     private static final String[] mainGameTextures = {"images/health_full.png", "images/health_decrease_two.png",
             "images/health_decrease_one.png", "images/health_empty.png", "images/armour_full.png", "images/armour_decrease_two.png",
             "images/armour_decrease_one.png", "images/armour_empty.png", "images/notification.png",
-            "images/hurt0.png","images/hurt1.png","images/hurt2.png","images/hurt3.png","images/hurt4.png", "images/dragon.png",
+            "images/hurt0.png","images/hurt1.png","images/hurt2.png","images/hurt3.png","images/hurt4.png",
             "images/10coin0.png","images/10coin1.png","images/10coin2.png","images/10coin3.png","images/10coin4.png"};
     private static final Vector2 CAMERA_POSITION = new Vector2(7.5f, 7.5f);
 
