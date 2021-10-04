@@ -57,9 +57,10 @@ public class AnimationRenderComponent4 extends RenderComponent {
      * @param name Name of the animation. Must match the name of this animation inside the texture
      *             atlas.
      * @param frameDuration How long, in seconds, to show each frame of the animation for when playing
+     * @param i
      * @return true if added successfully, false otherwise
      */
-    public boolean addAnimation(String name, float frameDuration) {
+    public boolean addAnimation(String name, float frameDuration, int i) {
         return addAnimation(name, frameDuration, PlayMode.NORMAL);
     }
 

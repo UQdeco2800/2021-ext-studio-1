@@ -129,8 +129,9 @@ public class KeyboardPlayerInputComponent extends InputComponent {
   }
 
   private void triggerWalkEvent() {
+    entity.getEvents().trigger("run");
     if (walkDirection.epsilonEquals(Vector2.Zero)) {
-      entity.getEvents().trigger("walkStop");
+      entity.getEvents().trigger("run");
     } else {
       entity.getEvents().trigger("walk", walkDirection);
     }
