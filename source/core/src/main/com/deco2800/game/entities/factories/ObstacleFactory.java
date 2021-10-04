@@ -12,6 +12,10 @@ import com.deco2800.game.rendering.TextureRenderComponent;
 import com.deco2800.game.components.CombatStatsComponent;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.deco2800.game.services.ServiceLocator;
+import com.deco2800.game.files.FileLoader;
+import com.deco2800.game.entities.configs.NPCConfigs;
+import com.deco2800.game.entities.configs.BaseEntityConfig;
+import com.deco2800.game.components.TouchAttackComponent;
 
 /**
  * Factory to create obstacle entities.
@@ -36,7 +40,7 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
-						.addComponent(new CombatStatsComponent(100, 0))
+						.addComponent(new CombatStatsComponent(100, 1))
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE));
 
 		tree.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -51,9 +55,11 @@ public class ObstacleFactory {
 						.addComponent(new TextureRenderComponent("images/RunesGate.gif"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
+						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
+                   		.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
 						// .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						// .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
-						.addComponent(new CombatStatsComponent(100, 0));
+						.addComponent(new CombatStatsComponent(100, -1));
 
 		// RunesGate.getEvents().addListener("contentReachedEndOfMap", this::disposeContent);
 
@@ -69,9 +75,11 @@ public class ObstacleFactory {
 						.addComponent(new TextureRenderComponent("images/stone.png"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
+						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
+                    	.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
 						// .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						// .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
-						.addComponent(new CombatStatsComponent(100, 0));
+						.addComponent(new CombatStatsComponent(100, 1));
 
 		// stone.getEvents().addListener("contentReachedEndOfMap", this::disposeContent);
 
@@ -90,9 +98,11 @@ public class ObstacleFactory {
 						.addComponent(new TextureRenderComponent("images/thunderCloud.gif"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
+						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
+                    	.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
 						// .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						// .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
-						.addComponent(new CombatStatsComponent(100, 0));
+						.addComponent(new CombatStatsComponent(100, 1));
 
 		// thunderCloud.getEvents().addListener("contentReachedEndOfMap", this::disposeContent);
 
@@ -110,9 +120,11 @@ public class ObstacleFactory {
 						.addComponent(new TextureRenderComponent("images/fire.png"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
+						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
+                    	.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
 						// .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						// .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
-						.addComponent(new CombatStatsComponent(100, 0));
+						.addComponent(new CombatStatsComponent(100, 1));
 
 		// fire.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
 		fire.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -129,9 +141,11 @@ public class ObstacleFactory {
 						.addComponent(new TextureRenderComponent("images/food.png"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
+						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
+                    	.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
 						// .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						// .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
-						.addComponent(new CombatStatsComponent(100, 0));
+						.addComponent(new CombatStatsComponent(100, -1));
 
 		// food.getComponent(PhysicsComponent.class).setBodyType(BodyType.StaticBody);
 		// food.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -149,7 +163,7 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsMovementComponent())
 						// .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						// .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
-						.addComponent(new CombatStatsComponent(100, 0));
+						.addComponent(new CombatStatsComponent(100, 1));
 
 		axe.getComponent(TextureRenderComponent.class).scaleEntity();
 		// PhysicsUtils.setScaledCollider(axe, 0.5f, 0.2f);
@@ -164,7 +178,7 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsMovementComponent())
 						// .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						// .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
-						.addComponent(new CombatStatsComponent(100, 0));
+						.addComponent(new CombatStatsComponent(100, 1));
 
 		sword.getComponent(TextureRenderComponent.class).scaleEntity();
 		// PhysicsUtils.setScaledCollider(sword, 0.5f, 0.2f);
@@ -179,7 +193,7 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsMovementComponent())
 						// .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						// .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
-						.addComponent(new CombatStatsComponent(100, 0));
+						.addComponent(new CombatStatsComponent(100, 1));
 
 		bow.getComponent(TextureRenderComponent.class).scaleEntity();
 		// PhysicsUtils.setScaledCollider(bow, 0.5f, 0.2f);
@@ -194,7 +208,7 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsMovementComponent())
 						// .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						// .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
-						.addComponent(new CombatStatsComponent(100, 0));
+						.addComponent(new CombatStatsComponent(100, 1));
 
 		coin.getComponent(TextureRenderComponent.class).scaleEntity();
 		// PhysicsUtils.setScaledCollider(coin, 0.5f, 0.2f);
@@ -209,7 +223,7 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsMovementComponent())
 						// .addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						// .addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
-						.addComponent(new CombatStatsComponent(100, 0));
+						.addComponent(new CombatStatsComponent(100, 1));
 
 		diamond.getComponent(TextureRenderComponent.class).scaleEntity();
 		// PhysicsUtils.setScaledCollider(diamond, 0.5f, 0.2f);
@@ -223,9 +237,11 @@ public class ObstacleFactory {
                     .addComponent(new TextureRenderComponent("images/FirstAidKit.png"))
                     .addComponent(new PhysicsComponent())
 					.addComponent(new PhysicsMovementComponent())
+					.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
+                    .addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
                     // .addComponent(new ColliderComponent().setLayer(PhysicsLayer.BUFF))
                     // .addComponent(new HitboxComponent().setLayer(PhysicsLayer.BUFF))
-                    .addComponent(new CombatStatsComponent(100,0));
+                    .addComponent(new CombatStatsComponent(100,-1));
 
 					
 	// FirstAidKit.getEvents().addListener("contentReachedEndOfMap", this::disposeContent);

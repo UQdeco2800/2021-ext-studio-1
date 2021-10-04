@@ -33,7 +33,7 @@ public class RainbowBridge extends GameArea {
     private static final GridPoint2 PLAYER_SPAWN = new GridPoint2(1, 8);
     private static final float WALL_WIDTH = 0.1f;
     private static final int NUM_TREES = 7;
-    private static final int NUM_OBSTACLES = 3000;
+    private static final int NUM_OBSTACLES = 100;
     private static final int NUM_HEALTH_OBJECTS = 1000;
     private static final int NUM_WEAPON = 0;
     private static final int NUM_COLLECTABLES = 1000;
