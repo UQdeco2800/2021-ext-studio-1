@@ -24,7 +24,7 @@ public class PlayerStatsDisplay extends UIComponent {
   private Image noImage;
   private Image treatImage;
   private String treatFileName;
-
+  final String l = (String) "large";
 
   /**
    * Creates reusable ui styles and adds actors to the stage.
@@ -55,7 +55,7 @@ public class PlayerStatsDisplay extends UIComponent {
     // Health text
     int health = entity.getComponent(CombatStatsComponent.class).getHealth();
     CharSequence healthText = String.format("Health: %d", health);
-    healthLabel = new Label(healthText, skin, "large");
+    healthLabel = new Label(healthText, skin, l);
 
     //Armour image
     float armourSideLength = 200f;
@@ -64,7 +64,7 @@ public class PlayerStatsDisplay extends UIComponent {
     // Armour text
     int armour = entity.getComponent(CombatStatsComponent.class).getArmour();
     CharSequence armourText = String.format("Armour: %d", armour);
-    armourLabel = new Label(armourText, skin, "large");
+    armourLabel = new Label(armourText, skin, l);
     table.add(heartImage).size(heartSideLength).pad(5);
     table.add(armourImage).size(armourSideLength).padLeft(15);
     stage.addActor(table);
