@@ -15,8 +15,13 @@ import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.components.gamearea.GameAreaDisplay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.awt.*;
 import java.util.List;
 import com.deco2800.game.components.bridge.Lane;
+
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -32,10 +37,10 @@ public class RainbowBridge extends GameArea {
     private static final int NUM_COLLECTABLES = 5;
     private static final int NUM_GHOSTS = 2;
 //    private static final int NUM_LittleGreen = 5;
-    private static final GridPoint2 NUM_LittleGreen = new GridPoint2(30, 7);
-    private static final GridPoint2 GHOST_KING = new GridPoint2(30, 16);
-    private static final GridPoint2 Demon = new GridPoint2(30, 13);
-    private static final GridPoint2 NUM_GHOST = new GridPoint2(30, 10);
+    private static final GridPoint2 NUM_LittleGreen = new GridPoint2(29, 7);
+    private static final GridPoint2 GHOST_KING = new GridPoint2(29, 16);
+    private static final GridPoint2 Demon = new GridPoint2(29, 13);
+    private static final GridPoint2 NUM_GHOST = new GridPoint2(29, 10);
     private static final String[] rainbowBridgeTextures = {
             "images/terrain/star-blank.png",
             "images/terrain/star-1.png",
@@ -263,38 +268,47 @@ public class RainbowBridge extends GameArea {
     }
 
     private void spawnGhosts() {
-
-
-        for (int i = 0; i < 20; i++) {
-            Entity ghost = NPCFactory.createGhost(player);
-            spawnEntityAt(ghost, NUM_GHOST, true, true);
-
-        }
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Entity ghost = NPCFactory.createGhost(player);
+                spawnEntityAt(ghost, NUM_GHOST, true, true);
+            }
+        },100,7000);
     }
 
     private void spawnLittleGreen() {
-        for (int i = 0; i < 20; i++) {
-
-            Entity littleGreen = NPCFactory.createLittleGreen(player);
-            spawnEntityAt(littleGreen, NUM_LittleGreen, true, true);
-        }
+            Timer timer = new Timer();
+            timer.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    Entity littleGreen = NPCFactory.createLittleGreen(player);
+                    spawnEntityAt(littleGreen, NUM_LittleGreen, true, true);
+                }
+            },100, 8000);
     }
 
     private void spawnDemon() {
-        for (int i = 0; i < 20; i++) {
-
-            Entity demon = NPCFactory.createDemon(player);
-            spawnEntityAt(demon,Demon, true, true);
-        }
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+                           @Override
+                           public void run() {
+                               Entity demon = NPCFactory.createDemon(player);
+                               spawnEntityAt(demon,Demon, true, true);
+                           }
+                       },100,9000);
     }
 
-//    private void removeMonster(){
-//        if()
-//    }
-
     private void spawnGhostKing() {
-        Entity ghostKing = NPCFactory.createGhostKing(player);
-            spawnEntityAt(ghostKing, GHOST_KING, true, true);
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                    Entity ghostKing = NPCFactory.createGhostKing(player);
+                    spawnEntityAt(ghostKing, GHOST_KING, true, true);
+            }
+        },100,20000);
     }
 
     public Bridge getRainbowBridge() {
