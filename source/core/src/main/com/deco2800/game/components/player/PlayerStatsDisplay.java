@@ -32,7 +32,6 @@ public class PlayerStatsDisplay extends UIComponent {
   private Label goldLabel;
 
   private String treatFileName;
-  final String l = (String) "large";
   private String goldFileName;
 
   private final float armourSideLength = 200f;
@@ -66,7 +65,7 @@ public class PlayerStatsDisplay extends UIComponent {
     // Health text
     int health = entity.getComponent(CombatStatsComponent.class).getHealth();
     CharSequence healthText = String.format("Health: %d", health);
-    healthLabel = new Label(healthText, skin, l);
+    healthLabel = new Label(healthText, skin, "large");
 
     //Armour image
     armourImage = new Image(ServiceLocator.getResourceService().getAsset("images/armour_full.png", Texture.class));
@@ -74,7 +73,7 @@ public class PlayerStatsDisplay extends UIComponent {
     // Armour text
     int armour = entity.getComponent(CombatStatsComponent.class).getArmour();
     CharSequence armourText = String.format("Armour: %d", armour);
-    armourLabel = new Label(armourText, skin, l);
+    armourLabel = new Label(armourText, skin, "large");
     table.add(heartImage).size(heartSideLength).pad(5);
     table.add(armourImage).size(armourSideLength).padLeft(15);
     table.add(goldLabel).size(0).padLeft(15);
@@ -125,7 +124,7 @@ public class PlayerStatsDisplay extends UIComponent {
           }
         }
         catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
+          //pass
         }
       }
     }.start();
@@ -211,7 +210,7 @@ public class PlayerStatsDisplay extends UIComponent {
             notification.setVisible(false);
           }
           catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            //pass
           }
         }
       }.start();

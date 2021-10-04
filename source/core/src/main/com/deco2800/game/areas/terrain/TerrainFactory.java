@@ -147,7 +147,7 @@ public class TerrainFactory {
     // width - width of a lane
     // laneCount - amount of lanes to generate
     // starPopulation - Number of stars to appear in the sky (based on probability, higher value = less stars)
-    int offset = 4;
+    int offset = 6;
     int width = 3;
     int laneCount = 4;
     int starPopulation = 20;
@@ -271,7 +271,7 @@ public class TerrainFactory {
     for (int i = 0; i < laneCount; i++) {
       bridge.createLane();
       Lane lane = bridge.getLastLane();
-      fillTilesInRange(layer, bridgeTileColours.get(i), (int) lane.getBot(), (int) lane.getTop(), 0, MAP_SIZE.x);
+      fillTilesInRange(layer, bridgeTileColours.get(i), lane.getBot(), lane.getTop(), 0, MAP_SIZE.x);
     }
 
     tiledMap.getLayers().add(layer);

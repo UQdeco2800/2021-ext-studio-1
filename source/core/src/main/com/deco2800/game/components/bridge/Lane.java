@@ -8,24 +8,22 @@ package com.deco2800.game.components.bridge;
  */
 public class Lane implements Location {
 
-    private float y1;
-    private float y2;
-    private float mid;
-    private Bridge bridge;
+    private int y1;
+    private int y2;
+    private int mid;
 
     /**
      * Set 2 y-coordinate that defines the bounds of a lane
      * @param top top y coordinate
      * @param bot bottom y coordinate
      */
-    public Lane(float top, float bot, Bridge bridge) {
+    public Lane(int top, int bot) {
         if (top >= bot) {
             throw new IllegalArgumentException("top y-coordinate cannot be bigger or equal to bottom y-coordinate");
         } else {
             this.y1 = top;
             this.y2 = bot;
             this.mid = (top + bot) / 2;
-            this.bridge = bridge;
         }
     }
 
@@ -33,7 +31,7 @@ public class Lane implements Location {
      * returns the top y-coordinate of the lane
      * @return a y-coordinate
      */
-    public float getY1() {
+    public int getY1() {
         return this.y1;
     }
 
@@ -41,7 +39,7 @@ public class Lane implements Location {
      * returns the bottom y-coordinate of the lane
      * @return a y-coordinate
      */
-    public float getY2() {
+    public int getY2() {
         return this.y2;
     }
 
@@ -50,8 +48,8 @@ public class Lane implements Location {
      * TerrainFactory fills tiles from the bottom up
      * @return a y-coordinate
      */
-    public float getMid() {
-        return this.bridge.rescaleYGridToYView(this.mid);
+    public int getMid() {
+        return this.mid;
     }
 
     /**
@@ -59,8 +57,8 @@ public class Lane implements Location {
      * TerrainFactory fills tiles from the bottom up
      * @return a y-coordinate
      */
-    public float getTop() {
-        return this.bridge.rescaleYGridToYView(this.y2);
+    public int getTop() {
+        return this.y2;
     }
 
     /**
@@ -68,7 +66,7 @@ public class Lane implements Location {
      * TerrainFactory fills tiles from the bottom up
      * @return a y-coordinate
      */
-    public float getBot() {
-        return this.bridge.rescaleYGridToYView(this.y1);
+    public int getBot() {
+        return this.y1;
     }
 }
