@@ -246,7 +246,7 @@ public class ObstacleFactory {
 					
 	// FirstAidKit.getEvents().addListener("contentReachedEndOfMap", this::disposeContent);
     FirstAidKit.getComponent(TextureRenderComponent.class).scaleEntity();
-    FirstAidKit.scaleHeight(2.5f);
+    FirstAidKit.scaleHeight(1f);
     // PhysicsUtils.setScaledCollider(FirstAidKit, 0.5f, 0.2f);
     // combat.addHealth(2);
     return FirstAidKit;
