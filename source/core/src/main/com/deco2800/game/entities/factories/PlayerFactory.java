@@ -122,7 +122,8 @@ public class PlayerFactory {
                 .addComponent(animator3)
                 .addComponent(animator4)
                 .addComponent(animator5)
-            .addComponent((animator6));
+            .addComponent(animator6)
+            .addComponent(animator7);
 
     PhysicsUtils.setScaledCollider(player, 0.6f, 0.3f);
     player.getComponent(ColliderComponent.class).setDensity(1.5f);

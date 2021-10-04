@@ -67,7 +67,7 @@ public class ObstacleFactory {
 
 	public static Entity createStoneObstacle() {
 		Entity stone =
-				new Entity(Entity.Type.OBSTACLE)
+				new Entity(Entity.Type.DEBUFF)
 						.addComponent(new TextureRenderComponent("images/stone.png"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
@@ -99,7 +99,7 @@ public class ObstacleFactory {
 
 	public static Entity createFire() {
 		Entity fire =
-				new Entity(Entity.Type.OBSTACLE)
+				new Entity(Entity.Type.DEBUFF)
 						.addComponent(new TextureRenderComponent("images/fire.png"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
@@ -114,7 +114,7 @@ public class ObstacleFactory {
 
 	public static Entity createFood() {
 		Entity food =
-				new Entity()
+				new Entity(Entity.Type.BUFF)
 						.addComponent(new TextureRenderComponent("images/food.png"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
