@@ -2,7 +2,6 @@ package com.deco2800.game.entities;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.IntMap;
 import com.deco2800.game.components.CombatStatsComponent;
 import com.deco2800.game.components.Component;
@@ -56,7 +55,7 @@ public class Entity {
   }
 
   public enum Type {
-    PLAYER, GHOST, OBSTACLE, GHOSTKING, BUFF, DEBUFF, WEAPON, COLLECTABLES
+    PLAYER, GHOST, OBSTACLE, GHOSTKING,WEAPON,COLLECTABLES,BUFF,DEBUFF
   }
 
   public Entity.Type getType() {
@@ -221,15 +220,6 @@ public class Entity {
       component.dispose();
     }
     ServiceLocator.getEntityService().unregister(this);
-  }
-
-   /** Dispose of the entity from an event listener. This will dispose of all components on this entity. */
-  public void disposeFromListener(String evt, Fixture fixture, Fixture otherFixture) {
-    for (Component component : createdComponents) {
-      component.dispose();
-    }
-    ServiceLocator.getEntityService().unregister(this);
-    return;
   }
 
   /** Attack of the entity. This will attack of all components on this entity. */
