@@ -33,7 +33,7 @@ public class RainbowBridge extends GameArea {
     private static final GridPoint2 PLAYER_SPAWN = new GridPoint2(1, 8);
     private static final float WALL_WIDTH = 0.1f;
     private static final int NUM_TREES = 7;
-    private static final int NUM_OBSTACLES = 1200;
+    private static final int NUM_OBSTACLES = 3000;
     private static final int NUM_HEALTH_OBJECTS = 1000;
     private static final int NUM_WEAPON = 0;
     private static final int NUM_COLLECTABLES = 1000;
@@ -232,48 +232,53 @@ public class RainbowBridge extends GameArea {
             int y_coordinate = lanes.get(i).getMid();
             int x_random = ThreadLocalRandom.current().nextInt(5, 100 + 1);  // min x=5, max x=30
             GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
-        
-            switch(i) {
-                case 0:
-                    Entity food = ObstacleFactory.createFood();
-                    spawnEntityAt(food, randomPosInLane, true, true);
-                    this.startMapContentsMovement(food, i);
-                    break;
-                case 1:
-                    Entity firstAid = ObstacleFactory.createFirstAidKit();
-                    spawnEntityAt(firstAid, randomPosInLane, true, true);
-                    this.startMapContentsMovement(firstAid, i);
-                    break;
+
+            while (d < this.NUM_OBSTACLES) {
+                switch(i) {
+                    case 0:
+                        Entity food = ObstacleFactory.createFood();
+                        spawnEntityAt(food, randomPosInLane, true, true);
+                        this.startMapContentsMovement(food, i);
+                        break;
+                    case 1:
+                        Entity firstAid = ObstacleFactory.createFirstAidKit();
+                        spawnEntityAt(firstAid, randomPosInLane, true, true);
+                        this.startMapContentsMovement(firstAid, i);
+                        break;
+                }
+                d++;
             }
         }
     }
     private void spawnWeaponObjects() {
         GridPoint2 minPos = new GridPoint2(0, 0);
         List<Lane> lanes = terrain.getRainbowBridge().getLanes();
-        int i = 0;
-        for (Lane lane : lanes) {
-            int y_coordinate = lane.getMid();
-            int x_random = ThreadLocalRandom.current().nextInt(5, 28 + 1);  // min x=5, max x=28
+        for (int i = 0; i < lanes.size(); i++) {
+            int d = 0;
+            int y_coordinate = lanes.get(i).getMid();
+            int x_random = ThreadLocalRandom.current().nextInt(5, 100 + 1);  // min x=5, max x=28
             GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
         
-            switch(i) {
-                case 0:
-                    Entity axe = ObstacleFactory.createAxe();
-                    spawnEntityAt(axe, randomPosInLane, true, true);
-                    this.startMapContentsMovement(axe, i);
-                    break;
-                case 1:
-                    Entity bow = ObstacleFactory.createBow();
-                    spawnEntityAt(bow, randomPosInLane, true, true);
-                    this.startMapContentsMovement(bow, i);
-                    break;
-                case 2:
-                    Entity sword = ObstacleFactory.createSword();
-                    spawnEntityAt(sword, randomPosInLane, true, true);
-                    this.startMapContentsMovement(sword, i);
-                    break;
+            while (d < this.NUM_OBSTACLES) {
+                switch(i) {
+                    case 0:
+                        Entity axe = ObstacleFactory.createAxe();
+                        spawnEntityAt(axe, randomPosInLane, true, true);
+                        this.startMapContentsMovement(axe, i);
+                        break;
+                    case 1:
+                        Entity bow = ObstacleFactory.createBow();
+                        spawnEntityAt(bow, randomPosInLane, true, true);
+                        this.startMapContentsMovement(bow, i);
+                        break;
+                    case 2:
+                        Entity sword = ObstacleFactory.createSword();
+                        spawnEntityAt(sword, randomPosInLane, true, true);
+                        this.startMapContentsMovement(sword, i);
+                        break;
+                }
+                d++;
             }
-            i++;
         }
     }
 
@@ -284,20 +289,23 @@ public class RainbowBridge extends GameArea {
         for (int i = 0; i < lanes.size(); i++) {
             int d = 0;
             int y_coordinate = lanes.get(i).getMid();
-            int x_random = ThreadLocalRandom.current().nextInt(5, 28 + 1);  // min x=5, max x=28
+            int x_random = ThreadLocalRandom.current().nextInt(5, 100 + 1);  // min x=5, max x=28
             GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);            
-        
-            switch(i) {
-                case 0:
-                    Entity coin = ObstacleFactory.createCoin();
-                    spawnEntityAt(coin, randomPosInLane, true, true);
-                    this.startMapContentsMovement(coin, i);
-                    break;
-                case 1:
-                    Entity diamond = ObstacleFactory.createDiamond();
-                    spawnEntityAt(diamond, randomPosInLane, true, true);
-                    this.startMapContentsMovement(diamond, i);
-                    break;
+            
+            while (d < this.NUM_OBSTACLES) {
+                switch(i) {
+                    case 0:
+                        Entity coin = ObstacleFactory.createCoin();
+                        spawnEntityAt(coin, randomPosInLane, true, true);
+                        this.startMapContentsMovement(coin, i);
+                        break;
+                    case 1:
+                        Entity diamond = ObstacleFactory.createDiamond();
+                        spawnEntityAt(diamond, randomPosInLane, true, true);
+                        this.startMapContentsMovement(diamond, i);
+                        break;
+                }
+                d++;
             }
         }
     }
