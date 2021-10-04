@@ -67,6 +67,10 @@ public class GameWinDisplay extends UIComponent {
     }
 
     @Override
+    public void draw(SpriteBatch batch) {
+    }
+
+    @Override
     public void dispose() {
         table.clear();
         super.dispose();

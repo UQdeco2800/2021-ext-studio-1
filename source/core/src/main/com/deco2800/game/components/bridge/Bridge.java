@@ -85,18 +85,30 @@ public class Bridge {
     }
 
     /**
-     * Returns a map of the top and bottom bounds (Integer)
-     * @return a Map with a top and bottom y-coordinate
+     * Returns the top of the bridge from the user's perspective
+     * TerrainFactory fills tiles from the bottom up
+     * @return a y-coordinate
      */
-    public Map<String, Integer> getBounds() {
-        if (this.lanes.size() == 0) {
-            throw new IllegalCallerException("Unable to get bridge bounds from a bridge with no lanes");
-        } else {
-            Map<String, Integer> bounds = new HashMap<>();
-            bounds.put("top", this.getLastLane().getTop());
-            bounds.put("bot", this.lanes.get(0).getBot());
-            return bounds;
-        }
+    public int getTop() {
+        return this.getLastLane().getTop();
+    }
+
+    /**
+     * Returns the top of the bridge from the user's perspective
+     * TerrainFactory fills tiles from the bottom up
+     * @return a y-coordinate
+     */
+    public int getBot() {
+        return this.lanes.get(0).getBot();
+    }
+
+    /**
+     * Returns the top of the bridge from the user's perspective
+     * TerrainFactory fills tiles from the bottom up
+     * @return a y-coordinate
+     */
+    public int getMid() {
+        return (this.getTop() + this.getBot()) / 2;
     }
 
     /**

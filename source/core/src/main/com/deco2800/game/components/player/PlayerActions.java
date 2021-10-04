@@ -20,6 +20,11 @@ import java.security.Key;
 import java.util.EmptyStackException;
 import java.util.Scanner;
 
+import javax.crypto.EncryptedPrivateKeyInfo;
+import java.security.Key;
+import java.util.EmptyStackException;
+import java.util.Scanner;
+
 /**
  * Action component for interacting with the player. Player events should be initialised in create()
  * and when triggered should call methods within this class.
@@ -37,6 +42,7 @@ public class PlayerActions extends Component {
   AnimationRenderComponent4 animator4;
   AnimationRenderComponent5 animator5;
   AnimationRenderComponent6 animator6;
+
 
   @Override
   public void create() {
@@ -133,8 +139,6 @@ public class PlayerActions extends Component {
     attackSound.play();
     animator5.stopAnimation();
     animator.startAnimation("attack");
-
-
   }
 
   void unAttack(){

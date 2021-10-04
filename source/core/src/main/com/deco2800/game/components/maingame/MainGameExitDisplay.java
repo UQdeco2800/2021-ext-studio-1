@@ -64,7 +64,10 @@ public class MainGameExitDisplay extends UIComponent {
           logger.debug("Exit button clicked");
           entity.getEvents().trigger("exit");
         }
-      });
+        catch (InterruptedException e) {}
+      }
+    }.start();
+  
 
 
     table.add(mainMenuBtn).size(200f,80f).padTop(10f).padRight(10f);

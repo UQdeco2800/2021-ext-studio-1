@@ -24,6 +24,8 @@ public class PlayerStatsDisplay extends UIComponent {
   private Image noImage;
   private Image treatImage;
   private String treatFileName;
+  private String goldFileName;
+
 
 
   /**
@@ -111,7 +113,9 @@ public class PlayerStatsDisplay extends UIComponent {
             heartAnimate.clearChildren();
           }
         }
-        catch (InterruptedException e) {}
+        catch (InterruptedException e) {
+          //pass
+        }
       }
     }.start();
     stage.addActor(heartAnimate);
@@ -175,7 +179,10 @@ public class PlayerStatsDisplay extends UIComponent {
             Thread.sleep(1500);
             notification.setVisible(false);
           }
-          catch (InterruptedException e) {}
+
+          catch (InterruptedException e) {
+            //pass
+          }
         }
       }.start();
     }
