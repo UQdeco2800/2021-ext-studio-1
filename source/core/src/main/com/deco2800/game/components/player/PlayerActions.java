@@ -1,6 +1,5 @@
 package com.deco2800.game.components.player;
 
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -16,11 +15,6 @@ import org.slf4j.LoggerFactory;
 import com.deco2800.game.rendering.AnimationRenderComponent5;
 import com.deco2800.game.rendering.AnimationRenderComponent6;
 
-import javax.crypto.EncryptedPrivateKeyInfo;
-import java.security.Key;
-import java.util.EmptyStackException;
-import java.util.Scanner;
-
 /**
  * Action component for interacting with the player. Player events should be initialised in create()
  * and when triggered should call methods within this class.
@@ -33,6 +27,7 @@ public class PlayerActions extends Component {
   private boolean moving = false;
   private  CombatStatsComponent combatStatsComponent;
   AnimationRenderComponent animator;
+  final String a = (String) "attack";
   AnimationRenderComponent5 animator2;
 
   @Override
@@ -42,7 +37,7 @@ public class PlayerActions extends Component {
     physicsComponent = entity.getComponent(PhysicsComponent.class);
     entity.getEvents().addListener("walk", this::walk);
     entity.getEvents().addListener("walkStop", this::stopWalking);
-    entity.getEvents().addListener("attack", this::attack);
+    entity.getEvents().addListener(a, this::attack);
     entity.getEvents().addListener("unAttack", this::unAttack);
     entity.getEvents().addListener("run", this::attack);
     entity.getEvents().addListener("run", this::run);
@@ -92,7 +87,7 @@ public class PlayerActions extends Component {
    * Makes the player attack.
    */
   void attack() {
-    logger.info("attack");
+    logger.info(a);
     Array<Entity> entities = ServiceLocator.getEntityService().getEntities();
     Entity nearest = findNearestTargets(entities);
     logger.info("attack nearest--{}", nearest);
@@ -116,6 +111,7 @@ public class PlayerActions extends Component {
     }
     Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/attack.ogg", Sound.class);
     attackSound.play();
+    animator.startAnimation(a);
     animator2.stopAnimation();
     animator.startAnimation("attack");
 

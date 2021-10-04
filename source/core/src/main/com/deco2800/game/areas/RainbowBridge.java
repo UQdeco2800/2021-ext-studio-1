@@ -168,7 +168,7 @@ public class RainbowBridge extends GameArea {
 
         Vector2 target = new Vector2(-10, y_target);
         MovementTask task = new MovementTask(target);
-        
+
         task.create(() -> entity);
         task.start();
     }
@@ -181,8 +181,8 @@ public class RainbowBridge extends GameArea {
     }
 
     public static void disposeContent(Entity entity) {
-		entity.dispose();
-	}
+        entity.dispose();
+    }
 
     private void spawnObstables() {
         GridPoint2 minPos = new GridPoint2(0, 0);
@@ -190,7 +190,7 @@ public class RainbowBridge extends GameArea {
 
         for (int i = 0; i < lanes.size(); i++) {
             int d = 0;
-            int y_coordinate = lanes.get(i).getMid() ;
+            int y_coordinate = (int) lanes.get(i).getMid() ;
             int x_random = ThreadLocalRandom.current().nextInt(0, 100 + 1);
             GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
             // Entity RunesGate = ObstacleFactory.createRunesGate();
@@ -204,7 +204,7 @@ public class RainbowBridge extends GameArea {
                         // RunesGate.getEvents().addListener("contentReachedEndOfMap", this::disposeContent);
                         spawnEntityAt(RunesGate, randomPosInLane, true, true);
                         this.startMapContentsMovement(RunesGate, i);
-                        
+
                         break;
                     case 1:
                         Entity stone = ObstacleFactory.createStoneObstacle();
@@ -233,7 +233,7 @@ public class RainbowBridge extends GameArea {
 
         for (int i = 0; i < lanes.size(); i++) {
             int d = 0;
-            int y_coordinate = lanes.get(i).getMid();
+            int y_coordinate = (int) lanes.get(i).getMid();
             int x_random = ThreadLocalRandom.current().nextInt(5, 100 + 1);  // min x=5, max x=30
             GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
 
@@ -259,10 +259,10 @@ public class RainbowBridge extends GameArea {
         List<Lane> lanes = terrain.getRainbowBridge().getLanes();
         for (int i = 0; i < lanes.size(); i++) {
             int d = 0;
-            int y_coordinate = lanes.get(i).getMid();
+            int y_coordinate = (int) lanes.get(i).getMid();
             int x_random = ThreadLocalRandom.current().nextInt(5, 100 + 1);  // min x=5, max x=28
             GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
-        
+
             while (d < this.NUM_OBSTACLES) {
                 switch(i) {
                     case 0:
@@ -292,10 +292,10 @@ public class RainbowBridge extends GameArea {
 
         for (int i = 0; i < lanes.size(); i++) {
             int d = 0;
-            int y_coordinate = lanes.get(i).getMid();
+            int y_coordinate = (int) lanes.get(i).getMid();
             int x_random = ThreadLocalRandom.current().nextInt(5, 100 + 1);  // min x=5, max x=28
-            GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);            
-            
+            GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
+
             while (d < this.NUM_OBSTACLES) {
                 switch(i) {
                     case 0:
@@ -352,7 +352,7 @@ public class RainbowBridge extends GameArea {
 
     private void spawnGhostKing() {
         Entity ghostKing = NPCFactory.createGhostKing(player);
-            spawnEntityAt(ghostKing, GHOST_KING, true, true);
+        spawnEntityAt(ghostKing, GHOST_KING, true, true);
     }
 
     public Bridge getRainbowBridge() {

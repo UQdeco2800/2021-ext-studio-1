@@ -2,7 +2,12 @@ package com.deco2800.game.components;
 
 import com.badlogic.gdx.audio.Sound;
 import com.deco2800.game.entities.Entity;
-import com.deco2800.game.rendering.*;
+import com.deco2800.game.rendering.AnimationRenderComponent;
+import com.deco2800.game.rendering.AnimationRenderComponent2;
+import com.deco2800.game.rendering.AnimationRenderComponent3;
+import com.deco2800.game.rendering.AnimationRenderComponent4;
+import com.deco2800.game.rendering.AnimationRenderComponent5;
+import com.deco2800.game.rendering.AnimationRenderComponent6;
 import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,13 +18,15 @@ import com.deco2800.game.components.player.PlayerActions;
  * which engage it combat should have an instance of this class registered. This class can be
  * extended for more specific combat needs.
  */
-public class CombatStatsComponent extends Component {
+public class CombatStatsComponent<string> extends Component {
 
   private static final Logger logger = LoggerFactory.getLogger(CombatStatsComponent.class);
   private int health;
   private int armour;
   private int baseAttack;
   private long invincibleStart = 0L;
+  final string ss = (string) "attacker--{}";
+  final string ee = (string) "--end--attacker--{}";
   AnimationRenderComponent animator;
   AnimationRenderComponent5 animator2;
 
@@ -142,14 +149,12 @@ public class CombatStatsComponent extends Component {
 
 
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
-        logger.error("attacker--{}", attacker.getEntity().getType());
-        AnimationRenderComponent2 animator =
-                attacker.getEntity().getComponent(AnimationRenderComponent2.class);
+        logger.error((String) ss, attacker.getEntity().getType());
+        AnimationRenderComponent2 animator = attacker.getEntity().getComponent(AnimationRenderComponent2.class);
         animator.startAnimation("touch");
         Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/e.ogg", Sound.class);
         attackSound.play();
-        logger.error("--end--attacker--{}",attacker.getEntity().getType());
-
+        logger.error((String) ee,attacker.getEntity().getType());
       }
 
       if (armour > 0){
@@ -177,8 +182,7 @@ public class CombatStatsComponent extends Component {
       }
 
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
-        logger.error("attacker--{}", attacker.getEntity().getType(),
-                attacker.getEntity());
+        logger.error((String) ss, attacker.getEntity().getType());
         AnimationRenderComponent3 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent3.class);
         animator.startAnimation("buff");
@@ -186,7 +190,7 @@ public class CombatStatsComponent extends Component {
                 "sounds/buff_recover.ogg", Sound.class);
         attackSound.play();
 
-        logger.error("--end--attacker--{}",attacker.getEntity().getType());
+        logger.error((String) ee,attacker.getEntity().getType());
 
       }
 
@@ -214,14 +218,14 @@ public class CombatStatsComponent extends Component {
       }
 
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
-        logger.error("attacker--{}", attacker.getEntity().getType(),attacker.getEntity());
+        logger.error((String) ss, attacker.getEntity().getType());
         AnimationRenderComponent4 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent4.class);
         animator.startAnimation("deBuff");
         Sound attackSound = ServiceLocator.getResourceService().getAsset(
                 "sounds/e.ogg", Sound.class);
         attackSound.play();
-        logger.error("--end--attacker--{}",attacker.getEntity().getType());
+        logger.error((String) ee,attacker.getEntity().getType());
       }
 
       if (armour > 0){
@@ -248,14 +252,14 @@ public class CombatStatsComponent extends Component {
       }
 
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
-        logger.error("attacker--{}", attacker.getEntity().getType(),attacker.getEntity());
+        logger.error((String) ss, attacker.getEntity().getType(),attacker.getEntity());
         AnimationRenderComponent6 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent6.class);
         animator.startAnimation("coin");
         Sound attackSound = ServiceLocator.getResourceService().getAsset(
                 "sounds/coin.ogg", Sound.class);
         attackSound.play();
-        logger.error("--end--attacker--{}",attacker.getEntity().getType());
+        logger.error((String) ee, attacker.getEntity().getType());
       }
 
       if (armour > 0){
@@ -279,11 +283,11 @@ public class CombatStatsComponent extends Component {
 
 
   public void getBackNormal(CombatStatsComponent attacker){
-    logger.error("attacker--{}", attacker.getEntity().getType());
+    logger.error((String) ss, attacker.getEntity().getType());
     AnimationRenderComponent4 animator =
             attacker.getEntity().getComponent(AnimationRenderComponent4.class);
     animator.startAnimation("default");
-    logger.error("--end--attacker--{}",attacker.getEntity().getType());
+    logger.error((String) ee, attacker.getEntity().getType());
   }
 }
 
