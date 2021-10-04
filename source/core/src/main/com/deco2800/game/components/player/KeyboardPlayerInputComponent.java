@@ -50,7 +50,8 @@ public class KeyboardPlayerInputComponent extends InputComponent {
         entity.setPosition(entity.getPosition().x, lanes.get(this.currentLane).getMid());
 
       }
-    } else if (keycode == Keys.E) {
+    } else if (keycode == Keys.E){
+
       entity.setPosition(entity.getPosition().x, lanes.get(0).getMid() - (1.6f * (1 + 1)));
       this.currentLane = 0;
     } else if (keycode == Keys.Q) {
@@ -129,8 +130,9 @@ public class KeyboardPlayerInputComponent extends InputComponent {
   }
 
   private void triggerWalkEvent() {
+    entity.getEvents().trigger("run");
     if (walkDirection.epsilonEquals(Vector2.Zero)) {
-      entity.getEvents().trigger("walkStop");
+      entity.getEvents().trigger("run");
     } else {
       entity.getEvents().trigger("walk", walkDirection);
     }

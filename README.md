@@ -8,7 +8,7 @@
 Add a description of your game here. 
 
 ## Game Controls
-Update it with controls needed in your game.
+Attack - Space bar
 
 ## Sonar Cloud
 https://sonarcloud.io/dashboard?id=UQdeco2800_2021-ext-studio-1
