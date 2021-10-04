@@ -6,5 +6,6 @@ package com.deco2800.game.entities.configs;
 public class NPCConfigs {
   public BaseEntityConfig ghost = new BaseEntityConfig();
   public BaseEntityConfig littleGreen = new BaseEntityConfig();
+  public BaseEntityConfig Demon = new BaseEntityConfig();
   public GhostKingConfig ghostKing = new GhostKingConfig();
 }

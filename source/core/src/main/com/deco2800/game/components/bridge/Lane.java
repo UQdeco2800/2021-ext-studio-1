@@ -6,7 +6,7 @@ package com.deco2800.game.components.bridge;
  *
  * A Lane that collectively builds a bridge
  */
-public class Lane {
+public class Lane implements Location {
 
     private int y1;
     private int y2;
@@ -44,7 +44,8 @@ public class Lane {
     }
 
     /**
-     * returns the center y-coordinate of the lane
+     * returns the center y-coordinate of the lane from the user's perspective
+     * TerrainFactory fills tiles from the bottom up
      * @return a y-coordinate
      */
     public int getMid() {
@@ -52,18 +53,18 @@ public class Lane {
     }
 
     /**
-     * Returns the top of the bridge from the user's perspective
+     * Returns the top of the lane from the user's perspective
      * TerrainFactory fills tiles from the bottom up
-     * @return
+     * @return a y-coordinate
      */
     public int getTop() {
         return this.y2;
     }
 
     /**
-     * Returns the bottom of the bridge from the user's perspective
+     * Returns the bottom of the lane from the user's perspective
      * TerrainFactory fills tiles from the bottom up
-     * @return
+     * @return a y-coordinate
      */
     public int getBot() {
         return this.y1;
