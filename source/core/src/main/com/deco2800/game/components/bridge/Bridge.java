@@ -203,7 +203,7 @@ public class Bridge implements Location {
     }
 
     /**
-     * Returns the top of the bridge from the user's perspective
+     * Returns the bottom of the bridge from the user's perspective
      * TerrainFactory fills tiles from the bottom up
      * @return a y-coordinate
      */
@@ -212,7 +212,7 @@ public class Bridge implements Location {
     }
 
     /**
-     * Returns the top of the bridge from the user's perspective
+     * Returns the center of the bridge from the user's perspective
      * TerrainFactory fills tiles from the bottom up
      * @return a y-coordinate
      */
