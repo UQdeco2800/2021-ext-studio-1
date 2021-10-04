@@ -22,7 +22,7 @@ public class GameWinScreen extends ScreenAdapter {
 
     private final GdxGame game;
     private final Renderer renderer;
-    private static final String[] GameWinScreenTextures = {"images/Win-screen-2-transparent.png", "images/btn_restart1.png","images/btn_exit1.png"};
+    private static final String[] GameWinScreenTextures = {"images/Win-screen-2-transparent.png"};
 
     public GameWinScreen(GdxGame game) {
 
@@ -83,16 +83,6 @@ public class GameWinScreen extends ScreenAdapter {
         resourceService.unloadAssets(GameWinScreenTextures);
     }
 
-//    private void createUI() {
-//        logger.debug("Creating ui");
-//        Stage stage = ServiceLocator.getRenderService().getStage();
-//        Entity ui = new Entity();
-//        ui.addComponent(new GameOverDisplay())
-//                .addComponent(new InputDecorator(stage, 10))
-//                .addComponent(new GameOverActions(game));
-//        ServiceLocator.getEntityService().register(ui);
-//    }
-
     private void createUI() {
         logger.debug("Creating ui");
         Stage stage = ServiceLocator.getRenderService().getStage();
@@ -102,14 +92,4 @@ public class GameWinScreen extends ScreenAdapter {
                 .addComponent(new GameWinActions(game));
         ServiceLocator.getEntityService().register(ui);
     }
-
-//    private void createUI() {
-//        logger.debug("Creating ui");
-//        Stage stage = ServiceLocator.getRenderService().getStage();
-//        Entity ui = new Entity();
-//        ui.addComponent(new GameWinDisplay())
-//                .addComponent(new InputDecorator(stage, 10))
-//                .addComponent(new GameWinActions(game));
-//        ServiceLocator.getEntityService().register(ui);
-//    }
 }

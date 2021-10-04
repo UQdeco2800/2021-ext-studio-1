@@ -1,15 +1,13 @@
 package com.deco2800.game.components.winscreen;
 
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
 import org.slf4j.Logger;
@@ -20,87 +18,58 @@ import org.slf4j.LoggerFactory;
 public class GameWinDisplay extends UIComponent {
     private static final Logger logger = LoggerFactory.getLogger(GameWinDisplay.class);
     private static final float Z_INDEX = 2f;
-    protected Table table;
-    protected Table tablebackGround;
-    protected Stack stack;
+    private Table table;
+
 
     @Override
-    public void create() {
+    public void create(){
         super.create();
-        addActors();
+        createGameWin();
     }
 
-    /**
-     * Visual components
-     */
-    protected void addActors() {
-        stack = new Stack();
-        stack.setFillParent(true);
-        stack.setTouchable(Touchable.disabled);
+    private void createGameWin() {
 
         table = new Table();
         table.setFillParent(true);
+        Image title =
+                new Image(
+                        ServiceLocator.getResourceService()
+                                .getAsset("images/Win-screen-2-transparent.png", Texture.class));
+        TextButton replayButton = new TextButton("Replay", skin);
+        TextButton exitButton = new TextButton("Exit", skin);
 
-        tablebackGround = new Table();
-        tablebackGround.setFillParent(true);
+        replayButton.addListener(
+                new ChangeListener() {
+                    @Override
+                    public void changed(ChangeEvent changeEvent, Actor actor) {
+                        logger.info("replay game button clicked");
+                        entity.getEvents().trigger("replay");
+                    }
+                });
 
-        //Restart button
-        Button.ButtonStyle restartStyle = new Button.ButtonStyle();
-        restartStyle.up= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/btn_restart1.png"))));
-        restartStyle.over= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/btn_restart2.png"))));
-        Button restartBtn = new Button(restartStyle);
-
-        //Exit button
-        Button.ButtonStyle exitStyle = new Button.ButtonStyle();
-        exitStyle.up= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/btn_exit1.png"))));
-        exitStyle.over= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/btn_exit2.png"))));
-        Button exitBtn = new Button(exitStyle);
-
-        //Background
+        exitButton.addListener(
+                new ChangeListener() {
+                    @Override
+                    public void changed(ChangeEvent changeEvent, Actor actor) {
+                        logger.info("exit button clicked");
+                        entity.getEvents().trigger("exit");
+                    }
+                });
 
 
-        // when the user presses restart button
-        restartBtn.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent e, float x, float y) {
-                logger.debug("Restart button pressed");
-                entity.getEvents().trigger("replay");
-            }
-        });
-
-        // when the user presses exit button
-        exitBtn.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent e, float x, float y) {
-                logger.debug("Exit button pressed");
-                entity.getEvents().trigger("exit");
-            }
-        });
-
-        Image winMessage = new Image(ServiceLocator.getResourceService().getAsset("images/Win-screen-2-transparent.png",
-                Texture.class));
-
-        table.add(winMessage).top();
+        table.add(title).top();
         table.row();
-        table.add(restartBtn).padTop(30f).size(200f, 80f);
+        table.add(replayButton).padTop(30f);
         table.row();
-        table.add(exitBtn).padTop(15f).size(200f, 80f);;
+        table.add(exitButton).padTop(15f);;
 
         stage.addActor(table);
     }
 
     @Override
-    public void draw(SpriteBatch batch) {
-    }
-
-    @Override
     public void dispose() {
+        table.clear();
         super.dispose();
-        stack.clear();
     }
 
     @Override
@@ -108,4 +77,8 @@ public class GameWinDisplay extends UIComponent {
         return Z_INDEX;
     }
 
+    @Override
+    protected void draw(SpriteBatch batch) {
+
+    }
 }

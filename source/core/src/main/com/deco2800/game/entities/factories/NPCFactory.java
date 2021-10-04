@@ -37,9 +37,9 @@ public class NPCFactory {
   private static final NPCConfigs configs =
       FileLoader.readClass(NPCConfigs.class, "configs/NPCs.json");
 
-  /** 
-   * Creates a ghost entity. 
-   * 
+  /**
+   * Creates a ghost entity.
+   *
    * @param target entity to chase
    * @return entity
    */
@@ -49,16 +49,17 @@ public class NPCFactory {
 
     AnimationRenderComponent animator =
         new AnimationRenderComponent(
-            ServiceLocator.getResourceService().getAsset("images/ghost1.atlas",
+            ServiceLocator.getResourceService().getAsset("images/ghost.atlas",
                     TextureAtlas.class));
-    animator.addAnimation("dragon", 0.1f, Animation.PlayMode.LOOP);
+    animator.addAnimation("angry_float", 0.1f, Animation.PlayMode.LOOP);
+    animator.addAnimation("float", 0.1f, Animation.PlayMode.LOOP);
 
     ghost
         .addComponent(new CombatStatsComponent(config.health, config.baseAttack))
         .addComponent(animator)
         .addComponent(new GhostAnimationController());
 
-    //ghost.getComponent(AnimationRenderComponent.class).scaleEntity();//
+    ghost.getComponent(AnimationRenderComponent.class).scaleEntity();
 
     return ghost;
   }
@@ -75,37 +76,20 @@ public class NPCFactory {
 
     AnimationRenderComponent animator =
             new AnimationRenderComponent(
-                    ServiceLocator.getResourceService().getAsset("images/littlegreen1.atlas", TextureAtlas.class));
-    animator.addAnimation("dragon", 0.1f, Animation.PlayMode.LOOP);
+                    ServiceLocator.getResourceService().getAsset("images/littleGreen.atlas", TextureAtlas.class));
+    animator.addAnimation("angry_float", 0.1f, Animation.PlayMode.LOOP);
+    animator.addAnimation("float", 0.1f, Animation.PlayMode.LOOP);
 
     littleGreen
             .addComponent(new CombatStatsComponent(config.health, config.baseAttack))
             .addComponent(animator)
             .addComponent(new GhostAnimationController());
 
-    //littleGreen.getComponent(AnimationRenderComponent.class).scaleEntity();//
+    littleGreen.getComponent(AnimationRenderComponent.class).scaleEntity();
 
     return littleGreen;
   }
 
-  public static Entity createDemon(Entity target) {
-    Entity Demon = createBaseNPC(target);
-    BaseEntityConfig config = configs.Demon;
-
-    AnimationRenderComponent animator =
-            new AnimationRenderComponent(
-                    ServiceLocator.getResourceService().getAsset("images/demon1.atlas", TextureAtlas.class));
-    animator.addAnimation("dragon", 0.1f, Animation.PlayMode.LOOP);
-
-    Demon
-            .addComponent(new CombatStatsComponent(config.health, config.baseAttack))
-            .addComponent(animator)
-            .addComponent(new GhostAnimationController());
-
-    //littleGreen.getComponent(AnimationRenderComponent.class).scaleEntity();//
-
-    return Demon;
-  }
   /**
    * Creates a ghost king entity.
    *
@@ -119,9 +103,9 @@ public class NPCFactory {
     AnimationRenderComponent animator =
         new AnimationRenderComponent(
             ServiceLocator.getResourceService()
-                .getAsset("images/dragon1.atlas", TextureAtlas.class));
-    animator.addAnimation("dragon", 0.1f, Animation.PlayMode.LOOP);
-
+                .getAsset("images/dragon.atlas", TextureAtlas.class));
+    animator.addAnimation("float", 0.1f, Animation.PlayMode.LOOP);
+    animator.addAnimation("angry_float", 0.1f, Animation.PlayMode.LOOP);
 
 
     ghostKing
@@ -129,7 +113,7 @@ public class NPCFactory {
         .addComponent(animator)
         .addComponent(new GhostAnimationController());
 
-    //ghostKing.getComponent(AnimationRenderComponent.class).scaleEntity();//
+    ghostKing.getComponent(AnimationRenderComponent.class).scaleEntity();
     return ghostKing;
   }
 

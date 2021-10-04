@@ -13,8 +13,6 @@ import com.deco2800.game.rendering.AnimationRenderComponent;
 import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.deco2800.game.rendering.AnimationRenderComponent5;
-import com.deco2800.game.rendering.AnimationRenderComponent6;
 
 import javax.crypto.EncryptedPrivateKeyInfo;
 import java.security.Key;
@@ -33,27 +31,19 @@ public class PlayerActions extends Component {
   private boolean moving = false;
   private  CombatStatsComponent combatStatsComponent;
   AnimationRenderComponent animator;
-  AnimationRenderComponent5 animator2;
 
   @Override
   public void create() {
     animator = this.entity.getComponent(AnimationRenderComponent.class);
-    animator2 = this.entity.getComponent(AnimationRenderComponent5.class);
     physicsComponent = entity.getComponent(PhysicsComponent.class);
     entity.getEvents().addListener("walk", this::walk);
     entity.getEvents().addListener("walkStop", this::stopWalking);
     entity.getEvents().addListener("attack", this::attack);
     entity.getEvents().addListener("unAttack", this::unAttack);
-    entity.getEvents().addListener("run", this::attack);
-    entity.getEvents().addListener("run", this::run);
-    entity.getEvents().addListener("coin", this::attack);
   }
 
   @Override
   public void update() {
-    if(animator2.getCurrentAnimation() == null) {
-       animator2.startAnimation("run");
-    }
     if (moving) {
       updateSpeed();
     }
@@ -76,7 +66,6 @@ public class PlayerActions extends Component {
   void walk(Vector2 direction) {
     this.walkDirection = direction;
     moving = true;
-
   }
 
   /**
@@ -110,23 +99,16 @@ public class PlayerActions extends Component {
         Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/buff2.ogg", Sound.class);
         attSound.play();
         animator.startAnimation("buff2");
-
-        entity.getEvents().trigger("updateGold");
       }
     }
     Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/attack.ogg", Sound.class);
     attackSound.play();
-    animator2.stopAnimation();
     animator.startAnimation("attack");
-
-
   }
 
   void unAttack(){
     animator.stopAnimation();
-    animator2.startAnimation("run");
   }
-  void run(){animator2.startAnimation("run"); }
 
   private Entity findNearestTargets(Array<Entity> entities) {
     Entity result = null;
@@ -136,11 +118,13 @@ public class PlayerActions extends Component {
       if (en.getType() == Entity.Type.GHOST || en.getType() == Entity.Type.GHOSTKING) {
         float dst = entity.getPosition().dst(en.getPosition());
         if (minDstEnemy > dst) {
+          minDstEnemy = dst;
           result = en;
         }
       } else if (en.getType() == Entity.Type.OBSTACLE ) {
         float dst = entity.getPosition().dst(en.getPosition());
         if (minDstObstacle > dst) {
+          minDstObstacle = dst;
           result = en;
         }
       }
