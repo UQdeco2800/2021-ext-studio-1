@@ -95,9 +95,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="inheritance">com.deco2800.game.components.bridge.Lane</div>
 </div>
 <section class="description">
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="Location.html" title="interface in com.deco2800.game.components.bridge">Location</a></code></dd>
+</dl>
 <hr>
 <pre>public class <span class="typeNameLabel">Lane</span>
-extends java.lang.Object</pre>
+extends java.lang.Object
+implements <a href="Location.html" title="interface in com.deco2800.game.components.bridge">Location</a></pre>
 <div class="block">The Lane class representing a lane on the bridge in Ragnorak Racer.</div>
 </section>
 <section class="summary">
@@ -152,7 +157,7 @@ int&nbsp;bot)</code></th>
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBot()">getBot</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Returns the bottom of the bridge from the user's perspective
+<div class="block">Returns the bottom of the lane from the user's perspective
  TerrainFactory fills tiles from the bottom up</div>
 </td>
 </tr>
@@ -160,14 +165,15 @@ int&nbsp;bot)</code></th>
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getMid()">getMid</a></span>()</code></th>
 <td class="colLast">
-<div class="block">returns the center y-coordinate of the lane</div>
+<div class="block">returns the center y-coordinate of the lane from the user's perspective
+ TerrainFactory fills tiles from the bottom up</div>
 </td>
 </tr>
 <tr class="altColor" id="i2">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTop()">getTop</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Returns the top of the bridge from the user's perspective
+<div class="block">Returns the top of the lane from the user's perspective
  TerrainFactory fills tiles from the bottom up</div>
 </td>
 </tr>
@@ -256,8 +262,11 @@ int&nbsp;bot)</span></div>
 <section class="detail">
 <h3><a id="getMid()">getMid</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">getMid</span>()</div>
-<div class="block">returns the center y-coordinate of the lane</div>
+<div class="block">returns the center y-coordinate of the lane from the user's perspective
+ TerrainFactory fills tiles from the bottom up</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Location.html#getMid()">getMid</a></code>&nbsp;in interface&nbsp;<code><a href="Location.html" title="interface in com.deco2800.game.components.bridge">Location</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a y-coordinate</dd>
 </dl>
@@ -267,10 +276,13 @@ int&nbsp;bot)</span></div>
 <section class="detail">
 <h3><a id="getTop()">getTop</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">getTop</span>()</div>
-<div class="block">Returns the top of the bridge from the user's perspective
+<div class="block">Returns the top of the lane from the user's perspective
  TerrainFactory fills tiles from the bottom up</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Location.html#getTop()">getTop</a></code>&nbsp;in interface&nbsp;<code><a href="Location.html" title="interface in com.deco2800.game.components.bridge">Location</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
+<dd>a y-coordinate</dd>
 </dl>
 </section>
 </li>
@@ -278,10 +290,13 @@ int&nbsp;bot)</span></div>
 <section class="detail">
 <h3><a id="getBot()">getBot</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">getBot</span>()</div>
-<div class="block">Returns the bottom of the bridge from the user's perspective
+<div class="block">Returns the bottom of the lane from the user's perspective
  TerrainFactory fills tiles from the bottom up</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Location.html#getBot()">getBot</a></code>&nbsp;in interface&nbsp;<code><a href="Location.html" title="interface in com.deco2800.game.components.bridge">Location</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
+<dd>a y-coordinate</dd>
 </dl>
 </section>
 </li>
