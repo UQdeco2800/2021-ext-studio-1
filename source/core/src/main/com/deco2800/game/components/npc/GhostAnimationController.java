@@ -14,15 +14,15 @@ public class GhostAnimationController extends Component {
   public void create() {
     super.create();
     animator = this.entity.getComponent(AnimationRenderComponent.class);
-    entity.getEvents().addListener("wanderStart", this::animateWander);
-    entity.getEvents().addListener("chaseStart", this::animateChase);
+    entity.getEvents().addListener("dragon", this::animateWander);
+    entity.getEvents().addListener("dragon", this::animateChase);
   }
 
   void animateWander() {
-    animator.startAnimation("float");
+    animator.startAnimation("dragon");
   }
 
   void animateChase() {
-    animator.startAnimation("angry_float");
+    animator.startAnimation("dragon");
   }
 }

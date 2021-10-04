@@ -35,6 +35,9 @@ public class MainGameExitDisplay extends UIComponent {
   private static final Logger logger = LoggerFactory.getLogger(MainGameExitDisplay.class);
   private static final float Z_INDEX = 2f;
   private Table table;
+  private Label timerLabel;
+  public boolean exitx = false;
+
 
   @Override
   public void create() {
@@ -47,28 +50,45 @@ public class MainGameExitDisplay extends UIComponent {
     table.top().right();
     table.setFillParent(true);
 
-   //Creates exit button
-    Button.ButtonStyle exitStyle = new Button.ButtonStyle();
-    exitStyle.up= new TextureRegionDrawable(new TextureRegion(
-            new Texture(Gdx.files.internal("images/NewBtn_exit1.png"))));
-    exitStyle.over= new TextureRegionDrawable(new TextureRegion(
-            new Texture(Gdx.files.internal("images/NewBtn_exit2.png"))));
-    Button mainMenuBtn = new Button(exitStyle);
+    CharSequence timerText = String.format("Timer: 60 sec");
+    timerLabel = new Label(timerText, skin, "large");
+
+    TextButton mainMenuBtn = new TextButton("Exit", skin);
 
     // Triggers an event when the button is pressed.
     mainMenuBtn.addListener(
-      new ChangeListener() {
-        @Override
-        public void changed(ChangeEvent changeEvent, Actor actor) {
-          logger.debug("Exit button clicked");
-          entity.getEvents().trigger("exit");
+            new ChangeListener() {
+              @Override
+              public void changed(ChangeEvent changeEvent, Actor actor) {
+                logger.debug("Exit button clicked");
+                entity.getEvents().trigger("exit");
+                exitx=true;
+              }
+            });
+
+    new Thread() {
+      public void run() {
+        try {
+          for(int i=60;i>0;i--){
+            timerLabel.setText("Timer :"+ i+" sec");
+            Thread.sleep(1000);
+            if(exitx == true){
+              break;
+            }
+          }
         }
-      });
+        catch (InterruptedException e) {}
+      }
+    }.start();
 
 
-    table.add(mainMenuBtn).size(200f,80f).padTop(10f).padRight(10f);
+
+    table.add(mainMenuBtn).padTop(10f).padRight(10f);
+    table.row();
+    table.add(timerLabel).pad(20);
     stage.addActor(table);
   }
+
 
   @Override
   public void draw(SpriteBatch batch) {
@@ -84,5 +104,6 @@ public class MainGameExitDisplay extends UIComponent {
   public void dispose() {
     table.clear();
     super.dispose();
+    timerLabel.remove();
   }
 }
