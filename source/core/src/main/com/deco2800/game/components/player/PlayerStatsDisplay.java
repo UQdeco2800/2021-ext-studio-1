@@ -111,7 +111,9 @@ public class PlayerStatsDisplay extends UIComponent {
             heartAnimate.clearChildren();
           }
         }
-        catch (InterruptedException e) {}
+        catch (InterruptedException e) {
+          Thread.currentThread().interrupt();
+        }
       }
     }.start();
     stage.addActor(heartAnimate);
@@ -175,7 +177,9 @@ public class PlayerStatsDisplay extends UIComponent {
             Thread.sleep(1500);
             notification.setVisible(false);
           }
-          catch (InterruptedException e) {}
+          catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+          }
         }
       }.start();
     }

@@ -60,7 +60,7 @@ class EventHandlerTest {
   void shouldHandleNoListeners() {
     handler.trigger("not-real-event");
     assertThrows(ClassCastException.class, () -> {
-      handler.trigger("not-real-event", true);}); 
+      handler.trigger("not-real-event", true);});
   }
 
   @Test
