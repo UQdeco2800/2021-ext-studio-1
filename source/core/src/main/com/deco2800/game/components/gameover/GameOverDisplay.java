@@ -62,9 +62,9 @@ public class GameOverDisplay extends UIComponent {
         //TextButton exitBtn = new TextButton("Exit", skin);
         Button.ButtonStyle exitStyle = new Button.ButtonStyle();
         exitStyle.up= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/NewBtn_exit1.png"))));
+                new Texture(Gdx.files.internal("images/btn_exit1.png"))));
         exitStyle.over= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/NewBtn_exit2.png"))));
+                new Texture(Gdx.files.internal("images/btn_exit2.png"))));
         Button exitBtn = new Button(exitStyle);
 
         //Background
