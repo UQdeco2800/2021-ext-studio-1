@@ -78,7 +78,6 @@ public class RainbowBridge extends GameArea {
             "images/pixelghost1.png",
             "images/littlegreen1.png",
             "images/attack.png",
-            "images/new_player.png",
             "images/negbuff.png",
             "images/posipuff.png",
             "images/dragon1.png",
@@ -97,7 +96,7 @@ public class RainbowBridge extends GameArea {
             "images/terrain_iso_grass.atlas", "images/ghost1.atlas", "images" +
             "/ghostKing.atlas","images/demon1.atlas","images/dragon1.atlas","images/littlegreen1" +
             ".atlas", "images/attack.atlas", "images/touch.atlas","images" +
-            "/negbuff.atlas", "images/posipuff.atlas",  "images/food.atlas"
+            "/negbuff.atlas", "images/posipuff.atlas"
     };
 
     private final TerrainFactory terrainFactory;
@@ -285,6 +284,10 @@ public class RainbowBridge extends GameArea {
             spawnEntityAt(demon,Demon, true, true);
         }
     }
+
+//    private void removeMonster(){
+//        if()
+//    }
 
     private void spawnGhostKing() {
         Entity ghostKing = NPCFactory.createGhostKing(player);
