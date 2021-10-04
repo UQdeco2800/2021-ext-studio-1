@@ -34,7 +34,8 @@ import java.util.Map;
  * - other third-party tools, e.g. https://www.codeandweb.com/texturepacker <br>
  */
 public class AnimationRenderComponent5 extends RenderComponent {
-    private static final Logger logger = LoggerFactory.getLogger(AnimationRenderComponent.class);
+    private static final Logger logger =
+            LoggerFactory.getLogger(AnimationRenderComponent5.class);
     private final GameTime timeSource;
     private final TextureAtlas atlas;
     private final Map<String, Animation<TextureRegion>> animations;

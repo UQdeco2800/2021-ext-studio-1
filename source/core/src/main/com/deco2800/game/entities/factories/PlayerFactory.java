@@ -37,15 +37,6 @@ public class PlayerFactory {
     InputComponent inputComponent =
         ServiceLocator.getInputService().getInputFactory().createForPlayer();
 
-
-    AnimationRenderComponent2 animator2 =
-            new AnimationRenderComponent2(
-                    ServiceLocator.getResourceService()
-                            .getAsset("images/touch.atlas",
-                                    TextureAtlas.class));
-    animator2.addAnimation("touch", 0.3f, Animation.PlayMode.NORMAL);
-
-
     AnimationRenderComponent animator =
             new AnimationRenderComponent(
                     ServiceLocator.getResourceService()
@@ -53,12 +44,12 @@ public class PlayerFactory {
                                     TextureAtlas.class));
     animator.addAnimation("attack", 0.03f, Animation.PlayMode.NORMAL);
 
-    AnimationRenderComponent5 animator5 =
-            new AnimationRenderComponent5(
+    AnimationRenderComponent2 animator2 =
+            new AnimationRenderComponent2(
                     ServiceLocator.getResourceService()
-                            .getAsset("images/run.atlas",
+                            .getAsset("images/touch.atlas",
                                     TextureAtlas.class));
-    animator5.addAnimation("run", 0.15f, Animation.PlayMode.LOOP);
+    animator2.addAnimation("touch", 0.3f, Animation.PlayMode.NORMAL);
 
     AnimationRenderComponent3 animator3 =
             new AnimationRenderComponent3(
@@ -74,12 +65,26 @@ public class PlayerFactory {
                                     TextureAtlas.class));
     animator4.addAnimation("deBuff", 0.15f, Animation.PlayMode.NORMAL);
 
+    AnimationRenderComponent5 animator5 =
+            new AnimationRenderComponent5(
+                    ServiceLocator.getResourceService()
+                            .getAsset("images/run.atlas",
+                                    TextureAtlas.class));
+    animator5.addAnimation("run", 0.15f, Animation.PlayMode.LOOP);
+
     AnimationRenderComponent6 animator6 =
             new AnimationRenderComponent6(
                     ServiceLocator.getResourceService()
                             .getAsset("images/playercoin.atlas",
                                     TextureAtlas.class));
     animator6.addAnimation("coin", 0.1f, Animation.PlayMode.NORMAL);
+
+    AnimationRenderComponent7 animator7 =
+            new AnimationRenderComponent7(
+                    ServiceLocator.getResourceService()
+                            .getAsset("images/death.atlas",
+                                    TextureAtlas.class));
+    animator7.addAnimation("death", 0.1f, Animation.PlayMode.NORMAL);
 
 //    AnimationRenderComponent animator1 =
 //            new AnimationRenderComponent(
@@ -115,7 +120,8 @@ public class PlayerFactory {
                 .addComponent(animator3)
                 .addComponent(animator4)
                 .addComponent(animator5)
-            .addComponent((animator6));
+            .addComponent(animator6)
+            .addComponent(animator7);
 
     PhysicsUtils.setScaledCollider(player, 0.6f, 0.3f);
     player.getComponent(ColliderComponent.class).setDensity(1.5f);

@@ -87,7 +87,8 @@ public class RainbowBridge extends GameArea {
             "images/posipuff.png",
             "images/run.png",
             "images/blank.png",
-            "images/playercoin.png"
+            "images/playercoin.png",
+            "images/death.png"
 
     };
 
@@ -102,7 +103,7 @@ public class RainbowBridge extends GameArea {
             "/ghostKing.atlas","images/dragon.atlas","images/littleGreen" +
             ".atlas", "images/attack.atlas", "images/touch.atlas","images" +
             "/negbuff.atlas", "images/posipuff.atlas",  "images/food.atlas",
-            "images/run.atlas", "images/playercoin.atlas"
+            "images/run.atlas", "images/playercoin.atlas", "images/death.atlas"
     };
 
     private final TerrainFactory terrainFactory;

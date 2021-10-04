@@ -33,9 +33,9 @@ import java.util.Map;
  * - gdx-texture-packer-gui (recommended) https://github.com/crashinvaders/gdx-texture-packer-gui <br>
  * - other third-party tools, e.g. https://www.codeandweb.com/texturepacker <br>
  */
-public class AnimationRenderComponent6 extends RenderComponent {
+public class AnimationRenderComponent7 extends RenderComponent {
     private static final Logger logger =
-            LoggerFactory.getLogger(AnimationRenderComponent6.class);
+            LoggerFactory.getLogger(AnimationRenderComponent7.class);
     private final GameTime timeSource;
     private final TextureAtlas atlas;
     private final Map<String, Animation<TextureRegion>> animations;
@@ -47,7 +47,7 @@ public class AnimationRenderComponent6 extends RenderComponent {
      * Create the component for a given texture atlas.
      * @param atlas libGDX-supported texture atlas containing desired animations
      */
-    public AnimationRenderComponent6(TextureAtlas atlas) {
+    public AnimationRenderComponent7(TextureAtlas atlas) {
         this.atlas = atlas;
         this.animations = new HashMap<>(4);
         timeSource = ServiceLocator.getTimeSource();
