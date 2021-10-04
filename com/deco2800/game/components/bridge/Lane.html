@@ -124,8 +124,9 @@ implements <a href="Location.html" title="interface in com.deco2800.game.compone
 </thead>
 <tbody>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int,int)">Lane</a></span>&#8203;(int&nbsp;top,
-int&nbsp;bot)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(float,float,com.deco2800.game.components.bridge.Bridge)">Lane</a></span>&#8203;(float&nbsp;top,
+float&nbsp;bot,
+<a href="Bridge.html" title="class in com.deco2800.game.components.bridge">Bridge</a>&nbsp;bridge)</code></th>
 <td class="colLast">
 <div class="block">Set 2 y-coordinate that defines the bounds of a lane</div>
 </td>
@@ -154,7 +155,7 @@ int&nbsp;bot)</code></th>
 </thead>
 <tbody>
 <tr class="altColor" id="i0">
-<td class="colFirst"><code>int</code></td>
+<td class="colFirst"><code>float</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBot()">getBot</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the bottom of the lane from the user's perspective
@@ -162,7 +163,7 @@ int&nbsp;bot)</code></th>
 </td>
 </tr>
 <tr class="rowColor" id="i1">
-<td class="colFirst"><code>int</code></td>
+<td class="colFirst"><code>float</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getMid()">getMid</a></span>()</code></th>
 <td class="colLast">
 <div class="block">returns the center y-coordinate of the lane from the user's perspective
@@ -170,7 +171,7 @@ int&nbsp;bot)</code></th>
 </td>
 </tr>
 <tr class="altColor" id="i2">
-<td class="colFirst"><code>int</code></td>
+<td class="colFirst"><code>float</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTop()">getTop</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the top of the lane from the user's perspective
@@ -178,14 +179,14 @@ int&nbsp;bot)</code></th>
 </td>
 </tr>
 <tr class="rowColor" id="i3">
-<td class="colFirst"><code>int</code></td>
+<td class="colFirst"><code>float</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getY1()">getY1</a></span>()</code></th>
 <td class="colLast">
 <div class="block">returns the top y-coordinate of the lane</div>
 </td>
 </tr>
 <tr class="altColor" id="i4">
-<td class="colFirst"><code>int</code></td>
+<td class="colFirst"><code>float</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getY2()">getY2</a></span>()</code></th>
 <td class="colLast">
 <div class="block">returns the bottom y-coordinate of the lane</div>
@@ -215,9 +216,10 @@ int&nbsp;bot)</code></th>
 <ul class="blockList">
 <li class="blockList">
 <section class="detail">
-<h3><a id="&lt;init&gt;(int,int)">Lane</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="memberName">Lane</span>&#8203;(<span class="arguments">int&nbsp;top,
-int&nbsp;bot)</span></div>
+<h3><a id="&lt;init&gt;(float,float,com.deco2800.game.components.bridge.Bridge)">Lane</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="memberName">Lane</span>&#8203;(<span class="arguments">float&nbsp;top,
+float&nbsp;bot,
+<a href="Bridge.html" title="class in com.deco2800.game.components.bridge">Bridge</a>&nbsp;bridge)</span></div>
 <div class="block">Set 2 y-coordinate that defines the bounds of a lane</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -239,7 +241,7 @@ int&nbsp;bot)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="getY1()">getY1</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">getY1</span>()</div>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">float</span>&nbsp;<span class="memberName">getY1</span>()</div>
 <div class="block">returns the top y-coordinate of the lane</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -250,7 +252,7 @@ int&nbsp;bot)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="getY2()">getY2</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">getY2</span>()</div>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">float</span>&nbsp;<span class="memberName">getY2</span>()</div>
 <div class="block">returns the bottom y-coordinate of the lane</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -261,7 +263,7 @@ int&nbsp;bot)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="getMid()">getMid</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">getMid</span>()</div>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">float</span>&nbsp;<span class="memberName">getMid</span>()</div>
 <div class="block">returns the center y-coordinate of the lane from the user's perspective
  TerrainFactory fills tiles from the bottom up</div>
 <dl>
@@ -275,7 +277,7 @@ int&nbsp;bot)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="getTop()">getTop</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">getTop</span>()</div>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">float</span>&nbsp;<span class="memberName">getTop</span>()</div>
 <div class="block">Returns the top of the lane from the user's perspective
  TerrainFactory fills tiles from the bottom up</div>
 <dl>
@@ -289,7 +291,7 @@ int&nbsp;bot)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="getBot()">getBot</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">getBot</span>()</div>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">float</span>&nbsp;<span class="memberName">getBot</span>()</div>
 <div class="block">Returns the bottom of the lane from the user's perspective
  TerrainFactory fills tiles from the bottom up</div>
 <dl>
