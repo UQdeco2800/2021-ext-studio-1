@@ -19,7 +19,7 @@
 <script type="text/javascript" src="../../../../../script-dir/jquery-ui.js"></script>
 </head>
 <body class="class-declaration">
-<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
+<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -95,14 +95,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="inheritance">com.deco2800.game.components.bridge.Bridge</div>
 </div>
 <section class="description">
-<dl>
-<dt>All Implemented Interfaces:</dt>
-<dd><code><a href="Location.html" title="interface in com.deco2800.game.components.bridge">Location</a></code></dd>
-</dl>
 <hr>
 <pre>public class <span class="typeNameLabel">Bridge</span>
-extends java.lang.Object
-implements <a href="Location.html" title="interface in com.deco2800.game.components.bridge">Location</a></pre>
+extends java.lang.Object</pre>
 <div class="block">The Bridge class representing the rainbow bridge in Ragnorak Racer.</div>
 </section>
 <section class="summary">
@@ -186,11 +181,10 @@ int&nbsp;width)</code></th>
 </td>
 </tr>
 <tr class="rowColor" id="i1">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBot()">getBot</a></span>()</code></th>
+<td class="colFirst"><code>java.util.Map&lt;java.lang.String,&#8203;java.lang.Integer&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBounds()">getBounds</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Returns the top of the bridge from the user's perspective
- TerrainFactory fills tiles from the bottom up</div>
+<div class="block">Returns a map of the top and bottom bounds (Integer)</div>
 </td>
 </tr>
 <tr class="altColor" id="i2">
@@ -207,35 +201,19 @@ int&nbsp;width)</code></th>
 </tr>
 <tr class="altColor" id="i4">
 <td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getMid()">getMid</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Returns the top of the bridge from the user's perspective
- TerrainFactory fills tiles from the bottom up</div>
-</td>
-</tr>
-<tr class="rowColor" id="i5">
-<td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOffset()">getOffset</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the bridge offset</div>
 </td>
 </tr>
-<tr class="altColor" id="i6">
+<tr class="rowColor" id="i5">
 <td class="colFirst"><code><a href="../../entities/Entity.html" title="class in com.deco2800.game.entities">Entity</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPlayer()">getPlayer</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns player entity.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i7">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTop()">getTop</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Returns the top of the bridge from the user's perspective
- TerrainFactory fills tiles from the bottom up</div>
-</td>
-</tr>
-<tr class="altColor" id="i8">
+<tr class="altColor" id="i6">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeLane()">removeLane</a></span>()</code></th>
 <td class="colLast">
@@ -346,43 +324,12 @@ int&nbsp;width)</span></div>
 </li>
 <li class="blockList">
 <section class="detail">
-<h3><a id="getTop()">getTop</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">getTop</span>()</div>
-<div class="block">Returns the top of the bridge from the user's perspective
- TerrainFactory fills tiles from the bottom up</div>
+<h3><a id="getBounds()">getBounds</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">java.util.Map&lt;java.lang.String,&#8203;java.lang.Integer&gt;</span>&nbsp;<span class="memberName">getBounds</span>()</div>
+<div class="block">Returns a map of the top and bottom bounds (Integer)</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Location.html#getTop()">getTop</a></code>&nbsp;in interface&nbsp;<code><a href="Location.html" title="interface in com.deco2800.game.components.bridge">Location</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>a y-coordinate</dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
-<h3><a id="getBot()">getBot</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">getBot</span>()</div>
-<div class="block">Returns the top of the bridge from the user's perspective
- TerrainFactory fills tiles from the bottom up</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Location.html#getBot()">getBot</a></code>&nbsp;in interface&nbsp;<code><a href="Location.html" title="interface in com.deco2800.game.components.bridge">Location</a></code></dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>a y-coordinate</dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
-<h3><a id="getMid()">getMid</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">getMid</span>()</div>
-<div class="block">Returns the top of the bridge from the user's perspective
- TerrainFactory fills tiles from the bottom up</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Location.html#getMid()">getMid</a></code>&nbsp;in interface&nbsp;<code><a href="Location.html" title="interface in com.deco2800.game.components.bridge">Location</a></code></dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>a y-coordinate</dd>
+<dd>a Map with a top and bottom y-coordinate</dd>
 </dl>
 </section>
 </li>
