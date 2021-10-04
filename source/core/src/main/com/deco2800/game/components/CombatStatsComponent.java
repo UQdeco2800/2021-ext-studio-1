@@ -182,6 +182,8 @@ public class CombatStatsComponent extends Component {
         AnimationRenderComponent3 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent3.class);
         animator.startAnimation("buff");
+        
+//        Asset not loading causing crashes - @adrian Team 4
 //        Sound attackSound = ServiceLocator.getResourceService().getAsset(
 //                "sounds/buff_recover.ogg", Sound.class);
 //        attackSound.play();
@@ -218,6 +220,8 @@ public class CombatStatsComponent extends Component {
         AnimationRenderComponent4 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent4.class);
         animator.startAnimation("deBuff");
+
+//        Asset not loading causing crashes - @adrian Team 4
 //        Sound attackSound = ServiceLocator.getResourceService().getAsset(
 //                "sounds/e.ogg", Sound.class);
 //        attackSound.play();
