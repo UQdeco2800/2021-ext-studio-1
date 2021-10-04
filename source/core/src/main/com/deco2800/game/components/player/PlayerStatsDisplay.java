@@ -116,7 +116,7 @@ public class PlayerStatsDisplay extends UIComponent {
       public void run() {
         try {
           for (int i = 0; i <= 4;i++) {
-            treatFileName =String.format("images/hurt%d.png",i);
+            treatFileName = String.format("images/hurt%d.png",i);
             treatImage = new Image(ServiceLocator.getResourceService().getAsset(treatFileName, Texture.class));
             heartAnimate.add(treatImage).size(50f,50f).pad(-15);
             Thread.sleep(70);
