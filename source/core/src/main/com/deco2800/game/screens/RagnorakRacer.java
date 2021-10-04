@@ -12,6 +12,7 @@ import com.deco2800.game.components.gamearea.PerformanceDisplay;
 import com.deco2800.game.components.gameover.GameOverDisplay;
 import com.deco2800.game.components.maingame.MainGameActions;
 import com.deco2800.game.components.maingame.MainGameExitDisplay;
+import com.deco2800.game.components.player.InventoryComponent;
 import com.deco2800.game.entities.Entity;
 import com.deco2800.game.entities.EntityService;
 import com.deco2800.game.entities.factories.RenderFactory;
@@ -90,7 +91,9 @@ public class RagnorakRacer extends ScreenAdapter {
     }
 
     private void gameOver() {
-        game.setScreen(new GameOverScreen(game));
+        // Need to change this to get player's InventoryComponent gold
+        game.setScreen(new GameOverScreen(game, 50));
+        //game.setScreen(new GameOverScreen(game, this.rainbowBridge.getPlayer().getComponent(InventoryComponent.class).getGold()));
     }
 
     @Override

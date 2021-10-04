@@ -4,19 +4,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Text;
 
 
 /**
@@ -28,6 +26,12 @@ public class GameOverDisplay extends UIComponent {
     protected Table table;
     protected Table tablebackGround;
     protected Stack stack;
+    private final int gold;
+    private Label gameOverCoinLabel;
+
+    public GameOverDisplay(int gold) {
+        this.gold = gold;
+    }
 
     @Override
     public void create() {
@@ -98,11 +102,16 @@ public class GameOverDisplay extends UIComponent {
         Image gameOverCoin = new Image(ServiceLocator.getResourceService().getAsset("images/Gameover_Coincollector.png",
                 Texture.class));
 
+        CharSequence text = String.format("Gold: %d", gold);
+        gameOverCoinLabel = new Label(text, skin);
+
         table.add(playerDeadImage).size(350f,300f).padBottom(50f);
         table.row();
         table.add(gameOverText).size(500f,50f);
         table.row();
         table.add(gameOverCoin).size(600f,200f);
+        table.row();
+        table.add(gameOverCoinLabel).size(600f,200f);
         table.row();
         table.add(restartBtn).padTop(30f).size(200f,80f).padTop(50f);
         table.row();

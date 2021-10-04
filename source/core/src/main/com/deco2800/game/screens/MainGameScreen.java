@@ -5,7 +5,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.deco2800.game.GdxGame;
 import com.deco2800.game.areas.ForestGameArea;
-import com.deco2800.game.areas.GameArea;
 import com.deco2800.game.areas.terrain.TerrainFactory;
 import com.deco2800.game.components.gameover.GameOverDisplay;
 import com.deco2800.game.components.maingame.MainGameActions;
@@ -76,16 +75,16 @@ public class MainGameScreen extends ScreenAdapter {
     TerrainFactory terrainFactory = new TerrainFactory(renderer.getCamera());
     this.forestGameArea = new ForestGameArea(terrainFactory);
     forestGameArea.create();
-    this.forestGameArea.player.getEvents().addListener("GameOver", this::gameover);
+    //this.forestGameArea.player.getEvents().addListener("GameOver", this::gameover);
 
 
   }
-
+/**
   public void gameover() {
     Entity uiDead = new Entity();
-    uiDead.addComponent(new GameOverDisplay());
+    uiDead.addComponent(new GameOverDisplay(gold));
     ServiceLocator.getEntityService().register(uiDead);
-  }
+  }*/
 
   @Override
   public void render(float delta) {

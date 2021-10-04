@@ -82,7 +82,7 @@ public class GdxGame extends Game {
       case TUTORIAL:
         return new TutorialScreen(this);
       case GAMEOVER:
-        return new GameOverScreen(this);
+        return new GameOverScreen(this, 0);
       default:
         return null;
     }
