@@ -2,7 +2,6 @@ package com.deco2800.game.areas;
 
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.GridPoint2;
-import com.badlogic.gdx.math.Vector2;
 import com.deco2800.game.areas.terrain.TerrainFactory;
 import com.deco2800.game.areas.terrain.TerrainFactory.TerrainType;
 import com.deco2800.game.components.bridge.Bridge;
@@ -23,7 +22,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RainbowBridge extends GameArea {
 
-    private static final Logger logger = LoggerFactory.getLogger(ForestGameArea.class);
+    private static final Logger logger = LoggerFactory.getLogger(RainbowBridge.class);
     private static final GridPoint2 PLAYER_SPAWN = new GridPoint2(1, 8);
     private static final float WALL_WIDTH = 0.1f;
     private static final int NUM_TREES = 7;
@@ -138,30 +137,30 @@ public class RainbowBridge extends GameArea {
         spawnEntity(new Entity().addComponent(terrain));
 
         // Terrain walls
-        float tileSize = terrain.getTileSize();
-        GridPoint2 tileBounds = terrain.getMapBounds(0);
-        Vector2 worldBounds = new Vector2(100, 100);
+        //float tileSize = terrain.getTileSize();
+        //GridPoint2 tileBounds = terrain.getMapBounds(0);
+        //Vector2 worldBounds = new Vector2(100, 100);
 
         // Returns the rainbowBridge from TerrainComponent
         this.rainbowBridge = terrain.getRainbowBridge();
     }
 
     private void spawnObstables() {
-        GridPoint2 minPos = new GridPoint2(0, 0);
+       // GridPoint2 minPos = new GridPoint2(0, 0);
         List<Lane> lanes = terrain.getRainbowBridge().getLanes();
 
         for (int i = 0; i < lanes.size(); i++) {
-            int d = 0;
-            int y_coordinate = (int) lanes.get(i).getMid() ;
-            int x_random = ThreadLocalRandom.current().nextInt(0, 30 + 1);
-            GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
+            //int d = 0;
+            int y_Coordinate = (int) lanes.get(i).getMid() ;
+            int x_Random = ThreadLocalRandom.current().nextInt(0, 30 + 1);
+            GridPoint2 randomPosInLane = new GridPoint2(x_Random, y_Coordinate);
             // Entity RunesGate = ObstacleFactory.createRunesGate();
             // spawnEntityAt(RunesGate, randomPosInLane, true, false);
         
             switch(i) {
                 case 0:
-                    Entity RunesGate = ObstacleFactory.createRunesGate();
-                    spawnEntityAt(RunesGate, randomPosInLane, true, false);
+                    Entity runesGate = ObstacleFactory.createRunesGate();
+                    spawnEntityAt(runesGate, randomPosInLane, true, false);
                     break;
                 case 1:
                     Entity stone = ObstacleFactory.createStoneObstacle();
@@ -182,37 +181,36 @@ public class RainbowBridge extends GameArea {
     }
 
     private void spawnHealthObjects() {
-        GridPoint2 minPos = new GridPoint2(0, 0);
+        //GridPoint2 minPos = new GridPoint2(0, 0);
         List<Lane> lanes = terrain.getRainbowBridge().getLanes();
 
         for (int i = 0; i < lanes.size(); i++) {
-            int d = 0;
-            int y_coordinate = (int) lanes.get(i).getMid();
-            int x_random = ThreadLocalRandom.current().nextInt(5, 30 + 1);  // min x=5, max x=30
-            GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
+           // int d = 0;
+            int y_Coordinate = (int) lanes.get(i).getMid();
+            int x_Random = ThreadLocalRandom.current().nextInt(5, 30 + 1);  // min x=5, max x=30
+            GridPoint2 randomPosInLane = new GridPoint2(x_Random, y_Coordinate);
         
-            switch(i) {
-                case 0:
-                    Entity food = ObstacleFactory.createFood();
-                    spawnEntityAt(food, randomPosInLane, true, false);
-                    break;
-                case 1:
-                    Entity firstAid = ObstacleFactory.createFirstAidKit();
-                    spawnEntityAt(firstAid, randomPosInLane, true, false);
-                    break;
-                default:
+            if (i == 0) {
+                Entity food = ObstacleFactory.createFood();
+                spawnEntityAt(food, randomPosInLane, true, false);
+            }
+            else if (i == 1) {
+                Entity firstAid = ObstacleFactory.createFirstAidKit();
+                spawnEntityAt(firstAid, randomPosInLane, true, false);
+            }
+            else
                     System.out.println("An error or exception might have occurred. Please check the switch case again");
             }
         }
-    }
+
     private void spawnWeaponObjects() {
-        GridPoint2 minPos = new GridPoint2(0, 0);
+       //GridPoint2 minPos = new GridPoint2(0, 0);
         List<Lane> lanes = terrain.getRainbowBridge().getLanes();
         int i = 0;
         for (Lane lane : lanes) {
-            int y_coordinate = (int) lane.getMid();
-            int x_random = ThreadLocalRandom.current().nextInt(5, 28 + 1);  // min x=5, max x=28
-            GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
+            int y_Coordinate = (int) lane.getMid();
+            int x_Random = ThreadLocalRandom.current().nextInt(5, 28 + 1);  // min x=5, max x=28
+            GridPoint2 randomPosInLane = new GridPoint2(x_Random, y_Coordinate);
         
             switch(i) {
                 case 0:
@@ -234,29 +232,28 @@ public class RainbowBridge extends GameArea {
         }
     }
     private void spawnCollectableObjects() {
-        GridPoint2 minPos = new GridPoint2(0, 0);
+       // GridPoint2 minPos = new GridPoint2(0, 0);
         List<Lane> lanes = terrain.getRainbowBridge().getLanes();
 
         for (int i = 0; i < lanes.size(); i++) {
-            int d = 0;
-            int y_coordinate = (int) lanes.get(i).getMid();
-            int x_random = ThreadLocalRandom.current().nextInt(5, 28 + 1);  // min x=5, max x=28
-            GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
+            //int d = 0;
+            int y_Coordinate = (int) lanes.get(i).getMid();
+            int x_Random = ThreadLocalRandom.current().nextInt(5, 28 + 1);  // min x=5, max x=28
+            GridPoint2 randomPosInLane = new GridPoint2(x_Random, y_Coordinate);
         
-            switch(i) {
-                case 0:
-                    Entity coin = ObstacleFactory.createCoin();
-                    spawnEntityAt(coin, randomPosInLane, true, false);
-                    break;
-                case 1:
-                    Entity diamond = ObstacleFactory.createDiamond();
-                    spawnEntityAt(diamond, randomPosInLane, true, false);
-                    break;
-                default:
+            if (i ==0) {
+                Entity coin = ObstacleFactory.createCoin();
+                spawnEntityAt(coin, randomPosInLane, true, false);
+            }
+               else if (i ==1) {
+                Entity diamond = ObstacleFactory.createDiamond();
+                spawnEntityAt(diamond, randomPosInLane, true, false);
+            }
+               else
                     System.out.println("An error or exception might have occurred. Please check the switch case again");
             }
         }
-    }
+    
 
     private Entity spawnPlayer() {
         Entity newPlayer = PlayerFactory.createPlayer();
