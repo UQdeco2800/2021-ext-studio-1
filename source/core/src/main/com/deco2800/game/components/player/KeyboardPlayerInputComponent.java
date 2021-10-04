@@ -3,6 +3,7 @@ package com.deco2800.game.components.player;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
+import com.deco2800.game.areas.RainbowBridge;
 import com.deco2800.game.components.bridge.Bridge;
 import com.deco2800.game.components.bridge.Lane;
 import com.deco2800.game.input.InputComponent;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 public class KeyboardPlayerInputComponent extends InputComponent {
   private final Vector2 walkDirection = Vector2.Zero.cpy();
-  private int currentLane = 0;
+  public static int i = 0;
 
   public KeyboardPlayerInputComponent() {
     super(5);
@@ -32,31 +33,40 @@ public class KeyboardPlayerInputComponent extends InputComponent {
   @Override
   public boolean keyDown(int keycode) {
     Bridge bridge = RagnorakRacer.rainbowBridge;
-    bridge.setYViews(13f, 0.5f);
     List<Lane> lanes = bridge.getLanes();
-
-    entity.setPosition(entity.getPosition().x, lanes.get(0).getMid());
-
+//    for (Lane lane : lanes){
+//      System.out.println(lane.getMid());
+//    }
+    float newY = 0;
     if (keycode == Keys.W){
-      int nextLane = currentLane + 1;
-      if(validIndex(nextLane, lanes)) {
-        this.currentLane = nextLane;
-        entity.setPosition(entity.getPosition().x, lanes.get(this.currentLane).getMid());
+      if(entity.getPosition().y <= lanes.get(3).getMid() - 9){
+        System.out.println(lanes.get(3).getMid());
+        entity.setPosition(entity.getPosition().x, lanes.get(i).getMid() - (1.6f * (i + 1)));
+        newY = lanes.get(i).getMid() - (1.6f * (i + 1));
+        i += 1;
+        System.out.println("current lane number:" + i);
+        System.out.println(newY);
       }
     } else if (keycode == Keys.S){
-      int nextLane = currentLane - 1;
-      if (validIndex(nextLane, lanes)) {
-        this.currentLane = nextLane;
-        entity.setPosition(entity.getPosition().x, lanes.get(this.currentLane).getMid());
+      if (entity.getPosition().y >= lanes.get(0).getMid() - 4){
+          System.out.println(lanes.get(0).getMid());
+          if (i > 0){
+//            entity.setPosition(entity.getPosition().x, lanes.get(0).getMid() - (1.6f * (i + 2)));
+//            System.out.println("new i = " + i);
+            entity.setPosition(entity.getPosition().x, lanes.get(i - 1).getMid() - (1.6f * (i + 1)));
+            i -= 1;
+          }
 
+          System.out.println("current lane number:" + i);
       }
-    } else if (keycode == Keys.E) {
+    }else if (keycode == Keys.E){
+
       entity.setPosition(entity.getPosition().x, lanes.get(0).getMid() - (1.6f * (1 + 1)));
-      this.currentLane = 0;
-    } else if (keycode == Keys.Q) {
+      i = 0;
+    }else if (keycode == Keys.Q){
       entity.setPosition(entity.getPosition().x, lanes.get(3).getMid() - (1.6f * (4 + 1)));
-      this.currentLane = 3;
-    } else if (keycode == Keys.SPACE) {
+      i = 3;
+    }else if (keycode == Keys.SPACE){
       entity.getEvents().trigger("attack");
     }
     return true;
@@ -134,14 +144,6 @@ public class KeyboardPlayerInputComponent extends InputComponent {
       entity.getEvents().trigger("run");
     } else {
       entity.getEvents().trigger("walk", walkDirection);
-    }
-  }
-
-  private boolean validIndex(int index, List<Lane> lanes) {
-    if ((index >= 0) && (index < lanes.size())) {
-      return true;
-    } else {
-      return false;
     }
   }
 }
