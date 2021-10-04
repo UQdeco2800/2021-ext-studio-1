@@ -19,7 +19,7 @@
 <script type="text/javascript" src="../../../../../script-dir/jquery-ui.js"></script>
 </head>
 <body class="class-declaration">
-<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10};
+<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -186,10 +186,10 @@ int&nbsp;width)</code></th>
 </td>
 </tr>
 <tr class="rowColor" id="i1">
-<td class="colFirst"><code>float</code></td>
+<td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBot()">getBot</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Returns the bottom of the bridge from the user's perspective
+<div class="block">Returns the top of the bridge from the user's perspective
  TerrainFactory fills tiles from the bottom up</div>
 </td>
 </tr>
@@ -206,10 +206,10 @@ int&nbsp;width)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor" id="i4">
-<td class="colFirst"><code>float</code></td>
+<td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getMid()">getMid</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Returns the center of the bridge from the user's perspective
+<div class="block">Returns the top of the bridge from the user's perspective
  TerrainFactory fills tiles from the bottom up</div>
 </td>
 </tr>
@@ -228,7 +228,7 @@ int&nbsp;width)</code></th>
 </td>
 </tr>
 <tr class="rowColor" id="i7">
-<td class="colFirst"><code>float</code></td>
+<td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTop()">getTop</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the top of the bridge from the user's perspective
@@ -236,96 +236,10 @@ int&nbsp;width)</code></th>
 </td>
 </tr>
 <tr class="altColor" id="i8">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getWidth()">getWidth</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Get the width of lanes</div>
-</td>
-</tr>
-<tr class="rowColor" id="i9">
-<td class="colFirst"><code>float</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getYGridBot()">getYGridBot</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Get the bottom y-coordinate edge of the terrain grid</div>
-</td>
-</tr>
-<tr class="altColor" id="i10">
-<td class="colFirst"><code>float</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getYGridTop()">getYGridTop</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Get the top y-coordinate edge of the terrain grid</div>
-</td>
-</tr>
-<tr class="rowColor" id="i11">
-<td class="colFirst"><code>float</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getYViewBot()">getYViewBot</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Get the bottom y-coordinate edge of the screen window</div>
-</td>
-</tr>
-<tr class="altColor" id="i12">
-<td class="colFirst"><code>float</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getYViewTop()">getYViewTop</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Get the top y-coordinate edge of the screen window</div>
-</td>
-</tr>
-<tr class="rowColor" id="i13">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeLane()">removeLane</a></span>()</code></th>
 <td class="colLast">
 <div class="block">removes the last lane from the bridge</div>
-</td>
-</tr>
-<tr class="altColor" id="i14">
-<td class="colFirst"><code>float</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rescaleYGridToYView(float)">rescaleYGridToYView</a></span>&#8203;(float&nbsp;y)</code></th>
-<td class="colLast">
-<div class="block">Rescale a y-coordinate from TerrainFactory grid into a screen view y-coordinate</div>
-</td>
-</tr>
-<tr class="rowColor" id="i15">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setYGridBot(float)">setYGridBot</a></span>&#8203;(float&nbsp;y)</code></th>
-<td class="colLast">
-<div class="block">Set a bottom y-coordinate edge of the terrain grid</div>
-</td>
-</tr>
-<tr class="altColor" id="i16">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setYGrids(float,float)">setYGrids</a></span>&#8203;(float&nbsp;top,
-float&nbsp;bot)</code></th>
-<td class="colLast">
-<div class="block">Set both top edge and bottom edge of the terrain grid</div>
-</td>
-</tr>
-<tr class="rowColor" id="i17">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setYGridTop(float)">setYGridTop</a></span>&#8203;(float&nbsp;y)</code></th>
-<td class="colLast">
-<div class="block">Set a top y-coordinate edge of the terrain grid</div>
-</td>
-</tr>
-<tr class="altColor" id="i18">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setYViewBot(float)">setYViewBot</a></span>&#8203;(float&nbsp;y)</code></th>
-<td class="colLast">
-<div class="block">Set a bottom y-coordinate edge of the screen window</div>
-</td>
-</tr>
-<tr class="rowColor" id="i19">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setYViews(float,float)">setYViews</a></span>&#8203;(float&nbsp;top,
-float&nbsp;bot)</code></th>
-<td class="colLast">
-<div class="block">Set both top edge and bottom edge of the screen window</div>
-</td>
-</tr>
-<tr class="altColor" id="i20">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setYViewTop(float)">setYViewTop</a></span>&#8203;(float&nbsp;y)</code></th>
-<td class="colLast">
-<div class="block">Set a top y-coordinate edge of the screen window</div>
 </td>
 </tr>
 </tbody>
@@ -418,130 +332,6 @@ int&nbsp;width)</span></div>
 </li>
 <li class="blockList">
 <section class="detail">
-<h3><a id="getWidth()">getWidth</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">getWidth</span>()</div>
-<div class="block">Get the width of lanes</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
-<h3><a id="getYViewBot()">getYViewBot</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">float</span>&nbsp;<span class="memberName">getYViewBot</span>()</div>
-<div class="block">Get the bottom y-coordinate edge of the screen window</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>y-coordinate</dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
-<h3><a id="getYViewTop()">getYViewTop</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">float</span>&nbsp;<span class="memberName">getYViewTop</span>()</div>
-<div class="block">Get the top y-coordinate edge of the screen window</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>y-coordinate</dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
-<h3><a id="setYViewBot(float)">setYViewBot</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">setYViewBot</span>&#8203;(<span class="arguments">float&nbsp;y)</span></div>
-<div class="block">Set a bottom y-coordinate edge of the screen window</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>y</code> - </dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
-<h3><a id="setYViewTop(float)">setYViewTop</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">setYViewTop</span>&#8203;(<span class="arguments">float&nbsp;y)</span></div>
-<div class="block">Set a top y-coordinate edge of the screen window</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>y</code> - </dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
-<h3><a id="setYViews(float,float)">setYViews</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">setYViews</span>&#8203;(<span class="arguments">float&nbsp;top,
-float&nbsp;bot)</span></div>
-<div class="block">Set both top edge and bottom edge of the screen window</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>top</code> - </dd>
-<dd><code>bot</code> - </dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
-<h3><a id="getYGridBot()">getYGridBot</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">float</span>&nbsp;<span class="memberName">getYGridBot</span>()</div>
-<div class="block">Get the bottom y-coordinate edge of the terrain grid</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>y-coordinate</dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
-<h3><a id="getYGridTop()">getYGridTop</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">float</span>&nbsp;<span class="memberName">getYGridTop</span>()</div>
-<div class="block">Get the top y-coordinate edge of the terrain grid</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>y-coordinate</dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
-<h3><a id="setYGridBot(float)">setYGridBot</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">setYGridBot</span>&#8203;(<span class="arguments">float&nbsp;y)</span></div>
-<div class="block">Set a bottom y-coordinate edge of the terrain grid</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>y</code> - </dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
-<h3><a id="setYGridTop(float)">setYGridTop</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">setYGridTop</span>&#8203;(<span class="arguments">float&nbsp;y)</span></div>
-<div class="block">Set a top y-coordinate edge of the terrain grid</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>y</code> - </dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
-<h3><a id="setYGrids(float,float)">setYGrids</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">setYGrids</span>&#8203;(<span class="arguments">float&nbsp;top,
-float&nbsp;bot)</span></div>
-<div class="block">Set both top edge and bottom edge of the terrain grid</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>top</code> - </dd>
-<dd><code>bot</code> - </dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
 <h3><a id="createLane()">createLane</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">createLane</span>()</div>
 <div class="block">Adds a lane to the bridge</div>
@@ -557,7 +347,7 @@ float&nbsp;bot)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="getTop()">getTop</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">float</span>&nbsp;<span class="memberName">getTop</span>()</div>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">getTop</span>()</div>
 <div class="block">Returns the top of the bridge from the user's perspective
  TerrainFactory fills tiles from the bottom up</div>
 <dl>
@@ -571,8 +361,8 @@ float&nbsp;bot)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="getBot()">getBot</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">float</span>&nbsp;<span class="memberName">getBot</span>()</div>
-<div class="block">Returns the bottom of the bridge from the user's perspective
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">getBot</span>()</div>
+<div class="block">Returns the top of the bridge from the user's perspective
  TerrainFactory fills tiles from the bottom up</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -585,27 +375,14 @@ float&nbsp;bot)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="getMid()">getMid</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">float</span>&nbsp;<span class="memberName">getMid</span>()</div>
-<div class="block">Returns the center of the bridge from the user's perspective
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">getMid</span>()</div>
+<div class="block">Returns the top of the bridge from the user's perspective
  TerrainFactory fills tiles from the bottom up</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Location.html#getMid()">getMid</a></code>&nbsp;in interface&nbsp;<code><a href="Location.html" title="interface in com.deco2800.game.components.bridge">Location</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a y-coordinate</dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
-<h3><a id="rescaleYGridToYView(float)">rescaleYGridToYView</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">float</span>&nbsp;<span class="memberName">rescaleYGridToYView</span>&#8203;(<span class="arguments">float&nbsp;y)</span></div>
-<div class="block">Rescale a y-coordinate from TerrainFactory grid into a screen view y-coordinate</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>y</code> - </dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>rescaled y-coordinate</dd>
 </dl>
 </section>
 </li>
