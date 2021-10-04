@@ -34,7 +34,7 @@ public class ObstacleFactory {
 	 */
 	public static Entity createTree() {
 		Entity tree =
-				new Entity(Entity.Type.OBSTACLE)
+				new Entity(Entity.Type.DEBUFF)
 						.addComponent(new TextureRenderComponent("images/tree.png"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
@@ -50,7 +50,7 @@ public class ObstacleFactory {
 
 	public static Entity createRunesGate() {
 		Entity RunesGate =
-				new Entity(Entity.Type.OBSTACLE)
+				new Entity(Entity.Type.DEBUFF)
 						.addComponent(new TextureRenderComponent("images/RunesGate.gif"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
@@ -66,7 +66,7 @@ public class ObstacleFactory {
 
 	public static Entity createStoneObstacle() { //CombatStatsComponent combat) {
 		Entity stone =
-				new Entity(Entity.Type.OBSTACLE)
+				new Entity(Entity.Type.DEBUFF)
 						.addComponent(new TextureRenderComponent("images/stone.png"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
@@ -85,7 +85,7 @@ public class ObstacleFactory {
 
 	public static Entity createthunderCloud() {
 		Entity thunderCloud =
-				new Entity(Entity.Type.OBSTACLE)
+				new Entity(Entity.Type.DEBUFF)
 						.addComponent(new TextureRenderComponent("images/thunderCloud.gif"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
@@ -103,7 +103,7 @@ public class ObstacleFactory {
 
 	public static Entity createFire() {
 		Entity fire =
-				new Entity(Entity.Type.OBSTACLE)
+				new Entity(Entity.Type.DEBUFF)
 						.addComponent(new TextureRenderComponent("images/fire.png"))
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
@@ -124,7 +124,7 @@ public class ObstacleFactory {
 //                    ServiceLocator.getResourceService().getAsset("images/food.atlas", TextureAtlas.class));
 //    animator.addAnimation("move_left", 0.1f, Animation.PlayMode.LOOP);
 		Entity firstAidKit =
-				new Entity()
+				new Entity(Entity.Type.BUFF)
 						.addComponent(new TextureRenderComponent("images/FirstAidKit.png"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
@@ -146,7 +146,7 @@ public class ObstacleFactory {
 //		animator.addAnimation("move_left", 0.1f, Animation.PlayMode.LOOP);
 		// animator.addAnimation("float", 0.1f, Animation.PlayMode.LOOP);
 		Entity food =
-				new Entity()
+				new Entity(Entity.Type.BUFF)
 						.addComponent(new TextureRenderComponent("images/food.png"))
 //            			.addComponent(animator)
 						.addComponent(new ContentsAnimationController())
@@ -167,7 +167,7 @@ public class ObstacleFactory {
 
 	public static Entity createAxe() {
 		Entity axe =
-				new Entity()
+				new Entity(Entity.Type.WEAPON)
 						.addComponent(new TextureRenderComponent("images/axe.png"))
 						.addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
@@ -182,7 +182,7 @@ public class ObstacleFactory {
 	}
 	public static Entity createSword() {
 		Entity sword =
-				new Entity()
+				new Entity(Entity.Type.WEAPON)
 						.addComponent(new TextureRenderComponent("images/sword.png"))
 						.addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
@@ -197,7 +197,7 @@ public class ObstacleFactory {
 	}
 	public static Entity createBow() {
 		Entity bow =
-				new Entity()
+				new Entity(Entity.Type.WEAPON)
 						.addComponent(new TextureRenderComponent("images/bow.png"))
 						.addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
@@ -212,7 +212,7 @@ public class ObstacleFactory {
 	}
 	public static Entity createCoin() {
 		Entity coin =
-				new Entity()
+				new Entity(Entity.Type.COLLECTABLES)
 						.addComponent(new TextureRenderComponent("images/coin.gif"))
 						.addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
@@ -227,7 +227,7 @@ public class ObstacleFactory {
 	}
 	public static Entity createDiamond() {
 		Entity diamond =
-				new Entity()
+				new Entity(Entity.Type.COLLECTABLES)
 						.addComponent(new TextureRenderComponent("images/diamond.gif"))
 						.addComponent(new PhysicsComponent().setBodyType(BodyType.StaticBody))
 						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE))
