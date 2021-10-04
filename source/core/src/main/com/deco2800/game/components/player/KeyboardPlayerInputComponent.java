@@ -3,7 +3,6 @@ package com.deco2800.game.components.player;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
-import com.deco2800.game.areas.RainbowBridge;
 import com.deco2800.game.components.bridge.Bridge;
 import com.deco2800.game.components.bridge.Lane;
 import com.deco2800.game.input.InputComponent;

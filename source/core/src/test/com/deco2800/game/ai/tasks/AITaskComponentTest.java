@@ -12,6 +12,8 @@ class AITaskComponentTest {
   void shouldRunNothingWithNoTask() {
     AITaskComponent taskComponent = new AITaskComponent();
     taskComponent.update();
+    PriorityTask pt = mock(PriorityTask.class);
+    verify(pt, times(0)).update();
   }
 
   @Test
