@@ -88,8 +88,7 @@ public class RainbowBridge extends GameArea {
             "images/run.png",
             "images/blank.png",
             "images/playercoin.png",
-            "images/death.png",
-            "images/health_empty.png"
+            "images/death.png"
 
     };
 
