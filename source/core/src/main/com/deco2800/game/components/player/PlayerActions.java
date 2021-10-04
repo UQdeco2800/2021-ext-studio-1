@@ -127,8 +127,6 @@ public class PlayerActions extends Component {
         Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/buff2.ogg", Sound.class);
         attSound.play();
         animator.startAnimation("buff2");
-
-        entity.getEvents().trigger("updateGold");
       }
     }
     Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/attack.ogg", Sound.class);
