@@ -140,6 +140,7 @@ public class CombatStatsComponent extends Component {
         return;
       }
 
+
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
         logger.error("attacker--{}", attacker.getEntity().getType());
         AnimationRenderComponent5 animator5 =
