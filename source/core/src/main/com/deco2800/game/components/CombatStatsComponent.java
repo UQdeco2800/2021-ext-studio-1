@@ -139,6 +139,11 @@ public class CombatStatsComponent extends Component {
       if (ServiceLocator.getTimeSource().getTimeSince(invincibleStart) < 1000L) {
         return;
       }
+      if(attacker.getHealth() == 0){
+        AnimationRenderComponent7 animator7 =
+                attacker.getEntity().getComponent(AnimationRenderComponent7.class);
+        animator.startAnimation("death");
+      }
 
 
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {

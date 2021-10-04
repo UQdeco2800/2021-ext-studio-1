@@ -81,6 +81,13 @@ public class PlayerFactory {
                                     TextureAtlas.class));
     animator6.addAnimation("coin", 0.1f, Animation.PlayMode.NORMAL);
 
+    AnimationRenderComponent7 animator7 =
+            new AnimationRenderComponent7(
+                    ServiceLocator.getResourceService()
+                            .getAsset("images/death.atlas",
+                                    TextureAtlas.class));
+    animator7.addAnimation("death", 0.1f, Animation.PlayMode.NORMAL);
+
 //    AnimationRenderComponent animator1 =
 //            new AnimationRenderComponent(
 //                    ServiceLocator.getResourceService()
