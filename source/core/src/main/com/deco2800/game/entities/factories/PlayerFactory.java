@@ -53,54 +53,25 @@ public class PlayerFactory {
                                     TextureAtlas.class));
     animator.addAnimation("attack", 0.03f, Animation.PlayMode.NORMAL);
 
-    AnimationRenderComponent5 animator5 =
-            new AnimationRenderComponent5(
-                    ServiceLocator.getResourceService()
-                            .getAsset("images/run.atlas",
-                                    TextureAtlas.class));
-    animator5.addAnimation("run", 0.15f, Animation.PlayMode.LOOP);
-
     AnimationRenderComponent3 animator3 =
             new AnimationRenderComponent3(
                     ServiceLocator.getResourceService()
                             .getAsset("images/posipuff.atlas",
                                     TextureAtlas.class));
-    animator3.addAnimation("buff", 0.15f, Animation.PlayMode.NORMAL);
+    animator3.addAnimation("buff", 0.03f, Animation.PlayMode.NORMAL);
 
     AnimationRenderComponent4 animator4 =
             new AnimationRenderComponent4(
                     ServiceLocator.getResourceService()
                             .getAsset("images/negbuff.atlas",
                                     TextureAtlas.class));
-    animator4.addAnimation("deBuff", 0.15f, Animation.PlayMode.NORMAL);
+    animator4.addAnimation("deBuff", 0.03f, Animation.PlayMode.NORMAL);
 
-    AnimationRenderComponent6 animator6 =
-            new AnimationRenderComponent6(
-                    ServiceLocator.getResourceService()
-                            .getAsset("images/playercoin.atlas",
-                                    TextureAtlas.class));
-    animator6.addAnimation("coin", 0.1f, Animation.PlayMode.NORMAL);
-
-//    AnimationRenderComponent animator1 =
-//            new AnimationRenderComponent(
-//                    ServiceLocator.getResourceService()
-//                            .getAsset("images/posipuff.atlas",
-//                                    TextureAtlas.class));
-//    animator1.addAnimation("buff", 0.1f, Animation.PlayMode.NORMAL);
-//    AnimationRenderComponent animator3 =
-//            new AnimationRenderComponent(
-//                    ServiceLocator.getResourceService()
-//                            .getAsset("images/player.atlas",
-//                                    TextureAtlas.class));
-//    animator.addAnimation("attack", 0.03f, Animation.PlayMode.NORMAL);
-//    animator.addAnimation("TouchObstacle", 0.03f, Animation.PlayMode.NORMAL);
-//    animator.addAnimation("positiveBuff", 0.03f, Animation.PlayMode.NORMAL);
-//    animator.addAnimation("negativeBuff", 0.03f, Animation.PlayMode.NORMAL);
 
 
     Entity player =
         new Entity(Entity.Type.PLAYER)
-            .addComponent(new TextureRenderComponent("images/blank.png"))
+            .addComponent(new TextureRenderComponent("images/new_player_2021.png"))
             .addComponent(new PhysicsComponent())
             .addComponent(new ColliderComponent())
             .addComponent(new HitboxComponent().setLayer(PhysicsLayer.PLAYER))
@@ -113,14 +84,12 @@ public class PlayerFactory {
             .addComponent(new PlayerStatsDisplay())
                 .addComponent(animator2)
                 .addComponent(animator3)
-                .addComponent(animator4)
-                .addComponent(animator5)
-            .addComponent((animator6));
+                .addComponent(animator4);
 
     PhysicsUtils.setScaledCollider(player, 0.6f, 0.3f);
     player.getComponent(ColliderComponent.class).setDensity(1.5f);
     player.getComponent(TextureRenderComponent.class).scaleEntity();
-    //player.getComponent(AnimationRenderComponent.class).scaleEntity();
+
     return player;
   }
 

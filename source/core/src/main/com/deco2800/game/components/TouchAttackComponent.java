@@ -82,14 +82,10 @@ public class TouchAttackComponent extends Component {
       else if(targetStats.getEntity().getType() == Entity.Type.DEBUFF){
         targetStats.hitDeBuff(combatStats);
       }
-      else if(targetStats.getEntity().getType() == Entity.Type.COLLECTABLES){
-        targetStats.hitCoins(combatStats);
-      }
       else{
         targetStats.hit(combatStats);
       }
     }
-
 
     // Apply knockback
     PhysicsComponent physicsComponent = target.getComponent(PhysicsComponent.class);

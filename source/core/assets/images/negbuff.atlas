@@ -1,33 +1,26 @@
 negbuff.png
-size: 1280, 1280
+size: 617, 999
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 deBuff
   rotate: false
-  xy: 0, 0
-  size: 640, 640
+  xy: 1, 1
+  size: 421, 574
   orig: 640, 640
-  offset: 0, 0
+  offset: 219, 7
   index: -1
 deBuff
   rotate: false
-  xy: 640, 0
-  size: 640, 640
+  xy: 424, 1
+  size: 192, 502
   orig: 640, 640
-  offset: 0, 0
+  offset: 219, 79
   index: -1
 deBuff
-  rotate: false
-  xy: 0, 640
-  size: 640, 640
+  rotate: true
+  xy: 1, 577
+  size: 421, 574
   orig: 640, 640
-  offset: 0, 0
-  index: -1
-default
-  rotate: false
-  xy: 640, 640
-  size: 640, 640
-  orig: 640, 640
-  offset: 0, 0
+  offset: 219, 7
   index: -1

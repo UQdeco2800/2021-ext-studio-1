@@ -44,7 +44,6 @@ public class PhysicsContactListener implements ContactListener {
     if (userData != null && userData.entity != null) {
       logger.debug("{} on entity {}", evt, userData.entity);
       userData.entity.getEvents().trigger(evt, fixture, otherFixture);
-      // userData.entity.getEvents().trigger("contentReachedEndOfMap", userData.entity);
     }
   }
 }

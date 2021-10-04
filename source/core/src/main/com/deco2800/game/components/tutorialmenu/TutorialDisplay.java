@@ -61,16 +61,15 @@ public class TutorialDisplay extends UIComponent {
         //Exit button
         Button.ButtonStyle exitStyle = new Button.ButtonStyle();
         exitStyle.up= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/btn_exit1.png"))));
+                new Texture(Gdx.files.internal("images/NewBtn_exit1.png"))));
         exitStyle.over= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/btn_exit2.png"))));
+                new Texture(Gdx.files.internal("images/NewBtn_exit2.png"))));
         Button exitBtn = new Button(exitStyle);
 
-       // TextButton exitBtn = new TextButton("Exit", skin);
 
 
 
-        // when the user presses exit button
+        // Event listener for exit button
         exitBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent e, float x, float y) {
