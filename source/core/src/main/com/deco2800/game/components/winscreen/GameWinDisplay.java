@@ -95,10 +95,6 @@ public class GameWinDisplay extends UIComponent {
 
     @Override
     public void draw(SpriteBatch batch) {
-          /*
-           Well technically this method doesn't seem to do anything.
-           Adding a nested line comment to remove the code smell
-         */
     }
 
     @Override
