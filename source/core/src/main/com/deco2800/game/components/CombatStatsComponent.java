@@ -142,9 +142,13 @@ public class CombatStatsComponent extends Component {
 
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
         logger.error("attacker--{}", attacker.getEntity().getType());
+        AnimationRenderComponent5 animator5 =
+                attacker.getEntity().getComponent(AnimationRenderComponent5.class);
+        animator5.stopAnimation();
         AnimationRenderComponent2 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent2.class);
         animator.startAnimation("touch");
+
         Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/e.ogg", Sound.class);
         attackSound.play();
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
@@ -178,6 +182,9 @@ public class CombatStatsComponent extends Component {
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
         logger.error("attacker--{}", attacker.getEntity().getType(),
                 attacker.getEntity());
+//        AnimationRenderComponent5 animator5 =
+//                attacker.getEntity().getComponent(AnimationRenderComponent5.class);
+//        animator5.stopAnimation();
         AnimationRenderComponent3 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent3.class);
         animator.startAnimation("buff");
@@ -214,6 +221,9 @@ public class CombatStatsComponent extends Component {
 
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
         logger.error("attacker--{}", attacker.getEntity().getType(),attacker.getEntity());
+        AnimationRenderComponent5 animator5 =
+                attacker.getEntity().getComponent(AnimationRenderComponent5.class);
+        animator5.stopAnimation();
         AnimationRenderComponent4 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent4.class);
         animator.startAnimation("deBuff");
@@ -248,6 +258,9 @@ public class CombatStatsComponent extends Component {
 
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
         logger.error("attacker--{}", attacker.getEntity().getType(),attacker.getEntity());
+        AnimationRenderComponent5 animator5 =
+                attacker.getEntity().getComponent(AnimationRenderComponent5.class);
+        animator5.stopAnimation();
         AnimationRenderComponent6 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent6.class);
         animator.startAnimation("coin");

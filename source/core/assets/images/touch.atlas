@@ -24,7 +24,7 @@ touch
   orig: 640, 640
   offset: 0, 0
   index: -1
-touch
+default
   rotate: false
   xy: 640, 640
   size: 640, 640
