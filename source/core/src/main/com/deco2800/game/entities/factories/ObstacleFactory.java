@@ -114,7 +114,7 @@ public class ObstacleFactory {
 
 	public static Entity createFood() {
 		Entity food =
-				new Entity(Entity.Type.BUFF)
+				new Entity()
 						.addComponent(new TextureRenderComponent("images/food.png"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
