@@ -8,6 +8,7 @@ import com.deco2800.game.screens.MainMenuScreen;
 import com.deco2800.game.screens.RagnorakRacer;
 import com.deco2800.game.screens.SettingsScreen;
 import com.deco2800.game.screens.GameOverScreen;
+import com.deco2800.game.screens.TutorialScreen;
 import com.deco2800.game.screens.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,28 +72,33 @@ public class GdxGame extends Game {
     switch (screenType) {
       case MAIN_MENU:
         return new MainMenuScreen(this);
+//        return new GameStoryScreen(this);
       case MAIN_GAME:
         return new RagnorakRacer(this);
       case GAME_WIN:
         return new GameWinScreen(this);
-
       case SETTINGS:
         return new SettingsScreen(this);
+      case TUTORIAL:
+        return new TutorialScreen(this);
       case GAMEOVER:
         return new GameOverScreen(this);
+      case GAME_STORY:
+        return new GameStoryScreen(this);
       default:
         return null;
     }
   }
 
   public enum ScreenType {
-    MAIN_MENU, MAIN_GAME, SETTINGS, GAMEOVER, GAME_WIN;
+    MAIN_MENU, MAIN_GAME, SETTINGS, GAMEOVER, GAME_WIN, TUTORIAL, GAME_STORY;
   }
 
   /**
    * Exit the game.
    */
   public void exit() {
+
     app.exit();
   }
 }
