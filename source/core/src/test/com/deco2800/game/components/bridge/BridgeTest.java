@@ -144,20 +144,6 @@ public class BridgeTest {
     }
 
     /**
-     * 8. This Test module tests the top and bottom of the lane is getting created in a proper fashion.
-     */
-    @Test
-    public void testGetBounds() {
-        bridge.createLane();
-        Map<String, Integer> bounds = new HashMap<>();
-        bounds.put("top", bridge.getLanes().get(0).getTop());
-        bounds.put("bot", bridge.getLanes().get(0).getBot());
-        assertEquals(1, bounds.get("top"));
-        assertEquals(0, bounds.get("bot"));
-
-    }
-
-    /**
      * 9. This Test module tests the removal of the lane successfully upon creation in a similar fashion as in
      * testRemoveLane()
      */
@@ -169,5 +155,53 @@ public class BridgeTest {
         }
     }
 
+    @Test
+    public void testGetPos() {
+        Bridge bridge1 = setUpBridge(0, 2, 1);
+        assertEquals(2, bridge1.getLanes().get(0).getBot());
+        assertEquals(3, bridge1.getLanes().get(0).getMid());
+        assertEquals(4, bridge1.getLanes().get(0).getTop());
+
+        Bridge bridge2 = setUpBridge(0, 100, 2);
+        assertEquals(2, bridge2.getLanes().get(0).getBot());
+        assertEquals(52, bridge2.getLanes().get(0).getMid());
+        assertEquals(102, bridge2.getLanes().get(0).getTop());
+        assertEquals(102, bridge2.getLanes().get(1).getBot());
+        assertEquals(152, bridge2.getLanes().get(1).getMid());
+        assertEquals(202, bridge2.getLanes().get(1).getTop());
+
+        Bridge bridge3 = setUpBridge(50, 100, 1);
+        assertEquals(52, bridge3.getLanes().get(0).getBot());
+        assertEquals(102, bridge3.getLanes().get(0).getMid());
+        assertEquals(152, bridge3.getLanes().get(0).getTop());
+    }
+
+    @Test
+    public void testGetWidth() {
+        Bridge bridge1 = setUpBridge(0, 1, 1);
+        assertEquals(1, bridge1.getWidth());
+        Bridge bridge2 = setUpBridge(0, 2, 1);
+        assertEquals(2, bridge2.getWidth());
+    }
+
+    @Test
+    public void testGetyViewTopandBot() {
+        Bridge bridge1 = setUpBridge(0, 1, 1);
+        assertEquals(2, bridge1.getYViewBot());
+        assertEquals(26, bridge1.getYViewTop());
+
+        bridge1.setYViewBot(0);
+        bridge1.setYViewTop(100);
+        assertEquals(0, bridge1.getYViewBot());
+        assertEquals(100, bridge1.getYViewTop());
+    }
+
+//    @Test
+//    public void fieldTest() {
+//        Bridge bridge1 = setUpBridge(5, 3, 4);
+//        bridge1.setYViewBot(1);
+//        bridge1.setYViewBot(13.5f);
+//        assertEquals(1, bridge1.getLanes().get(0).getBot());
+//    }
 }
 
