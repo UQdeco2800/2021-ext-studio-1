@@ -128,10 +128,11 @@ public class ObstacleFactory {
 
 	public static Entity createAxe() {
 		Entity axe =
-				new Entity(Entity.Type.WEAPON)
+				new Entity(Entity.Type.BUFF)
 						.addComponent(new TextureRenderComponent("images/axe.png"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
+						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
 						.addComponent(new CombatStatsComponent(100, 1));
 
 		axe.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -141,10 +142,11 @@ public class ObstacleFactory {
 	
 	public static Entity createSword() {
 		Entity sword =
-				new Entity(Entity.Type.WEAPON)
+				new Entity(Entity.Type.BUFF)
 						.addComponent(new TextureRenderComponent("images/sword.png"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
+						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
 						.addComponent(new CombatStatsComponent(100, 1));
 
 		sword.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -154,10 +156,11 @@ public class ObstacleFactory {
 
 	public static Entity createBow() {
 		Entity bow =
-				new Entity(Entity.Type.WEAPON)
+				new Entity(Entity.Type.BUFF)
 						.addComponent(new TextureRenderComponent("images/bow.png"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
+						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
 						.addComponent(new CombatStatsComponent(100, 1));
 
 		bow.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -171,6 +174,7 @@ public class ObstacleFactory {
 						.addComponent(new TextureRenderComponent("images/coin.gif"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
+						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
 						.addComponent(new CombatStatsComponent(100, 1));
 
 		coin.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -184,6 +188,7 @@ public class ObstacleFactory {
 						.addComponent(new TextureRenderComponent("images/diamond.gif"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
+						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
 						.addComponent(new CombatStatsComponent(100, 1));
 
 		diamond.getComponent(TextureRenderComponent.class).scaleEntity();
