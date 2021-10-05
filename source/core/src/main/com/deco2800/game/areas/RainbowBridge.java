@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.deco2800.game.areas.terrain.TerrainFactory;
 import com.deco2800.game.areas.terrain.TerrainFactory.TerrainType;
 import com.deco2800.game.components.bridge.Bridge;
+import com.deco2800.game.components.tasks.MovementTask;
 import com.deco2800.game.entities.Entity;
 import com.deco2800.game.entities.factories.NPCFactory;
 import com.deco2800.game.entities.factories.ObstacleFactory;
@@ -18,8 +19,13 @@ import com.deco2800.game.components.gamearea.GameAreaDisplay;
 import org.slf4j.Logger;
 import com.deco2800.game.physics.components.PhysicsMovementComponent;
 import org.slf4j.LoggerFactory;
+
+import java.awt.*;
 import java.util.List;
 import com.deco2800.game.components.bridge.Lane;
+
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -29,15 +35,11 @@ public class RainbowBridge extends GameArea {
     private static final GridPoint2 PLAYER_SPAWN = new GridPoint2(1, 8);
     private static final float WALL_WIDTH = 0.1f;
     private static final int NUM_TREES = 7;
-    private static final int NUM_OBSTACLES = 100;
-    private static final int NUM_HEALTH_OBJECTS = 1000;
-    private static final int NUM_WEAPON = 0;
-    private static final int NUM_COLLECTABLES = 1000;
-    private static final int NUM_GHOSTS = 2;
-    private static final GridPoint2 NUM_LittleGreen = new GridPoint2(30, 7);
-    private static final GridPoint2 GHOST_KING = new GridPoint2(30, 16);
-    private static final GridPoint2 Demon = new GridPoint2(30, 13);
-    private static final GridPoint2 NUM_GHOST = new GridPoint2(30, 10);
+    private static final int NUM_OBSTACLES = 12;
+    private static final int NUM_HEALTH_OBJECTS = 10;
+    private static final int NUM_WEAPON = 2;
+    private static final int NUM_COLLECTABLES = 5;
+    private static final int NUM_MONSTER = 10;
     private static final String[] rainbowBridgeTextures = {
             "images/terrain/star-blank.png",
             "images/terrain/star-1.png",
@@ -129,10 +131,11 @@ public class RainbowBridge extends GameArea {
         spawnWeaponObjects();
         spawnCollectableObjects();
         player = spawnPlayer();
-        spawnGhostKing();
-        spawnLittleGreen();
-        spawnDemon();
-        spawnGhosts();
+//        spawnGhostKing();
+//        spawnLittleGreen();
+//        spawnDemon();
+//        spawnGhosts();
+        spawnMonster();
         playMusic();
     }
 
@@ -324,40 +327,6 @@ public class RainbowBridge extends GameArea {
         return newPlayer;
     }
 
-    private void spawnGhosts() {
-
-
-        for (int i = 0; i < 20; i++) {
-            Entity ghost = NPCFactory.createGhost(player);
-            spawnEntityAt(ghost, NUM_GHOST, true, true);
-
-        }
-    }
-
-    private void spawnLittleGreen() {
-        for (int i = 0; i < 20; i++) {
-
-            Entity littleGreen = NPCFactory.createLittleGreen(player);
-            spawnEntityAt(littleGreen, NUM_LittleGreen, true, true);
-        }
-    }
-
-    private void spawnDemon() {
-        for (int i = 0; i < 20; i++) {
-
-            Entity demon = NPCFactory.createDemon(player);
-            spawnEntityAt(demon,Demon, true, true);
-        }
-    }
-
-//    private void removeMonster(){
-//        if()
-//    }
-
-    private void spawnGhostKing() {
-        Entity ghostKing = NPCFactory.createGhostKing(player);
-            spawnEntityAt(ghostKing, GHOST_KING, true, true);
-    }
 
     public Bridge getRainbowBridge() {
         return this.rainbowBridge;
@@ -367,6 +336,41 @@ public class RainbowBridge extends GameArea {
         return this.player;
     }
 
+    private void spawnMonster() {
+        List<Lane> lanes = terrain.getRainbowBridge().getLanes();
+        for (int i = 0; i < lanes.size(); i++) {
+            int a = 0;
+            int y_coordinate = lanes.get(i).getMid();
+            int x = 29;
+            GridPoint2 Ghost = new GridPoint2(x, y_coordinate);
+            GridPoint2 LittleGreen = new GridPoint2(x, y_coordinate);
+            GridPoint2 Dragon = new GridPoint2(x, y_coordinate);
+            GridPoint2 Demon = new GridPoint2(x, y_coordinate);
+
+
+            while (a < this.NUM_MONSTER) {
+                switch(i) {
+                    case 0:
+                        Entity littleGreen = NPCFactory.createLittleGreen(player);
+                        spawnEntityAt(littleGreen, LittleGreen, true, true);
+                        break;
+                    case 1:
+                        Entity ghost = NPCFactory.createGhost(player);
+                        spawnEntityAt(ghost, Ghost, true, true);
+                        break;
+                    case 2:
+                        Entity demon = NPCFactory.createDemon(player);
+                        spawnEntityAt(demon,Demon, true, true);
+                        break;
+                    case 3:
+                        Entity dragon = NPCFactory.createGhostKing(player);
+                        spawnEntityAt(dragon,Dragon, true, true);
+                        break;
+                }
+                a++;
+            }
+        }
+    }
 
 
     private void playMusic() {
