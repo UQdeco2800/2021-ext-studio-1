@@ -87,11 +87,14 @@ public class RainbowBridge extends GameArea {
             "images/playercoin.png",
             "images/dragon1.png",
             "images/demon1.png",
-            "images/ghost1.png"
+            "images/ghost1.png",
+            "images/death.png"
 
     };
 
-    private static final String[] rainbowBridgeSounds = {"sounds/Impact4.ogg", "sounds/buff.ogg", "sounds/buff2.ogg" , "sounds/e.ogg", "sounds/attack.ogg"};
+    private static final String[] rainbowBridgeSounds = {"sounds/Impact4.ogg"
+            , "sounds/buff.ogg", "sounds/buff2.ogg" , "sounds/e.ogg", "sounds" +
+            "/attack.ogg", "sounds/buff_recover.ogg"};
     private static final String backgroundMusic = "sounds/BGM_03_mp3.mp3";
     private static final String backgroundMusic1 = "sounds/backgroundMusic1.mp3";
     private static final String[] rainbowBridgeMusic = {backgroundMusic, backgroundMusic1};
@@ -101,7 +104,8 @@ public class RainbowBridge extends GameArea {
             "images/terrain_iso_grass.atlas", "images/ghost1.atlas", "images" +
             "/ghostKing.atlas","images/demon1.atlas","images/dragon1.atlas","images/littlegreen1" +
             ".atlas", "images/attack.atlas", "images/touch.atlas","images" +
-            "/negbuff.atlas", "images/posipuff.atlas","images/run.atlas", "images/playercoin.atlas"
+            "/negbuff.atlas", "images/posipuff.atlas","images/run.atlas",
+            "images/playercoin.atlas", "images/death.atlas"
     };
 
     private final TerrainFactory terrainFactory;
