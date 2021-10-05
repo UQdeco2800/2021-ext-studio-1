@@ -9,12 +9,10 @@ import com.deco2800.game.components.CombatStatsComponent;
 import com.deco2800.game.components.Component;
 import com.deco2800.game.entities.Entity;
 import com.deco2800.game.physics.components.PhysicsComponent;
-import com.deco2800.game.rendering.AnimationRenderComponent;
+import com.deco2800.game.rendering.*;
 import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.deco2800.game.rendering.AnimationRenderComponent5;
-import com.deco2800.game.rendering.AnimationRenderComponent6;
 
 import javax.crypto.EncryptedPrivateKeyInfo;
 import java.security.Key;
@@ -33,26 +31,43 @@ public class PlayerActions extends Component {
   private boolean moving = false;
   private  CombatStatsComponent combatStatsComponent;
   AnimationRenderComponent animator;
-  AnimationRenderComponent5 animator2;
+  AnimationRenderComponent2 animator2;
+  AnimationRenderComponent3 animator3;
+  AnimationRenderComponent4 animator4;
+  AnimationRenderComponent5 animator5;
+  AnimationRenderComponent6 animator6;
 
   @Override
   public void create() {
     animator = this.entity.getComponent(AnimationRenderComponent.class);
-    animator2 = this.entity.getComponent(AnimationRenderComponent5.class);
+    animator2 = this.entity.getComponent(AnimationRenderComponent2.class);
+    animator3 = this.entity.getComponent(AnimationRenderComponent3.class);
+    animator4 = this.entity.getComponent(AnimationRenderComponent4.class);
+    animator5 = this.entity.getComponent(AnimationRenderComponent5.class);
+    animator6 = this.entity.getComponent(AnimationRenderComponent6.class);
     physicsComponent = entity.getComponent(PhysicsComponent.class);
     entity.getEvents().addListener("walk", this::walk);
     entity.getEvents().addListener("walkStop", this::stopWalking);
     entity.getEvents().addListener("attack", this::attack);
     entity.getEvents().addListener("unAttack", this::unAttack);
     entity.getEvents().addListener("run", this::attack);
-    entity.getEvents().addListener("run", this::run);
     entity.getEvents().addListener("coin", this::attack);
   }
 
   @Override
   public void update() {
-    if(animator2.getCurrentAnimation() == null) {
-       animator2.startAnimation("run");
+    if(animator5.getCurrentAnimation() == null) {
+      animator5.startAnimation("run");
+    }
+    if(animator.getCurrentAnimation() != null || animator2.getCurrentAnimation() != null|| animator3.getCurrentAnimation() != null || animator4.getCurrentAnimation() != null || animator6.getCurrentAnimation() != null){
+      animator5.stopAnimation();
+    }
+    if (animator2.isFinished() || animator3.isFinished() || animator4.isFinished() || animator6.isFinished()){
+      animator2.stopAnimation();
+      animator3.stopAnimation();
+      animator4.stopAnimation();
+      animator6.stopAnimation();
+      animator5.startAnimation("run");
     }
     if (moving) {
       updateSpeed();
@@ -116,17 +131,15 @@ public class PlayerActions extends Component {
     }
     Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/attack.ogg", Sound.class);
     attackSound.play();
-    animator2.stopAnimation();
+    animator5.stopAnimation();
     animator.startAnimation("attack");
-
-
   }
 
   void unAttack(){
     animator.stopAnimation();
-    animator2.startAnimation("run");
+    animator5.startAnimation("run");
   }
-  void run(){animator2.startAnimation("run"); }
+
 
   private Entity findNearestTargets(Array<Entity> entities) {
     Entity result = null;
