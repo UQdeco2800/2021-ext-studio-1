@@ -144,8 +144,6 @@ public class CombatStatsComponent extends Component {
                 attacker.getEntity().getComponent(AnimationRenderComponent7.class);
         animator7.startAnimation("death");
       }
-
-
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
         logger.error("attacker--{}", attacker.getEntity().getType());
         AnimationRenderComponent2 animator =
@@ -155,9 +153,7 @@ public class CombatStatsComponent extends Component {
                 "/e.ogg", Sound.class);
         hitSound.play();
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
-
       }
-
       if (armour > 0){
         int newArmour = getArmour() - attacker.getBaseAttack();
         setArmour(newArmour);
@@ -168,7 +164,6 @@ public class CombatStatsComponent extends Component {
         setHealth(newHealth);
         invincibleStart = ServiceLocator.getTimeSource().getTime();
       }
-
     } catch (NullPointerException e) {
       int newHealth = getHealth() - attacker.getBaseAttack();
       setHealth(newHealth);
@@ -181,7 +176,6 @@ public class CombatStatsComponent extends Component {
       if (ServiceLocator.getTimeSource().getTimeSince(invincibleStart) < 1000L) {
         return;
       }
-
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
         logger.error("attacker--{}", attacker.getEntity().getType(),
                 attacker.getEntity());
@@ -196,16 +190,16 @@ public class CombatStatsComponent extends Component {
 
       }
 
-      if (armour > 0){
-        int newArmour = getArmour() - attacker.getBaseAttack();
-        setArmour(newArmour);
-        invincibleStart = ServiceLocator.getTimeSource().getTime();
-      }
-      else{
-        int newHealth = getHealth() - attacker.getBaseAttack();
-        setHealth(newHealth);
-        invincibleStart = ServiceLocator.getTimeSource().getTime();
-      }
+//      if (armour > 0){
+//        int newArmour = getArmour() - attacker.getBaseAttack();
+//        setArmour(newArmour);
+//        invincibleStart = ServiceLocator.getTimeSource().getTime();
+//      }
+//      else{
+//        int newHealth = getHealth() - attacker.getBaseAttack();
+//        setHealth(newHealth);
+//        invincibleStart = ServiceLocator.getTimeSource().getTime();
+//      }
 
     } catch (NullPointerException e) {
       int newHealth = getHealth() - attacker.getBaseAttack();
@@ -230,16 +224,16 @@ public class CombatStatsComponent extends Component {
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
       }
 
-      if (armour > 0){
-        int newArmour = getArmour() - attacker.getBaseAttack();
-        setArmour(newArmour);
-        invincibleStart = ServiceLocator.getTimeSource().getTime();
-      }
-      else{
-        int newHealth = getHealth() - attacker.getBaseAttack();
-        setHealth(newHealth);
-        invincibleStart = ServiceLocator.getTimeSource().getTime();
-      }
+//      if (armour > 0){
+//        int newArmour = getArmour() - attacker.getBaseAttack();
+//        setArmour(newArmour);
+//        invincibleStart = ServiceLocator.getTimeSource().getTime();
+//      }
+//      else{
+//        int newHealth = getHealth() - attacker.getBaseAttack();
+//        setHealth(newHealth);
+//        invincibleStart = ServiceLocator.getTimeSource().getTime();
+//      }
 
     } catch (NullPointerException e) {
       int newHealth = getHealth() - attacker.getBaseAttack();
@@ -264,17 +258,16 @@ public class CombatStatsComponent extends Component {
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
       }
 
-      if (armour > 0){
-        int newArmour = getArmour() - attacker.getBaseAttack();
-        setArmour(newArmour);
-        invincibleStart = ServiceLocator.getTimeSource().getTime();
-      }
-      else{
-        int newHealth = getHealth() - attacker.getBaseAttack();
-        setHealth(newHealth);
-        invincibleStart = ServiceLocator.getTimeSource().getTime();
-      }
-
+//      if (armour > 0){
+//        int newArmour = getArmour() - attacker.getBaseAttack();
+//        setArmour(newArmour);
+//        invincibleStart = ServiceLocator.getTimeSource().getTime();
+//      }
+//      else{
+//        int newHealth = getHealth() - attacker.getBaseAttack();
+//        setHealth(newHealth);
+//        invincibleStart = ServiceLocator.getTimeSource().getTime();
+//      }
     } catch (NullPointerException e) {
       int newHealth = getHealth() - attacker.getBaseAttack();
       setHealth(newHealth);
