@@ -122,9 +122,9 @@ public class PlayerActions extends Component {
       if (nearest.getType().equals(Entity.Type.GHOST) || nearest.getType().equals(Entity.Type.GHOSTKING)) {
         logger.info ("nearest.getType()--{}", nearest.getType());
         nearest.dispose();
-        Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/buff2.ogg", Sound.class);
+        Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/kill_enemy.ogg", Sound.class);
         attSound.play();
-        animator.startAnimation("buff2");
+        animator.startAnimation("kill_enemy");
 
         entity.getEvents().trigger("updateGold");
       }
