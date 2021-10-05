@@ -149,9 +149,9 @@ public class CombatStatsComponent extends Component {
         AnimationRenderComponent2 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent2.class);
         animator.startAnimation("touch");
-//        Sound hitSound = ServiceLocator.getResourceService().getAsset("sounds" +
-//                "/e.ogg", Sound.class);
-//        hitSound.play();
+        Sound hitSound = ServiceLocator.getResourceService().getAsset("sounds" +
+                "/e.ogg", Sound.class);
+        hitSound.play();
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
       }
       if (armour > 0){
@@ -182,9 +182,9 @@ public class CombatStatsComponent extends Component {
         AnimationRenderComponent3 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent3.class);
         animator.startAnimation("buff");
-//        Sound buffSound = ServiceLocator.getResourceService().getAsset(
-//                "sounds/buff_recover.ogg", Sound.class);
-//        buffSound.play();
+        Sound buffSound = ServiceLocator.getResourceService().getAsset(
+                "sounds/buff_recover.ogg", Sound.class);
+        buffSound.play();
 
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
 
@@ -219,9 +219,9 @@ public class CombatStatsComponent extends Component {
                 attacker.getEntity().getComponent(AnimationRenderComponent4.class);
         animator.startAnimation("deBuff");
 
-//        Sound deBuffSound = ServiceLocator.getResourceService().getAsset(
-//                "sounds/e.ogg", Sound.class);
-//        deBuffSound.play();
+        Sound deBuffSound = ServiceLocator.getResourceService().getAsset(
+                "sounds/e.ogg", Sound.class);
+        deBuffSound.play();
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
       }
 
@@ -253,9 +253,9 @@ public class CombatStatsComponent extends Component {
         AnimationRenderComponent6 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent6.class);
         animator.startAnimation("coin");
-//        Sound coinSound = ServiceLocator.getResourceService().getAsset(
-//                "sounds/coin.ogg", Sound.class);
-//        coinSound.play();
+        Sound coinSound = ServiceLocator.getResourceService().getAsset(
+                "sounds/coin.ogg", Sound.class);
+        coinSound.play();
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
       }
 
