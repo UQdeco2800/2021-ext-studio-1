@@ -218,6 +218,7 @@ public class CombatStatsComponent extends Component {
         AnimationRenderComponent4 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent4.class);
         animator.startAnimation("deBuff");
+
         Sound deBuffSound = ServiceLocator.getResourceService().getAsset(
                 "sounds/e.ogg", Sound.class);
         deBuffSound.play();
