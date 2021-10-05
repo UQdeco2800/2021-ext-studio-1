@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.deco2800.game.areas.terrain.TerrainFactory;
 import com.deco2800.game.areas.terrain.TerrainFactory.TerrainType;
 import com.deco2800.game.components.bridge.Bridge;
+import com.deco2800.game.components.tasks.MovementTask;
 import com.deco2800.game.entities.Entity;
 import com.deco2800.game.entities.factories.NPCFactory;
 import com.deco2800.game.entities.factories.ObstacleFactory;
@@ -35,12 +36,7 @@ public class RainbowBridge extends GameArea {
     private static final int NUM_HEALTH_OBJECTS = 10;
     private static final int NUM_WEAPON = 2;
     private static final int NUM_COLLECTABLES = 5;
-    private static final int NUM_GHOSTS = 2;
-//    private static final int NUM_LittleGreen = 5;
-    private static final GridPoint2 NUM_LittleGreen = new GridPoint2(29, 7);
-    private static final GridPoint2 GHOST_KING = new GridPoint2(29, 16);
-    private static final GridPoint2 Demon = new GridPoint2(29, 13);
-    private static final GridPoint2 NUM_GHOST = new GridPoint2(29, 10);
+    private static final int NUM_MONSTER = 10;
     private static final String[] rainbowBridgeTextures = {
             "images/terrain/star-blank.png",
             "images/terrain/star-1.png",
@@ -129,10 +125,11 @@ public class RainbowBridge extends GameArea {
         spawnCollectableObjects();
 
         player = spawnPlayer();
-        spawnGhostKing();
-        spawnLittleGreen();
-        spawnDemon();
-        spawnGhosts();
+//        spawnGhostKing();
+//        spawnLittleGreen();
+//        spawnDemon();
+//        spawnGhosts();
+        spawnMonster();
         playMusic();
     }
 
@@ -267,49 +264,6 @@ public class RainbowBridge extends GameArea {
         return newPlayer;
     }
 
-    private void spawnGhosts() {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                Entity ghost = NPCFactory.createGhost(player);
-                spawnEntityAt(ghost, NUM_GHOST, true, true);
-            }
-        },100,7000);
-    }
-
-    private void spawnLittleGreen() {
-            Timer timer = new Timer();
-            timer.scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    Entity littleGreen = NPCFactory.createLittleGreen(player);
-                    spawnEntityAt(littleGreen, NUM_LittleGreen, true, true);
-                }
-            },100, 8000);
-    }
-
-    private void spawnDemon() {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-                           @Override
-                           public void run() {
-                               Entity demon = NPCFactory.createDemon(player);
-                               spawnEntityAt(demon,Demon, true, true);
-                           }
-                       },100,9000);
-    }
-
-    private void spawnGhostKing() {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                    Entity ghostKing = NPCFactory.createGhostKing(player);
-                    spawnEntityAt(ghostKing, GHOST_KING, true, true);
-            }
-        },100,20000);
-    }
 
     public Bridge getRainbowBridge() {
         return this.rainbowBridge;
@@ -319,6 +273,41 @@ public class RainbowBridge extends GameArea {
         return this.player;
     }
 
+    private void spawnMonster() {
+        List<Lane> lanes = terrain.getRainbowBridge().getLanes();
+        for (int i = 0; i < lanes.size(); i++) {
+            int a = 0;
+            int y_coordinate = lanes.get(i).getMid();
+            int x = 29;
+            GridPoint2 Ghost = new GridPoint2(x, y_coordinate);
+            GridPoint2 LittleGreen = new GridPoint2(x, y_coordinate);
+            GridPoint2 Dragon = new GridPoint2(x, y_coordinate);
+            GridPoint2 Demon = new GridPoint2(x, y_coordinate);
+
+
+            while (a < this.NUM_MONSTER) {
+                switch(i) {
+                    case 0:
+                        Entity littleGreen = NPCFactory.createLittleGreen(player);
+                        spawnEntityAt(littleGreen, LittleGreen, true, true);
+                        break;
+                    case 1:
+                        Entity ghost = NPCFactory.createGhost(player);
+                        spawnEntityAt(ghost, Ghost, true, true);
+                        break;
+                    case 2:
+                        Entity demon = NPCFactory.createDemon(player);
+                        spawnEntityAt(demon,Demon, true, true);
+                        break;
+                    case 3:
+                        Entity dragon = NPCFactory.createGhostKing(player);
+                        spawnEntityAt(dragon,Dragon, true, true);
+                        break;
+                }
+                a++;
+            }
+        }
+    }
 
 
     private void playMusic() {
