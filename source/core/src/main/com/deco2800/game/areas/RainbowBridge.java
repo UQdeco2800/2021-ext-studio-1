@@ -197,7 +197,7 @@ public class RainbowBridge extends GameArea {
 
         for (int i = 0; i < lanes.size(); i++) {
             int d = 0;
-            int y_coordinate = lanes.get(i).getMid() ;
+            int y_coordinate = (int) lanes.get(i).getMid() ;
             int x_random = ThreadLocalRandom.current().nextInt(0, 100 + 1);
             GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
             // Entity RunesGate = ObstacleFactory.createRunesGate();
@@ -240,7 +240,7 @@ public class RainbowBridge extends GameArea {
 
         for (int i = 0; i < lanes.size(); i++) {
             int d = 0;
-            int y_coordinate = lanes.get(i).getMid();
+            int y_coordinate = (int) lanes.get(i).getMid();
             int x_random = ThreadLocalRandom.current().nextInt(5, 100 + 1);  // min x=5, max x=30
             GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
 
@@ -266,7 +266,7 @@ public class RainbowBridge extends GameArea {
         List<Lane> lanes = terrain.getRainbowBridge().getLanes();
         for (int i = 0; i < lanes.size(); i++) {
             int d = 0;
-            int y_coordinate = lanes.get(i).getMid();
+            int y_coordinate = (int) lanes.get(i).getMid();
             int x_random = ThreadLocalRandom.current().nextInt(5, 100 + 1);  // min x=5, max x=28
             GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
         
@@ -299,7 +299,7 @@ public class RainbowBridge extends GameArea {
 
         for (int i = 0; i < lanes.size(); i++) {
             int d = 0;
-            int y_coordinate = lanes.get(i).getMid();
+            int y_coordinate = (int) lanes.get(i).getMid();
             int x_random = ThreadLocalRandom.current().nextInt(5, 100 + 1);  // min x=5, max x=28
             GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);            
             
