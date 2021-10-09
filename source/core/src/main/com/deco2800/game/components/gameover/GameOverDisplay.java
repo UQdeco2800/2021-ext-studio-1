@@ -97,7 +97,7 @@ public class GameOverDisplay extends UIComponent {
 
         Image playerDeadImage = new Image(ServiceLocator.getResourceService().getAsset("images/Death_Screen_Character.png",
                 Texture.class));
-        Image gameOverText = new Image(ServiceLocator.getResourceService().getAsset("images/Gameover_Visual_Text.png",
+        Image gameOverText = new Image(ServiceLocator.getResourceService().getAsset("images/Gameover_txt.png",
                 Texture.class));
         Image gameOverCoin = new Image(ServiceLocator.getResourceService().getAsset("images/Gameover_Coincollector.png",
                 Texture.class));
