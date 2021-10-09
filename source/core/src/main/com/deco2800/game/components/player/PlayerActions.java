@@ -29,7 +29,7 @@ public class PlayerActions extends Component {
   private PhysicsComponent physicsComponent;
   private Vector2 walkDirection = Vector2.Zero.cpy();
   private boolean moving = false;
-  private  CombatStatsComponent combatStatsComponent;
+  private CombatStatsComponent combatStatsComponent;
   AnimationRenderComponent animator;
   AnimationRenderComponent2 animator2;
   AnimationRenderComponent3 animator3;

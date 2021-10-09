@@ -84,6 +84,7 @@ public class RainbowBridge extends GameArea {
             "images/attack.png",
             "images/negbuff.png",
             "images/posipuff.png",
+            "images/coincollectortransparentvisual.png",
             "images/run.png",
             "images/blank.png",
             "images/playercoin.png",

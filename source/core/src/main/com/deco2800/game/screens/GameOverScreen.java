@@ -22,13 +22,15 @@ public class GameOverScreen extends ScreenAdapter {
     private static final Logger logger = LoggerFactory.getLogger(GameOverScreen.class);
 
     private final GdxGame game;
+    private final int gold;
     private final Renderer renderer;
 
-    private static final String[] gameOverTextures = {"images/Death_Screen_Background.png", "images/Death_Screen_Character.png", "images/Gameover_Visual_Text.png",
-            "images/btn_restart1.png","images/btn_exit1.png"};
+    private static final String[] gameOverTextures = {"images/ragnarok_background.png", "images/Death_Screen_Character.png", "images/Gameover_txt.png",
+            "images/btn_restart1.png","images/btn_exit1.png", "images/Gameover_Coincollector.png"};
 
-    public GameOverScreen(GdxGame game) {
+    public GameOverScreen(GdxGame game, int gold) {
         this.game = game;
+        this.gold = gold;
 
         logger.debug("Initialising GameOver screen services");
         ServiceLocator.registerInputService(new InputService());
@@ -64,6 +66,10 @@ public class GameOverScreen extends ScreenAdapter {
         ServiceLocator.clear();
     }
 
+    public int getFinalGold(){
+        return this.gold;
+    }
+
     private void loadAssets() {
         logger.debug("Loading assets");
         ResourceService resourceService = ServiceLocator.getResourceService();
@@ -86,7 +92,7 @@ public class GameOverScreen extends ScreenAdapter {
         logger.debug("Creating ui");
         Stage stage = ServiceLocator.getRenderService().getStage();
         Entity ui = new Entity();
-        ui.addComponent(new GameOverDisplay())
+        ui.addComponent(new GameOverDisplay(getFinalGold()))
                 .addComponent(new InputDecorator(stage, 10))
                 .addComponent(new GameOverActions(game));
         ServiceLocator.getEntityService().register(ui);

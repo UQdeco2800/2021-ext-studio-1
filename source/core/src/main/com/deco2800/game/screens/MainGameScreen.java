@@ -5,7 +5,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.deco2800.game.GdxGame;
 import com.deco2800.game.areas.ForestGameArea;
-import com.deco2800.game.areas.GameArea;
 import com.deco2800.game.areas.terrain.TerrainFactory;
 import com.deco2800.game.components.gameover.GameOverDisplay;
 import com.deco2800.game.components.maingame.MainGameActions;
@@ -40,7 +39,7 @@ public class MainGameScreen extends ScreenAdapter {
           "images/health_decrease_one.png", "images/health_empty.png", "images/armour_full.png", "images/armour_decrease_two.png",
           "images/armour_decrease_one.png", "images/armour_empty.png", "images/notification.png",
           "images/hurt0.png","images/hurt1.png","images/hurt2.png","images/hurt3.png","images/hurt4.png",
-          "images/10coin0.png","images/10coin1.png","images/10coin2.png","images/10coin3.png","images/10coin4.png"};
+          "images/10coin0.png","images/10coin1.png","images/10coin2.png","images/10coin3.png","images/10coin4.png", "images/coincollectortransparentvisual.png", "images/Gameover_Coincollector.png"};
   private static final Vector2 CAMERA_POSITION = new Vector2(7.5f, 7.5f);
 
   private final GdxGame game;
@@ -76,16 +75,16 @@ public class MainGameScreen extends ScreenAdapter {
     TerrainFactory terrainFactory = new TerrainFactory(renderer.getCamera());
     this.forestGameArea = new ForestGameArea(terrainFactory);
     forestGameArea.create();
-    this.forestGameArea.player.getEvents().addListener("GameOver", this::gameover);
+    //this.forestGameArea.player.getEvents().addListener("GameOver", this::gameover);
 
 
   }
-
+/**
   public void gameover() {
     Entity uiDead = new Entity();
-    uiDead.addComponent(new GameOverDisplay());
+    uiDead.addComponent(new GameOverDisplay(gold));
     ServiceLocator.getEntityService().register(uiDead);
-  }
+  }*/
 
   @Override
   public void render(float delta) {

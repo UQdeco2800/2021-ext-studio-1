@@ -12,6 +12,7 @@ import com.deco2800.game.components.gamearea.PerformanceDisplay;
 import com.deco2800.game.components.gameover.GameOverDisplay;
 import com.deco2800.game.components.maingame.MainGameActions;
 import com.deco2800.game.components.maingame.MainGameExitDisplay;
+import com.deco2800.game.components.player.InventoryComponent;
 import com.deco2800.game.entities.Entity;
 import com.deco2800.game.entities.EntityService;
 import com.deco2800.game.entities.factories.RenderFactory;
@@ -38,8 +39,8 @@ public class RagnorakRacer extends ScreenAdapter {
     private static final String[] mainGameTextures = {"images/health_full.png", "images/health_decrease_two.png",
             "images/health_decrease_one.png", "images/health_empty.png", "images/armour_full.png", "images/armour_decrease_two.png",
             "images/armour_decrease_one.png", "images/armour_empty.png", "images/notification.png",
-            "images/hurt0.png","images/hurt1.png","images/hurt2.png","images/hurt3.png","images/hurt4.png",
-            "images/10coin0.png","images/10coin1.png","images/10coin2.png","images/10coin3.png","images/10coin4.png"};
+            "images/hurt0.png","images/hurt1.png","images/hurt2.png","images/hurt3.png","images/hurt4.png", "images/dragon.png",
+            "images/10coin0.png","images/10coin1.png","images/10coin2.png","images/10coin3.png","images/10coin4.png", "images/coincollectortransparentvisual.png", "images/Gameover_Coincollector.png"};
     private static final Vector2 CAMERA_POSITION = new Vector2(7.5f, 7.5f);
 
     private final GdxGame game;
@@ -90,7 +91,9 @@ public class RagnorakRacer extends ScreenAdapter {
     }
 
     private void gameOver() {
-        game.setScreen(new GameOverScreen(game));
+        // Need to change this to get player's InventoryComponent gold
+        game.setScreen(new GameOverScreen(game, 50));
+        //game.setScreen(new GameOverScreen(game, this.rainbowBridge.getPlayer().getComponent(InventoryComponent.class).getGold()));
     }
 
     @Override
