@@ -90,13 +90,17 @@ public class RainbowBridge extends GameArea {
             "images/dragon1.png",
             "images/demon1.png",
             "images/ghost1.png",
-            "images/death.png"
-
+            "images/death.png",
+            "images/hurt0.png",
+            "images/hurt1.png",
+            "images/hurt2.png",
+            "images/hurt3.png",
+            "images/hurt4.png"
     };
 
     private static final String[] rainbowBridgeSounds = {"sounds/Impact4.ogg"
             , "sounds/buff.ogg", "sounds/buff2.ogg" , "sounds/e.ogg", "sounds" +
-            "/attack.ogg", "sounds/buff_recover.ogg", "sounds/coin.ogg", "sounds/kill_enemy.ogg"};
+            "/attack.ogg", "sounds/buff_recover.ogg", "sounds/coin.ogg", "sounds/kill_enemy.ogg", "sounds/e.ogg"};
     private static final String backgroundMusic = "sounds/BGM_03_mp3.mp3";
     private static final String backgroundMusic1 = "sounds/backgroundMusic1.mp3";
     private static final String[] rainbowBridgeMusic = {backgroundMusic, backgroundMusic1};
