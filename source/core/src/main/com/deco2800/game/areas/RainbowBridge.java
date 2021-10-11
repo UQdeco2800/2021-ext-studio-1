@@ -40,6 +40,7 @@ public class RainbowBridge extends GameArea {
     private static final int NUM_HEALTH_OBJECTS = 10;
     private static final int NUM_COLLECTABLES = 10;
     private static final int NUM_MONSTER = 10;
+    private static final int MAX_CONTENT_POSITION = 120;
     
     private static final String[] rainbowBridgeTextures = {
             "images/terrain/star-blank.png",

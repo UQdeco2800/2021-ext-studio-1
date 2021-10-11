@@ -127,11 +127,10 @@ public class CombatStatsComponent extends Component {
    * @param attack Attack damage
    */
   public void setBaseAttack(int attack) {
-    if (attack >= 0) {
-      this.baseAttack = attack;
-    } else {
-      logger.error("Can not set base attack to a negative attack value");
-    }
+    //removed check for negative base attack because BREAD AND FIRST AID KITS USE 
+    // NEGATIVE ATTACK VALUES TO INCREASE HEALTH
+    this.baseAttack = attack;
+
   }
 
   public void hit(CombatStatsComponent attacker) {
@@ -154,13 +153,23 @@ public class CombatStatsComponent extends Component {
         hitSound.play();
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
       }
+      int newHealth;
       if (armour > 0){
         int newArmour = getArmour() - attacker.getBaseAttack();
         setArmour(newArmour);
         invincibleStart = ServiceLocator.getTimeSource().getTime();
-      }
-      else{
-        int newHealth = getHealth() - attacker.getBaseAttack();
+      }  else {
+        if (attacker.getBaseAttack() == -3) { //this check is for first aid kits which fully restores health
+          newHealth = 3; 
+        } else {
+          //for other health objects, check players health is not already full. If it is, keep health as is
+          if (!(attacker.getBaseAttack() < 0 && getHealth() == 3)) {
+            newHealth = getHealth() - attacker.getBaseAttack();
+          } else {
+            newHealth = 3;
+          }
+        }
+  
         setHealth(newHealth);
         invincibleStart = ServiceLocator.getTimeSource().getTime();
       }
