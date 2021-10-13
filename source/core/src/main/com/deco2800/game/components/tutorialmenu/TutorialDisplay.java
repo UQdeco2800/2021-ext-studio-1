@@ -27,6 +27,8 @@ public class TutorialDisplay extends UIComponent {
     private static final float Z_INDEX = 2f;
     protected Table table;
     protected Table tableBtn;
+    protected Table tableTitle;
+    protected Table tableExit;
     protected Table tablebackGround;
     protected Stack stack;
 
@@ -51,6 +53,16 @@ public class TutorialDisplay extends UIComponent {
         tableBtn = new Table();
         tableBtn.top().padTop(15f);
         tableBtn.setFillParent(true);
+
+
+        tableTitle = new Table();
+        tableTitle.top().padTop(15f);
+        tableTitle.setFillParent(true);
+
+
+        tableExit = new Table();
+        tableExit.bottom();
+        tableExit.setFillParent(true);
 
         Image background = new Image(ServiceLocator.getResourceService().getAsset("images/space-background.png",
                 Texture.class));
@@ -83,7 +95,7 @@ public class TutorialDisplay extends UIComponent {
                 new Texture(Gdx.files.internal("images/FDS_btn_mapContent2_tutorial.png"))));
         Button mapContentTutorialBtn = new Button(mapContentTutorial);
 
-        Label title = new Label("Tutorial", skin, "title");
+        Label title = new Label("PLAYER MOVEMENT TUTORIAL", skin, "title", "white");
         Label instruction1 = new Label("Press W :  To move up on the lane", skin);
         Label instruction2 = new Label("Press S :  To move down on the lane", skin);
         Label instruction3 = new Label("Press Q :  To jump up to top lane", skin);
@@ -113,12 +125,15 @@ public class TutorialDisplay extends UIComponent {
                 entity.getEvents().trigger("exit");
             }
         });
+        // table with buttons
+        tableBtn.add(playerMovementTutorialBtn).size(200f,80f).padTop(20f);
+        tableBtn.add(enemyTutorialBtn).size(200f,80f).padLeft(100f).padTop(20f);
+        tableBtn.add(mapContentTutorialBtn).size(200f,80f).padLeft(100f).padTop(20f);
 
-        tableBtn.add(playerMovementTutorialBtn).size(200f,80f).padLeft(40f).padTop(20f);
-        tableBtn.add(enemyTutorialBtn).size(200f,80f).padLeft(40f).padTop(20f);
-        tableBtn.add(mapContentTutorialBtn).size(200f,80f).padLeft(40f).padTop(20f);
-        table.add(title).expandX().top().padTop(20f);
-        table.row();
+        // table with title
+        tableTitle.add(title).expandX().top().padTop(140f);
+
+        // table with contents
         table.add(instruction1).expandX().padTop(80f);
         table.row();
         table.add(instruction2).expandX().padTop(30f);
@@ -129,13 +144,18 @@ public class TutorialDisplay extends UIComponent {
         table.row();
         table.add(instruction5).expandX().padTop(30f);
         table.row();
-        table.add(exitBtn).size(200f,80f).pad(50f, 15f, 15f, 0f);
+//        table.add(exitBtn).size(200f,80f).pad(50f, 15f, 15f, 0f);
+        // exit button table
+        tableExit.add(exitBtn).size(200f,80f).pad(0f, 0f, 30f, 0f);
 
         tablebackGround.add(background).size(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         stage.addActor(tablebackGround);
         stage.addActor(tableBtn);
-        stage.addActor(table);
+        stage.addActor(tableTitle);
+      //  stage.addActor(table);
+        stage.addActor(tableExit);
+
     }
 
     @Override
