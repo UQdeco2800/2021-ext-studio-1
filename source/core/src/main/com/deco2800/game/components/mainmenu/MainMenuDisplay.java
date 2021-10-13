@@ -66,9 +66,9 @@ public class MainMenuDisplay extends UIComponent {
       // Setting Button
       Button.ButtonStyle settingStyle = new Button.ButtonStyle();
       settingStyle.up= new TextureRegionDrawable(new TextureRegion(
-              new Texture(Gdx.files.internal("images/btn_setting1.png"))));
+              new Texture(Gdx.files.internal("images/FDS_btn_setting1.png"))));
       settingStyle.over= new TextureRegionDrawable(new TextureRegion(
-              new Texture(Gdx.files.internal("images/btn_setting2.png"))));
+              new Texture(Gdx.files.internal("images/FDS_btn_setting2.png"))));
       Button settingsBtn = new Button(settingStyle);
 
       // Tutorial button
@@ -82,9 +82,9 @@ public class MainMenuDisplay extends UIComponent {
       // exit button
       Button.ButtonStyle exitStyle = new Button.ButtonStyle();
       exitStyle.up= new TextureRegionDrawable(new TextureRegion(
-              new Texture(Gdx.files.internal("images/NewBtn_exit1.png"))));
+              new Texture(Gdx.files.internal("images/FDS_btn_exit1.png"))));
       exitStyle.over= new TextureRegionDrawable(new TextureRegion(
-              new Texture(Gdx.files.internal("images/NewBtn_exit2.png"))));
+              new Texture(Gdx.files.internal("images/FDS_btn_exit2.png"))));
       Button exitBtn = new Button(exitStyle);
 
         // Triggers an event when the button is pressed
