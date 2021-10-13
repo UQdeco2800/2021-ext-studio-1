@@ -42,13 +42,13 @@ public class MainMenuDisplay extends UIComponent {
       tablebackGround = new Table();
       tablebackGround.setFillParent(true);
 
-      Image background = new Image(ServiceLocator.getResourceService().getAsset("images/ragnarok_background.png",
+      Image background = new Image(ServiceLocator.getResourceService().getAsset("images/space-background.png",
               Texture.class));
 
     Image title =
         new Image(
             ServiceLocator.getResourceService()
-                .getAsset("images/Ragnarok_main_title.png", Texture.class));
+                .getAsset("images/purple-title-2.png", Texture.class));
     //  TextButton startBtn = new TextButton("Start", skin);
     //  TextButton settingsBtn = new TextButton("Settings", skin);
     //  TextButton exitBtn = new TextButton("Exit", skin);
@@ -126,7 +126,7 @@ public class MainMenuDisplay extends UIComponent {
               }
             });
 
-    table.add(title).padBottom(80f);
+    table.add(title).padBottom(60f);
     table.row();
 
     table.add(startBtn).size(200f,80f).padTop(30f);
