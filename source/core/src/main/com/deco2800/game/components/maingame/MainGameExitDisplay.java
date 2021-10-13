@@ -53,7 +53,12 @@ public class MainGameExitDisplay extends UIComponent {
     CharSequence timerText = String.format("Timer: 60 sec");
     timerLabel = new Label(timerText, skin, "large");
 
-    TextButton mainMenuBtn = new TextButton("Exit", skin);
+    Button.ButtonStyle exitStyle = new Button.ButtonStyle();
+    exitStyle.up= new TextureRegionDrawable(new TextureRegion(
+            new Texture(Gdx.files.internal("images/minbtn_exit1.png"))));
+    exitStyle.over= new TextureRegionDrawable(new TextureRegion(
+            new Texture(Gdx.files.internal("images/minbtn_exit2.png"))));
+    Button mainMenuBtn = new Button(exitStyle);
 
     // Triggers an event when the button is pressed.
     mainMenuBtn.addListener(
@@ -81,9 +86,7 @@ public class MainGameExitDisplay extends UIComponent {
       }
     }.start();
 
-
-
-    table.add(mainMenuBtn).padTop(10f).padRight(10f);
+    table.add(mainMenuBtn).size(140f,60f).padTop(10f).padLeft(60f);
     table.row();
     table.add(timerLabel).pad(20);
     stage.addActor(table);
