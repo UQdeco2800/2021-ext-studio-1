@@ -178,9 +178,9 @@ public class SettingsMenuDisplay extends UIComponent {
 
     Button.ButtonStyle applyStyle = new Button.ButtonStyle();
     applyStyle.up= new TextureRegionDrawable(new TextureRegion(
-            new Texture(Gdx.files.internal("images/btn_apply1.png"))));
+            new Texture(Gdx.files.internal("images/FDS_btn_apply1.png"))));
     applyStyle.over= new TextureRegionDrawable(new TextureRegion(
-            new Texture(Gdx.files.internal("images/btn_apply2.png"))));
+            new Texture(Gdx.files.internal("images/FDS_btn_apply2.png"))));
     Button applyBtn = new Button(applyStyle);
 
     exitBtn.addListener(
