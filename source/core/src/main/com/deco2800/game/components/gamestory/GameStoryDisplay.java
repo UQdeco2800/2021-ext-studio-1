@@ -51,9 +51,9 @@ public class GameStoryDisplay extends UIComponent {
 
         Button.ButtonStyle startStyle = new Button.ButtonStyle();
         startStyle.up= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/btn_start1.png"))));
+                new Texture(Gdx.files.internal("images/DSbtn_start1.png"))));
         startStyle.over= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/btn_start2.png"))));
+                new Texture(Gdx.files.internal("images/DSbtn_start2.png"))));
         Button startBtn = new Button(startStyle);
 
         // exit button
