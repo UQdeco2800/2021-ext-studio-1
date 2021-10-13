@@ -171,9 +171,9 @@ public class SettingsMenuDisplay extends UIComponent {
 
     Button.ButtonStyle exitStyle = new Button.ButtonStyle();
     exitStyle.up= new TextureRegionDrawable(new TextureRegion(
-            new Texture(Gdx.files.internal("images/btn_exit1.png"))));
+            new Texture(Gdx.files.internal("images/NewBtn_exit1.png"))));
     exitStyle.over= new TextureRegionDrawable(new TextureRegion(
-            new Texture(Gdx.files.internal("images/btn_exit2.png"))));
+            new Texture(Gdx.files.internal("images/NewBtn_exit2.png"))));
     Button exitBtn = new Button(exitStyle);
 
     Button.ButtonStyle applyStyle = new Button.ButtonStyle();
