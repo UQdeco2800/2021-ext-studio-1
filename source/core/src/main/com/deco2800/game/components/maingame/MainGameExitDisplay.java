@@ -88,7 +88,7 @@ public class MainGameExitDisplay extends UIComponent {
 
 
 
-    table.add(mainMenuBtn).padTop(10f).padRight(10f);
+    table.add(mainMenuBtn).size(200f,80f).padTop(10f).padRight(10f);
     table.row();
     table.add(timerLabel).pad(20);
     stage.addActor(table);
