@@ -253,7 +253,7 @@ public class RainbowBridge extends GameArea {
                     System.out.println("An error or exception might have occurred. Please check the switch case again");
             }
         }
-    
+
 
     private Entity spawnPlayer() {
         Entity newPlayer = PlayerFactory.createPlayer();
