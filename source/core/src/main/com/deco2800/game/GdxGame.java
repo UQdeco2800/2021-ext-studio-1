@@ -9,6 +9,7 @@ import com.deco2800.game.screens.RagnorakRacer;
 import com.deco2800.game.screens.SettingsScreen;
 import com.deco2800.game.screens.GameOverScreen;
 import com.deco2800.game.screens.TutorialScreen;
+import com.deco2800.game.screens.EnemyTutorialScreen;
 import com.deco2800.game.screens.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -85,13 +86,15 @@ public class GdxGame extends Game {
         return new GameOverScreen(this);
       case GAME_STORY:
         return new GameStoryScreen(this);
+      case ENEMY_TUTORIAL:
+          return new EnemyTutorialScreen(this);
       default:
         return null;
     }
   }
 
   public enum ScreenType {
-    MAIN_MENU, MAIN_GAME, SETTINGS, GAMEOVER, GAME_WIN, TUTORIAL, GAME_STORY;
+    MAIN_MENU, MAIN_GAME, SETTINGS, GAMEOVER, GAME_WIN, TUTORIAL, GAME_STORY, ENEMY_TUTORIAL;
   }
 
   /**
