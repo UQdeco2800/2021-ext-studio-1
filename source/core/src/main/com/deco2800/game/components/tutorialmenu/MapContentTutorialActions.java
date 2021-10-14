@@ -24,6 +24,7 @@ public class MapContentTutorialActions extends Component {
     public void create() {
         entity.getEvents().addListener("exit", this::onExit);
         entity.getEvents().addListener("EnemyTutorial", this::onEnemyTutorial);
+        entity.getEvents().addListener("tutorial", this::onTutorial);
 
     }
 
@@ -46,6 +47,14 @@ public class MapContentTutorialActions extends Component {
         logger.info("Exit game");
         logger.info("Launch enemy tutorial screen");
         exitMenu();
+    }
+
+    /**
+     * Swaps to Tutorial Screen.
+     */
+    private void onTutorial() {
+        logger.info("Launching tutorial screen");
+        game.setScreen(GdxGame.ScreenType.TUTORIAL);
     }
 
 }

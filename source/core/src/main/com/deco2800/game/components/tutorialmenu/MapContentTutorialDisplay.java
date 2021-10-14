@@ -129,8 +129,16 @@ public class MapContentTutorialDisplay extends UIComponent {
         enemyTutorialBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent e, float x, float y) {
-                logger.debug("Map Content Tutorial Button pressed");
-                entity.getEvents().trigger("MapContentTutorial");
+                logger.debug("Enemy Tutorial Button pressed");
+                entity.getEvents().trigger("EnemyTutorial");
+            }
+        });
+
+        playerMovementTutorialBtn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent e, float x, float y) {
+                logger.debug("Tutorial Button pressed");
+                entity.getEvents().trigger("tutorial");
             }
         });
         // table with buttons

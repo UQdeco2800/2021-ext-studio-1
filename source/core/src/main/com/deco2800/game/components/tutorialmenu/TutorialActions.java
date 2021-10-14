@@ -41,7 +41,7 @@ public class TutorialActions extends Component {
     }
 
     /**
-     * Swaps to Enemy Tutorial Screen.
+     * Swaps to Map content Tutorial Screen.
      */
     private void onMapContentTutorial() {
         logger.info("Launching map content tutorial screen");
