@@ -125,6 +125,14 @@ public class TutorialDisplay extends UIComponent {
                 entity.getEvents().trigger("exit");
             }
         });
+
+        enemyTutorialBtn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent e, float x, float y) {
+                logger.debug("Enemy Tutorial Button pressed");
+                entity.getEvents().trigger("EnemyTutorial");
+            }
+        });
         // table with buttons
         tableBtn.add(playerMovementTutorialBtn).size(200f,80f).padTop(20f);
         tableBtn.add(enemyTutorialBtn).size(200f,80f).padLeft(100f).padTop(20f);
