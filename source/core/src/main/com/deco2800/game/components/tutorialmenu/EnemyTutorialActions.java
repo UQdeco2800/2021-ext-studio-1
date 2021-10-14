@@ -23,6 +23,7 @@ public class EnemyTutorialActions extends Component {
     @Override
     public void create() {
         entity.getEvents().addListener("exit", this::onExit);
+        entity.getEvents().addListener("tutorial", this::onTutorial);
 
     }
 
@@ -36,6 +37,14 @@ public class EnemyTutorialActions extends Component {
     private void onExit() {
         logger.info("Exit game");
         exitMenu();
+    }
+
+    /**
+     * Swaps to Tutorial Screen.
+     */
+    private void onTutorial() {
+        logger.info("Launching tutorial screen");
+        game.setScreen(GdxGame.ScreenType.TUTORIAL);
     }
 
 }
