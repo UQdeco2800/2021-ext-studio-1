@@ -22,8 +22,8 @@ import org.slf4j.LoggerFactory;
 /**
  * GameOver display
  */
-public class TutorialDisplay extends UIComponent {
-    private static final Logger logger = LoggerFactory.getLogger(TutorialDisplay.class);
+public class EnemyTutorialDisplay extends UIComponent {
+    private static final Logger logger = LoggerFactory.getLogger(EnemyTutorialDisplay.class);
     private static final float Z_INDEX = 2f;
     protected Table table;
     protected Table tableBtn;
@@ -95,7 +95,7 @@ public class TutorialDisplay extends UIComponent {
                 new Texture(Gdx.files.internal("images/FDS_btn_mapContent2_tutorial.png"))));
         Button mapContentTutorialBtn = new Button(mapContentTutorial);
 
-        Label title = new Label("PLAYER MOVEMENT TUTORIAL", skin, "title", "white");
+        Label title = new Label("ENEMY TUTORIAL", skin, "title", "white");
         Label instruction1 = new Label("Press W :  To move up on the lane", skin);
         Label instruction2 = new Label("Press S :  To move down on the lane", skin);
         Label instruction3 = new Label("Press Q :  To jump up to top lane", skin);
@@ -113,7 +113,7 @@ public class TutorialDisplay extends UIComponent {
                 new Texture(Gdx.files.internal("images/FDS_btn_exit2.png"))));
         Button exitBtn = new Button(exitStyle);
 
-       // TextButton exitBtn = new TextButton("Exit", skin);
+        // TextButton exitBtn = new TextButton("Exit", skin);
 
 
 
@@ -126,18 +126,18 @@ public class TutorialDisplay extends UIComponent {
             }
         });
 
-        enemyTutorialBtn.addListener(new ClickListener() {
+        playerMovementTutorialBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent e, float x, float y) {
-                logger.debug("Enemy Tutorial Button pressed");
-                entity.getEvents().trigger("EnemyTutorial");
+                logger.debug("Exit button pressed");
+                entity.getEvents().trigger("tutorial");
             }
         });
 
         mapContentTutorialBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent e, float x, float y) {
-                logger.debug("Map Content Tutorial Button pressed");
+                logger.debug("Map content tutorial button pressed");
                 entity.getEvents().trigger("MapContentTutorial");
             }
         });
@@ -169,7 +169,7 @@ public class TutorialDisplay extends UIComponent {
         stage.addActor(tablebackGround);
         stage.addActor(tableBtn);
         stage.addActor(tableTitle);
-      //  stage.addActor(table);
+        //  stage.addActor(table);
         stage.addActor(tableExit);
 
     }

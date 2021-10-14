@@ -12,18 +12,18 @@ import com.deco2800.game.GdxGame.ScreenType;
  * This class listens to events relevant to the Main Menu Screen and does something when one of the
  * events is triggered.
  */
-public class TutorialActions extends Component {
-    private static final Logger logger = LoggerFactory.getLogger(TutorialActions.class);
+public class EnemyTutorialActions extends Component {
+    private static final Logger logger = LoggerFactory.getLogger(EnemyTutorialActions.class);
     private GdxGame game;
 
-    public TutorialActions(GdxGame game) {
+    public EnemyTutorialActions(GdxGame game) {
         this.game = game;
     }
 
     @Override
     public void create() {
         entity.getEvents().addListener("exit", this::onExit);
-        entity.getEvents().addListener("EnemyTutorial", this::onEnemyTutorial);
+        entity.getEvents().addListener("tutorial", this::onTutorial);
         entity.getEvents().addListener("MapContentTutorial", this::onMapContentTutorial);
 
     }
@@ -33,11 +33,19 @@ public class TutorialActions extends Component {
     }
 
     /**
-     * Swaps to Enemy Tutorial Screen.
+     * Exits the game.
      */
-    private void onEnemyTutorial() {
-        logger.info("Launching enemy tutorial screen");
-        game.setScreen(GdxGame.ScreenType.ENEMY_TUTORIAL);
+    private void onExit() {
+        logger.info("Exit game");
+        exitMenu();
+    }
+
+    /**
+     * Swaps to Tutorial Screen.
+     */
+    private void onTutorial() {
+        logger.info("Launching tutorial screen");
+        game.setScreen(GdxGame.ScreenType.TUTORIAL);
     }
 
     /**
@@ -46,15 +54,6 @@ public class TutorialActions extends Component {
     private void onMapContentTutorial() {
         logger.info("Launching map content tutorial screen");
         game.setScreen(GdxGame.ScreenType.MAPCONTENT_TUTORIAL);
-    }
-
-    /**
-     * Exits the game.
-     */
-    private void onExit() {
-        logger.info("Exit game");
-        logger.info("Launch enemy tutorial screen");
-        exitMenu();
     }
 
 }
