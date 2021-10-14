@@ -88,13 +88,16 @@ public class GdxGame extends Game {
         return new GameStoryScreen(this);
       case ENEMY_TUTORIAL:
           return new EnemyTutorialScreen(this);
+      case MAPCONTENT_TUTORIAL:
+        return new MapContentTutorialScreen(this);
+
       default:
         return null;
     }
   }
 
   public enum ScreenType {
-    MAIN_MENU, MAIN_GAME, SETTINGS, GAMEOVER, GAME_WIN, TUTORIAL, GAME_STORY, ENEMY_TUTORIAL;
+    MAIN_MENU, MAIN_GAME, SETTINGS, GAMEOVER, GAME_WIN, TUTORIAL, GAME_STORY, ENEMY_TUTORIAL, MAPCONTENT_TUTORIAL;
   }
 
   /**
