@@ -93,7 +93,7 @@ public class GameOverDisplay extends UIComponent {
 
         Image playerDeadImage = new Image(ServiceLocator.getResourceService().getAsset("images/Death_Screen_Character.png",
                 Texture.class));
-        Image gameOverText = new Image(ServiceLocator.getResourceService().getAsset("images/Gameover_Visual_Text.png",
+        Image gameOverText = new Image(ServiceLocator.getResourceService().getAsset("images/Gameover_txt.png",
                 Texture.class));
 
         table.add(playerDeadImage).size(350f,300f).padBottom(50f);

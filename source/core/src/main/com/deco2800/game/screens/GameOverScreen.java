@@ -24,7 +24,7 @@ public class GameOverScreen extends ScreenAdapter {
     private final GdxGame game;
     private final Renderer renderer;
 
-    private static final String[] gameOverTextures = {"images/ragnarok_background.png", "images/Death_Screen_Character.png", "images/Gameover_Visual_Text.png",
+    private static final String[] gameOverTextures = {"images/ragnarok_background.png", "images/Death_Screen_Character.png", "images/Gameover_txt.png",
             "images/btn_restart1.png","images/btn_exit1.png"};
 
     public GameOverScreen(GdxGame game) {
