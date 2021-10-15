@@ -10,6 +10,7 @@ import com.deco2800.game.physics.components.PhysicsComponent;
 import com.deco2800.game.physics.components.PhysicsMovementComponent;
 import com.deco2800.game.rendering.TextureRenderComponent;
 import com.deco2800.game.components.CombatStatsComponent;
+import com.deco2800.game.components.player.InventoryComponent;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.files.FileLoader;
@@ -189,7 +190,7 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
-						.addComponent(new CombatStatsComponent(100, 1));
+						.addComponent(new CombatStatsComponent(100, 2));
 
 		diamond.getComponent(TextureRenderComponent.class).scaleEntity();
 		
@@ -204,7 +205,7 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
 						.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
-						.addComponent(new CombatStatsComponent(100,-1));
+						.addComponent(new CombatStatsComponent(100,-3));
 
 						
 		FirstAidKit.getComponent(TextureRenderComponent.class).scaleEntity();

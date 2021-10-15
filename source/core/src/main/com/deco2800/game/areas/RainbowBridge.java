@@ -40,6 +40,7 @@ public class RainbowBridge extends GameArea {
     private static final int NUM_HEALTH_OBJECTS = 10;
     private static final int NUM_COLLECTABLES = 10;
     private static final int NUM_MONSTER = 10;
+    private static final int MAX_CONTENT_POSITION = 120;
     
     private static final String[] rainbowBridgeTextures = {
             "images/terrain/star-blank.png",
@@ -316,7 +317,7 @@ public class RainbowBridge extends GameArea {
                 int x_random = ThreadLocalRandom.current().nextInt(5, this.MAX_CONTENT_POSITION);  
                 int random_index = ThreadLocalRandom.current().nextInt(0, 3);
                 GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);            
-                    switch(random_index) {
+                    switch(random_index) { // create 3 coins for every 1 diamond
                         case 0:
                             Entity coin = ObstacleFactory.createCoin();
                             spawnEntityAt(coin, randomPosInLane, true, true);
@@ -333,9 +334,9 @@ public class RainbowBridge extends GameArea {
                             this.startMapContentsMovement(coin, i);
                             break;
                         case 3:
-                            diamond = ObstacleFactory.createDiamond();
-                            spawnEntityAt(diamond, randomPosInLane, true, true);
-                            this.startMapContentsMovement(diamond, i);
+                            coin = ObstacleFactory.createCoin();
+                            spawnEntityAt(coin, randomPosInLane, true, true);
+                            this.startMapContentsMovement(coin, i);
                             break;
                     }
             }

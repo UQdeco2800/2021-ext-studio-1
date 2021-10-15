@@ -56,5 +56,6 @@ public class InventoryComponent extends Component {
    */
   public void addGold(int gold) {
     setGold(this.gold + gold);
+    entity.getEvents().trigger("updateGold", this.gold);
   }
 }

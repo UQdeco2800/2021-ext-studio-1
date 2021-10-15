@@ -7,6 +7,7 @@ import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.deco2800.game.components.player.PlayerActions;
+import com.deco2800.game.components.player.InventoryComponent;
 
 /**
  * Component used to store information related to combat such as health, attack, etc. Any entities
@@ -18,6 +19,7 @@ public class CombatStatsComponent extends Component {
   private static final Logger logger = LoggerFactory.getLogger(CombatStatsComponent.class);
   private int health;
   private int armour;
+  private int gold;
   private int baseAttack;
   private long invincibleStart = 0L;
   AnimationRenderComponent animator;
@@ -59,6 +61,15 @@ public class CombatStatsComponent extends Component {
    * @return entity's armour
    */
   public int getArmour() {
+    return armour;
+  }
+
+  /**
+   * Returns the entity's gold.
+   *
+   * @return entity's armour
+   */
+  public int getGold() {
     return armour;
   }
 
@@ -127,11 +138,10 @@ public class CombatStatsComponent extends Component {
    * @param attack Attack damage
    */
   public void setBaseAttack(int attack) {
-    if (attack >= 0) {
-      this.baseAttack = attack;
-    } else {
-      logger.error("Can not set base attack to a negative attack value");
-    }
+    //removed check for negative base attack because BREAD AND FIRST AID KITS USE 
+    // NEGATIVE ATTACK VALUES TO INCREASE HEALTH
+    this.baseAttack = attack;
+
   }
 
   public void hit(CombatStatsComponent attacker) {
@@ -154,13 +164,22 @@ public class CombatStatsComponent extends Component {
         hitSound.play();
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
       }
+      int newHealth;
       if (armour > 0){
         int newArmour = getArmour() - attacker.getBaseAttack();
         setArmour(newArmour);
         invincibleStart = ServiceLocator.getTimeSource().getTime();
-      }
-      else{
-        int newHealth = getHealth() - attacker.getBaseAttack();
+      }  else {
+        if (attacker.getBaseAttack() == -3) { //this check is for first aid kits which fully restores health
+          newHealth = 3; 
+        } else {
+          //for other health objects, check players health is not already full. If it is, keep health as is
+          if (!(attacker.getBaseAttack() < 0 && getHealth() == 3)) {
+            newHealth = getHealth() - attacker.getBaseAttack();
+          } else {
+            newHealth = 3;
+          }
+        }
         setHealth(newHealth);
         invincibleStart = ServiceLocator.getTimeSource().getTime();
       }
@@ -189,17 +208,6 @@ public class CombatStatsComponent extends Component {
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
 
       }
-
-//      if (armour > 0){
-//        int newArmour = getArmour() - attacker.getBaseAttack();
-//        setArmour(newArmour);
-//        invincibleStart = ServiceLocator.getTimeSource().getTime();
-//      }
-//      else{
-//        int newHealth = getHealth() - attacker.getBaseAttack();
-//        setHealth(newHealth);
-//        invincibleStart = ServiceLocator.getTimeSource().getTime();
-//      }
 
     } catch (NullPointerException e) {
       int newHealth = getHealth() - attacker.getBaseAttack();
@@ -242,13 +250,15 @@ public class CombatStatsComponent extends Component {
     }
 
   }
-  public void hitCoins(CombatStatsComponent attacker) {
+  public void hitCoins(Entity player) {
+    CombatStatsComponent attacker = entity.getComponent(CombatStatsComponent.class);
     try {
       if (ServiceLocator.getTimeSource().getTimeSince(invincibleStart) < 1000L) {
         return;
       }
 
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
+        InventoryComponent inventoryStats = player.getComponent(InventoryComponent.class);
         logger.error("attacker--{}", attacker.getEntity().getType(),attacker.getEntity());
         AnimationRenderComponent6 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent6.class);
@@ -257,21 +267,13 @@ public class CombatStatsComponent extends Component {
                 "sounds/coin.ogg", Sound.class);
         coinSound.play();
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
-      }
 
-//      if (armour > 0){
-//        int newArmour = getArmour() - attacker.getBaseAttack();
-//        setArmour(newArmour);
-//        invincibleStart = ServiceLocator.getTimeSource().getTime();
-//      }
-//      else{
-//        int newHealth = getHealth() - attacker.getBaseAttack();
-//        setHealth(newHealth);
-//        invincibleStart = ServiceLocator.getTimeSource().getTime();
-//      }
+        inventoryStats.addGold(1);
+      }
+      player.getComponent(InventoryComponent.class).addGold(1);
+
     } catch (NullPointerException e) {
-      int newHealth = getHealth() - attacker.getBaseAttack();
-      setHealth(newHealth);
+      player.getComponent(InventoryComponent.class).addGold(1);
     }
 
   }
