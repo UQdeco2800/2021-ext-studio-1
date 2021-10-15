@@ -68,7 +68,7 @@ public class GameOverDisplay extends UIComponent {
         Button exitBtn = new Button(exitStyle);
 
         //Background
-        Image background = new Image(ServiceLocator.getResourceService().getAsset("images/Death_Screen_Background.png",
+        Image background = new Image(ServiceLocator.getResourceService().getAsset("images/ragnarok_background.png",
                 Texture.class));
         //background.setScaling(Scaling.stretch);
         //stack.add(background);
