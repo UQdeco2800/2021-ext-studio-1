@@ -176,7 +176,6 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
-            			.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
 						.addComponent(new CombatStatsComponent(100, 1));
 
 		coin.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -191,7 +190,6 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
-						.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
 						.addComponent(new CombatStatsComponent(100, 2));
 
 		diamond.getComponent(TextureRenderComponent.class).scaleEntity();
