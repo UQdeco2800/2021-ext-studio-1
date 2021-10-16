@@ -96,12 +96,46 @@ public class TutorialDisplay extends UIComponent {
         Button mapContentTutorialBtn = new Button(mapContentTutorial);
 
         Label title = new Label("PLAYER MOVEMENT TUTORIAL", skin, "title", "white");
-        Label instruction1 = new Label("Press W :  To move up on the lane", skin);
+        Label instruction1 = new Label("Press W :  \nTo move up on the lane", skin);
         Label instruction2 = new Label("Press S :  To move down on the lane", skin);
         Label instruction3 = new Label("Press Q :  To jump up to top lane", skin);
         Label instruction4 = new Label("Press E :  To jump down on bottom lane", skin);
         Label instruction5 = new Label("Press ' Space Bar ' to Attack", skin);
 
+        Button.ButtonStyle content1 = new Button.ButtonStyle();
+        content1.up= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/PW-2.png"))));
+        content1.over= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/PW-1.png"))));
+        Button content1Btn = new Button(content1);
+
+        Button.ButtonStyle content2 = new Button.ButtonStyle();
+        content2.up= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/PS-2.png"))));
+        content2.over= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/PS-1.png"))));
+        Button content2Btn = new Button(content2);
+
+        Button.ButtonStyle content3 = new Button.ButtonStyle();
+        content3.up= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/PE-2.png"))));
+        content3.over= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/PE-1.png"))));
+        Button content3Btn = new Button(content3);
+
+        Button.ButtonStyle content4 = new Button.ButtonStyle();
+        content4.up= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/PQ-1.png"))));
+        content4.over= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/PQ-2.png"))));
+        Button content4Btn = new Button(content4);
+
+        Button.ButtonStyle content5 = new Button.ButtonStyle();
+        content5.up= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/PAttack1.png"))));
+        content5.over= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/PAttack2.png"))));
+        Button content5Btn = new Button(content5);
 
 
 
@@ -150,18 +184,26 @@ public class TutorialDisplay extends UIComponent {
         tableTitle.add(title).expandX().top().padTop(140f);
 
         // table with contents
-        table.add(instruction1).expandX().padTop(80f);
-        table.row();
-        table.add(instruction2).expandX().padTop(30f);
-        table.row();
-        table.add(instruction3).expandX().padTop(30f);
-        table.row();
-        table.add(instruction4).expandX().padTop(30f);
-        table.row();
-        table.add(instruction5).expandX().padTop(30f);
-        table.row();
+//        table.add(instruction1).expandX().padTop(80f);
+//        table.row();
+//        table.add(instruction2).expandX().padTop(30f);
+//        table.row();
+//        table.add(instruction3).expandX().padTop(30f);
+//        table.row();
+//        table.add(instruction4).expandX().padTop(30f);
+//        table.row();
+//        table.add(instruction5).expandX().padTop(30f);
+//        table.row();
 //        table.add(exitBtn).size(200f,80f).pad(50f, 15f, 15f, 0f);
         // exit button table
+        //table.add(instruction1).padLeft(20f).padTop(20f);
+        //table.row();
+        table.add(content1Btn).padLeft(20f).size(250f, 450f);
+
+        table.add(content2Btn).padLeft(20f).size(250f, 450f);
+        table.add(content3Btn).padLeft(20f).size(250f, 450f);
+        table.add(content4Btn).padLeft(20f).size(250f, 450f);
+        table.add(content5Btn).padLeft(20f).size(250f, 450f);
         tableExit.add(exitBtn).size(200f,80f).pad(0f, 0f, 30f, 0f);
 
         tablebackGround.add(background).size(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -169,7 +211,7 @@ public class TutorialDisplay extends UIComponent {
         stage.addActor(tablebackGround);
         stage.addActor(tableBtn);
         stage.addActor(tableTitle);
-      //  stage.addActor(table);
+        stage.addActor(table);
         stage.addActor(tableExit);
 
     }
