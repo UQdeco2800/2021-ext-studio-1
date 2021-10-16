@@ -187,7 +187,7 @@ public class PlayerStatsDisplay extends UIComponent {
       if (health == 1) {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_decrease_two.png", Texture.class));
       }
-      if (health == 0) {
+      if (health <= 0) {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_empty.png", Texture.class));
         long currentTime = ServiceLocator.getTimeSource().getTime();
         //while (ServiceLocator.getTimeSource().getTime() - currentTime < 2000L) {
