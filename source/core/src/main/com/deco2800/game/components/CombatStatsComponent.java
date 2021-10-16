@@ -1,6 +1,7 @@
 package com.deco2800.game.components;
 
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.deco2800.game.entities.Entity;
 import com.deco2800.game.rendering.*;
 import com.deco2800.game.services.ServiceLocator;
@@ -149,9 +150,13 @@ public class CombatStatsComponent extends Component {
         AnimationRenderComponent2 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent2.class);
         animator.startAnimation("touch");
+        try{
         Sound hitSound = ServiceLocator.getResourceService().getAsset("sounds" +
                 "/e.ogg", Sound.class);
         hitSound.play();
+        } catch (GdxRuntimeException e) {
+          //pass
+        }
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
       }
       if (armour > 0){
@@ -182,9 +187,13 @@ public class CombatStatsComponent extends Component {
         AnimationRenderComponent3 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent3.class);
         animator.startAnimation("buff");
+        try {
         Sound buffSound = ServiceLocator.getResourceService().getAsset(
                 "sounds/buff_recover.ogg", Sound.class);
         buffSound.play();
+        } catch (GdxRuntimeException e) {
+          //pass
+        }
 
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
 
@@ -219,9 +228,13 @@ public class CombatStatsComponent extends Component {
                 attacker.getEntity().getComponent(AnimationRenderComponent4.class);
         animator.startAnimation("deBuff");
 
+        try {
         Sound deBuffSound = ServiceLocator.getResourceService().getAsset(
                 "sounds/e.ogg", Sound.class);
         deBuffSound.play();
+        } catch (GdxRuntimeException e) {
+          //pass;
+        }
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
       }
 

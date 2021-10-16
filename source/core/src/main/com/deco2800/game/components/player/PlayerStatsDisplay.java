@@ -122,14 +122,15 @@ public class PlayerStatsDisplay extends UIComponent {
             heartAnimate.add(treatImage).size(50f,50f).pad(-15);
             Thread.sleep(70);
             heartAnimate.clearChildren();
+            stage.addActor(heartAnimate);
           }
         }
-        catch (InterruptedException e) {
+        catch (Exception e) {
           //pass
         }
       }
     }.start();
-    stage.addActor(heartAnimate);
+
   }
 
   /**
@@ -187,12 +188,11 @@ public class PlayerStatsDisplay extends UIComponent {
       if (health == 1) {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_decrease_two.png", Texture.class));
       }
-      if (health == 0) {
+      if (health <= 0) {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_empty.png", Texture.class));
-        long currentTime = ServiceLocator.getTimeSource().getTime();
-        //while (ServiceLocator.getTimeSource().getTime() - currentTime < 2000L) {
+        refreshDisplay();
         getEntity().getEvents().trigger("GameOver");
-        //}
+        return;
       }
       refreshDisplay();
     }
