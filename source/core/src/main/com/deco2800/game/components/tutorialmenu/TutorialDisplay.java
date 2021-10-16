@@ -104,9 +104,9 @@ public class TutorialDisplay extends UIComponent {
 
         Button.ButtonStyle content1 = new Button.ButtonStyle();
         content1.up= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/PW-2.png"))));
-        content1.over= new TextureRegionDrawable(new TextureRegion(
                 new Texture(Gdx.files.internal("images/PW-1.png"))));
+        content1.over= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/PW-2.png"))));
         Button content1Btn = new Button(content1);
 
         Button.ButtonStyle content2 = new Button.ButtonStyle();
