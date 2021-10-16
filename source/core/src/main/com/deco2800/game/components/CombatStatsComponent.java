@@ -1,12 +1,12 @@
 package com.deco2800.game.components;
 
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.deco2800.game.entities.Entity;
 import com.deco2800.game.rendering.*;
 import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.deco2800.game.components.player.PlayerActions;
 
 /**
  * Component used to store information related to combat such as health, attack, etc. Any entities
@@ -139,19 +139,24 @@ public class CombatStatsComponent extends Component {
       if (ServiceLocator.getTimeSource().getTimeSince(invincibleStart) < 1000L) {
         return;
       }
-      if(attacker.getHealth() == 0){
+      if(attacker.getHealth() <= 0){
         AnimationRenderComponent7 animator7 =
                 attacker.getEntity().getComponent(AnimationRenderComponent7.class);
         animator7.startAnimation("death");
+        getEntity().getEvents().trigger("GameOver");
       }
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
         logger.error("attacker--{}", attacker.getEntity().getType());
         AnimationRenderComponent2 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent2.class);
         animator.startAnimation("touch");
+        try{
         Sound hitSound = ServiceLocator.getResourceService().getAsset("sounds" +
                 "/e.ogg", Sound.class);
         hitSound.play();
+        } catch (GdxRuntimeException e) {
+          //pass
+        }
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
       }
       if (armour > 0){
@@ -182,9 +187,13 @@ public class CombatStatsComponent extends Component {
         AnimationRenderComponent3 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent3.class);
         animator.startAnimation("buff");
+        try {
         Sound buffSound = ServiceLocator.getResourceService().getAsset(
                 "sounds/buff_recover.ogg", Sound.class);
         buffSound.play();
+        } catch (GdxRuntimeException e) {
+          //pass
+        }
 
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
 
@@ -219,9 +228,13 @@ public class CombatStatsComponent extends Component {
                 attacker.getEntity().getComponent(AnimationRenderComponent4.class);
         animator.startAnimation("deBuff");
 
+        try {
         Sound deBuffSound = ServiceLocator.getResourceService().getAsset(
                 "sounds/e.ogg", Sound.class);
         deBuffSound.play();
+        } catch (GdxRuntimeException e) {
+          //pass;
+        }
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
       }
 
@@ -257,6 +270,7 @@ public class CombatStatsComponent extends Component {
                 "sounds/coin.ogg", Sound.class);
         coinSound.play();
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
+        entity.getEvents().trigger("coin");
       }
 
 //      if (armour > 0){

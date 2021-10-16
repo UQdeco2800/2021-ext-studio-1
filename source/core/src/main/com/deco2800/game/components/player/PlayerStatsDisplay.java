@@ -134,19 +134,21 @@ public class PlayerStatsDisplay extends UIComponent {
       public void run() {
         try {
           for (int i = 0; i <= 4;i++) {
+            heartAnimate.clearChildren();
             treatFileName = String.format("images/hurt%d.png",i);
             treatImage = new Image(ServiceLocator.getResourceService().getAsset(treatFileName, Texture.class));
             heartAnimate.add(treatImage).size(50f,50f).pad(-15);
             Thread.sleep(70);
             heartAnimate.clearChildren();
+            stage.addActor(heartAnimate);
           }
         }
-        catch (InterruptedException e) {
+        catch (Exception e) {
           //pass
         }
       }
     }.start();
-    stage.addActor(heartAnimate);
+
   }
 
   /**
@@ -161,6 +163,7 @@ public class PlayerStatsDisplay extends UIComponent {
       public void run() {
         try {
           for (int i = 0; i <= 4;i++) {
+            goldAnimate.clearChildren();
             goldFileName =String.format("images/10coin%d.png",i);
             goldImage = new Image(ServiceLocator.getResourceService().getAsset(goldFileName, Texture.class));
             goldAnimate.add(goldImage).size(70f,70f).pad(-15);
@@ -203,12 +206,11 @@ public class PlayerStatsDisplay extends UIComponent {
       if (health == 1) {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_decrease_two.png", Texture.class));
       }
-      if (health == 0) {
+      if (health <= 0) {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_empty.png", Texture.class));
-        long currentTime = ServiceLocator.getTimeSource().getTime();
-        //while (ServiceLocator.getTimeSource().getTime() - currentTime < 2000L) {
-          getEntity().getEvents().trigger("GameOver");
-        //}
+        refreshDisplay();
+        getEntity().getEvents().trigger("GameOver");
+        return;
       }
       refreshDisplay();
     }

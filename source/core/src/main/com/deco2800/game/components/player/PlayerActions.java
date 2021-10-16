@@ -1,10 +1,12 @@
 package com.deco2800.game.components.player;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
+import com.deco2800.game.GdxGame;
 import com.deco2800.game.components.CombatStatsComponent;
 import com.deco2800.game.components.Component;
 import com.deco2800.game.entities.Entity;
@@ -119,13 +121,16 @@ public class PlayerActions extends Component {
 //        attSound.play();
 //        animator.startAnimation("buff");
 //      }
+      if (nearest.getType().equals(Entity.Type.COLLECTABLES)) {
+        logger.info ("nearest.getType()--{}", nearest.getType());
+        nearest.dispose();
+      }
       if (nearest.getType().equals(Entity.Type.GHOST) || nearest.getType().equals(Entity.Type.GHOSTKING)) {
         logger.info ("nearest.getType()--{}", nearest.getType());
         nearest.dispose();
         Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/kill_enemy.ogg", Sound.class);
         attSound.play();
         animator.startAnimation("kill_enemy");
-
         entity.getEvents().trigger("updateGold");
       }
     }
