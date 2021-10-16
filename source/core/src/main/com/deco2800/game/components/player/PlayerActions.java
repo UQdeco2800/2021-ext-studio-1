@@ -121,13 +121,16 @@ public class PlayerActions extends Component {
 //        attSound.play();
 //        animator.startAnimation("buff");
 //      }
+      if (nearest.getType().equals(Entity.Type.COLLECTABLES)) {
+        logger.info ("nearest.getType()--{}", nearest.getType());
+        nearest.dispose();
+      }
       if (nearest.getType().equals(Entity.Type.GHOST) || nearest.getType().equals(Entity.Type.GHOSTKING)) {
         logger.info ("nearest.getType()--{}", nearest.getType());
         nearest.dispose();
         Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/kill_enemy.ogg", Sound.class);
         attSound.play();
         animator.startAnimation("kill_enemy");
-
         entity.getEvents().trigger("updateGold");
       }
     }
