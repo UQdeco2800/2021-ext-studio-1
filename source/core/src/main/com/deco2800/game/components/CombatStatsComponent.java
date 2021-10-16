@@ -257,6 +257,7 @@ public class CombatStatsComponent extends Component {
                 "sounds/coin.ogg", Sound.class);
         coinSound.play();
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
+        entity.getEvents().trigger("updateGold");
       }
 
 //      if (armour > 0){
