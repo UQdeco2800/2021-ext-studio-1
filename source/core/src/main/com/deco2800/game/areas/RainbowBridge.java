@@ -275,37 +275,6 @@ public class RainbowBridge extends GameArea {
             d++;
         }
     }
-    private void spawnWeaponObjects() {
-        GridPoint2 minPos = new GridPoint2(0, 0);
-        List<Lane> lanes = terrain.getRainbowBridge().getLanes();
-        for (int i = 0; i < lanes.size(); i++) {
-            int d = 0;
-            int y_coordinate = lanes.get(i).getMid();
-            int x_random = ThreadLocalRandom.current().nextInt(5, this.MAX_CONTENT_POSITION);  // min x=5, max x=28
-            GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
-        
-            while (d < this.NUM_OBSTACLES) {
-                switch(d % 3) {
-                    case 0:
-                        Entity axe = ObstacleFactory.createAxe();
-                        spawnEntityAt(axe, randomPosInLane, true, true);
-                        this.startMapContentsMovement(axe, i);
-                        break;
-                    case 1:
-                        Entity bow = ObstacleFactory.createBow();
-                        spawnEntityAt(bow, randomPosInLane, true, true);
-                        this.startMapContentsMovement(bow, i);
-                        break;
-                    case 2:
-                        Entity sword = ObstacleFactory.createSword();
-                        spawnEntityAt(sword, randomPosInLane, true, true);
-                        this.startMapContentsMovement(sword, i);
-                        break;
-                }
-                d++;
-            }
-        }
-    }
 
     private void spawnCollectableObjects() {
         GridPoint2 minPos = new GridPoint2(0, 0);
