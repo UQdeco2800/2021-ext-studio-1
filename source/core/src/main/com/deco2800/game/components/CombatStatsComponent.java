@@ -138,9 +138,11 @@ public class CombatStatsComponent extends Component {
    * @param attack Attack damage
    */
   public void setBaseAttack(int attack) {
-    //removed check for negative base attack because BREAD AND FIRST AID KITS USE 
+    //removed check for all negative value base attack because BREAD AND FIRST AID KITS USE 
     // NEGATIVE ATTACK VALUES TO INCREASE HEALTH
-    this.baseAttack = attack;
+    if (attack >= -3) {
+      this.baseAttack = attack;
+    }
 
   }
 
