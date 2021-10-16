@@ -103,6 +103,35 @@ public class EnemyTutorialDisplay extends UIComponent {
         Label instruction5 = new Label("Press ' Space Bar ' to Attack", skin);
 
 
+        Button.ButtonStyle content1 = new Button.ButtonStyle();
+        content1.up= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/EG-1.png"))));
+        content1.over= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/EG-2.png"))));
+        Button content1Btn = new Button(content1);
+
+        Button.ButtonStyle content2 = new Button.ButtonStyle();
+        content2.up= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/EL-1.png"))));
+        content2.over= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/EL-2.png"))));
+        Button content2Btn = new Button(content2);
+
+        Button.ButtonStyle content3 = new Button.ButtonStyle();
+        content3.up= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/ED-1.png"))));
+        content3.over= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/ED-2.png"))));
+        Button content3Btn = new Button(content3);
+
+        Button.ButtonStyle content4 = new Button.ButtonStyle();
+        content4.up= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/EDR-1.png"))));
+        content4.over= new TextureRegionDrawable(new TextureRegion(
+                new Texture(Gdx.files.internal("images/EDR-2.png"))));
+        Button content4Btn = new Button(content4);
+
+
 
 
         //Exit button
@@ -150,18 +179,23 @@ public class EnemyTutorialDisplay extends UIComponent {
         tableTitle.add(title).expandX().top().padTop(140f);
 
         // table with contents
-        table.add(instruction1).expandX().padTop(80f);
-        table.row();
-        table.add(instruction2).expandX().padTop(30f);
-        table.row();
-        table.add(instruction3).expandX().padTop(30f);
-        table.row();
-        table.add(instruction4).expandX().padTop(30f);
-        table.row();
-        table.add(instruction5).expandX().padTop(30f);
-        table.row();
+//        table.add(instruction1).expandX().padTop(80f);
+//        table.row();
+//        table.add(instruction2).expandX().padTop(30f);
+//        table.row();
+//        table.add(instruction3).expandX().padTop(30f);
+//        table.row();
+//        table.add(instruction4).expandX().padTop(30f);
+//        table.row();
+//        table.add(instruction5).expandX().padTop(30f);
+//        table.row();
 //        table.add(exitBtn).size(200f,80f).pad(50f, 15f, 15f, 0f);
         // exit button table
+        table.add(content1Btn).size(350f, 520f).padTop(60f);
+
+        table.add(content2Btn).size(350f, 520f).padTop(60f);
+        table.add(content3Btn).size(350f, 520f).padTop(60f);
+        table.add(content4Btn).size(350f, 520f).padTop(60f);
         tableExit.add(exitBtn).size(200f,80f).pad(0f, 0f, 30f, 0f);
 
         tablebackGround.add(background).size(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -169,7 +203,7 @@ public class EnemyTutorialDisplay extends UIComponent {
         stage.addActor(tablebackGround);
         stage.addActor(tableBtn);
         stage.addActor(tableTitle);
-        //  stage.addActor(table);
+          stage.addActor(table);
         stage.addActor(tableExit);
 
     }
