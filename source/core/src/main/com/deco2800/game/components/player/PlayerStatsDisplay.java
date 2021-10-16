@@ -268,12 +268,14 @@ public class PlayerStatsDisplay extends UIComponent {
   /**
    * Updates the player's gold on the ui.
    */
-  public void updatePlayerGoldUI() {
-    entity.getComponent(InventoryComponent.class).setGold(entity.getComponent(InventoryComponent.class).getGold() + 10);
-    int gold = entity.getComponent(InventoryComponent.class).getGold();
-    CharSequence text = String.format("Gold: %d", gold);
+  public void updatePlayerGoldUI(int newGold) {
+    // entity.getComponent(InventoryComponent.class).setGold(entity.getComponent(InventoryComponent.class).getGold() + 10);
+    // int gold = entity.getComponent(InventoryComponent.class).getGold();
+    System.out.println("inside updategoldui " + newGold);
+    CharSequence text = String.format("Gold: %d", newGold);
     goldLabel.setText(text);
     goldAnimate();
+    refreshDisplay();
   }
 
   @Override
