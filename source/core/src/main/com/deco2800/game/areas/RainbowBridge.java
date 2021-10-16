@@ -91,11 +91,6 @@ public class RainbowBridge extends GameArea {
             "images/demon1.png",
             "images/ghost1.png",
             "images/death.png",
-            "images/hurt0.png",
-            "images/hurt1.png",
-            "images/hurt2.png",
-            "images/hurt3.png",
-            "images/hurt4.png"
     };
 
     private static final String[] rainbowBridgeSounds = {"sounds/Impact4.ogg"
