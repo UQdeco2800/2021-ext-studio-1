@@ -39,8 +39,8 @@ public class PlayerStatsDisplay extends UIComponent {
   private final float armourSideLength = 200f;
   private final float heartSideLength = 200f;
   private final float coinSideLength = 200f;
-  private final float coinWidth = 375f;
-  private final float coinHeight = 120f;
+  private final float coinWidth = 60f;
+  private final float coinHeight = 60f;
 
   /**
    * Creates reusable ui styles and adds actors to the stage.
@@ -95,7 +95,7 @@ public class PlayerStatsDisplay extends UIComponent {
     goldBoard = new Table();
     goldBoard.top().left();
     goldBoard.setFillParent(true);
-    goldBoard.padTop(45).padLeft(172);
+    goldBoard.padTop(20).padLeft(30);
     goldBoard.add(goldLabel).padLeft(50);
     stage.addActor(goldBoard);
 
@@ -106,7 +106,7 @@ public class PlayerStatsDisplay extends UIComponent {
     goldCount.add(coinCollectorImage);
     goldCount.add(goldBoard);
     goldCount.setSize(coinWidth, coinHeight);
-    table.add(goldCount).size(coinWidth, coinHeight).padTop(30).padLeft(-600);
+    table.add(goldCount).size(coinWidth, coinHeight).padTop(30).padLeft(-775);
     stage.addActor(table);
 
     // Notification
@@ -305,7 +305,7 @@ public class PlayerStatsDisplay extends UIComponent {
     table.padTop(30f).padLeft(5f);
     table.add(heartImage).size(heartSideLength).pad(5);
     table.add(armourImage).size(armourSideLength).padLeft(15);
-    table.add(goldCount).size(coinWidth, coinHeight).padTop(30).padLeft(-600);
+    table.add(goldCount).size(coinWidth, coinHeight).padTop(30).padLeft(-775);
 
   }
 }
