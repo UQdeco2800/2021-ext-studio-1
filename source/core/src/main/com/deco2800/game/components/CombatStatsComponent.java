@@ -6,7 +6,6 @@ import com.deco2800.game.rendering.*;
 import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.deco2800.game.components.player.PlayerActions;
 
 /**
  * Component used to store information related to combat such as health, attack, etc. Any entities
@@ -139,10 +138,11 @@ public class CombatStatsComponent extends Component {
       if (ServiceLocator.getTimeSource().getTimeSince(invincibleStart) < 1000L) {
         return;
       }
-      if(attacker.getHealth() == 0){
+      if(attacker.getHealth() <= 0){
         AnimationRenderComponent7 animator7 =
                 attacker.getEntity().getComponent(AnimationRenderComponent7.class);
         animator7.startAnimation("death");
+        getEntity().getEvents().trigger("GameOver");
       }
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
         logger.error("attacker--{}", attacker.getEntity().getType());
@@ -257,7 +257,7 @@ public class CombatStatsComponent extends Component {
                 "sounds/coin.ogg", Sound.class);
         coinSound.play();
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
-        entity.getEvents().trigger("updateGold");
+        entity.getEvents().trigger("coin");
       }
 
 //      if (armour > 0){

@@ -57,7 +57,7 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
                    		.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
-						.addComponent(new CombatStatsComponent(100, -1));
+						.addComponent(new CombatStatsComponent(100, 1));
 
 
 		RunesGate.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -120,7 +120,7 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
                     	.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
-						.addComponent(new CombatStatsComponent(100, -1));
+						.addComponent(new CombatStatsComponent(100, 1));
 
 		return food;
 	}
@@ -204,9 +204,9 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
 						.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
-						.addComponent(new CombatStatsComponent(100,-1));
+						.addComponent(new CombatStatsComponent(100,0));
 
-						
+
 		FirstAidKit.getComponent(TextureRenderComponent.class).scaleEntity();
 		FirstAidKit.scaleHeight(1f);
 
