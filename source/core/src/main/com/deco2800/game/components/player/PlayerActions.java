@@ -36,6 +36,9 @@ public class PlayerActions extends Component {
   AnimationRenderComponent4 animator4;
   AnimationRenderComponent5 animator5;
   AnimationRenderComponent6 animator6;
+  private int attackCount = 0;
+  private boolean attackTrigger = false;
+
 
   @Override
   public void create() {
@@ -72,6 +75,9 @@ public class PlayerActions extends Component {
     if (moving) {
       updateSpeed();
     }
+    if(attackTrigger) {
+      attackCount += 1;
+    }
   }
 
   private void updateSpeed() {
@@ -107,11 +113,13 @@ public class PlayerActions extends Component {
    * Makes the player attack.
    */
   void attack() {
-    logger.info("attack");
-    Array<Entity> entities = ServiceLocator.getEntityService().getEntities();
-    Entity nearest = findNearestTargets(entities);
-    logger.info("attack nearest--{}", nearest);
-    if (nearest != null) {
+    if(attackCount > 150 || attackTrigger == false){
+      attackTrigger = true;
+      logger.info("attack",attackTrigger);
+      Array<Entity> entities = ServiceLocator.getEntityService().getEntities();
+      Entity nearest = findNearestTargets(entities);
+      logger.info("attack nearest--{}",attackCount);
+      if (nearest != null) {
 //      else if (nearest.getType().equals(Entity.Type.BREAD) || nearest.getType().equals(Entity.Type.AID)) {
 //        logger.info ("nearest.getType()--{}", nearest.getType());
 //        nearest.dispose();
@@ -119,20 +127,21 @@ public class PlayerActions extends Component {
 //        attSound.play();
 //        animator.startAnimation("buff");
 //      }
-      if (nearest.getType().equals(Entity.Type.GHOST) || nearest.getType().equals(Entity.Type.GHOSTKING)) {
-        logger.info ("nearest.getType()--{}", nearest.getType());
-        nearest.dispose();
-        Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/kill_enemy.ogg", Sound.class);
-        attSound.play();
-        animator.startAnimation("kill_enemy");
-
-        entity.getEvents().trigger("updateGold");
+        if (nearest.getType().equals(Entity.Type.GHOST) || nearest.getType().equals(Entity.Type.GHOSTKING)) {
+          logger.info("nearest.getType()--{}", nearest.getType());
+          nearest.dispose();
+          Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/buff2.ogg", Sound.class);
+          attSound.play();
+          animator.startAnimation("buff2");
+          // entity.getEvents().trigger("updateGold");
+        }
       }
+      Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/attack.ogg", Sound.class);
+      attackSound.play();
+      animator5.stopAnimation();
+      animator.startAnimation("attack");
+      attackCount = 0;
     }
-    Sound attackSound = ServiceLocator.getResourceService().getAsset("sounds/attack.ogg", Sound.class);
-    attackSound.play();
-    animator5.stopAnimation();
-    animator.startAnimation("attack");
   }
 
   void unAttack(){

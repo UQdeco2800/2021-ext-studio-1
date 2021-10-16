@@ -35,11 +35,13 @@ public class RainbowBridge extends GameArea {
     private static final GridPoint2 PLAYER_SPAWN = new GridPoint2(1, 8);
     private static final float WALL_WIDTH = 0.1f;
     private static final int NUM_TREES = 7;
+
     private static final int NUM_OBSTACLES = 12;
     private static final int NUM_HEALTH_OBJECTS = 10;
-    private static final int NUM_WEAPON = 2;
-    private static final int NUM_COLLECTABLES = 5;
+    private static final int NUM_COLLECTABLES = 10;
     private static final int NUM_MONSTER = 10;
+    private static final int MAX_CONTENT_POSITION = 120;
+    
     private static final String[] rainbowBridgeTextures = {
             "images/terrain/star-blank.png",
             "images/terrain/star-1.png",
@@ -132,7 +134,7 @@ public class RainbowBridge extends GameArea {
         spawnTerrain();
         spawnObstables();
         spawnHealthObjects();
-        spawnWeaponObjects();
+        // spawnWeaponObjects();
         spawnCollectableObjects();
         player = spawnPlayer();
 //        spawnGhostKing();
@@ -172,12 +174,12 @@ public class RainbowBridge extends GameArea {
         } else if (lane_index == 1) {
             y_target = 5;
         } else if (lane_index == 2) {
-            y_target = 6;
+            y_target = 7;
         } else if (lane_index == 3) {
             y_target = 8;
         }
 
-        Vector2 target = new Vector2(-10, y_target);
+        Vector2 target = new Vector2(-30, y_target);
         MovementTask task = new MovementTask(target);
         
         task.create(() -> entity);
@@ -198,58 +200,60 @@ public class RainbowBridge extends GameArea {
     private void spawnObstables() {
         GridPoint2 minPos = new GridPoint2(0, 0);
         List<Lane> lanes = terrain.getRainbowBridge().getLanes();
+        int d = 0;
+        while (d < this.NUM_OBSTACLES) {
+            for (int i = 0; i < lanes.size(); i++) {
+                
+                int y_coordinate = lanes.get(i).getMid() ;
+                int x_random = ThreadLocalRandom.current().nextInt(0, this.MAX_CONTENT_POSITION);
+                int random_index = ThreadLocalRandom.current().nextInt(0, 3);
+                GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
+                // Entity RunesGate = ObstacleFactory.createRunesGate();
+                // spawnEntityAt(RunesGate, randomPosInLane, true, false);
+                    switch(random_index) {
+                        case 0:
+                            Entity RunesGate = ObstacleFactory.createRunesGate();
 
-        for (int i = 0; i < lanes.size(); i++) {
-            int d = 0;
-            int y_coordinate = lanes.get(i).getMid() ;
-            int x_random = ThreadLocalRandom.current().nextInt(0, 100 + 1);
-            GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
-            // Entity RunesGate = ObstacleFactory.createRunesGate();
-            // spawnEntityAt(RunesGate, randomPosInLane, true, false);
-            while (d < this.NUM_OBSTACLES) {
-                switch(i) {
-                    case 0:
-                        Entity RunesGate = ObstacleFactory.createRunesGate();
-
-                        // RunesGate.getEvents().addListener("contentReachedEndOfMap", this::makeContentDisappear);
-                        // RunesGate.getEvents().addListener("contentReachedEndOfMap", this::disposeContent);
-                        spawnEntityAt(RunesGate, randomPosInLane, true, true);
-                        this.startMapContentsMovement(RunesGate, i);
-                        
-                        break;
-                    case 1:
-                        Entity stone = ObstacleFactory.createStoneObstacle();
-                        spawnEntityAt(stone, randomPosInLane, true, true);
-                        this.startMapContentsMovement(stone, i);
-                        break;
-                    case 2:
-                        Entity thunderCloud = ObstacleFactory.createthunderCloud();
-                        spawnEntityAt(thunderCloud, randomPosInLane, true, true);
-                        this.startMapContentsMovement(thunderCloud, i);
-                        break;
-                    case 3:
-                        Entity fire = ObstacleFactory.createFire();
-                        spawnEntityAt(fire, randomPosInLane, true, true);
-                        this.startMapContentsMovement(fire, i);
-                        break;
-                }
-                d++;
+                            // RunesGate.getEvents().addListener("contentReachedEndOfMap", this::makeContentDisappear);
+                            // RunesGate.getEvents().addListener("contentReachedEndOfMap", this::disposeContent);
+                            spawnEntityAt(RunesGate, randomPosInLane, true, true);
+                            this.startMapContentsMovement(RunesGate, i);
+                            
+                            break;
+                        case 1:
+                            Entity stone = ObstacleFactory.createStoneObstacle();
+                            spawnEntityAt(stone, randomPosInLane, true, true);
+                            this.startMapContentsMovement(stone, i);
+                            break;
+                        case 2:
+                            Entity thunderCloud = ObstacleFactory.createthunderCloud();
+                            spawnEntityAt(thunderCloud, randomPosInLane, true, true);
+                            this.startMapContentsMovement(thunderCloud, i);
+                            break;
+                        case 3:
+                            Entity fire = ObstacleFactory.createFire();
+                            spawnEntityAt(fire, randomPosInLane, true, true);
+                            this.startMapContentsMovement(fire, i);
+                            break;
+                    }
             }
+            d++;
         }
     }
 
     private void spawnHealthObjects() {
         GridPoint2 minPos = new GridPoint2(0, 0);
         List<Lane> lanes = terrain.getRainbowBridge().getLanes();
+        int d = 0;
 
-        for (int i = 0; i < lanes.size(); i++) {
-            int d = 0;
-            int y_coordinate = lanes.get(i).getMid();
-            int x_random = ThreadLocalRandom.current().nextInt(5, 100 + 1);  // min x=5, max x=30
-            GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
-
-            while (d < this.NUM_OBSTACLES) {
-                switch(i) {
+        while (d < this.NUM_HEALTH_OBJECTS) {
+            for (int i = 0; i < lanes.size(); i++) {
+                
+                int y_coordinate = lanes.get(i).getMid();
+                int x_random = ThreadLocalRandom.current().nextInt(5, this.MAX_CONTENT_POSITION);  // min x=5, max x=30
+                int random_index = ThreadLocalRandom.current().nextInt(0, 3);
+                GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
+                switch(random_index) {
                     case 0:
                         Entity food = ObstacleFactory.createFood();
                         spawnEntityAt(food, randomPosInLane, true, true);
@@ -260,68 +264,56 @@ public class RainbowBridge extends GameArea {
                         spawnEntityAt(firstAid, randomPosInLane, true, true);
                         this.startMapContentsMovement(firstAid, i);
                         break;
-                }
-                d++;
-            }
-        }
-    }
-    private void spawnWeaponObjects() {
-        GridPoint2 minPos = new GridPoint2(0, 0);
-        List<Lane> lanes = terrain.getRainbowBridge().getLanes();
-        for (int i = 0; i < lanes.size(); i++) {
-            int d = 0;
-            int y_coordinate = lanes.get(i).getMid();
-            int x_random = ThreadLocalRandom.current().nextInt(5, 100 + 1);  // min x=5, max x=28
-            GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);
-        
-            while (d < this.NUM_OBSTACLES) {
-                switch(i) {
-                    case 0:
-                        Entity axe = ObstacleFactory.createAxe();
-                        spawnEntityAt(axe, randomPosInLane, true, true);
-                        this.startMapContentsMovement(axe, i);
-                        break;
-                    case 1:
-                        Entity bow = ObstacleFactory.createBow();
-                        spawnEntityAt(bow, randomPosInLane, true, true);
-                        this.startMapContentsMovement(bow, i);
-                        break;
                     case 2:
-                        Entity sword = ObstacleFactory.createSword();
-                        spawnEntityAt(sword, randomPosInLane, true, true);
-                        this.startMapContentsMovement(sword, i);
+                        food = ObstacleFactory.createFood();
+                        spawnEntityAt(food, randomPosInLane, true, true);
+                        this.startMapContentsMovement(food, i);
+                        break;
+                    case 3:
+                        firstAid = ObstacleFactory.createFirstAidKit();
+                        spawnEntityAt(firstAid, randomPosInLane, true, true);
+                        this.startMapContentsMovement(firstAid, i);
                         break;
                 }
-                d++;
             }
+            d++;
         }
     }
 
     private void spawnCollectableObjects() {
         GridPoint2 minPos = new GridPoint2(0, 0);
         List<Lane> lanes = terrain.getRainbowBridge().getLanes();
-
-        for (int i = 0; i < lanes.size(); i++) {
-            int d = 0;
-            int y_coordinate = lanes.get(i).getMid();
-            int x_random = ThreadLocalRandom.current().nextInt(5, 100 + 1);  // min x=5, max x=28
-            GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);            
-            
-            while (d < this.NUM_OBSTACLES) {
-                switch(i) {
-                    case 0:
-                        Entity coin = ObstacleFactory.createCoin();
-                        spawnEntityAt(coin, randomPosInLane, true, true);
-                        this.startMapContentsMovement(coin, i);
-                        break;
-                    case 1:
-                        Entity diamond = ObstacleFactory.createDiamond();
-                        spawnEntityAt(diamond, randomPosInLane, true, true);
-                        this.startMapContentsMovement(diamond, i);
-                        break;
-                }
-                d++;
+        int d = 0;
+        while (d < this.NUM_COLLECTABLES) {
+            for (int i = 0; i < lanes.size(); i++) {
+                int y_coordinate = lanes.get(i).getMid();
+                int x_random = ThreadLocalRandom.current().nextInt(5, this.MAX_CONTENT_POSITION);  
+                int random_index = ThreadLocalRandom.current().nextInt(0, 3);
+                GridPoint2 randomPosInLane = new GridPoint2(x_random, y_coordinate);            
+                    switch(random_index) { // create 3 coins for every 1 diamond
+                        case 0:
+                            Entity coin = ObstacleFactory.createCoin();
+                            spawnEntityAt(coin, randomPosInLane, true, true);
+                            this.startMapContentsMovement(coin, i);
+                            break;
+                        case 1:
+                            Entity diamond = ObstacleFactory.createDiamond();
+                            spawnEntityAt(diamond, randomPosInLane, true, true);
+                            this.startMapContentsMovement(diamond, i);
+                            break;
+                        case 2:
+                            coin = ObstacleFactory.createCoin();
+                            spawnEntityAt(coin, randomPosInLane, true, true);
+                            this.startMapContentsMovement(coin, i);
+                            break;
+                        case 3:
+                            coin = ObstacleFactory.createCoin();
+                            spawnEntityAt(coin, randomPosInLane, true, true);
+                            this.startMapContentsMovement(coin, i);
+                            break;
+                    }
             }
+            d++;
         }
     }
 

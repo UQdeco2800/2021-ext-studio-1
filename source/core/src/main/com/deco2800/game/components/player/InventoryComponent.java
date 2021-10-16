@@ -56,5 +56,10 @@ public class InventoryComponent extends Component {
    */
   public void addGold(int gold) {
     setGold(this.gold + gold);
+    try {
+      entity.getEvents().trigger("updateGold", this.gold);
+    } catch (NullPointerException e) {
+      // do nothing
+    }
   }
 }

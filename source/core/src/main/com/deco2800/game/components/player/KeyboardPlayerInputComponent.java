@@ -44,8 +44,6 @@ public class KeyboardPlayerInputComponent extends InputComponent {
         entity.setPosition(entity.getPosition().x, lanes.get(i).getMid() - (1.6f * (i + 1)));
         newY = lanes.get(i).getMid() - (1.6f * (i + 1));
         i += 1;
-        System.out.println("current lane number:" + i);
-        System.out.println(newY);
       }
     } else if (keycode == Keys.S){
       if (entity.getPosition().y >= lanes.get(0).getMid() - 4){
@@ -56,8 +54,6 @@ public class KeyboardPlayerInputComponent extends InputComponent {
             entity.setPosition(entity.getPosition().x, lanes.get(i - 1).getMid() - (1.6f * (i + 1)));
             i -= 1;
           }
-
-          System.out.println("current lane number:" + i);
       }
     }else if (keycode == Keys.E){
 
