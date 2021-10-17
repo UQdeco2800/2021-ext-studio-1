@@ -39,7 +39,7 @@ public class MainGameExitDisplay extends UIComponent {
   private Label timerLabel;
   public boolean exitx = false;
   private long sleepTime = 1000;
-  private int displayTime = 60;
+  private int displayTime = 120;
 
   @Override
   public void create() {
@@ -52,7 +52,7 @@ public class MainGameExitDisplay extends UIComponent {
     table.top().right();
     table.setFillParent(true);
 
-    CharSequence timerText = String.format("Timer: 60 sec");
+    CharSequence timerText = String.format("Timer: 120 sec");
     timerLabel = new Label(timerText, skin, "large");
   // creates exit button
     Button.ButtonStyle exitStyle = new Button.ButtonStyle();
@@ -79,7 +79,7 @@ public class MainGameExitDisplay extends UIComponent {
       public void run() {
         try {
           for(int i= displayTime;i>0;i--){
-            timerLabel.setText("Timer :"+ i+" sec");
+            timerLabel.setText("Timer :"+ i);
             Thread.sleep(sleepTime);
             if(exitx == true){
               break;
