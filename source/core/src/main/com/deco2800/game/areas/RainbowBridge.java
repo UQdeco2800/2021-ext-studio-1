@@ -32,6 +32,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class RainbowBridge extends GameArea {
 
     private static final Logger logger = LoggerFactory.getLogger(ForestGameArea.class);
+
     private static final GridPoint2 PLAYER_SPAWN = new GridPoint2(1, 8);
     private static final float WALL_WIDTH = 0.1f;
     private static final int NUM_TREES = 7;
@@ -109,6 +110,7 @@ public class RainbowBridge extends GameArea {
             "/negbuff.atlas", "images/posipuff.atlas","images/run.atlas",
             "images/playercoin.atlas", "images/death.atlas"
     };
+    private static final int MAX_CONTENT_POSITION = 120;
 
     private final TerrainFactory terrainFactory;
     private Bridge rainbowBridge;
@@ -135,7 +137,10 @@ public class RainbowBridge extends GameArea {
 //        spawnLittleGreen();
 //        spawnDemon();
 //        spawnGhosts();
-        spawnMonster();
+
+        player.setPosition(player.getPosition().x, 3.5f);
+          spawnMonsters1();
+
         playMusic();
     }
 
@@ -336,41 +341,41 @@ public class RainbowBridge extends GameArea {
         return this.player;
     }
 
-    private void spawnMonster() {
+    private void spawnMonsters1() {
         List<Lane> lanes = terrain.getRainbowBridge().getLanes();
-        for (int i = 0; i < lanes.size(); i++) {
             int a = 0;
-            int y_coordinate = lanes.get(i).getMid();
-            int x = 29;
-            GridPoint2 Ghost = new GridPoint2(x, y_coordinate);
-            GridPoint2 LittleGreen = new GridPoint2(x, y_coordinate);
-            GridPoint2 Dragon = new GridPoint2(x, y_coordinate);
-            GridPoint2 Demon = new GridPoint2(x, y_coordinate);
-
-
-            while (a < this.NUM_MONSTER) {
-                switch(i) {
-                    case 0:
-                        Entity littleGreen = NPCFactory.createLittleGreen(player);
-                        spawnEntityAt(littleGreen, LittleGreen, true, true);
-                        break;
-                    case 1:
-                        Entity ghost = NPCFactory.createGhost(player);
-                        spawnEntityAt(ghost, Ghost, true, true);
-                        break;
-                    case 2:
-                        Entity demon = NPCFactory.createDemon(player);
-                        spawnEntityAt(demon,Demon, true, true);
-                        break;
-                    case 3:
-                        Entity dragon = NPCFactory.createGhostKing(player);
-                        spawnEntityAt(dragon,Dragon, true, true);
-                        break;
+            while (a < NUM_MONSTER) {
+                for (int i = 0; i < lanes.size(); i++) {
+                    int y_coordinate = lanes.get(i).getMid();
+                    int x_random = ThreadLocalRandom.current().nextInt(30, MAX_CONTENT_POSITION);
+                    GridPoint2 Ghost = new GridPoint2(x_random, y_coordinate);
+                    GridPoint2 LittleGreen = new GridPoint2(x_random, y_coordinate);
+                    GridPoint2 Dragon = new GridPoint2(x_random, y_coordinate);
+                    GridPoint2 Demon = new GridPoint2(x_random, y_coordinate);
+                    switch (i) {
+                        case 0:
+                            Entity ghost = NPCFactory.createGhost(player);
+                            spawnEntityAt(ghost,Ghost, true, true);
+                            break;
+                        case 1:
+                            Entity littleGreen = NPCFactory.createLittleGreen(player);
+                            spawnEntityAt(littleGreen,LittleGreen, true, true);
+                            break;
+                        case 2:
+                            Entity dragon = NPCFactory.createGhostKing(player);
+                            spawnEntityAt(dragon,Dragon, true, true);
+                            break;
+                        case 3:
+                            Entity demon = NPCFactory.createDemon(player);
+                            spawnEntityAt(demon,Demon, true, true);
+                            break;
+                    }
                 }
                 a++;
             }
         }
-    }
+
+
 
 
     private void playMusic() {
