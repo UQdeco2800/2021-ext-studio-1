@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.deco2800.game.components.player.KeyboardPlayerInputComponent;
 import com.deco2800.game.ui.UIComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,14 +53,21 @@ public class MainGameExitDisplay extends UIComponent {
 
     CharSequence timerText = String.format("Timer: 60 sec");
     timerLabel = new Label(timerText, skin, "large");
-
-    TextButton mainMenuBtn = new TextButton("Exit", skin);
+  // creates exit button
+    Button.ButtonStyle exitStyle = new Button.ButtonStyle();
+    exitStyle.up= new TextureRegionDrawable(new TextureRegion(
+            new Texture(Gdx.files.internal("images/FDS_btn_exit1.png"))));
+    exitStyle.over= new TextureRegionDrawable(new TextureRegion(
+            new Texture(Gdx.files.internal("images/FDS_btn_exit2.png"))));
+    Button mainMenuBtn = new Button(exitStyle);
 
     // Triggers an event when the button is pressed.
     mainMenuBtn.addListener(
             new ChangeListener() {
               @Override
               public void changed(ChangeEvent changeEvent, Actor actor) {
+                KeyboardPlayerInputComponent.j = 0;
+                KeyboardPlayerInputComponent.i = 0;
                 logger.debug("Exit button clicked");
                 entity.getEvents().trigger("exit");
                 exitx=true;
@@ -83,7 +91,7 @@ public class MainGameExitDisplay extends UIComponent {
 
 
 
-    table.add(mainMenuBtn).padTop(10f).padRight(10f);
+    table.add(mainMenuBtn).size(200f,80f).padTop(10f).padRight(10f);
     table.row();
     table.add(timerLabel).pad(20);
     stage.addActor(table);

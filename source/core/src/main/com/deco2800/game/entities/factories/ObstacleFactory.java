@@ -10,6 +10,7 @@ import com.deco2800.game.physics.components.PhysicsComponent;
 import com.deco2800.game.physics.components.PhysicsMovementComponent;
 import com.deco2800.game.rendering.TextureRenderComponent;
 import com.deco2800.game.components.CombatStatsComponent;
+import com.deco2800.game.components.player.InventoryComponent;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.files.FileLoader;
@@ -28,27 +29,6 @@ public class ObstacleFactory {
 		throw new IllegalStateException("Instantiating static util class");
 	}
 
-	/**
-	 * Creates a tree entity.
-	 *
-	 * @return entity
-	 */
-	public static Entity createTree() {
-		Entity tree =
-				new Entity(Entity.Type.DEBUFF)
-						.addComponent(new TextureRenderComponent("images/tree.png"))
-						.addComponent(new PhysicsComponent())
-						.addComponent(new PhysicsMovementComponent())
-						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.OBSTACLE))
-						.addComponent(new CombatStatsComponent(100, 1))
-						.addComponent(new ColliderComponent().setLayer(PhysicsLayer.OBSTACLE));
-
-		tree.getComponent(TextureRenderComponent.class).scaleEntity();
-		tree.scaleHeight(2.5f);
-		PhysicsUtils.setScaledCollider(tree, 0.5f, 0.2f);
-		return tree;
-	}
-
 	public static Entity createRunesGate() {
 		Entity RunesGate =
 				new Entity(Entity.Type.DEBUFF)
@@ -57,7 +37,7 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
                    		.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
-						.addComponent(new CombatStatsComponent(100, -1));
+						.addComponent(new CombatStatsComponent(100, 1));
 
 
 		RunesGate.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -120,53 +100,11 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
                     	.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
-						.addComponent(new CombatStatsComponent(100, -1));
+						.addComponent(new CombatStatsComponent(100, 1));
 
 		return food;
 	}
 
-
-	public static Entity createAxe() {
-		Entity axe =
-				new Entity(Entity.Type.BUFF)
-						.addComponent(new TextureRenderComponent("images/axe.png"))
-						.addComponent(new PhysicsComponent())
-						.addComponent(new PhysicsMovementComponent())
-						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
-						.addComponent(new CombatStatsComponent(100, 1));
-
-		axe.getComponent(TextureRenderComponent.class).scaleEntity();
-
-		return axe;
-	}
-	
-	public static Entity createSword() {
-		Entity sword =
-				new Entity(Entity.Type.BUFF)
-						.addComponent(new TextureRenderComponent("images/sword.png"))
-						.addComponent(new PhysicsComponent())
-						.addComponent(new PhysicsMovementComponent())
-						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
-						.addComponent(new CombatStatsComponent(100, 1));
-
-		sword.getComponent(TextureRenderComponent.class).scaleEntity();
-
-		return sword;
-	}
-
-	public static Entity createBow() {
-		Entity bow =
-				new Entity(Entity.Type.BUFF)
-						.addComponent(new TextureRenderComponent("images/bow.png"))
-						.addComponent(new PhysicsComponent())
-						.addComponent(new PhysicsMovementComponent())
-						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
-						.addComponent(new CombatStatsComponent(100, 1));
-
-		bow.getComponent(TextureRenderComponent.class).scaleEntity();
-
-		return bow;
-	}
 
 	public static Entity createCoin() {
 		Entity coin =
@@ -189,7 +127,7 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
-						.addComponent(new CombatStatsComponent(100, 1));
+						.addComponent(new CombatStatsComponent(100, 2));
 
 		diamond.getComponent(TextureRenderComponent.class).scaleEntity();
 		
@@ -204,9 +142,8 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
 						.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
-						.addComponent(new CombatStatsComponent(100,-1));
+						.addComponent(new CombatStatsComponent(100,-3));
 
-						
 		FirstAidKit.getComponent(TextureRenderComponent.class).scaleEntity();
 		FirstAidKit.scaleHeight(1f);
 

@@ -62,13 +62,13 @@ public class GameOverDisplay extends UIComponent {
         //TextButton exitBtn = new TextButton("Exit", skin);
         Button.ButtonStyle exitStyle = new Button.ButtonStyle();
         exitStyle.up= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/btn_exit1.png"))));
+                new Texture(Gdx.files.internal("images/FDS_btn_exit1.png"))));
         exitStyle.over= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/btn_exit2.png"))));
+                new Texture(Gdx.files.internal("images/FDS_btn_exit2.png"))));
         Button exitBtn = new Button(exitStyle);
 
         //Background
-        Image background = new Image(ServiceLocator.getResourceService().getAsset("images/Death_Screen_Background.png",
+        Image background = new Image(ServiceLocator.getResourceService().getAsset("images/ragnarok_background.png",
                 Texture.class));
         //background.setScaling(Scaling.stretch);
         //stack.add(background);
@@ -93,7 +93,7 @@ public class GameOverDisplay extends UIComponent {
 
         Image playerDeadImage = new Image(ServiceLocator.getResourceService().getAsset("images/Death_Screen_Character.png",
                 Texture.class));
-        Image gameOverText = new Image(ServiceLocator.getResourceService().getAsset("images/Gameover_Visual_Text.png",
+        Image gameOverText = new Image(ServiceLocator.getResourceService().getAsset("images/Gameover_txt.png",
                 Texture.class));
 
         table.add(playerDeadImage).size(350f,300f).padBottom(50f);

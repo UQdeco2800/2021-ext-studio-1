@@ -55,13 +55,14 @@ public class GameWinDisplay extends UIComponent {
         //Exit button
         Button.ButtonStyle exitStyle = new Button.ButtonStyle();
         exitStyle.up= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/btn_exit1.png"))));
+                new Texture(Gdx.files.internal("images/FDS_btn_exit1.png"))));
         exitStyle.over= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/btn_exit2.png"))));
+                new Texture(Gdx.files.internal("images/FDS_btn_exit2.png"))));
         Button exitBtn = new Button(exitStyle);
 
         //Background
-
+        Image background = new Image(ServiceLocator.getResourceService().getAsset("images/ragnarok_background.png",
+                Texture.class));
 
         // when the user presses restart button
         restartBtn.addListener(new ClickListener() {
@@ -90,6 +91,9 @@ public class GameWinDisplay extends UIComponent {
         table.row();
         table.add(exitBtn).padTop(15f).size(200f, 80f);;
 
+        tablebackGround.add(background).size(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        stage.addActor(tablebackGround);
         stage.addActor(table);
     }
 

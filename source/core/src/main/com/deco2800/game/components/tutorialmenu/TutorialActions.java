@@ -9,7 +9,7 @@ import com.deco2800.game.GdxGame.ScreenType;
 //import com.deco2800.game.components.tutorialmenu;
 
 /**
- * This class listens to events relevant to the Main Menu Screen and does something when one of the
+ * This class listens to events relevant to the Tutorial Screen and does something when one of the
  * events is triggered.
  */
 public class TutorialActions extends Component {
@@ -23,6 +23,8 @@ public class TutorialActions extends Component {
     @Override
     public void create() {
         entity.getEvents().addListener("exit", this::onExit);
+        entity.getEvents().addListener("EnemyTutorial", this::onEnemyTutorial);
+        entity.getEvents().addListener("MapContentTutorial", this::onMapContentTutorial);
 
     }
 
@@ -31,10 +33,27 @@ public class TutorialActions extends Component {
     }
 
     /**
+     * Swaps to Enemy Tutorial Screen.
+     */
+    private void onEnemyTutorial() {
+        logger.info("Launching enemy tutorial screen");
+        game.setScreen(GdxGame.ScreenType.ENEMY_TUTORIAL);
+    }
+
+    /**
+     * Swaps to Map content Tutorial Screen.
+     */
+    private void onMapContentTutorial() {
+        logger.info("Launching map content tutorial screen");
+        game.setScreen(GdxGame.ScreenType.MAPCONTENT_TUTORIAL);
+    }
+
+    /**
      * Exits the game.
      */
     private void onExit() {
         logger.info("Exit game");
+        logger.info("Launch enemy tutorial screen");
         exitMenu();
     }
 
