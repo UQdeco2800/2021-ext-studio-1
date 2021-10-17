@@ -3,6 +3,7 @@ package com.deco2800.game.components.gameover;
 import com.deco2800.game.GdxGame;
 import com.deco2800.game.components.Component;
 import com.deco2800.game.components.maingame.MainGameActions;
+import com.deco2800.game.components.player.KeyboardPlayerInputComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,6 +40,7 @@ public class GameOverActions extends Component {
      */
     private void onRestart() {
         logger.info("Restart Game");
+        KeyboardPlayerInputComponent.i = 0;
         game.setScreen(GdxGame.ScreenType.MAIN_GAME);
     }
 
