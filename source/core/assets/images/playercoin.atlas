@@ -1,67 +1,39 @@
-playercoin.png
-size: 1920, 1920
+coin.png
+size: 1920, 1280
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 coin
   rotate: false
-  xy: 0, 40
+  xy: 0, 0
   size: 640, 640
   orig: 640, 640
   offset: 0, 0
   index: -1
 coin
   rotate: false
-  xy: 640, 40
+  xy: 640, 0
   size: 640, 640
   orig: 640, 640
   offset: 0, 0
   index: -1
 coin
   rotate: false
-  xy: 1280, 40
+  xy: 1280, 0
   size: 640, 640
   orig: 640, 640
   offset: 0, 0
   index: -1
 coin
   rotate: false
-  xy: 0, 680
+  xy: 0, 640
   size: 640, 640
   orig: 640, 640
   offset: 0, 0
   index: -1
 coin
   rotate: false
-  xy: 640, 680
-  size: 640, 640
-  orig: 640, 640
-  offset: 0, 0
-  index: -1
-coin
-  rotate: false
-  xy: 1280, 680
-  size: 640, 640
-  orig: 640, 640
-  offset: 0, 0
-  index: -1
-coin
-  rotate: false
-  xy: 0, 1320
-  size: 640, 640
-  orig: 640, 640
-  offset: 0, 0
-  index: -1
-coin
-  rotate: false
-  xy: 640, 1320
-  size: 640, 640
-  orig: 640, 640
-  offset: 0, 0
-  index: -1
-coin
-  rotate: false
-  xy: 1280, 1280
+  xy: 640, 640
   size: 640, 640
   orig: 640, 640
   offset: 0, 0
