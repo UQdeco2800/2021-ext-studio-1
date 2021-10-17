@@ -9,14 +9,14 @@ import com.deco2800.game.GdxGame.ScreenType;
 //import com.deco2800.game.components.tutorialmenu;
 
 /**
- * This class listens to events relevant to the Tutorial Screen and does something when one of the
+ * This class listens to events relevant to the Map content Screen and does something when one of the
  * events is triggered.
  */
-public class TutorialActions extends Component {
-    private static final Logger logger = LoggerFactory.getLogger(TutorialActions.class);
+public class MapContentTutorialActions extends Component {
+    private static final Logger logger = LoggerFactory.getLogger(MapContentTutorialActions.class);
     private GdxGame game;
 
-    public TutorialActions(GdxGame game) {
+    public MapContentTutorialActions(GdxGame game) {
         this.game = game;
     }
 
@@ -24,7 +24,7 @@ public class TutorialActions extends Component {
     public void create() {
         entity.getEvents().addListener("exit", this::onExit);
         entity.getEvents().addListener("EnemyTutorial", this::onEnemyTutorial);
-        entity.getEvents().addListener("MapContentTutorial", this::onMapContentTutorial);
+        entity.getEvents().addListener("tutorial", this::onTutorial);
 
     }
 
@@ -36,16 +36,8 @@ public class TutorialActions extends Component {
      * Swaps to Enemy Tutorial Screen.
      */
     private void onEnemyTutorial() {
-        logger.info("Launching enemy tutorial screen");
-        game.setScreen(GdxGame.ScreenType.ENEMY_TUTORIAL);
-    }
-
-    /**
-     * Swaps to Map content Tutorial Screen.
-     */
-    private void onMapContentTutorial() {
         logger.info("Launching map content tutorial screen");
-        game.setScreen(GdxGame.ScreenType.MAPCONTENT_TUTORIAL);
+        game.setScreen(GdxGame.ScreenType.ENEMY_TUTORIAL);
     }
 
     /**
@@ -55,6 +47,14 @@ public class TutorialActions extends Component {
         logger.info("Exit game");
         logger.info("Launch enemy tutorial screen");
         exitMenu();
+    }
+
+    /**
+     * Swaps to Tutorial Screen.
+     */
+    private void onTutorial() {
+        logger.info("Launching tutorial screen");
+        game.setScreen(GdxGame.ScreenType.TUTORIAL);
     }
 
 }

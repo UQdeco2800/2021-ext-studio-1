@@ -3,9 +3,9 @@ package com.deco2800.game.screens;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.deco2800.game.GdxGame;
-import com.deco2800.game.components.tutorialmenu.TutorialActions;
+import com.deco2800.game.components.tutorialmenu.MapContentTutorialActions;
 
-import com.deco2800.game.components.tutorialmenu.TutorialDisplay;
+import com.deco2800.game.components.tutorialmenu.MapContentTutorialDisplay;
 import com.deco2800.game.entities.Entity;
 import com.deco2800.game.entities.EntityService;
 import com.deco2800.game.entities.factories.RenderFactory;
@@ -19,14 +19,14 @@ import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TutorialScreen extends ScreenAdapter {
-    private static final Logger logger = LoggerFactory.getLogger(TutorialScreen.class);
+public class MapContentTutorialScreen extends ScreenAdapter {
+    private static final Logger logger = LoggerFactory.getLogger(MapContentTutorialScreen.class);
 
     private final GdxGame game;
     private final Renderer renderer;
-    private static final String[] TutorialScreenTextures = {"images/Untitled design.png", "images/btn_exit1.png", "images/FDS_btn_exit1.png", "images/space-background.png", "images/content_check1.png", "images/content_check2.png"};
+    private static final String[] MapContentTutorialScreenTextures = {"images/Untitled design.png", "images/btn_exit1.png", "images/FDS_btn_exit1.png", "images/space-background.png"};
 
-    public TutorialScreen(GdxGame game) {
+    public MapContentTutorialScreen(GdxGame game) {
 
         this.game = game;
         logger.debug("drawing game win ui");
@@ -57,7 +57,7 @@ public class TutorialScreen extends ScreenAdapter {
     @Override
     public void dispose() {
         super.dispose();
-        logger.debug("Disposing win game screen");
+        logger.debug("Disposing map content tutorial screen");
         renderer.dispose();
         ServiceLocator.clear();
     }
@@ -66,28 +66,27 @@ public class TutorialScreen extends ScreenAdapter {
 
         logger.debug("Loading assets");
         ResourceService resourceService = ServiceLocator.getResourceService();
-        resourceService.loadTextures(TutorialScreenTextures);
+        resourceService.loadTextures(MapContentTutorialScreenTextures);
         ServiceLocator.getResourceService().loadAll();
 
         while (!resourceService.loadForMillis(10)) {
             // This could be upgraded to a loading screen
             logger.info("Loading... {}%", resourceService.getProgress());
         }
-
     }
     private void unloadAssets() {
         logger.debug("Unloading assets");
         ResourceService resourceService = ServiceLocator.getResourceService();
-        resourceService.unloadAssets(TutorialScreenTextures);
+        resourceService.unloadAssets(MapContentTutorialScreenTextures);
     }
 
     private void createUI() {
         logger.debug("Creating ui");
         Stage stage = ServiceLocator.getRenderService().getStage();
         Entity ui = new Entity();
-        ui.addComponent(new TutorialDisplay())
+        ui.addComponent(new MapContentTutorialDisplay())
                 .addComponent(new InputDecorator(stage, 10))
-                .addComponent(new TutorialActions(game));
+                .addComponent(new MapContentTutorialActions(game));
         ServiceLocator.getEntityService().register(ui);
     }
 }
