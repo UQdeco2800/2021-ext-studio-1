@@ -18,9 +18,8 @@ import com.deco2800.game.ui.UIComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
- * GameOver display
+ * Tutorial display
  */
 public class TutorialDisplay extends UIComponent {
     private static final Logger logger = LoggerFactory.getLogger(TutorialDisplay.class);
@@ -54,11 +53,9 @@ public class TutorialDisplay extends UIComponent {
         tableBtn.top().padTop(15f);
         tableBtn.setFillParent(true);
 
-
         tableTitle = new Table();
         tableTitle.top().padTop(15f);
         tableTitle.setFillParent(true);
-
 
         tableExit = new Table();
         tableExit.bottom();
@@ -69,7 +66,6 @@ public class TutorialDisplay extends UIComponent {
 
         tablebackGround = new Table();
         tablebackGround.setFillParent(true);
-
 
         // Player movement tutorial button
         Button.ButtonStyle playerMovementTutorial = new Button.ButtonStyle();
@@ -96,11 +92,6 @@ public class TutorialDisplay extends UIComponent {
         Button mapContentTutorialBtn = new Button(mapContentTutorial);
 
         Label title = new Label("PLAYER MOVEMENT TUTORIAL", skin, "title", "white");
-        Label instruction1 = new Label("Press W :  \nTo move up on the lane", skin);
-        Label instruction2 = new Label("Press S :  To move down on the lane", skin);
-        Label instruction3 = new Label("Press Q :  To jump up to top lane", skin);
-        Label instruction4 = new Label("Press E :  To jump down on bottom lane", skin);
-        Label instruction5 = new Label("Press ' Space Bar ' to Attack", skin);
 
         Button.ButtonStyle content1 = new Button.ButtonStyle();
         content1.up= new TextureRegionDrawable(new TextureRegion(
@@ -137,8 +128,6 @@ public class TutorialDisplay extends UIComponent {
                 new Texture(Gdx.files.internal("images/PAttack2.png"))));
         Button content5Btn = new Button(content5);
 
-
-
         //Exit button
         Button.ButtonStyle exitStyle = new Button.ButtonStyle();
         exitStyle.up= new TextureRegionDrawable(new TextureRegion(
@@ -146,10 +135,6 @@ public class TutorialDisplay extends UIComponent {
         exitStyle.over= new TextureRegionDrawable(new TextureRegion(
                 new Texture(Gdx.files.internal("images/FDS_btn_exit2.png"))));
         Button exitBtn = new Button(exitStyle);
-
-       // TextButton exitBtn = new TextButton("Exit", skin);
-
-
 
         // when the user presses exit button
         exitBtn.addListener(new ClickListener() {
@@ -184,26 +169,13 @@ public class TutorialDisplay extends UIComponent {
         tableTitle.add(title).expandX().top().padTop(140f);
 
         // table with contents
-//        table.add(instruction1).expandX().padTop(80f);
-//        table.row();
-//        table.add(instruction2).expandX().padTop(30f);
-//        table.row();
-//        table.add(instruction3).expandX().padTop(30f);
-//        table.row();
-//        table.add(instruction4).expandX().padTop(30f);
-//        table.row();
-//        table.add(instruction5).expandX().padTop(30f);
-//        table.row();
-//        table.add(exitBtn).size(200f,80f).pad(50f, 15f, 15f, 0f);
-        // exit button table
-        //table.add(instruction1).padLeft(20f).padTop(20f);
-        //table.row();
         table.add(content1Btn).padLeft(20f).size(250f, 450f);
-
         table.add(content2Btn).padLeft(20f).size(250f, 450f);
         table.add(content3Btn).padLeft(20f).size(250f, 450f);
         table.add(content4Btn).padLeft(20f).size(250f, 450f);
         table.add(content5Btn).padLeft(20f).size(250f, 450f);
+
+        // exit button table
         tableExit.add(exitBtn).size(200f,80f).pad(0f, 0f, 30f, 0f);
 
         tablebackGround.add(background).size(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

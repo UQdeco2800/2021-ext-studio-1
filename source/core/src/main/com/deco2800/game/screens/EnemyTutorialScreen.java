@@ -39,11 +39,7 @@ public class EnemyTutorialScreen extends ScreenAdapter {
 
         loadAssets();
         createUI();
-
-
     }
-
-
 
     @Override
     public void render(float delta) {
@@ -77,7 +73,6 @@ public class EnemyTutorialScreen extends ScreenAdapter {
             // This could be upgraded to a loading screen
             logger.info("Loading... {}%", resourceService.getProgress());
         }
-
     }
     private void unloadAssets() {
         logger.debug("Unloading assets");

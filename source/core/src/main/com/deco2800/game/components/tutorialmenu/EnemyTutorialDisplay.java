@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- * GameOver display
+ * Enemy Tutorial display
  */
 public class EnemyTutorialDisplay extends UIComponent {
     private static final Logger logger = LoggerFactory.getLogger(EnemyTutorialDisplay.class);
@@ -54,11 +54,9 @@ public class EnemyTutorialDisplay extends UIComponent {
         tableBtn.top().padTop(15f);
         tableBtn.setFillParent(true);
 
-
         tableTitle = new Table();
         tableTitle.top().padTop(15f);
         tableTitle.setFillParent(true);
-
 
         tableExit = new Table();
         tableExit.bottom();
@@ -69,7 +67,6 @@ public class EnemyTutorialDisplay extends UIComponent {
 
         tablebackGround = new Table();
         tablebackGround.setFillParent(true);
-
 
         // Player movement tutorial button
         Button.ButtonStyle playerMovementTutorial = new Button.ButtonStyle();
@@ -96,12 +93,6 @@ public class EnemyTutorialDisplay extends UIComponent {
         Button mapContentTutorialBtn = new Button(mapContentTutorial);
 
         Label title = new Label("ENEMY TUTORIAL", skin, "title", "white");
-        Label instruction1 = new Label("Press W :  To move up on the lane", skin);
-        Label instruction2 = new Label("Press S :  To move down on the lane", skin);
-        Label instruction3 = new Label("Press Q :  To jump up to top lane", skin);
-        Label instruction4 = new Label("Press E :  To jump down on bottom lane", skin);
-        Label instruction5 = new Label("Press ' Space Bar ' to Attack", skin);
-
 
         Button.ButtonStyle content1 = new Button.ButtonStyle();
         content1.up= new TextureRegionDrawable(new TextureRegion(
@@ -131,9 +122,6 @@ public class EnemyTutorialDisplay extends UIComponent {
                 new Texture(Gdx.files.internal("images/EDR-2.png"))));
         Button content4Btn = new Button(content4);
 
-
-
-
         //Exit button
         Button.ButtonStyle exitStyle = new Button.ButtonStyle();
         exitStyle.up= new TextureRegionDrawable(new TextureRegion(
@@ -141,10 +129,6 @@ public class EnemyTutorialDisplay extends UIComponent {
         exitStyle.over= new TextureRegionDrawable(new TextureRegion(
                 new Texture(Gdx.files.internal("images/FDS_btn_exit2.png"))));
         Button exitBtn = new Button(exitStyle);
-
-        // TextButton exitBtn = new TextButton("Exit", skin);
-
-
 
         // when the user presses exit button
         exitBtn.addListener(new ClickListener() {
@@ -179,23 +163,12 @@ public class EnemyTutorialDisplay extends UIComponent {
         tableTitle.add(title).expandX().top().padTop(140f);
 
         // table with contents
-//        table.add(instruction1).expandX().padTop(80f);
-//        table.row();
-//        table.add(instruction2).expandX().padTop(30f);
-//        table.row();
-//        table.add(instruction3).expandX().padTop(30f);
-//        table.row();
-//        table.add(instruction4).expandX().padTop(30f);
-//        table.row();
-//        table.add(instruction5).expandX().padTop(30f);
-//        table.row();
-//        table.add(exitBtn).size(200f,80f).pad(50f, 15f, 15f, 0f);
-        // exit button table
         table.add(content1Btn).size(350f, 520f).padTop(60f);
-
         table.add(content2Btn).size(350f, 520f).padTop(60f);
         table.add(content3Btn).size(350f, 520f).padTop(60f);
         table.add(content4Btn).size(350f, 520f).padTop(60f);
+
+        // exit button table
         tableExit.add(exitBtn).size(200f,80f).pad(0f, 0f, 30f, 0f);
 
         tablebackGround.add(background).size(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

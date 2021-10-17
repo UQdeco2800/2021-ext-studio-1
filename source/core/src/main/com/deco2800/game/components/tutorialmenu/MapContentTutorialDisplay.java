@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- * GameOver display
+ * Map Content Tutorial display
  */
 public class MapContentTutorialDisplay extends UIComponent {
     private static final Logger logger = LoggerFactory.getLogger(MapContentTutorialDisplay.class);
@@ -54,11 +54,9 @@ public class MapContentTutorialDisplay extends UIComponent {
         tableBtn.top().padTop(15f);
         tableBtn.setFillParent(true);
 
-
         tableTitle = new Table();
         tableTitle.top().padTop(15f);
         tableTitle.setFillParent(true);
-
 
         tableExit = new Table();
         tableExit.bottom();
@@ -69,7 +67,6 @@ public class MapContentTutorialDisplay extends UIComponent {
 
         tablebackGround = new Table();
         tablebackGround.setFillParent(true);
-
 
         // Player movement tutorial button
         Button.ButtonStyle playerMovementTutorial = new Button.ButtonStyle();
@@ -96,11 +93,6 @@ public class MapContentTutorialDisplay extends UIComponent {
         Button mapContentTutorialBtn = new Button(mapContentTutorial);
 
         Label title = new Label("MAP CONTENT TUTORIAL", skin, "title", "white");
-        Label instruction1 = new Label("Press W :  To move up on the lane", skin);
-        Label instruction2 = new Label("Press S :  To move down on the lane", skin);
-        Label instruction3 = new Label("Press Q :  To jump up to top lane", skin);
-        Label instruction4 = new Label("Press E :  To jump down on bottom lane", skin);
-        Label instruction5 = new Label("Press ' Space Bar ' to Attack", skin);
 
         Button.ButtonStyle content1 = new Button.ButtonStyle();
         content1.up= new TextureRegionDrawable(new TextureRegion(
@@ -137,7 +129,6 @@ public class MapContentTutorialDisplay extends UIComponent {
                 new Texture(Gdx.files.internal("images/MC_sword.png"))));
         Button content7Btn = new Button(content7);
 
-
         //Exit button
         Button.ButtonStyle exitStyle = new Button.ButtonStyle();
         exitStyle.up= new TextureRegionDrawable(new TextureRegion(
@@ -145,10 +136,6 @@ public class MapContentTutorialDisplay extends UIComponent {
         exitStyle.over= new TextureRegionDrawable(new TextureRegion(
                 new Texture(Gdx.files.internal("images/FDS_btn_exit2.png"))));
         Button exitBtn = new Button(exitStyle);
-
-        // TextButton exitBtn = new TextButton("Exit", skin);
-
-
 
         // when the user presses exit button
         exitBtn.addListener(new ClickListener() {
@@ -180,6 +167,9 @@ public class MapContentTutorialDisplay extends UIComponent {
         tableBtn.add(mapContentTutorialBtn).size(200f,80f).padLeft(100f).padTop(20f);
 
         // table with title
+        tableTitle.add(title).expandX().top().padTop(140f);
+
+        // table with contents
         table.add(content1Btn).size(230f, 540f).padTop(60f).padLeft(10f);
         table.add(content2Btn).size(230f, 540f).padTop(60f);
        // table.add(content3Btn).size(250f, 520f).padTop(60f);
@@ -187,20 +177,7 @@ public class MapContentTutorialDisplay extends UIComponent {
         table.add(content5Btn).size(230f, 540f).padTop(60f);
         table.add(content6Btn).size(230f, 540f).padTop(60f);
         table.add(content7Btn).size(230f, 540f).padTop(60f).padRight(10f);
-        tableTitle.add(title).expandX().top().padTop(140f);
 
-        // table with contents
-//        table.add(instruction1).expandX().padTop(80f);
-//        table.row();
-//        table.add(instruction2).expandX().padTop(30f);
-//        table.row();
-//        table.add(instruction3).expandX().padTop(30f);
-//        table.row();
-//        table.add(instruction4).expandX().padTop(30f);
-//        table.row();
-//        table.add(instruction5).expandX().padTop(30f);
-//        table.row();
-//        table.add(exitBtn).size(200f,80f).pad(50f, 15f, 15f, 0f);
         // exit button table
         tableExit.add(exitBtn).size(200f,80f).pad(0f, 0f, 30f, 0f);
 

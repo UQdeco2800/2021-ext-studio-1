@@ -39,11 +39,7 @@ public class TutorialScreen extends ScreenAdapter {
 
         loadAssets();
         createUI();
-
-
     }
-
-
 
     @Override
     public void render(float delta) {
