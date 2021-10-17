@@ -18,11 +18,12 @@ import com.deco2800.game.ui.UIComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 /**
- * Tutorial display
+ * Enemy Tutorial display
  */
-public class TutorialDisplay extends UIComponent {
-    private static final Logger logger = LoggerFactory.getLogger(TutorialDisplay.class);
+public class EnemyTutorialDisplay extends UIComponent {
+    private static final Logger logger = LoggerFactory.getLogger(EnemyTutorialDisplay.class);
     private static final float Z_INDEX = 2f;
     protected Table table;
     protected Table tableBtn;
@@ -91,42 +92,35 @@ public class TutorialDisplay extends UIComponent {
                 new Texture(Gdx.files.internal("images/FDS_btn_mapContent2_tutorial.png"))));
         Button mapContentTutorialBtn = new Button(mapContentTutorial);
 
-        Label title = new Label("PLAYER MOVEMENT TUTORIAL", skin, "title", "white");
+        Label title = new Label("ENEMY TUTORIAL", skin, "title", "white");
 
         Button.ButtonStyle content1 = new Button.ButtonStyle();
         content1.up= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/PW-1.png"))));
+                new Texture(Gdx.files.internal("images/EG-1.png"))));
         content1.over= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/PW-2.png"))));
+                new Texture(Gdx.files.internal("images/EG-2.png"))));
         Button content1Btn = new Button(content1);
 
         Button.ButtonStyle content2 = new Button.ButtonStyle();
         content2.up= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/PS-2.png"))));
+                new Texture(Gdx.files.internal("images/EL-1.png"))));
         content2.over= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/PS-1.png"))));
+                new Texture(Gdx.files.internal("images/EL-2.png"))));
         Button content2Btn = new Button(content2);
 
         Button.ButtonStyle content3 = new Button.ButtonStyle();
         content3.up= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/PE-2.png"))));
+                new Texture(Gdx.files.internal("images/ED-1.png"))));
         content3.over= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/PE-1.png"))));
+                new Texture(Gdx.files.internal("images/ED-2.png"))));
         Button content3Btn = new Button(content3);
 
         Button.ButtonStyle content4 = new Button.ButtonStyle();
         content4.up= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/PQ-1.png"))));
+                new Texture(Gdx.files.internal("images/EDR-1.png"))));
         content4.over= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/PQ-2.png"))));
+                new Texture(Gdx.files.internal("images/EDR-2.png"))));
         Button content4Btn = new Button(content4);
-
-        Button.ButtonStyle content5 = new Button.ButtonStyle();
-        content5.up= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/PAttack1.png"))));
-        content5.over= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/PAttack2.png"))));
-        Button content5Btn = new Button(content5);
 
         //Exit button
         Button.ButtonStyle exitStyle = new Button.ButtonStyle();
@@ -145,18 +139,18 @@ public class TutorialDisplay extends UIComponent {
             }
         });
 
-        enemyTutorialBtn.addListener(new ClickListener() {
+        playerMovementTutorialBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent e, float x, float y) {
-                logger.debug("Enemy Tutorial Button pressed");
-                entity.getEvents().trigger("EnemyTutorial");
+                logger.debug("Exit button pressed");
+                entity.getEvents().trigger("tutorial");
             }
         });
 
         mapContentTutorialBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent e, float x, float y) {
-                logger.debug("Map Content Tutorial Button pressed");
+                logger.debug("Map content tutorial button pressed");
                 entity.getEvents().trigger("MapContentTutorial");
             }
         });
@@ -169,11 +163,10 @@ public class TutorialDisplay extends UIComponent {
         tableTitle.add(title).expandX().top().padTop(140f);
 
         // table with contents
-        table.add(content1Btn).padLeft(20f).size(250f, 450f);
-        table.add(content2Btn).padLeft(20f).size(250f, 450f);
-        table.add(content3Btn).padLeft(20f).size(250f, 450f);
-        table.add(content4Btn).padLeft(20f).size(250f, 450f);
-        table.add(content5Btn).padLeft(20f).size(250f, 450f);
+        table.add(content1Btn).size(350f, 520f).padTop(60f);
+        table.add(content2Btn).size(350f, 520f).padTop(60f);
+        table.add(content3Btn).size(350f, 520f).padTop(60f);
+        table.add(content4Btn).size(350f, 520f).padTop(60f);
 
         // exit button table
         tableExit.add(exitBtn).size(200f,80f).pad(0f, 0f, 30f, 0f);
@@ -183,7 +176,7 @@ public class TutorialDisplay extends UIComponent {
         stage.addActor(tablebackGround);
         stage.addActor(tableBtn);
         stage.addActor(tableTitle);
-        stage.addActor(table);
+          stage.addActor(table);
         stage.addActor(tableExit);
 
     }

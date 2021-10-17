@@ -129,7 +129,7 @@ public class MainMenuDisplay extends UIComponent {
     table.add(title).padBottom(60f);
     table.row();
 
-    table.add(startBtn).size(200f,80f).padTop(30f);
+    table.add(startBtn).size(200f,80f).padTop(20f);
     table.row();
     table.add(settingsBtn).size(200f,80f).padTop(15f);
     table.row();
