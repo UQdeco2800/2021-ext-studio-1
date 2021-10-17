@@ -38,7 +38,8 @@ public class MainGameExitDisplay extends UIComponent {
   private Table table;
   private Label timerLabel;
   public boolean exitx = false;
-
+  private long sleepTime = 1000;
+  private int displayTime = 60;
 
   @Override
   public void create() {
@@ -77,9 +78,9 @@ public class MainGameExitDisplay extends UIComponent {
     new Thread() {
       public void run() {
         try {
-          for(int i=60;i>0;i--){
+          for(int i= displayTime;i>0;i--){
             timerLabel.setText("Timer :"+ i+" sec");
-            Thread.sleep(1000);
+            Thread.sleep(sleepTime);
             if(exitx == true){
               break;
             }
