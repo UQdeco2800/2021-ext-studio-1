@@ -154,7 +154,7 @@ public class CombatStatsComponent extends Component {
       }
 
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
-        logger.error("attacker--{}", attacker.getEntity().getType());
+//        logger.error("attacker--{}", attacker.getEntity().getType());
         AnimationRenderComponent2 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent2.class);
 
@@ -178,7 +178,7 @@ public class CombatStatsComponent extends Component {
         } catch (GdxRuntimeException e) {
           //pass
         }
-        logger.error("--end--attacker--{}",attacker.getEntity().getType());
+//        logger.error("--end--attacker--{}",attacker.getEntity().getType());
       }
       int newHealth;
       if (armour > 0){
@@ -216,8 +216,8 @@ public class CombatStatsComponent extends Component {
         return;
       }
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
-        logger.error("attacker--{}", attacker.getEntity().getType(),
-                attacker.getEntity());
+//        logger.error("attacker--{}", attacker.getEntity().getType(),
+//                attacker.getEntity());
         AnimationRenderComponent3 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent3.class);
         animator.startAnimation("buff");
@@ -229,7 +229,7 @@ public class CombatStatsComponent extends Component {
           //pass
         }
 
-        logger.error("--end--attacker--{}",attacker.getEntity().getType());
+//        logger.error("--end--attacker--{}",attacker.getEntity().getType());
 
       }
 
@@ -246,7 +246,7 @@ public class CombatStatsComponent extends Component {
       }
 
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
-        logger.error("attacker--{}", attacker.getEntity().getType(),attacker.getEntity());
+//        logger.error("attacker--{}", attacker.getEntity().getType(),attacker.getEntity());
         AnimationRenderComponent4 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent4.class);
 
@@ -270,7 +270,7 @@ public class CombatStatsComponent extends Component {
         } catch (GdxRuntimeException e) {
           //pass;
         }
-        logger.error("--end--attacker--{}",attacker.getEntity().getType());
+//        logger.error("--end--attacker--{}",attacker.getEntity().getType());
       }
 
 //      if (armour > 0){
@@ -299,7 +299,7 @@ public class CombatStatsComponent extends Component {
 
       if (attacker.getEntity().getType() == Entity.Type.COLLECTABLES) {
         InventoryComponent inventoryStats = player.getComponent(InventoryComponent.class);
-        logger.error("attacker--{}", attacker.getEntity().getType(),attacker.getEntity());
+//        logger.error("attacker--{}", attacker.getEntity().getType(),attacker.getEntity());
 //        AnimationRenderComponent6 animator =
 //                attacker.getEntity().getComponent(AnimationRenderComponent6.class);
 //        animator.startAnimation("coin");
@@ -309,7 +309,7 @@ public class CombatStatsComponent extends Component {
 //        Sound coinSound = ServiceLocator.getResourceService().getAsset(
 //                "sounds/coin.ogg", Sound.class);
 //        coinSound.play();
-        logger.error("--end--attacker--{}",attacker.getEntity().getType());
+//        logger.error("--end--attacker--{}",attacker.getEntity().getType());
         entity.getEvents().trigger("coin");
 
 //        inventoryStats.addGold(1);
@@ -328,7 +328,7 @@ public class CombatStatsComponent extends Component {
         return;
       }
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
-        logger.error("attacker--{}", attacker.getEntity().getType(), attacker.getEntity());
+//        logger.error("attacker--{}", attacker.getEntity().getType(), attacker.getEntity());
         AnimationRenderComponent6 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent6.class);
         animator.startAnimation("coin");
@@ -340,7 +340,7 @@ public class CombatStatsComponent extends Component {
         } catch (GdxRuntimeException e) {
           //pass;
         }
-        logger.error("--end--attacker--{}", attacker.getEntity().getType());
+//        logger.error("--end--attacker--{}", attacker.getEntity().getType());
       }
 
 //      if (armour > 0){
@@ -364,11 +364,11 @@ public class CombatStatsComponent extends Component {
         if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
 
 
-          logger.error("--end--attacker-----------------------------*****{}",attacker.getHealth());
-          logger.error("--end--attacker--****************************{}",attacker.getEntity().getType());
-          logger.error("--end--attacker--****************************{}",Entity.Type.PLAYER);
+//          logger.error("--end--attacker-----------------------------*****{}",attacker.getHealth());
+//          logger.error("--end--attacker--****************************{}",attacker.getEntity().getType());
+//          logger.error("--end--attacker--****************************{}",Entity.Type.PLAYER);
           if(attacker.getHealth() <= 0){
-            logger.error("--end--attacker--&&&&&&&&&&&&&&&&&&&&&&&&&&&&{}",Entity.Type.PLAYER);
+//            logger.error("--end--attacker--&&&&&&&&&&&&&&&&&&&&&&&&&&&&{}",Entity.Type.PLAYER);
             try{
               Sound deathSound = ServiceLocator.getResourceService().getAsset("sounds/death.ogg", Sound.class);
               deathSound.play();
@@ -387,11 +387,11 @@ public class CombatStatsComponent extends Component {
 
 
   public void getBackNormal(CombatStatsComponent attacker){
-    logger.error("attacker--{}", attacker.getEntity().getType());
+//    logger.error("attacker--{}", attacker.getEntity().getType());
     AnimationRenderComponent4 animator =
             attacker.getEntity().getComponent(AnimationRenderComponent4.class);
     animator.startAnimation("default");
-    logger.error("--end--attacker--{}",attacker.getEntity().getType());
+//    logger.error("--end--attacker--{}",attacker.getEntity().getType());
   }
 }
 
