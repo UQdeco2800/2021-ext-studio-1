@@ -6,6 +6,7 @@ import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.deco2800.game.GdxGame.ScreenType.MAIN_GAME;
 import static com.deco2800.game.GdxGame.ScreenType.MAIN_MENU;
 
 public class GameStoryActions extends Component {
@@ -27,7 +28,7 @@ public class GameStoryActions extends Component {
      */
     private void onStart() {
         logger.info("Start game");
-        game.setScreen(GdxGame.ScreenType.MAIN_GAME);
+        game.setScreen(MAIN_GAME);
     }
 
     /**
@@ -35,7 +36,6 @@ public class GameStoryActions extends Component {
      */
     private void onExit() {
         logger.info("Exiting main game screen");
-        ServiceLocator.clear();
         game.setScreen(MAIN_MENU);
     }
 }
