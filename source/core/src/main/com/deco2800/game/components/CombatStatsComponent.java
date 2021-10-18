@@ -273,7 +273,7 @@ public class CombatStatsComponent extends Component {
         return;
       }
 
-      if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
+      if (attacker.getEntity().getType() == Entity.Type.COLLECTABLES) {
         InventoryComponent inventoryStats = player.getComponent(InventoryComponent.class);
         logger.error("attacker--{}", attacker.getEntity().getType(),attacker.getEntity());
         AnimationRenderComponent6 animator =
