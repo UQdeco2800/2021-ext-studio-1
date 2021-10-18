@@ -117,10 +117,10 @@ public class PlayerActions extends Component {
       logger.info("attack",attackTrigger);
       Array<Entity> entities = ServiceLocator.getEntityService().getEntities();
       Entity nearest = findNearestTargets(entities);
-      logger.info("attack nearest--{}",attackCount);
+//      logger.info("attack nearest--{}",attackCount);
       if (nearest != null) {
         if (nearest.getType().equals(Entity.Type.GHOST) || nearest.getType().equals(Entity.Type.GHOSTKING)) {
-          logger.info("nearest.getType()--{}", nearest.getType());
+//          logger.info("nearest.getType()--{}", nearest.getType());
           nearest.dispose();
 //          Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/buff2.ogg", Sound.class);
 //          attSound.play();
