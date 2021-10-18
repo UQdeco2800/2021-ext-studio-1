@@ -1,12 +1,9 @@
 package com.deco2800.game.components.player;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
-import com.deco2800.game.GdxGame;
 import com.deco2800.game.components.CombatStatsComponent;
 import com.deco2800.game.components.Component;
 import com.deco2800.game.entities.Entity;
@@ -15,11 +12,6 @@ import com.deco2800.game.rendering.*;
 import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.crypto.EncryptedPrivateKeyInfo;
-import java.security.Key;
-import java.util.EmptyStackException;
-import java.util.Scanner;
 
 /**
  * Action component for interacting with the player. Player events should be initialised in create()
@@ -127,13 +119,6 @@ public class PlayerActions extends Component {
       Entity nearest = findNearestTargets(entities);
       logger.info("attack nearest--{}",attackCount);
       if (nearest != null) {
-//      else if (nearest.getType().equals(Entity.Type.BREAD) || nearest.getType().equals(Entity.Type.AID)) {
-//        logger.info ("nearest.getType()--{}", nearest.getType());
-//        nearest.dispose();
-//        Sound attSound = ServiceLocator.getResourceService().getAsset("sounds/buff.ogg", Sound.class);
-//        attSound.play();
-//        animator.startAnimation("buff");
-//      }
         if (nearest.getType().equals(Entity.Type.GHOST) || nearest.getType().equals(Entity.Type.GHOSTKING)) {
           logger.info("nearest.getType()--{}", nearest.getType());
           nearest.dispose();
@@ -176,17 +161,4 @@ public class PlayerActions extends Component {
     }
     return result;
   }
-
-//  void touch() {
-//    Array<Entity> entities = ServiceLocator.getEntityService().getEntities();
-//    Entity nearest = findNearestTargets(entities);
-//    if (nearest != null) {
-//      if (nearest.getType().equals(Entity.Type.BREAD) || nearest.getType().equals(Entity.Type.AID)) {
-//        entities.removeValue(nearest, true);
-//        Sound attackSound1 = ServiceLocator.getResourceService().getAsset("sounds/buff.ogg", Sound.class);
-//        attackSound1.play();
-//        animator.startAnimation("attack");
-//      }
-//    }
-//  }
 }

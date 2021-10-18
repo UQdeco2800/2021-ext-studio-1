@@ -1,5 +1,4 @@
 package com.deco2800.game.components.tasks;
-
 import com.badlogic.gdx.math.Vector2;
 import com.deco2800.game.ai.tasks.DefaultTask;
 import com.deco2800.game.ai.tasks.PriorityTask;
@@ -85,9 +84,8 @@ public class WanderTask extends DefaultTask implements PriorityTask {
   }
 
   private Vector2 getRandomPosInRange() {
-    Vector2 halfRange = wanderRange.cpy().scl(0.5f);
+    Vector2 halfRange = wanderRange.cpy();
     Vector2 min = startPos.cpy().sub(halfRange);
-    Vector2 max = startPos.cpy().add(halfRange);
-    return RandomUtils.random(min, max);
+    return min;
   }
 }
