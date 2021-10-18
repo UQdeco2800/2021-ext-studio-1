@@ -43,7 +43,7 @@ public class PlayerFactory {
                     ServiceLocator.getResourceService()
                             .getAsset("images/touch.atlas",
                                     TextureAtlas.class));
-    animator2.addAnimation("touch", 0.1f, Animation.PlayMode.NORMAL);
+    animator2.addAnimation("touch", 0.3f, Animation.PlayMode.NORMAL);
 
 
     AnimationRenderComponent animator =

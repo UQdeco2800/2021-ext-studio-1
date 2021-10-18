@@ -51,6 +51,7 @@ public class PlayerActions extends Component {
     entity.getEvents().addListener("unAttack", this::unAttack);
     entity.getEvents().addListener("run", this::attack);
     entity.getEvents().addListener("coin", this::attack);
+    entity.getEvents().addListener("death", this::attack);
   }
 
   @Override
@@ -132,6 +133,8 @@ public class PlayerActions extends Component {
       attackSound.play();
       animator5.stopAnimation();
       animator.startAnimation("attack");
+
+
       attackCount = 0;
     }
   }
