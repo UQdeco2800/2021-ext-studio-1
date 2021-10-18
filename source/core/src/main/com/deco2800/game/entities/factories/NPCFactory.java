@@ -54,7 +54,6 @@ public class NPCFactory {
         .addComponent(animator)
         .addComponent(new GhostAnimationController());
 
-    //ghost.getComponent(AnimationRenderComponent.class).scaleEntity();//
 
     return ghost;
   }
@@ -79,7 +78,6 @@ public class NPCFactory {
             .addComponent(animator)
             .addComponent(new GhostAnimationController());
 
-    //littleGreen.getComponent(AnimationRenderComponent.class).scaleEntity();//
 
     return littleGreen;
   }
@@ -98,7 +96,6 @@ public class NPCFactory {
             .addComponent(animator)
             .addComponent(new GhostAnimationController());
 
-    //littleGreen.getComponent(AnimationRenderComponent.class).scaleEntity();//
 
     return Demon;
   }
@@ -125,7 +122,6 @@ public class NPCFactory {
         .addComponent(animator)
         .addComponent(new GhostAnimationController());
 
-    //ghostKing.getComponent(AnimationRenderComponent.class).scaleEntity();//
     return ghostKing;
   }
 
@@ -143,12 +139,10 @@ public class NPCFactory {
         new Entity(Entity.Type.GHOST)
             .addComponent(new PhysicsComponent())
             .addComponent(new PhysicsMovementComponent())
-            //.addComponent(new ColliderComponent())
             .addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
             .addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
             .addComponent(aiComponent);
 
-//    PhysicsUtils.setScaledCollider(npc, 0.9f, 0.4f);
     return npc;
   }
 
@@ -160,12 +154,10 @@ public class NPCFactory {
             new Entity(Entity.Type.GHOSTKING)
                     .addComponent(new PhysicsComponent())
                     .addComponent(new PhysicsMovementComponent())
-                    //.addComponent(new ColliderComponent())
                     .addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
                     .addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
                     .addComponent(aiComponent);
 
-    //PhysicsUtils.setScaledCollider(npc, 0.9f, 0.4f);
     return npc1;
   }
 

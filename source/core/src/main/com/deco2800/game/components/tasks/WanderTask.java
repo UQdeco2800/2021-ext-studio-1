@@ -3,7 +3,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.deco2800.game.ai.tasks.DefaultTask;
 import com.deco2800.game.ai.tasks.PriorityTask;
 import com.deco2800.game.ai.tasks.Task;
-import com.deco2800.game.utils.math.RandomUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -85,7 +84,6 @@ public class WanderTask extends DefaultTask implements PriorityTask {
 
   private Vector2 getRandomPosInRange() {
     Vector2 halfRange = wanderRange.cpy();
-    Vector2 min = startPos.cpy().sub(halfRange);
-    return min;
+    return startPos.cpy().sub(halfRange);
   }
 }
