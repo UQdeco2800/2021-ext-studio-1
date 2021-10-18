@@ -86,6 +86,7 @@ public class TouchAttackComponent extends Component {
       }
       else if(targetStats.getEntity().getType() == Entity.Type.COLLECTABLES){
         targetStats.hitCoins(entity); //entity = player
+        targetStats.hitCoin(combatStats);
       }
       else{
         targetStats.hit(combatStats);

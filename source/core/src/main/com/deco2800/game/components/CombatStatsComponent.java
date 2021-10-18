@@ -276,12 +276,15 @@ public class CombatStatsComponent extends Component {
       if (attacker.getEntity().getType() == Entity.Type.COLLECTABLES) {
         InventoryComponent inventoryStats = player.getComponent(InventoryComponent.class);
         logger.error("attacker--{}", attacker.getEntity().getType(),attacker.getEntity());
-        AnimationRenderComponent6 animator =
-                attacker.getEntity().getComponent(AnimationRenderComponent6.class);
-        animator.startAnimation("coin");
-        Sound coinSound = ServiceLocator.getResourceService().getAsset(
-                "sounds/coin.ogg", Sound.class);
-        coinSound.play();
+//        AnimationRenderComponent6 animator =
+//                attacker.getEntity().getComponent(AnimationRenderComponent6.class);
+//        animator.startAnimation("coin");
+//        AnimationRenderComponent4 animator =
+//                attacker.getEntity().getComponent(AnimationRenderComponent4.class);
+//        animator.startAnimation("deBuff");
+//        Sound coinSound = ServiceLocator.getResourceService().getAsset(
+//                "sounds/coin.ogg", Sound.class);
+//        coinSound.play();
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
         entity.getEvents().trigger("coin");
 
@@ -291,6 +294,49 @@ public class CombatStatsComponent extends Component {
 
     } catch (NullPointerException e) {
       player.getComponent(InventoryComponent.class).addGold(1);
+    }
+
+  }
+
+  public void hitCoin(CombatStatsComponent attacker) {
+    try {
+      if (ServiceLocator.getTimeSource().getTimeSince(invincibleStart) < 1000L) {
+        return;
+      }
+
+      if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
+        logger.error("attacker--{}", attacker.getEntity().getType(),attacker.getEntity());
+        AnimationRenderComponent6 animator =
+                attacker.getEntity().getComponent(AnimationRenderComponent6.class);
+        animator.startAnimation("coin");
+                Sound coinSound = ServiceLocator.getResourceService().getAsset(
+                "sounds/coin.ogg", Sound.class);
+        coinSound.play();
+
+        try {
+          Sound deBuffSound = ServiceLocator.getResourceService().getAsset(
+                  "sounds/e.ogg", Sound.class);
+          deBuffSound.play();
+        } catch (GdxRuntimeException e) {
+          //pass;
+        }
+        logger.error("--end--attacker--{}",attacker.getEntity().getType());
+      }
+
+//      if (armour > 0){
+//        int newArmour = getArmour() - attacker.getBaseAttack();
+//        setArmour(newArmour);
+//        invincibleStart = ServiceLocator.getTimeSource().getTime();
+//      }
+//      else{
+//        int newHealth = getHealth() - attacker.getBaseAttack();
+//        setHealth(newHealth);
+//        invincibleStart = ServiceLocator.getTimeSource().getTime();
+//      }
+
+    } catch (NullPointerException e) {
+      int newHealth = getHealth() - attacker.getBaseAttack();
+      setHealth(newHealth);
     }
 
   }
