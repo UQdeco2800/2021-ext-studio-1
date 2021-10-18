@@ -4,15 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
 import org.slf4j.Logger;
@@ -24,7 +21,6 @@ import org.slf4j.LoggerFactory;
  */
 public class MapContentTutorialDisplay extends UIComponent {
     private static final Logger logger = LoggerFactory.getLogger(MapContentTutorialDisplay.class);
-    private static final float Z_INDEX = 2f;
     protected Table table;
     protected Table tableBtn;
     protected Table tableTitle;
@@ -104,11 +100,6 @@ public class MapContentTutorialDisplay extends UIComponent {
                 new Texture(Gdx.files.internal("images/MC_coin.png"))));
         Button content2Btn = new Button(content2);
 
-        Button.ButtonStyle content3 = new Button.ButtonStyle();
-        content3.up= new TextureRegionDrawable(new TextureRegion(
-                new Texture(Gdx.files.internal("images/MC_diamond.png"))));
-        Button content3Btn = new Button(content3);
-
         Button.ButtonStyle content4 = new Button.ButtonStyle();
         content4.up= new TextureRegionDrawable(new TextureRegion(
                 new Texture(Gdx.files.internal("images/MC_FAK.png"))));
@@ -172,7 +163,6 @@ public class MapContentTutorialDisplay extends UIComponent {
         // table with contents
         table.add(content1Btn).size(230f, 540f).padTop(60f).padLeft(10f);
         table.add(content2Btn).size(230f, 540f).padTop(60f);
-       // table.add(content3Btn).size(250f, 520f).padTop(60f);
         table.add(content4Btn).size(230f, 540f).padTop(60f);
         table.add(content5Btn).size(230f, 540f).padTop(60f);
         table.add(content6Btn).size(230f, 540f).padTop(60f);
@@ -193,6 +183,7 @@ public class MapContentTutorialDisplay extends UIComponent {
 
     @Override
     public void draw(SpriteBatch batch) {
+        // draw is handled by the stage
     }
 
     @Override
