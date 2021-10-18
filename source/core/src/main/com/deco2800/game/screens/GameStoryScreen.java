@@ -17,7 +17,9 @@ import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.services.GameTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import static com.deco2800.game.GdxGame.ScreenType.MAIN_GAME;
+
 /**
  * The game screen containing the game's story.
  */
@@ -30,6 +32,7 @@ public class GameStoryScreen extends ScreenAdapter {
 
     public GameStoryScreen(GdxGame game) {
         this.game = game;
+
         this.gameTimer = 15000;
         logger.debug("Initialising story screen services");
         ServiceLocator.registerTimeSource(new GameTime());
@@ -38,6 +41,7 @@ public class GameStoryScreen extends ScreenAdapter {
         ServiceLocator.registerEntityService(new EntityService());
         ServiceLocator.registerRenderService(new RenderService());
         ServiceLocator.registerTimeSource(new GameTime());
+
         renderer = RenderFactory.createRenderer();
 
         loadAssets();
