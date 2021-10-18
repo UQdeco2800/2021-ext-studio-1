@@ -41,6 +41,7 @@ public class RainbowBridge extends GameArea {
     private static final int NUM_COLLECTABLES = 10;
     private static final int NUM_MONSTER = 10;
     private static final int MAX_CONTENT_POSITION = 120;
+    private static int musicSign = 0;
     
     private static final String[] rainbowBridgeTextures = {
             "images/terrain/star-blank.png",
@@ -143,7 +144,14 @@ public class RainbowBridge extends GameArea {
 //        spawnDemon();
 //        spawnGhosts();
         spawnMonster();
-        playMusic();
+        musicControl();
+    }
+
+    private void musicControl(){
+        if (musicSign == 0){
+            playMusic();
+            musicSign++;
+        }
     }
 
     private void displayUI() {

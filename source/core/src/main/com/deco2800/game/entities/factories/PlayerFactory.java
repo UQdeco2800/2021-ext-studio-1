@@ -86,7 +86,7 @@ public class PlayerFactory {
                     ServiceLocator.getResourceService()
                             .getAsset("images/death.atlas",
                                     TextureAtlas.class));
-    animator7.addAnimation("death", 0.1f, Animation.PlayMode.NORMAL);
+    animator7.addAnimation("death", 0.01f, Animation.PlayMode.NORMAL);
 
 //    AnimationRenderComponent animator1 =
 //            new AnimationRenderComponent(
