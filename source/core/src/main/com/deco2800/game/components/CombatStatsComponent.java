@@ -152,17 +152,22 @@ public class CombatStatsComponent extends Component {
       if (ServiceLocator.getTimeSource().getTimeSince(invincibleStart) < 1000L) {
         return;
       }
-      if(attacker.getHealth() <= 0){
-        AnimationRenderComponent7 animator7 =
-                attacker.getEntity().getComponent(AnimationRenderComponent7.class);
-        animator7.startAnimation("death");
-        getEntity().getEvents().trigger("GameOver");
-      }
+
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
         logger.error("attacker--{}", attacker.getEntity().getType());
         AnimationRenderComponent2 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent2.class);
         animator.startAnimation("touch");
+        logger.error("--end--attacker-----------------------------*****{}",attacker.getHealth());
+        logger.error("--end--attacker--****************************{}",attacker.getEntity().getType());
+        logger.error("--end--attacker--****************************{}",Entity.Type.PLAYER);
+        if(attacker.getHealth() <= 0){
+          AnimationRenderComponent7 animator7 =
+                  attacker.getEntity().getComponent(AnimationRenderComponent7.class);
+          animator7.startAnimation("death");
+
+          getEntity().getEvents().trigger("GameOver");
+        }
         try{
         Sound hitSound = ServiceLocator.getResourceService().getAsset("sounds" +
                 "/e.ogg", Sound.class);
@@ -191,6 +196,10 @@ public class CombatStatsComponent extends Component {
         setHealth(newHealth);
         invincibleStart = ServiceLocator.getTimeSource().getTime();
       }
+
+
+
+
     } catch (NullPointerException e) {
       int newHealth = getHealth() - attacker.getBaseAttack();
       setHealth(newHealth);
@@ -238,6 +247,15 @@ public class CombatStatsComponent extends Component {
         AnimationRenderComponent4 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent4.class);
         animator.startAnimation("deBuff");
+        logger.error("--end--attacker-----------------------------*****{}",attacker.getHealth());
+        logger.error("--end--attacker--****************************{}",attacker.getEntity().getType());
+        logger.error("--end--attacker--****************************{}",Entity.Type.PLAYER);
+        if(attacker.getHealth() <= 0){
+          AnimationRenderComponent7 animator7 =
+                  attacker.getEntity().getComponent(AnimationRenderComponent7.class);
+          animator7.startAnimation("death");
+          getEntity().getEvents().trigger("GameOver");
+        }
 
         try {
         Sound deBuffSound = ServiceLocator.getResourceService().getAsset(
@@ -288,7 +306,7 @@ public class CombatStatsComponent extends Component {
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
         entity.getEvents().trigger("coin");
 
-        inventoryStats.addGold(1);
+//        inventoryStats.addGold(1);
       }
       player.getComponent(InventoryComponent.class).addGold(1);
 

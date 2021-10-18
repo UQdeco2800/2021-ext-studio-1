@@ -38,6 +38,7 @@ public class PlayerActions extends Component {
   AnimationRenderComponent4 animator4;
   AnimationRenderComponent5 animator5;
   AnimationRenderComponent6 animator6;
+  AnimationRenderComponent7 animator7;
   private int attackCount = 0;
   private boolean attackTrigger = false;
 
@@ -50,6 +51,7 @@ public class PlayerActions extends Component {
     animator4 = this.entity.getComponent(AnimationRenderComponent4.class);
     animator5 = this.entity.getComponent(AnimationRenderComponent5.class);
     animator6 = this.entity.getComponent(AnimationRenderComponent6.class);
+    animator7 = this.entity.getComponent(AnimationRenderComponent7.class);
     physicsComponent = entity.getComponent(PhysicsComponent.class);
     entity.getEvents().addListener("walk", this::walk);
     entity.getEvents().addListener("walkStop", this::stopWalking);
@@ -61,6 +63,9 @@ public class PlayerActions extends Component {
 
   @Override
   public void update() {
+    if(animator7.getCurrentAnimation() != null){
+      animator5.stopAnimation();
+    }
     if(animator5.getCurrentAnimation() == null) {
       animator5.startAnimation("run");
     }
