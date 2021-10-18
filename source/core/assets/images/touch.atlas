@@ -1,5 +1,5 @@
 touch.png
-size: 1280, 1280
+size: 1920, 640
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -19,14 +19,7 @@ touch
   index: -1
 touch
   rotate: false
-  xy: 0, 640
-  size: 640, 640
-  orig: 640, 640
-  offset: 0, 0
-  index: -1
-touch
-  rotate: false
-  xy: 640, 640
+  xy: 1280, 0
   size: 640, 640
   orig: 640, 640
   offset: 0, 0
