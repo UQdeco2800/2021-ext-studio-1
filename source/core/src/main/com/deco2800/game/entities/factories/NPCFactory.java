@@ -1,5 +1,4 @@
 package com.deco2800.game.entities.factories;
-
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
@@ -7,7 +6,6 @@ import com.deco2800.game.ai.tasks.AITaskComponent;
 import com.deco2800.game.components.CombatStatsComponent;
 import com.deco2800.game.components.npc.GhostAnimationController;
 import com.deco2800.game.components.TouchAttackComponent;
-import com.deco2800.game.components.tasks.ChaseTask;
 import com.deco2800.game.components.tasks.WanderTask;
 import com.deco2800.game.entities.Entity;
 import com.deco2800.game.entities.configs.BaseEntityConfig;
@@ -15,8 +13,6 @@ import com.deco2800.game.entities.configs.GhostKingConfig;
 import com.deco2800.game.entities.configs.NPCConfigs;
 import com.deco2800.game.files.FileLoader;
 import com.deco2800.game.physics.PhysicsLayer;
-import com.deco2800.game.physics.PhysicsUtils;
-import com.deco2800.game.physics.components.ColliderComponent;
 import com.deco2800.game.physics.components.HitboxComponent;
 import com.deco2800.game.physics.components.PhysicsComponent;
 import com.deco2800.game.physics.components.PhysicsMovementComponent;
@@ -142,8 +138,7 @@ public class NPCFactory {
   private static Entity createBaseNPC(Entity target) {
     AITaskComponent aiComponent =
         new AITaskComponent()
-            .addTask(new WanderTask(new Vector2(50, 0), 0f))
-            .addTask(new ChaseTask(target, 0, 0, 0));
+            .addTask(new WanderTask(new Vector2(60, 0), 0f));
     Entity npc =
         new Entity(Entity.Type.GHOST)
             .addComponent(new PhysicsComponent())
@@ -160,8 +155,7 @@ public class NPCFactory {
   private static Entity createBaseNPC1(Entity target) {
     AITaskComponent aiComponent =
             new AITaskComponent()
-                    .addTask(new WanderTask(new Vector2(50f, 0f), 0f))
-                    .addTask(new ChaseTask(target, 0, 0f, 0f));
+                    .addTask(new WanderTask(new Vector2(60, 0), 0f));
     Entity npc1 =
             new Entity(Entity.Type.GHOSTKING)
                     .addComponent(new PhysicsComponent())

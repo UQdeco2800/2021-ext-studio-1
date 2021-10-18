@@ -43,7 +43,7 @@ public class PlayerFactory {
                     ServiceLocator.getResourceService()
                             .getAsset("images/touch.atlas",
                                     TextureAtlas.class));
-    animator2.addAnimation("touch", 0.1f, Animation.PlayMode.NORMAL);
+    animator2.addAnimation("touch", 0.3f, Animation.PlayMode.NORMAL);
 
 
     AnimationRenderComponent animator =
@@ -88,23 +88,6 @@ public class PlayerFactory {
                                     TextureAtlas.class));
     animator7.addAnimation("death", 0.1f, Animation.PlayMode.NORMAL);
 
-//    AnimationRenderComponent animator1 =
-//            new AnimationRenderComponent(
-//                    ServiceLocator.getResourceService()
-//                            .getAsset("images/posipuff.atlas",
-//                                    TextureAtlas.class));
-//    animator1.addAnimation("buff", 0.1f, Animation.PlayMode.NORMAL);
-//    AnimationRenderComponent animator3 =
-//            new AnimationRenderComponent(
-//                    ServiceLocator.getResourceService()
-//                            .getAsset("images/player.atlas",
-//                                    TextureAtlas.class));
-//    animator.addAnimation("attack", 0.03f, Animation.PlayMode.NORMAL);
-//    animator.addAnimation("TouchObstacle", 0.03f, Animation.PlayMode.NORMAL);
-//    animator.addAnimation("positiveBuff", 0.03f, Animation.PlayMode.NORMAL);
-//    animator.addAnimation("negativeBuff", 0.03f, Animation.PlayMode.NORMAL);
-
-
     Entity player =
         new Entity(Entity.Type.PLAYER)
             .addComponent(new TextureRenderComponent("images/blank.png"))
@@ -128,7 +111,6 @@ public class PlayerFactory {
     PhysicsUtils.setScaledCollider(player, 0.6f, 0.3f);
     player.getComponent(ColliderComponent.class).setDensity(1.5f);
     player.getComponent(TextureRenderComponent.class).scaleEntity();
-    //player.getComponent(AnimationRenderComponent.class).scaleEntity();
     return player;
   }
 

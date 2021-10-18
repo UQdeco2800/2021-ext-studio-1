@@ -20,7 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class EnemyTutorialScreen extends ScreenAdapter {
-    private static final Logger logger = LoggerFactory.getLogger(TutorialScreen.class);
+    private static final Logger logger = LoggerFactory.getLogger(EnemyTutorialScreen.class);
 
     private final GdxGame game;
     private final Renderer renderer;

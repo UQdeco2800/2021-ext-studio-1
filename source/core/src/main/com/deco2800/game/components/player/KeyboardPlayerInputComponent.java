@@ -44,7 +44,9 @@ public class KeyboardPlayerInputComponent extends InputComponent {
         System.out.println(lanes.get(3).getMid() - 7.5);
         entity.setPosition(entity.getPosition().x, lanes.get(i).getMid() - (1.7f * (i + 1) + j));
         newY = lanes.get(i).getMid() - (1.6f * (i + 1));
-        i += 1;
+        if (i <= 2){
+          i += 1;
+        }
         if (j <= 0.14f){
           j += 0.03f;
         }
