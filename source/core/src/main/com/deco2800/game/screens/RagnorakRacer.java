@@ -58,6 +58,7 @@ public class RagnorakRacer extends ScreenAdapter {
 
         PhysicsService physicsService = new PhysicsService();
         ServiceLocator.registerPhysicsService(physicsService);
+        ServiceLocator.registerGameService(game); //new line
         physicsEngine = physicsService.getPhysics();
 
         ServiceLocator.registerInputService(new InputService());

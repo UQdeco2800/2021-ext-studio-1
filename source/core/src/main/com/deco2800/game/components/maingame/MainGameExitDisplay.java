@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.deco2800.game.components.player.KeyboardPlayerInputComponent;
+import com.deco2800.game.services.ResourceService;
 import com.deco2800.game.ui.UIComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +27,9 @@ import com.deco2800.game.GdxGame.ScreenType;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
 import com.deco2800.game.utils.StringDecorator;
+import com.badlogic.gdx.Game;
 
+import static com.deco2800.game.GdxGame.ScreenType.GAMEOVER;
 
 
 /**
@@ -40,6 +43,11 @@ public class MainGameExitDisplay extends UIComponent {
   public boolean exitx = false;
   private long sleepTime = 1000;
   private int displayTime = 120;
+
+//  public MainGameExitDisplay(GdxGame game){
+////    ServiceLocator.registerResourceService(new ResourceService());
+//    ServiceLocator.getScreen();
+//  }
 
   @Override
   public void create() {
@@ -82,6 +90,9 @@ public class MainGameExitDisplay extends UIComponent {
             timerLabel.setText("Timer :"+ i);
             Thread.sleep(sleepTime);
             if(exitx == true){
+              break;
+            }
+            if (ServiceLocator.getGameService().getScreenType().equals(GAMEOVER)) {
               break;
             }
           }
