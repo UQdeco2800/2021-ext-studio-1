@@ -1,6 +1,7 @@
 package com.deco2800.game.components;
 
 import com.deco2800.game.entities.Entity;
+import com.deco2800.game.entities.factories.NPCFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

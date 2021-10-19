@@ -330,7 +330,7 @@ public class TerrainFactory {
     for (int x = 0; x < mapSize.x; x++) {
       for (int y = 0; y < mapSize.y; y++) {
         Cell cell = new Cell();
-        int index = (int) (java.util.Random.nextInt() * tiles.size());
+        int index = (int) (Math.random() * tiles.size());
         cell.setTile(tiles.get(index));
         layer.setCell(x, y, cell);
       }
