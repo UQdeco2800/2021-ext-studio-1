@@ -53,7 +53,7 @@ public class Bridge implements Location {
     }
 
     public Lane getLastLane(){
-        if (this.lanes.size() == 0) {
+        if (this.lanes.isEmpty()) {
             throw new IllegalCallerException("Unable to get a lane from an empty list");
         } else {
             return this.lanes.get(this.lanes.size() - 1);
@@ -65,7 +65,7 @@ public class Bridge implements Location {
      */
     public void createLane() {
         Lane newLane;
-        if (this.lanes.size() == 0) {
+        if (this.lanes.isEmpty()) {
             newLane = new Lane(offset, offset + width);
         } else {
             int yCoordinate = this.lanes.get(this.lanes.size() - 1).getY2();

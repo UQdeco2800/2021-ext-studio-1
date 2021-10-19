@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class ForestGameArea<praivate> extends GameArea {
+public class ForestGameArea<Praivate> extends GameArea {
   private static final Logger logger = LoggerFactory.getLogger(ForestGameArea.class);
   private static final GridPoint2 PLAYER_SPAWN = new GridPoint2(1, 7);
   private static final float WALL_WIDTH = 0.1f;
@@ -40,7 +40,7 @@ public class ForestGameArea<praivate> extends GameArea {
 
   private final TerrainFactory terrainFactory;
 
-  public Entity player;
+  private Entity player;
   private Bridge rainbowBridge;
 
   public ForestGameArea(TerrainFactory terrainFactory) {
@@ -71,9 +71,9 @@ public class ForestGameArea<praivate> extends GameArea {
     spawnEntity(new Entity().addComponent(terrain));
 
     // Terrain walls
-    float tileSize = terrain.getTileSize();
-    GridPoint2 tileBounds = terrain.getMapBounds(0);
-    Vector2 worldBounds = new Vector2(100, 100);
+    //float tileSize = terrain.getTileSize();
+    //GridPoint2 tileBounds = terrain.getMapBounds(0);
+    //Vector2 worldBounds = new Vector2(100, 100);
 
     // Returns the rainbowBridge from TerrainComponent
     this.rainbowBridge = terrain.getRainbowBridge();

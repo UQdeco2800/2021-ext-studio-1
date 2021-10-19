@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 public class GameOverActions extends Component {
 
-    private static final Logger logger = LoggerFactory.getLogger(MainGameActions.class);
+    private static final Logger logger = LoggerFactory.getLogger(GameOverActions.class);
     private GdxGame game;
 
     /**

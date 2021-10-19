@@ -7,7 +7,6 @@ import com.deco2800.game.rendering.*;
 import com.deco2800.game.services.ServiceLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.deco2800.game.components.player.PlayerActions;
 import com.deco2800.game.components.player.InventoryComponent;
 
 /**
@@ -274,7 +273,7 @@ public class CombatStatsComponent extends Component {
       }
 
       if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
-        InventoryComponent inventoryStats = player.getComponent(InventoryComponent.class);
+        //InventoryComponent inventoryStats = player.getComponent(InventoryComponent.class);
         logger.error("attacker--{}", attacker.getEntity().getType(),attacker.getEntity());
         AnimationRenderComponent6 animator =
                 attacker.getEntity().getComponent(AnimationRenderComponent6.class);
