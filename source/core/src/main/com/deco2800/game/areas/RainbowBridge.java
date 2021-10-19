@@ -110,8 +110,9 @@ public class RainbowBridge extends GameArea {
     };
 
     private final TerrainFactory terrainFactory;
-    private Bridge rainbowBridge;
+    private Bridge rainbowBridgeMain;
     private Entity player;
+
 
     public RainbowBridge(TerrainFactory terrainFactory) {
         super();
@@ -127,14 +128,9 @@ public class RainbowBridge extends GameArea {
         spawnTerrain();
         spawnObstables();
         spawnHealthObjects();
-        // spawnWeaponObjects();
         spawnCollectableObjects();
         player = spawnPlayer();
         player.setPosition(player.getPosition().x, 3.5f);
-//        spawnGhostKing();
-//        spawnLittleGreen();
-//        spawnDemon();
-//        spawnGhosts();
         spawnMonster();
         playMusic();
     }
@@ -151,17 +147,11 @@ public class RainbowBridge extends GameArea {
         terrain = terrainFactory.createTerrain(TerrainType.RAINBOW_BRIDGE);
         spawnEntity(new Entity().addComponent(terrain));
 
-        // Terrain walls
-        //float tileSize = terrain.getTileSize();
-        //GridPoint2 tileBounds = terrain.getMapBounds(0);
-        //Vector2 worldBounds = new Vector2(100, 100);
-
         // Returns the rainbowBridge from TerrainComponent
-        this.rainbowBridge = terrain.getRainbowBridge();
+        this.rainbowBridgeMain = terrain.getRainbowBridge();
     }
 
     private void startMapContentsMovement(Entity entity, int lane_Index) {
-       //List<Lane> lanes = terrain.getRainbowBridge().getLanes();
         int y_Target = 0;
         if (lane_Index == 0) {  //hard coding y coordinate targets for object movement because lanes.getMid is off
             y_Target = 3;
@@ -180,39 +170,25 @@ public class RainbowBridge extends GameArea {
         task.start();
     }
 
-   /* private int makeContentDisappear(String evt, Fixture fixture, Fixture otherFixture) {
-        // logger.debug("fixture: ", fixture);
-        // fixture.
-//        entity.dispose();
-        return 1;
-    }*/
-
     public static void disposeContent(Entity entity) {
 		entity.dispose();
 	}
 
     private void spawnObstables() {
-        //GridPoint2 minPos = new GridPoint2(0, 0);
         List<Lane> lanes = terrain.getRainbowBridge().getLanes();
         int d = 0;
-        while (d < this.NUM_OBSTACLES) {
+        while (d < NUM_OBSTACLES ) {
             for (int i = 0; i < lanes.size(); i++) {
                 
                 int y_Coordinate = lanes.get(i).getMid() ;
-                int x_Random = ThreadLocalRandom.current().nextInt(0, this.MAX_CONTENT_POSITION);
+                int x_Random = ThreadLocalRandom.current().nextInt(0, MAX_CONTENT_POSITION);
                 int random_Index = ThreadLocalRandom.current().nextInt(0, 3);
                 GridPoint2 randomPosInLane = new GridPoint2(x_Random, y_Coordinate);
-                // Entity RunesGate = ObstacleFactory.createRunesGate();
-                // spawnEntityAt(RunesGate, randomPosInLane, true, false);
                     switch(random_Index) {
                         case 0:
                             Entity runesGate = ObstacleFactory.createRunesGate();
-
-                            // RunesGate.getEvents().addListener("contentReachedEndOfMap", this::makeContentDisappear);
-                            // RunesGate.getEvents().addListener("contentReachedEndOfMap", this::disposeContent);
                             spawnEntityAt(runesGate, randomPosInLane, true, true);
                             this.startMapContentsMovement(runesGate, i);
-                            
                             break;
                         case 1:
                             Entity stone = ObstacleFactory.createStoneObstacle();
@@ -236,15 +212,14 @@ public class RainbowBridge extends GameArea {
     }
 
     private void spawnHealthObjects() {
-        //GridPoint2 minPos = new GridPoint2(0, 0);
         List<Lane> lanes = terrain.getRainbowBridge().getLanes();
         int d = 0;
 
-        while (d < this.NUM_HEALTH_OBJECTS) {
+        while (d < NUM_HEALTH_OBJECTS) {
             for (int i = 0; i < lanes.size(); i++) {
                 
                 int y_Coordinate = lanes.get(i).getMid();
-                int x_Random = ThreadLocalRandom.current().nextInt(5, this.MAX_CONTENT_POSITION);  // min x=5, max x=30
+                int x_Random = ThreadLocalRandom.current().nextInt(5, MAX_CONTENT_POSITION);  // min x=5, max x=30
                 int random_Index = ThreadLocalRandom.current().nextInt(0, 3);
                 GridPoint2 randomPosInLane = new GridPoint2(x_Random, y_Coordinate);
                 switch(random_Index) {
@@ -275,13 +250,12 @@ public class RainbowBridge extends GameArea {
     }
 
     private void spawnCollectableObjects() {
-        //GridPoint2 minPos = new GridPoint2(0, 0);
         List<Lane> lanes = terrain.getRainbowBridge().getLanes();
         int d = 0;
-        while (d < this.NUM_COLLECTABLES) {
+        while (d < NUM_COLLECTABLES) {
             for (int i = 0; i < lanes.size(); i++) {
                 int y_Coordinate = lanes.get(i).getMid();
-                int x_Random = ThreadLocalRandom.current().nextInt(5, this.MAX_CONTENT_POSITION);
+                int x_Random = ThreadLocalRandom.current().nextInt(5, MAX_CONTENT_POSITION);
                 int random_Index = ThreadLocalRandom.current().nextInt(0, 3);
                 GridPoint2 randomPosInLane = new GridPoint2(x_Random, y_Coordinate);
                     switch(random_Index) { // create 3 coins for every 1 diamond
@@ -296,10 +270,6 @@ public class RainbowBridge extends GameArea {
                             this.startMapContentsMovement(diamond, i);
                             break;
                         case 2:
-                            coin = ObstacleFactory.createCoin();
-                            spawnEntityAt(coin, randomPosInLane, true, true);
-                            this.startMapContentsMovement(coin, i);
-                            break;
                         case 3:
                             coin = ObstacleFactory.createCoin();
                             spawnEntityAt(coin, randomPosInLane, true, true);
@@ -319,7 +289,7 @@ public class RainbowBridge extends GameArea {
 
 
     public Bridge getRainbowBridge() {
-        return this.rainbowBridge;
+        return this.rainbowBridgeMain;
     }
 
     public Entity getPlayer() {

@@ -83,15 +83,6 @@ public class GameWinScreen extends ScreenAdapter {
         resourceService.unloadAssets(GameWinScreenTextures);
     }
 
-//    private void createUI() {
-//        logger.debug("Creating ui");
-//        Stage stage = ServiceLocator.getRenderService().getStage();
-//        Entity ui = new Entity();
-//        ui.addComponent(new GameOverDisplay())
-//                .addComponent(new InputDecorator(stage, 10))
-//                .addComponent(new GameOverActions(game));
-//        ServiceLocator.getEntityService().register(ui);
-//    }
 
     private void createUI() {
         logger.debug("Creating ui");
@@ -102,14 +93,4 @@ public class GameWinScreen extends ScreenAdapter {
                 .addComponent(new GameWinActions(game));
         ServiceLocator.getEntityService().register(ui);
     }
-
-//    private void createUI() {
-//        logger.debug("Creating ui");
-//        Stage stage = ServiceLocator.getRenderService().getStage();
-//        Entity ui = new Entity();
-//        ui.addComponent(new GameWinDisplay())
-//                .addComponent(new InputDecorator(stage, 10))
-//                .addComponent(new GameWinActions(game));
-//        ServiceLocator.getEntityService().register(ui);
-//    }
 }

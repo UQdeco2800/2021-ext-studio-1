@@ -73,7 +73,6 @@ public class GdxGame extends Game {
     switch (screenType) {
       case MAIN_MENU:
         return new MainMenuScreen(this);
-//        return new GameStoryScreen(this);
       case MAIN_GAME:
         return new RagnorakRacer(this);
       case GAME_WIN:

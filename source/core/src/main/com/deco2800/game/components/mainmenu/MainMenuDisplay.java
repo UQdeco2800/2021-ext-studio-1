@@ -49,9 +49,6 @@ public class MainMenuDisplay extends UIComponent {
         new Image(
             ServiceLocator.getResourceService()
                 .getAsset("images/purple-title-2.png", Texture.class));
-    //  TextButton startBtn = new TextButton("Start", skin);
-    //  TextButton settingsBtn = new TextButton("Settings", skin);
-    //  TextButton exitBtn = new TextButton("Exit", skin);
 
       // Adding Image buttons
       // start button
