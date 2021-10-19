@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PlayerActionsTest {
+ class PlayerActionsTest {
     private PlayerActions playerActions;
     private boolean attackTrigger = false;
     private int attackCount = 0;
@@ -24,7 +24,7 @@ public class PlayerActionsTest {
     private Array<Entity> entities4 = new Array<>(1);
 
     @Test
-    public void findNearestTargetsTest1() {
+     void findNearestTargetsTest1() {
         float minDstEnemy = 1.8f;
         float dst = 0;
         Entity entityFind = new Entity();
@@ -42,7 +42,7 @@ public class PlayerActionsTest {
     }
 
     @Test
-    public void findNearestTargetsTest2() {
+    void findNearestTargetsTest2() {
         float minDstEnemy = 1.8f;
         float dst = 0;
         Entity entityFind = new Entity();
@@ -60,7 +60,7 @@ public class PlayerActionsTest {
     }
 
     @Test
-    public void findNearestTargetsTest3() {
+     void findNearestTargetsTest3() {
         float minDstEnemy = 1.8f;
         float dst = 0;
         Entity entityFind = new Entity();
@@ -78,7 +78,7 @@ public class PlayerActionsTest {
     }
 
     @Test
-    public void findNearestTargetsTest4() {
+     void findNearestTargetsTest4() {
         float minDstEnemy = 1.8f;
         float dst = 0;
         Entity entityFind = new Entity();
@@ -96,7 +96,7 @@ public class PlayerActionsTest {
     }
 
     @Test
-    public void findNearestTargetsTest5() {
+     void findNearestTargetsTest5() {
         float minDstObstacle = 1.8f;
         float dst = 0;
         Entity entityFind = new Entity();
@@ -114,7 +114,7 @@ public class PlayerActionsTest {
     }
 
     @Test
-    public void findNearestTargetsTest6() {
+     void findNearestTargetsTest6() {
         float minDstObstacle = 1.8f;
         float dst = 0;
         Entity entityFind = new Entity();
@@ -132,7 +132,7 @@ public class PlayerActionsTest {
     }
 
     @Test
-    public void findNearestTargetsTest7() {
+     void findNearestTargetsTest7() {
         float minDstObstacle = 1.8f;
         float dst = 0;
         Entity entityFind = new Entity();
@@ -150,7 +150,7 @@ public class PlayerActionsTest {
     }
 
     @Test
-    public void findNearestTargetsTest8() {
+     void findNearestTargetsTest8() {
         float minDstObstacle = 1.8f;
         float dst = 0;
         Entity entityFind = new Entity();

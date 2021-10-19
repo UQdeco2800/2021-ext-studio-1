@@ -11,6 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.deco2800.game.components.CombatStatsComponent;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
+import com.deco2800.game.rendering.*;
+import com.deco2800.game.components.player.PlayerActions;
 
 /**
  * A ui component for displaying player stats, e.g. health.
@@ -145,6 +147,7 @@ public class PlayerStatsDisplay extends UIComponent {
         }
         catch (Exception e) {
           //pass
+          Thread.currentThread().interrupt();
         }
       }
     }.start();
@@ -173,6 +176,7 @@ public class PlayerStatsDisplay extends UIComponent {
         }
         catch (InterruptedException e) {
           //pass
+          Thread.currentThread().interrupt();
         }
       }
     }.start();
@@ -189,9 +193,6 @@ public class PlayerStatsDisplay extends UIComponent {
    * @param health player health
    */
   public void updatePlayerHealthUI(int health) {
-    //Update the number of health
-    //CharSequence text = String.format("Health: %d", health);
-    //healthLabel.setText(text);
 
     //Update the health bar & Armour Bar
     if(health>=0) {
@@ -209,7 +210,9 @@ public class PlayerStatsDisplay extends UIComponent {
       if (health <= 0) {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_empty.png", Texture.class));
         refreshDisplay();
-        getEntity().getEvents().trigger("GameOver");
+        getEntity().getEvents().trigger("death");
+
+
         return;
       }
       refreshDisplay();
@@ -231,6 +234,7 @@ public class PlayerStatsDisplay extends UIComponent {
           }
           catch (InterruptedException e) {
             //pass
+            Thread.currentThread().interrupt();
           }
         }
       }.start();
@@ -242,9 +246,6 @@ public class PlayerStatsDisplay extends UIComponent {
    * @param armour player armour
    */
   public void updatePlayerArmourUI(int armour) {
-    //Update the number of armour
-    //CharSequence text = String.format("Armour: %d", armour);
-    //armourLabel.setText(text);
 
     if (armour >= 0) {
       table.removeActor(armourImage);
@@ -269,8 +270,6 @@ public class PlayerStatsDisplay extends UIComponent {
    * Updates the player's gold on the ui.
    */
   public void updatePlayerGoldUI(int newGold) {
-    // entity.getComponent(InventoryComponent.class).setGold(entity.getComponent(InventoryComponent.class).getGold() + 10);
-    // int gold = entity.getComponent(InventoryComponent.class).getGold();
     System.out.println("inside updategoldui " + newGold);
     CharSequence text = String.format("Gold: %d", newGold);
     goldLabel.setText(text);
