@@ -85,7 +85,7 @@ public class TouchAttackComponent extends Component {
       else{
         targetStats.hit(combatStats);
       }
-      targetStats.checkHealth(combatStats);
+//      targetStats.checkHealth(combatStats);
     }
 
 
