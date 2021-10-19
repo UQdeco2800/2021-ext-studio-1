@@ -360,28 +360,27 @@ public class CombatStatsComponent extends Component {
     }
   }
 
-    public void checkHealth(CombatStatsComponent attacker) {
-        if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
-
-
-//          logger.error("--end--attacker-----------------------------*****{}",attacker.getHealth());
-//          logger.error("--end--attacker--****************************{}",attacker.getEntity().getType());
-//          logger.error("--end--attacker--****************************{}",Entity.Type.PLAYER);
-          if(attacker.getHealth() <= 0){
-//            logger.error("--end--attacker--&&&&&&&&&&&&&&&&&&&&&&&&&&&&{}",Entity.Type.PLAYER);
-            try{
-              Sound deathSound = ServiceLocator.getResourceService().getAsset("sounds/death.ogg", Sound.class);
-              deathSound.play();
-            }catch (GdxRuntimeException e) {
-              //pass;
-            }
-            AnimationRenderComponent7 animator7 =
-                    attacker.getEntity().getComponent(AnimationRenderComponent7.class);
-            animator7.startAnimation("death");
-            getEntity().getEvents().trigger("GameOver");
-          }
-        }
-  }
+//    public void checkHealth(CombatStatsComponent attacker) {
+//        if (attacker.getEntity().getType() == Entity.Type.PLAYER) {
+//
+//
+////          logger.error("--end--attacker-----------------------------*****{}",attacker.getHealth());
+////          logger.error("--end--attacker--****************************{}",attacker.getEntity().getType());
+////          logger.error("--end--attacker--****************************{}",Entity.Type.PLAYER);
+//          if(attacker.getHealth() <= 0){
+////            logger.error("--end--attacker--&&&&&&&&&&&&&&&&&&&&&&&&&&&&{}",Entity.Type.PLAYER);
+//            try{
+//
+//            }catch (GdxRuntimeException e) {
+//              //pass;
+//            }
+////            AnimationRenderComponent7 animator7 =
+////                    attacker.getEntity().getComponent(AnimationRenderComponent7.class);
+////            animator7.startAnimation("death");
+////            getEntity().getEvents().trigger("GameOver");
+//          }
+//        }
+//  }
 
 
 
