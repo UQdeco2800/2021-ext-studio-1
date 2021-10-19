@@ -42,7 +42,7 @@ public class GameOverScreen extends ScreenAdapter {
 
         renderer = RenderFactory.createRenderer();
 
-        loseSound.play();
+        loseSound.play(1.0f);
 
         loadAssets();
         createUI();
@@ -67,7 +67,7 @@ public class GameOverScreen extends ScreenAdapter {
         ServiceLocator.getRenderService().dispose();
         ServiceLocator.getEntityService().dispose();
 
-        loseSound.dispose();
+        loseSound.stop();
 
         ServiceLocator.clear();
     }

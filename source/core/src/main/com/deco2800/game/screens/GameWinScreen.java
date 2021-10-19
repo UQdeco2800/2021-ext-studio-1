@@ -68,7 +68,7 @@ public class GameWinScreen extends ScreenAdapter {
         logger.debug("Disposing win game screen");
         renderer.dispose();
         ServiceLocator.clear();
-        winSound.dispose();
+        winSound.stop();
     }
 
     private void loadAssets() {

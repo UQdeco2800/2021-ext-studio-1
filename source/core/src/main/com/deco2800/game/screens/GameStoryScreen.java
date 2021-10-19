@@ -89,7 +89,7 @@ public class GameStoryScreen extends ScreenAdapter {
         ServiceLocator.getEntityService().dispose();
 
         ServiceLocator.clear();
-        storySound.dispose();
+        storySound.stop();
     }
 
     private void loadAssets() {
