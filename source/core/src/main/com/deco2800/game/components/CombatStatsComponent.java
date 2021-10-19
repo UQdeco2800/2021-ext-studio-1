@@ -281,9 +281,6 @@ public class CombatStatsComponent extends Component {
       player.getComponent(InventoryComponent.class).addGold(1);
     }
 
-  }
-
-
 
   public void getBackNormal(CombatStatsComponent attacker){
     logger.error("attacker--{}", attacker.getEntity().getType());

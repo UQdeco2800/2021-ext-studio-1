@@ -57,16 +57,15 @@ public class PlayerActions extends Component {
     entity.getEvents().addListener("unAttack", this::unAttack);
     entity.getEvents().addListener("run", this::attack);
     entity.getEvents().addListener("coin", this::attack);
-  }
-
-  @Override
-  public void update() {
+    
     if(animator5.getCurrentAnimation() == null) {
       animator5.startAnimation("run");
     }
-    if(animator.getCurrentAnimation() != null || animator2.getCurrentAnimation() != null|| animator3.getCurrentAnimation() != null || animator4.getCurrentAnimation() != null || animator6.getCurrentAnimation() != null){
+    //If other animation is playing, stop running
+    if(animator.getCurrentAnimation() != null || animator2.getCurrentAnimation() != null|| animator3.getCurrentAnimation() != null || animator4.getCurrentAnimation() != null || animator6.getCurrentAnimation() != null|| animator7.getCurrentAnimation() != null){
       animator5.stopAnimation();
     }
+    // if other animation finished than stop them and start running
     if (animator2.isFinished() || animator3.isFinished() || animator4.isFinished() || animator6.isFinished() || animator.isFinished()){
       animator.stopAnimation();
       animator2.stopAnimation();
@@ -80,6 +79,10 @@ public class PlayerActions extends Component {
     }
     if(attackTrigger) {
       attackCount += 1;
+    }
+    // if death animation is finished. gameOver
+    if(animator7.isFinished()){
+      getEntity().getEvents().trigger("GameOver");
     }
   }
 
@@ -143,6 +146,13 @@ public class PlayerActions extends Component {
 ////    animator.stopAnimation();
 //    animator5.startAnimation("run");
   }
+
+  void death(){
+    animator7.startAnimation("death");
+    Sound deathSound = ServiceLocator.getResourceService().getAsset("sounds/death.ogg", Sound.class);
+    deathSound.play();
+  }
+
 
 
   private Entity findNearestTargets(Array<Entity> entities) {

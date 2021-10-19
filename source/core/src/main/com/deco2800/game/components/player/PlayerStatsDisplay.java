@@ -11,6 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.deco2800.game.components.CombatStatsComponent;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
+import com.deco2800.game.rendering.*;
+import com.deco2800.game.components.player.PlayerActions;
 
 /**
  * A ui component for displaying player stats, e.g. health.
@@ -208,7 +210,9 @@ public class PlayerStatsDisplay extends UIComponent {
       if (health <= 0) {
         heartImage = new Image(ServiceLocator.getResourceService().getAsset("images/health_empty.png", Texture.class));
         refreshDisplay();
-        getEntity().getEvents().trigger("GameOver");
+        getEntity().getEvents().trigger("death");
+
+
         return;
       }
       refreshDisplay();
