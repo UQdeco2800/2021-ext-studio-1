@@ -33,14 +33,12 @@ public class RainbowBridge extends GameArea {
 
     private static final Logger logger = LoggerFactory.getLogger(ForestGameArea.class);
     private static final GridPoint2 PLAYER_SPAWN = new GridPoint2(1, 7);
-    private static final float WALL_WIDTH = 0.1f;
-    private static final int NUM_TREES = 7;
-
     private static final int NUM_OBSTACLES = 12;
     private static final int NUM_HEALTH_OBJECTS = 10;
     private static final int NUM_COLLECTABLES = 10;
     private static final int NUM_MONSTER = 10;
     private static final int MAX_CONTENT_POSITION = 120;
+    private static int musicSign = 0;
     
     private static final String[] rainbowBridgeTextures = {
             "images/terrain/star-blank.png",
@@ -102,7 +100,7 @@ public class RainbowBridge extends GameArea {
 
     private static final String[] rainbowBridgeSounds = {"sounds/Impact4.ogg"
             , "sounds/buff.ogg", "sounds/buff2.ogg" , "sounds/e.ogg", "sounds" +
-            "/attack.ogg", "sounds/buff_recover.ogg", "sounds/coin.ogg", "sounds/kill_enemy.ogg", "sounds/e.ogg"};
+            "/attack.ogg", "sounds/buff_recover.ogg", "sounds/coin.ogg", "sounds/kill_enemy.ogg", "sounds/e.ogg", "sounds/death.ogg"};
     private static final String backgroundMusic = "sounds/BGM_03_mp3.mp3";
     private static final String backgroundMusic1 = "sounds/backgroundMusic1.mp3";
     private static final String[] rainbowBridgeMusic = {backgroundMusic, backgroundMusic1};
@@ -138,12 +136,15 @@ public class RainbowBridge extends GameArea {
         spawnCollectableObjects();
         player = spawnPlayer();
         player.setPosition(player.getPosition().x, 3.5f);
-//        spawnGhostKing();
-//        spawnLittleGreen();
-//        spawnDemon();
-//        spawnGhosts();
         spawnMonster();
-        playMusic();
+        musicControl();
+    }
+
+    private void musicControl(){
+        if (musicSign == 0){
+            playMusic();
+            musicSign++;
+        }
     }
 
     private void displayUI() {
@@ -180,7 +181,7 @@ public class RainbowBridge extends GameArea {
             y_target = 8;
         }
 
-        Vector2 target = new Vector2(-30, y_target);
+        Vector2 target = new Vector2(-200, y_target);
         MovementTask task = new MovementTask(target);
         
         task.create(() -> entity);
@@ -335,18 +336,17 @@ public class RainbowBridge extends GameArea {
 
     private void spawnMonster() {
         List<Lane> lanes = terrain.getRainbowBridge().getLanes();
-        for (int i = 0; i < lanes.size(); i++) {
-            int a = 0;
-            int y_coordinate = lanes.get(i).getMid();
-            int x = 29;
-            GridPoint2 Ghost = new GridPoint2(x, y_coordinate);
-            GridPoint2 LittleGreen = new GridPoint2(x, y_coordinate);
-            GridPoint2 Dragon = new GridPoint2(x, y_coordinate);
-            GridPoint2 Demon = new GridPoint2(x, y_coordinate);
-
-
-            while (a < this.NUM_MONSTER) {
-                switch(i) {
+        int a = 0;
+            while (a < NUM_MONSTER) {
+                for (int i = 0; i < lanes.size(); i++) {
+                    int y_coordinate = lanes.get(i).getMid();
+                    int x_random = ThreadLocalRandom.current().nextInt(30, this.MAX_CONTENT_POSITION);
+                    GridPoint2 Ghost = new GridPoint2(x_random, y_coordinate);
+                    GridPoint2 LittleGreen = new GridPoint2(x_random, y_coordinate);
+                    GridPoint2 Dragon = new GridPoint2(x_random, y_coordinate);
+                    GridPoint2 Demon = new GridPoint2(x_random, y_coordinate);
+                    int random_index = ThreadLocalRandom.current().nextInt(0, 4);
+                switch(random_index) {
                     case 0:
                         Entity littleGreen = NPCFactory.createLittleGreen(player);
                         spawnEntityAt(littleGreen, LittleGreen, true, true);

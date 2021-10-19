@@ -9,6 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerActionsTest {
     private PlayerActions playerActions;
+    private boolean attackTrigger = false;
+    private int attackCount = 0;
 
     private static Entity entity = new Entity();
     private Entity entity1 = new Entity(Entity.Type.GHOST);
@@ -163,5 +165,143 @@ public class PlayerActionsTest {
         }
         assertFalse(minDstObstacle > dst);
         assertNull(entityFind.getType());
+    }
+
+    @Test
+    public void attackFrequencyTest1() {
+        if(attackTrigger) {
+            attackCount += 1;
+        }
+        assertFalse(attackTrigger);
+        assertEquals(0, attackCount);
+    }
+
+    @Test
+    public void attackFrequencyTest2() {
+        if (attackCount > 150 || !attackTrigger) {
+            attackTrigger = true;
+            if(attackTrigger) {
+                attackCount += 1;
+            }
+        }
+        assertTrue(attackTrigger);
+        assertEquals(1, attackCount);
+    }
+
+    @Test
+    public void attackFrequencyTest3() {
+        if (attackCount > 150 || !attackTrigger) {
+            attackTrigger = true;
+            if(attackTrigger) {
+                attackCount += 1;
+            }
+        }
+        if (attackCount > 150 || !attackTrigger) {
+            if(attackTrigger) {
+                attackCount += 100;
+            }
+        }
+        assertTrue(attackTrigger);
+        assertEquals(1, attackCount);
+    }
+
+    @Test
+    public void attackFrequencyTest4() {
+        if (attackCount > 150 || !attackTrigger) {
+            attackTrigger = true;
+            while (true) {
+                attackCount += 1;
+                if (attackCount == 150) {
+                    break;
+                }
+            }
+        }
+        assertTrue(attackTrigger);
+        assertEquals(150, attackCount);
+    }
+
+    @Test
+    public void attackFrequencyTest5() {
+        if (attackCount > 150 || !attackTrigger) {
+            attackTrigger = true;
+            while (true) {
+                attackCount += 1;
+                if (attackCount > 150) {
+                    break;
+                }
+            }
+        }
+        assertTrue(attackTrigger);
+        assertEquals(151, attackCount);
+    }
+
+    @Test
+    public void attackFrequencyTest6() {
+        if (attackCount > 150 || !attackTrigger) {
+            attackTrigger = true;
+            while (true) {
+                attackCount += 1;
+                if (attackCount > 150) {
+                    break;
+                }
+            }
+        }
+        attackCount = 0;
+        assertTrue(attackTrigger);
+        assertEquals(0, attackCount);
+    }
+
+    @Test
+    public void attackFrequencyTest7() {
+        if (attackCount > 150 || !attackTrigger) {
+            attackTrigger = true;
+            while (true) {
+                attackCount += 1;
+                if (attackCount > 150) {
+                    break;
+                }
+            }
+        }
+        if (attackCount > 150 || !attackTrigger) {
+            attackTrigger = false;
+        }
+        assertFalse(attackTrigger);
+        assertEquals(151, attackCount);
+    }
+
+    @Test
+    public void attackFrequencyTest8() {
+        if (attackCount > 150 || !attackTrigger) {
+            attackTrigger = true;
+            while (true) {
+                attackCount += 1;
+                if (attackCount > 150) {
+                    break;
+                }
+            }
+        }
+        if (attackCount > 150) {
+            attackCount += 1000;
+        }
+        assertTrue(attackTrigger);
+        assertEquals(1151, attackCount);
+    }
+
+    @Test
+    public void attackFrequencyTest9() {
+        if (attackCount > 150 || !attackTrigger) {
+            attackTrigger = true;
+            while (true) {
+                attackCount += 1;
+                if (attackCount > 150) {
+                    break;
+                }
+            }
+        }
+        if (!attackTrigger) {
+            attackCount += 1000;
+        }
+        assertTrue(attackTrigger);
+        assertEquals(151, attackCount);
     }
 }
