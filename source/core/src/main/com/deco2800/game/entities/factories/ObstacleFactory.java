@@ -37,7 +37,7 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
                    		.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
-						.addComponent(new CombatStatsComponent(100, -1));
+						.addComponent(new CombatStatsComponent(100, 1));
 
 
 		RunesGate.getComponent(TextureRenderComponent.class).scaleEntity();
@@ -102,6 +102,8 @@ public class ObstacleFactory {
                     	.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
 						.addComponent(new CombatStatsComponent(100, -1));
 
+		food.getComponent(TextureRenderComponent.class).scaleEntity();
+		food.scaleHeight(1f);
 		return food;
 	}
 
@@ -113,7 +115,8 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
-						.addComponent(new CombatStatsComponent(100, 1));
+//						.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
+						.addComponent(new CombatStatsComponent(100, 0));
 
 		coin.getComponent(TextureRenderComponent.class).scaleEntity();
 
@@ -127,7 +130,8 @@ public class ObstacleFactory {
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
-						.addComponent(new CombatStatsComponent(100, 2));
+//						.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
+						.addComponent(new CombatStatsComponent(100, 0));
 
 		diamond.getComponent(TextureRenderComponent.class).scaleEntity();
 		
@@ -144,7 +148,6 @@ public class ObstacleFactory {
 						.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
 						.addComponent(new CombatStatsComponent(100,-3));
 
-						
 		FirstAidKit.getComponent(TextureRenderComponent.class).scaleEntity();
 		FirstAidKit.scaleHeight(1f);
 

@@ -9,6 +9,7 @@ import com.deco2800.game.screens.RagnorakRacer;
 import com.deco2800.game.screens.SettingsScreen;
 import com.deco2800.game.screens.GameOverScreen;
 import com.deco2800.game.screens.TutorialScreen;
+import com.deco2800.game.screens.EnemyTutorialScreen;
 import com.deco2800.game.screens.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,8 +29,8 @@ public class GdxGame extends Game {
     logger.info("Creating game");
     loadSettings();
 
-    // Sets background to purple
-    Gdx.gl.glClearColor(203f/255f, 169/255f, 186/255f, 1);
+    // Sets background to black
+    Gdx.gl.glClearColor(0/255f, 0/255f, 0/255f, 1);
 
 
     setScreen(ScreenType.MAIN_MENU);
@@ -85,20 +86,24 @@ public class GdxGame extends Game {
         return new GameOverScreen(this);
       case GAME_STORY:
         return new GameStoryScreen(this);
+      case ENEMY_TUTORIAL:
+          return new EnemyTutorialScreen(this);
+      case MAPCONTENT_TUTORIAL:
+        return new MapContentTutorialScreen(this);
+
       default:
         return null;
     }
   }
 
   public enum ScreenType {
-    MAIN_MENU, MAIN_GAME, SETTINGS, GAMEOVER, GAME_WIN, TUTORIAL, GAME_STORY;
+    MAIN_MENU, MAIN_GAME, SETTINGS, GAMEOVER, GAME_WIN, TUTORIAL, GAME_STORY, ENEMY_TUTORIAL, MAPCONTENT_TUTORIAL;
   }
 
   /**
    * Exit the game.
    */
   public void exit() {
-
     app.exit();
   }
 }

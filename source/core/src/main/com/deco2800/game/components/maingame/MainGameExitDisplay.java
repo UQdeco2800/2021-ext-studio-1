@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.deco2800.game.components.player.KeyboardPlayerInputComponent;
 import com.deco2800.game.ui.UIComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,6 +66,8 @@ public class MainGameExitDisplay extends UIComponent {
             new ChangeListener() {
               @Override
               public void changed(ChangeEvent changeEvent, Actor actor) {
+                KeyboardPlayerInputComponent.j = 0;
+                KeyboardPlayerInputComponent.i = 0;
                 logger.debug("Exit button clicked");
                 entity.getEvents().trigger("exit");
                 exitx=true;
