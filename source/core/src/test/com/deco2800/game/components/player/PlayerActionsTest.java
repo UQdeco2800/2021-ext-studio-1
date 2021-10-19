@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
- class PlayerActionsTest {
+public class PlayerActionsTest {
     private PlayerActions playerActions;
     private boolean attackTrigger = false;
     private int attackCount = 0;
@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
     private Array<Entity> entities4 = new Array<>(1);
 
     @Test
-     void findNearestTargetsTest1() {
+    public void findNearestTargetsTest1() {
         float minDstEnemy = 1.8f;
         float dst = 0;
         Entity entityFind = new Entity();
@@ -42,7 +42,7 @@ import static org.junit.jupiter.api.Assertions.*;
     }
 
     @Test
-    void findNearestTargetsTest2() {
+    public void findNearestTargetsTest2() {
         float minDstEnemy = 1.8f;
         float dst = 0;
         Entity entityFind = new Entity();
@@ -60,7 +60,7 @@ import static org.junit.jupiter.api.Assertions.*;
     }
 
     @Test
-     void findNearestTargetsTest3() {
+    public void findNearestTargetsTest3() {
         float minDstEnemy = 1.8f;
         float dst = 0;
         Entity entityFind = new Entity();
@@ -78,7 +78,7 @@ import static org.junit.jupiter.api.Assertions.*;
     }
 
     @Test
-     void findNearestTargetsTest4() {
+    public void findNearestTargetsTest4() {
         float minDstEnemy = 1.8f;
         float dst = 0;
         Entity entityFind = new Entity();
@@ -96,7 +96,7 @@ import static org.junit.jupiter.api.Assertions.*;
     }
 
     @Test
-     void findNearestTargetsTest5() {
+    public void findNearestTargetsTest5() {
         float minDstObstacle = 1.8f;
         float dst = 0;
         Entity entityFind = new Entity();
@@ -114,7 +114,7 @@ import static org.junit.jupiter.api.Assertions.*;
     }
 
     @Test
-     void findNearestTargetsTest6() {
+    public void findNearestTargetsTest6() {
         float minDstObstacle = 1.8f;
         float dst = 0;
         Entity entityFind = new Entity();
@@ -132,7 +132,7 @@ import static org.junit.jupiter.api.Assertions.*;
     }
 
     @Test
-     void findNearestTargetsTest7() {
+    public void findNearestTargetsTest7() {
         float minDstObstacle = 1.8f;
         float dst = 0;
         Entity entityFind = new Entity();
@@ -150,7 +150,7 @@ import static org.junit.jupiter.api.Assertions.*;
     }
 
     @Test
-     void findNearestTargetsTest8() {
+    public void findNearestTargetsTest8() {
         float minDstObstacle = 1.8f;
         float dst = 0;
         Entity entityFind = new Entity();

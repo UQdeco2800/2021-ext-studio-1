@@ -30,7 +30,7 @@ public class Bridge implements Location {
      * @param offset set a y coordinate to start drawing the bridge from.
      * @param width set the width size for a lane
      */
-     public Bridge(int offset, int width) {
+    public Bridge(int offset, int width) {
         this.offset = offset;
         this.lanes = new ArrayList<>();
         this.width = width;
@@ -48,12 +48,12 @@ public class Bridge implements Location {
      * Returns all lanes on the bridge
      * @return lanes
      */
-     List<Lane> getLanes() {
+    public List<Lane> getLanes() {
         return this.lanes;
     }
 
     public Lane getLastLane(){
-        if (this.lanes.isEmpty()) {
+        if (this.lanes.size() == 0) {
             throw new IllegalCallerException("Unable to get a lane from an empty list");
         } else {
             return this.lanes.get(this.lanes.size() - 1);
@@ -65,7 +65,7 @@ public class Bridge implements Location {
      */
     public void createLane() {
         Lane newLane;
-        if (this.lanes.isEmpty()) {
+        if (this.lanes.size() == 0) {
             newLane = new Lane(offset, offset + width);
         } else {
             int yCoordinate = this.lanes.get(this.lanes.size() - 1).getY2();

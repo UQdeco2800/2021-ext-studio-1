@@ -166,6 +166,8 @@ public class SettingsMenuDisplay extends UIComponent {
   }
 
   private Table makeMenuBtns() {
+   // TextButton exitBtn = new TextButton("Exit", skin);
+   // TextButton applyBtn = new TextButton("Apply", skin);
 
     Button.ButtonStyle exitStyle = new Button.ButtonStyle();
     exitStyle.up= new TextureRegionDrawable(new TextureRegion(
@@ -200,8 +202,10 @@ public class SettingsMenuDisplay extends UIComponent {
         });
 
     Table table = new Table();
+   // table.add(exitBtn).expandX().left().pad(0f, 15f, 15f, 0f);
     table.add(exitBtn).left().expandX().size(200f,80f).pad(0f, 15f, 15f, 0f);
     table.add(applyBtn).right().expandX().size(200f,80f).pad(0f, 0f, 15f, 15f);
+    //  table.add(applyBtn).expandX().right().pad(0f, 0f, 15f, 15f);
     return table;
   }
 

@@ -3,6 +3,7 @@ package com.deco2800.game.components.maingame;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.deco2800.game.components.player.KeyboardPlayerInputComponent;
 import com.deco2800.game.services.ResourceService;
@@ -11,17 +12,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.Graphics.DisplayMode;
+import com.badlogic.gdx.Graphics.Monitor;
+import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-
 import com.deco2800.game.GdxGame;
 import com.deco2800.game.GdxGame.ScreenType;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
 import com.deco2800.game.utils.StringDecorator;
 import com.badlogic.gdx.Game;
-
 
 import static com.deco2800.game.GdxGame.ScreenType.GAMEOVER;
 
@@ -34,7 +40,7 @@ public class MainGameExitDisplay extends UIComponent {
   private static final float Z_INDEX = 2f;
   private Table table;
   private Label timerLabel;
-  private boolean exitx = false;
+  public boolean exitx = false;
   private long sleepTime = 1000;
   private int displayTime = 120;
 
@@ -83,7 +89,7 @@ public class MainGameExitDisplay extends UIComponent {
           for(int i= displayTime;i>0;i--){
             timerLabel.setText("Timer :"+ i);
             Thread.sleep(sleepTime);
-            if(exitx){
+            if(exitx == true){
               break;
             }
             if (ServiceLocator.getGameService().getScreenType().equals(GAMEOVER)) {
@@ -91,9 +97,7 @@ public class MainGameExitDisplay extends UIComponent {
             }
           }
         }
-        catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
-        }
+        catch (InterruptedException e) {}
       }
     }.start();
 

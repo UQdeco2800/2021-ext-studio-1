@@ -51,7 +51,7 @@ public class BridgeTest {
      * 1. This Test module tests the x and y coordinates of the lane and creates 2 new lanes
      */
     @Test
-     void getAttributeTest() {
+    public void getAttributeTest() {
         Bridge bridge1 = setUpBridge(1, 1, 1);
         Bridge bridge2 = setUpBridge(2, 1, 1);
         assertEquals(1, bridge1.getOffset());
@@ -62,7 +62,7 @@ public class BridgeTest {
      * 2. This Test module tests the lanes by creating 2 new lanes at different instances of time.
      */
     @Test
-     void createLaneTest() {
+    public void createLaneTest() {
         Bridge bridge = setUpBridge(1, 1, 0);
         assertEquals(true, bridge.getLanes().isEmpty());
 
@@ -78,7 +78,7 @@ public class BridgeTest {
      * no overlapping of the lanes in any given coordinates.
      */
     @Test
-    void getLaneCoords() {
+    public void getLaneCoords() {
         Bridge bridge = setUpBridge(1, 3, 3);
         assertEquals(true, bridge.getLanes().get(0).getTop() > bridge.getLanes().get(0).getMid());
         assertEquals(true, bridge.getLanes().get(0).getMid() > bridge.getLanes().get(0).getBot());
@@ -94,7 +94,7 @@ public class BridgeTest {
      *4. This Test module tests the successful removal of the lanes created in the createLaneTest().
      */
     @Test
-     void testRemoveLane() {
+    public void testRemoveLane() {
         Bridge bridge = setUpBridge(1, 1, 3);
         assertEquals(3, bridge.getLanes().size());
         bridge.removeLane();
@@ -109,7 +109,7 @@ public class BridgeTest {
      * 5. This Test module tests the x and y coordinates in a similar fashion as in getAttributeTest().
      */
     @Test
-     void getOffsetTest() {
+    public void getOffsetTest() {
         Bridge bridge1 = new Bridge(0, 1);
         assertEquals(0, bridge1.getOffset());
 
@@ -121,7 +121,7 @@ public class BridgeTest {
      * 6. This Test module tests the lanes created and also that atleast one lane is created during the gameplay.
      */
     @Test
-     void laneTest() {
+    public void laneTest() {
         Bridge bridge = new Bridge(0, 1);
         assertEquals(true, bridge.getLanes().isEmpty());
 
@@ -137,7 +137,7 @@ public class BridgeTest {
      * 7. This Test module tests that the lanes are correctly getting created in the vertical direction.
      */
     @Test
-     void testGetLastLane() {
+    public void testGetLastLane() {
         Bridge bridge = setUpBridge(1, 1, 3);
         Lane lane = bridge.getLastLane();
         assertEquals(true, Lane.class.isInstance(lane));
@@ -147,7 +147,7 @@ public class BridgeTest {
      * 8. This Test module tests the top and bottom of the lane is getting created in a proper fashion.
      */
     @Test
-     void testGetBounds() {
+    public void testGetBounds() {
         bridge.createLane();
         Map<String, Integer> bounds = new HashMap<>();
         bounds.put("top", bridge.getLanes().get(0).getTop());
@@ -162,7 +162,7 @@ public class BridgeTest {
      * testRemoveLane()
      */
     @Test
-     void testRemoveLane1() {
+    public void testRemoveLane1() {
         if (bridge.getLanes().size() > 0) {
             bridge.getLanes().remove(bridge.getLanes().size() - 1);
             assertEquals(0, bridge.getLanes().size());
