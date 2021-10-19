@@ -4,15 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.UIComponent;
 import org.slf4j.Logger;
@@ -50,7 +47,6 @@ public class GameOverDisplay extends UIComponent {
         tablebackGround.setFillParent(true);
 
         //Restart button
-        //TextButton restartBtn = new TextButton("Restart Game", skin);
         Button.ButtonStyle restartStyle = new Button.ButtonStyle();
         restartStyle.up= new TextureRegionDrawable(new TextureRegion(
                 new Texture(Gdx.files.internal("images/btn_restart1.png"))));
@@ -59,7 +55,6 @@ public class GameOverDisplay extends UIComponent {
         Button restartBtn = new Button(restartStyle);
 
         //Exit button
-        //TextButton exitBtn = new TextButton("Exit", skin);
         Button.ButtonStyle exitStyle = new Button.ButtonStyle();
         exitStyle.up= new TextureRegionDrawable(new TextureRegion(
                 new Texture(Gdx.files.internal("images/FDS_btn_exit1.png"))));
@@ -70,10 +65,8 @@ public class GameOverDisplay extends UIComponent {
         //Background
         Image background = new Image(ServiceLocator.getResourceService().getAsset("images/ragnarok_background.png",
                 Texture.class));
-        //background.setScaling(Scaling.stretch);
-        //stack.add(background);
 
-        // when the user presses restart button
+        // When the user presses restart button
         restartBtn.addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent e,float x,float y) {
@@ -82,7 +75,7 @@ public class GameOverDisplay extends UIComponent {
                     }
                 });
 
-        // when the user presses exit button
+        // When the user presses exit button
         exitBtn.addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent e, float x, float y) {
