@@ -28,7 +28,7 @@ public class KeyboardPLayerInputComponentTest {
      * This test module tests the movement moved up from the middle of lane 0 to the middle of lane 1.
      */
     @Test
-     void moveUpTest(){
+    public void moveUpTest(){
         List<Lane> lanes = bridge.getLanes();
         Entity entity = new Entity();
         entity.setPosition(1, 3.8f);
@@ -40,7 +40,7 @@ public class KeyboardPLayerInputComponentTest {
      * This test module tests the movement from player moved down from the middle of lane 3 to the middle of lane 2
      */
     @Test
-     void moveDownTest(){
+    public void moveDownTest(){
         List<Lane> lanes = bridge.getLanes();
         Entity entity = new Entity();
         entity.setPosition(1, 8.2f);
@@ -52,7 +52,7 @@ public class KeyboardPLayerInputComponentTest {
      * This test module tests the movement from player moved to the very top lane from any of the other lanes.
      */
     @Test
-     void moveTopTest(){
+    public void moveTopTest(){
         List<Lane> lanes = bridge.getLanes();
         Entity entity = new Entity();
         entity.setPosition(1, 3.8f);
@@ -64,7 +64,7 @@ public class KeyboardPLayerInputComponentTest {
      * This test module tests the movement from player moved to the very bottom lane from any of the other lanes.
      */
     @Test
-     void moveBottomTest(){
+    public void moveBottomTest(){
         List<Lane> lanes = bridge.getLanes();
         Entity entity = new Entity();
         entity.setPosition(1, 8.2f);
