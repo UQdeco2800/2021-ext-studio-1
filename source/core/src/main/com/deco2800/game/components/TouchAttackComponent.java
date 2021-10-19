@@ -8,7 +8,6 @@ import com.deco2800.game.physics.BodyUserData;
 import com.deco2800.game.physics.PhysicsLayer;
 import com.deco2800.game.physics.components.HitboxComponent;
 import com.deco2800.game.physics.components.PhysicsComponent;
-import com.deco2800.game.components.player.InventoryComponent;
 
 /**
  * When this entity touches a valid enemy's hitbox, deal damage to them and apply a knockback.
@@ -81,10 +80,12 @@ public class TouchAttackComponent extends Component {
       }
       else if(targetStats.getEntity().getType() == Entity.Type.COLLECTABLES){
         targetStats.hitCoins(entity); //entity = player
+        targetStats.hitCoin(combatStats);
       }
       else{
         targetStats.hit(combatStats);
       }
+      targetStats.checkHealth(combatStats);
     }
 
 
