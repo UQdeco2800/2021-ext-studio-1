@@ -30,7 +30,7 @@ public class Bridge implements Location {
      * @param offset set a y coordinate to start drawing the bridge from.
      * @param width set the width size for a lane
      */
-     Bridge(int offset, int width) {
+     public Bridge(int offset, int width) {
         this.offset = offset;
         this.lanes = new ArrayList<>();
         this.width = width;
@@ -40,7 +40,7 @@ public class Bridge implements Location {
      * Returns the bridge offset
      * @return offset
      */
-     int getOffset() {
+    public int getOffset() {
         return this.offset;
     }
 
@@ -52,7 +52,7 @@ public class Bridge implements Location {
         return this.lanes;
     }
 
-     Lane getLastLane(){
+    public Lane getLastLane(){
         if (this.lanes.isEmpty()) {
             throw new IllegalCallerException("Unable to get a lane from an empty list");
         } else {
@@ -63,7 +63,7 @@ public class Bridge implements Location {
     /**
      * Adds a lane to the bridge
      */
-     void createLane() {
+    public void createLane() {
         Lane newLane;
         if (this.lanes.isEmpty()) {
             newLane = new Lane(offset, offset + width);
@@ -77,7 +77,7 @@ public class Bridge implements Location {
     /**
      * removes the last lane from the bridge
      */
-     void removeLane() {
+    public void removeLane() {
         if (this.lanes.size() > 0) {
             this.lanes.remove(this.lanes.size() - 1);
         }
@@ -88,7 +88,7 @@ public class Bridge implements Location {
      * TerrainFactory fills tiles from the bottom up
      * @return a y-coordinate
      */
-     int getTop() {
+    public int getTop() {
         return this.getLastLane().getTop();
     }
 
@@ -97,7 +97,7 @@ public class Bridge implements Location {
      * TerrainFactory fills tiles from the bottom up
      * @return a y-coordinate
      */
-     int getBot() {
+    public int getBot() {
         return this.lanes.get(0).getBot();
     }
 
@@ -106,7 +106,7 @@ public class Bridge implements Location {
      * TerrainFactory fills tiles from the bottom up
      * @return a y-coordinate
      */
-    int getMid() {
+    public int getMid() {
         return (this.getTop() + this.getBot()) / 2;
     }
 
@@ -115,7 +115,7 @@ public class Bridge implements Location {
      *
      * @return player entity
      */
-     Entity getPlayer() {
+    public Entity getPlayer() {
         return player;
     }
 }
