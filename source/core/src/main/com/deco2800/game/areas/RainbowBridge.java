@@ -137,7 +137,7 @@ public class RainbowBridge extends GameArea {
         player = spawnPlayer();
         player.setPosition(player.getPosition().x, 3.5f);
         spawnMonster();
-        musicControl();
+        playMusic();
     }
 
     private void musicControl(){
@@ -372,6 +372,9 @@ public class RainbowBridge extends GameArea {
 
     private void playMusic() {
         Music music = ServiceLocator.getResourceService().getAsset(backgroundMusic1, Music.class);
+        if (!music.isPlaying()) {
+            music.play();
+        }
         music.setLooping(true);
         music.setVolume(0.8f);
         music.play();
