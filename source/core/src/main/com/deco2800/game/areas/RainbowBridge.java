@@ -181,7 +181,7 @@ public class RainbowBridge extends GameArea {
             y_target = 8;
         }
 
-        Vector2 target = new Vector2(-30, y_target);
+        Vector2 target = new Vector2(-200, y_target);
         MovementTask task = new MovementTask(target);
         
         task.create(() -> entity);

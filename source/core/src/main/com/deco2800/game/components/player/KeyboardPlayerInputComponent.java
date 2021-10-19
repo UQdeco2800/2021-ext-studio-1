@@ -42,7 +42,7 @@ public class KeyboardPlayerInputComponent extends InputComponent {
     if (keycode == Keys.W){
       if(entity.getPosition().y <= lanes.get(3).getMid() - 9){
         System.out.println(lanes.get(3).getMid() - 7.5);
-        entity.setPosition(entity.getPosition().x, lanes.get(i).getMid() - (1.4f * (i + 1) + j));
+        entity.setPosition(entity.getPosition().x, lanes.get(i).getMid() - (1.7f * (i + 1) + j));
         newY = lanes.get(i).getMid() - (1.6f * (i + 1));
         if (i <= 2){
           i += 1;
@@ -59,7 +59,7 @@ public class KeyboardPlayerInputComponent extends InputComponent {
           if (i > 0){
 //            entity.setPosition(entity.getPosition().x, lanes.get(0).getMid() - (1.6f * (i + 2)));
 //            System.out.println("new i = " + i);
-            entity.setPosition(entity.getPosition().x, lanes.get(i - 1).getMid() - (1.4f * (i + 1) + j));
+            entity.setPosition(entity.getPosition().x, lanes.get(i - 1).getMid() - (1.7f * (i + 1)));
             i -= 1;
             if (j >= 0.3f){
               j -= 0.03f;
