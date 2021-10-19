@@ -36,7 +36,7 @@ public class GameStoryScreen extends ScreenAdapter {
     public GameStoryScreen(GdxGame game) {
         this.game = game;
 
-        this.gameTimer = 15000;
+        this.gameTimer = 18000;
         logger.debug("Initialising story screen services");
         ServiceLocator.registerTimeSource(new GameTime());
         ServiceLocator.registerInputService(new InputService());
