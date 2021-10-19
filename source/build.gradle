@@ -98,6 +98,10 @@ project(":core") {
     }
 }
 
+dependencies {
+    implementation 'junit:junit:4.12'
+}
+
 //dependencies {
 //    testImplementation 'junit:junit:4.13.2'
 //    testImplementation platform('org.junit:junit-bom:5.7.2')
