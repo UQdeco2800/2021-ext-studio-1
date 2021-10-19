@@ -67,10 +67,10 @@ public class CombatStatsComponent extends Component {
   /**
    * Returns the entity's gold.
    *
-   * @return entity's armour
+   * @return entity's gold
    */
   public int getGold() {
-    return armour;
+    return gold;
   }
 
   /**

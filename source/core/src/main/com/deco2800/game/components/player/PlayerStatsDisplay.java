@@ -145,6 +145,7 @@ public class PlayerStatsDisplay extends UIComponent {
         }
         catch (Exception e) {
           //pass
+          Thread.currentThread().interrupt();
         }
       }
     }.start();
@@ -173,6 +174,7 @@ public class PlayerStatsDisplay extends UIComponent {
         }
         catch (InterruptedException e) {
           //pass
+          Thread.currentThread().interrupt();
         }
       }
     }.start();
@@ -231,6 +233,7 @@ public class PlayerStatsDisplay extends UIComponent {
           }
           catch (InterruptedException e) {
             //pass
+            Thread.currentThread().interrupt();
           }
         }
       }.start();

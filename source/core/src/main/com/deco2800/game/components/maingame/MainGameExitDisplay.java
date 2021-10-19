@@ -74,7 +74,9 @@ public class MainGameExitDisplay extends UIComponent {
             }
           }
         }
-        catch (InterruptedException e) {}
+        catch (InterruptedException e) {
+          Thread.currentThread().interrupt();
+        }
       }
     }.start();
 
