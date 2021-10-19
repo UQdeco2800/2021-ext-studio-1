@@ -35,9 +35,6 @@ public class KeyboardPlayerInputComponent extends InputComponent {
    boolean keyDown(int keycode) {
     Bridge bridge = RagnorakRacer.rainbowBridge;
     List<Lane> lanes = bridge.getLanes();
-//    for (Lane lane : lanes){
-//      System.out.println(lane.getMid());
-//    }
     float newY = 0;
     if (keycode == Keys.W){
       if(entity.getPosition().y <= lanes.get(3).getMid() - 9){
@@ -55,8 +52,6 @@ public class KeyboardPlayerInputComponent extends InputComponent {
       if (entity.getPosition().y >= lanes.get(0).getMid() - 4){
           System.out.println(lanes.get(0).getMid());
           if (i > 0){
-//            entity.setPosition(entity.getPosition().x, lanes.get(0).getMid() - (1.6f * (i + 2)));
-//            System.out.println("new i = " + i);
             entity.setPosition(entity.getPosition().x, lanes.get(i - 1).getMid() - (1.7f * (i + 1)));
             i -= 1;
             if (j >= 0.3f){
@@ -77,45 +72,6 @@ public class KeyboardPlayerInputComponent extends InputComponent {
       entity.getEvents().trigger("attack");
     }
     return true;
-//    switch (keycode) {
-//      case Keys.W:
-//        walkDirection.add(Vector2Utils.UP);
-//        for (Lane lane : lanes){
-//          System.out.println(lane.getMid());
-//        }
-////        triggerWalkEvent();
-//        entity.setPosition(entity.getPosition().x, entity.getPosition().y + 1.5f);
-//        if (entity.getPosition().y >= 8.5f){
-//          entity.setPosition(entity.getPosition().x,entity.getPosition().y - 1.5f);
-//        }
-//        return true;
-//      case Keys.S:
-//        walkDirection.add(Vector2Utils.DOWN);
-////        triggerWalkEvent();
-//        entity.setPosition(entity.getPosition().x, entity.getPosition().y - 1.5f);
-//        if(entity.getPosition().y <= 3){
-//          entity.setPosition(entity.getPosition().x, entity.getPosition().y + 1.5f);
-//        }
-//        return true;
-//
-//      case Keys.E:
-//        walkDirection.add(Vector2Utils.DOWN);
-////        triggerWalkEvent();
-//        entity.setPosition(entity.getPosition().x, entity.getPosition().y = 3.25f);
-//        return true;
-//
-//      case Keys.Q:
-//        walkDirection.add(Vector2Utils.UP);
-////        triggerWalkEvent();
-//        entity.setPosition(entity.getPosition().x, entity.getPosition().y = 7.75f);
-//        return true;
-//
-//      case Keys.SPACE:
-//        entity.getEvents().trigger("attack");
-//        return true;
-//      default:
-//        return false;
-//    }
   }
 
   /**
@@ -129,13 +85,9 @@ public class KeyboardPlayerInputComponent extends InputComponent {
     switch (keycode) {
       case Keys.W:
         walkDirection.sub(Vector2Utils.UP);
-//        triggerWalkEvent();
-//        entity.setPosition(entity.getPosition().x, entity.getPosition().y + 1);
         return true;
       case Keys.S:
         walkDirection.sub(Vector2Utils.DOWN);
-//        triggerWalkEvent();
-//        entity.setPosition(entity.getPosition().x, entity.getPosition().y - 1);
         return true;
       case Keys.SPACE:
         entity.getEvents().trigger("unAttack");

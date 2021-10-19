@@ -248,17 +248,6 @@ public class CombatStatsComponent extends Component {
         logger.error("--end--attacker--{}",attacker.getEntity().getType());
       }
 
-//      if (armour > 0){
-//        int newArmour = getArmour() - attacker.getBaseAttack();
-//        setArmour(newArmour);
-//        invincibleStart = ServiceLocator.getTimeSource().getTime();
-//      }
-//      else{
-//        int newHealth = getHealth() - attacker.getBaseAttack();
-//        setHealth(newHealth);
-//        invincibleStart = ServiceLocator.getTimeSource().getTime();
-//      }
-
     } catch (NullPointerException e) {
       int newHealth = getHealth() - attacker.getBaseAttack();
       setHealth(newHealth);
