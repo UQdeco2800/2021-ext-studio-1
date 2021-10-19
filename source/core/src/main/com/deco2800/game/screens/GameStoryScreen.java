@@ -1,6 +1,8 @@
 package com.deco2800.game.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.deco2800.game.GdxGame;
 import com.deco2800.game.components.gamestory.GameStoryActions;
@@ -29,6 +31,7 @@ public class GameStoryScreen extends ScreenAdapter {
     private final Renderer renderer;
     private final long gameTimer;
     private static final String[] storyScreenTextures = {"images/story-screen-bg.png"};
+    private static final Sound storySound = Gdx.audio.newSound(Gdx.files.internal("sounds/story.ogg"));
 
     public GameStoryScreen(GdxGame game) {
         this.game = game;
@@ -41,6 +44,8 @@ public class GameStoryScreen extends ScreenAdapter {
         ServiceLocator.registerEntityService(new EntityService());
         ServiceLocator.registerRenderService(new RenderService());
         ServiceLocator.registerTimeSource(new GameTime());
+
+        storySound.play(1.0f);
 
         renderer = RenderFactory.createRenderer();
 
@@ -84,6 +89,7 @@ public class GameStoryScreen extends ScreenAdapter {
         ServiceLocator.getEntityService().dispose();
 
         ServiceLocator.clear();
+        storySound.dispose();
     }
 
     private void loadAssets() {

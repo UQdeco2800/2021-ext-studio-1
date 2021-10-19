@@ -1,6 +1,8 @@
 package com.deco2800.game.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.deco2800.game.GdxGame;
 import com.deco2800.game.components.winscreen.GameWinActions;
@@ -24,6 +26,8 @@ public class GameWinScreen extends ScreenAdapter {
     private final Renderer renderer;
     private static final String[] GameWinScreenTextures = {"images/Win-screen-2-transparent.png", "images/btn_restart1.png","images/btn_exit1.png", "images/FDS_btn_exit1.png"};
 
+    private static final Sound winSound = Gdx.audio.newSound(Gdx.files.internal("sounds/win.ogg"));
+
     public GameWinScreen(GdxGame game) {
 
         this.game = game;
@@ -34,6 +38,8 @@ public class GameWinScreen extends ScreenAdapter {
         ServiceLocator.registerEntityService(new EntityService());
         ServiceLocator.registerRenderService(new RenderService());
         renderer = RenderFactory.createRenderer();
+
+        winSound.play(1.0f);
 
         loadAssets();
         createUI();
@@ -62,6 +68,7 @@ public class GameWinScreen extends ScreenAdapter {
         logger.debug("Disposing win game screen");
         renderer.dispose();
         ServiceLocator.clear();
+        winSound.dispose();
     }
 
     private void loadAssets() {

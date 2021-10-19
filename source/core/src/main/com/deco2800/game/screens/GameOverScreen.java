@@ -1,6 +1,8 @@
 package com.deco2800.game.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.deco2800.game.GdxGame;
 import com.deco2800.game.components.gameover.GameOverActions;
@@ -27,6 +29,8 @@ public class GameOverScreen extends ScreenAdapter {
     private static final String[] gameOverTextures = {"images/Death_Screen_Background.png", "images/Death_Screen_Character.png", "images/Gameover_Visual_Text.png",
             "images/btn_restart1.png","images/btn_exit1.png", "images/FDS_btn_exit1.png", "images/ragnarok_background.png", "images/Gameover_txt.png"};
 
+    private static final Sound loseSound = Gdx.audio.newSound(Gdx.files.internal("sounds/lose.ogg"));
+
     public GameOverScreen(GdxGame game) {
         this.game = game;
 
@@ -37,6 +41,8 @@ public class GameOverScreen extends ScreenAdapter {
         ServiceLocator.registerRenderService(new RenderService());
 
         renderer = RenderFactory.createRenderer();
+
+        loseSound.play();
 
         loadAssets();
         createUI();
@@ -60,6 +66,8 @@ public class GameOverScreen extends ScreenAdapter {
         renderer.dispose();
         ServiceLocator.getRenderService().dispose();
         ServiceLocator.getEntityService().dispose();
+
+        loseSound.dispose();
 
         ServiceLocator.clear();
     }
