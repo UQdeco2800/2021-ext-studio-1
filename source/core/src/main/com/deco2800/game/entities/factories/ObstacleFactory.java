@@ -31,13 +31,13 @@ public class ObstacleFactory {
 
 	public static Entity createRunesGate() {
 		Entity RunesGate =
-				new Entity(Entity.Type.DEBUFF)
+				new Entity(Entity.Type.BUFF)
 						.addComponent(new TextureRenderComponent("images/RunesGate.gif"))
 						.addComponent(new PhysicsComponent())
 						.addComponent(new PhysicsMovementComponent())
 						.addComponent(new HitboxComponent().setLayer(PhysicsLayer.NPC))
                    		.addComponent(new TouchAttackComponent(PhysicsLayer.PLAYER, 0f))
-						.addComponent(new CombatStatsComponent(100, 1));
+						.addComponent(new CombatStatsComponent(100, -1));
 
 
 		RunesGate.getComponent(TextureRenderComponent.class).scaleEntity();

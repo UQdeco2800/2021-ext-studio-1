@@ -23,6 +23,7 @@ import static com.badlogic.gdx.Gdx.app;
  */
 public class GdxGame extends Game {
   private static final Logger logger = LoggerFactory.getLogger(GdxGame.class);
+  private ScreenType screenType;
 
   @Override
   public void create() {
@@ -34,6 +35,7 @@ public class GdxGame extends Game {
 
 
     setScreen(ScreenType.MAIN_MENU);
+    screenType = ScreenType.MAIN_MENU;
   }
 
   /**
@@ -72,27 +74,40 @@ public class GdxGame extends Game {
   private Screen newScreen(ScreenType screenType) {
     switch (screenType) {
       case MAIN_MENU:
+        screenType = ScreenType.MAIN_MENU;
         return new MainMenuScreen(this);
       case MAIN_GAME:
+        screenType = ScreenType.MAIN_GAME;
         return new RagnorakRacer(this);
       case GAME_WIN:
+        screenType = ScreenType.GAME_WIN;
         return new GameWinScreen(this);
       case SETTINGS:
+        screenType = ScreenType.SETTINGS;
         return new SettingsScreen(this);
       case TUTORIAL:
+        screenType = ScreenType.TUTORIAL;
         return new TutorialScreen(this);
       case GAMEOVER:
+        screenType = ScreenType.GAMEOVER;
         return new GameOverScreen(this);
       case GAME_STORY:
+        screenType = ScreenType.GAME_STORY;
         return new GameStoryScreen(this);
       case ENEMY_TUTORIAL:
-          return new EnemyTutorialScreen(this);
+        screenType = ScreenType.ENEMY_TUTORIAL;
+        return new EnemyTutorialScreen(this);
       case MAPCONTENT_TUTORIAL:
+        screenType = ScreenType.MAPCONTENT_TUTORIAL;
         return new MapContentTutorialScreen(this);
 
       default:
         return null;
     }
+  }
+
+  public ScreenType getScreenType(){
+    return ScreenType.SETTINGS;
   }
 
   public enum ScreenType {
