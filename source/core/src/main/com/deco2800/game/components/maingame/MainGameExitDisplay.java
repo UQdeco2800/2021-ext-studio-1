@@ -42,7 +42,7 @@ public class MainGameExitDisplay extends UIComponent {
   private Label timerLabel;
   public boolean exitx = false;
   private long sleepTime = 1000;
-  private int displayTime = 120;
+  private int displayTime = 60;
 
 //  public MainGameExitDisplay(GdxGame game){
 ////    ServiceLocator.registerResourceService(new ResourceService());

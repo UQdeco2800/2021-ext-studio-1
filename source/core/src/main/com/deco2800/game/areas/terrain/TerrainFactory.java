@@ -31,6 +31,11 @@ public class TerrainFactory {
   private final OrthographicCamera camera;
   private final TerrainOrientation orientation;
 
+  private static final int offset = 6;
+  private static final int width = 3;
+  private static final int laneCount = 4;
+  private static final int starPopulation = 20;
+
   private Bridge rainbowBridge;
 
   /**
@@ -141,16 +146,6 @@ public class TerrainFactory {
           TextureRegion lane4
   ) {
     GridPoint2 tilePixelSize = new GridPoint2(star1.getRegionWidth(), star1.getRegionHeight());
-
-    // Magic numbers, need to be set in a config file in future
-    // offset - y coordinate to start drawing the bridge
-    // width - width of a lane
-    // laneCount - amount of lanes to generate
-    // starPopulation - Number of stars to appear in the sky (based on probability, higher value = less stars)
-    int offset = 6;
-    int width = 3;
-    int laneCount = 4;
-    int starPopulation = 20;
 
     // Fills the tile of the screen, also creates an instance of Bridge
     TiledMap tiledMap = createRainbowBridgeTiles(

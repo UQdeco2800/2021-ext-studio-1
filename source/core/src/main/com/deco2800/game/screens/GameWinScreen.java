@@ -24,7 +24,7 @@ public class GameWinScreen extends ScreenAdapter {
 
     private final GdxGame game;
     private final Renderer renderer;
-    private static final String[] GameWinScreenTextures = {"images/Win-screen-2-transparent.png", "images/btn_restart1.png","images/btn_exit1.png", "images/FDS_btn_exit1.png"};
+    private static final String[] GameWinScreenTextures = {"images/Win-screen-2-transparent.png", "images/btn_restart1.png","images/btn_exit1.png", "images/FDS_btn_exit1.png", "images/ragnarok_background.png"};
 
     private static final Sound winSound = Gdx.audio.newSound(Gdx.files.internal("sounds/win.ogg"));
 
