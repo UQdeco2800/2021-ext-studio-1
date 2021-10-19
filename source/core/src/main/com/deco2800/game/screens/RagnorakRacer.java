@@ -27,6 +27,7 @@ import com.deco2800.game.services.ResourceService;
 import com.deco2800.game.services.ServiceLocator;
 import com.deco2800.game.ui.terminal.Terminal;
 import com.deco2800.game.ui.terminal.TerminalDisplay;
+import com.deco2800.game.rendering.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -85,8 +86,16 @@ public class RagnorakRacer extends ScreenAdapter {
 
     private void isPlayerDead() {
         if (this.rainbowBridge.getPlayer() != null) {
+            logger.error("--end--attacker--&&&&&&&&&&&&&&&&&&&&&&&&&&&&{}");
             if (this.rainbowBridge.getPlayer().getComponent(CombatStatsComponent.class).isDead()) {
-                game.setScreen(GdxGame.ScreenType.GAMEOVER);
+                AnimationRenderComponent7 animator7 =
+                        rainbowBridge.getPlayer().getComponent(AnimationRenderComponent7.class);
+                logger.error("--end--attacker--&&&&&&&&&&&&&&&&&&&&&&&&&&&&{}", rainbowBridge.getPlayer());
+                animator7.startAnimation("death");
+                if(animator7.isFinished()) {
+                    logger.error("--end--attacker-----------------------{}", rainbowBridge.getPlayer());
+                    game.setScreen(GdxGame.ScreenType.GAMEOVER);
+                }
             }
         }
     }
