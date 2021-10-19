@@ -42,16 +42,20 @@ public class KeyboardPlayerInputComponent extends InputComponent {
     if (keycode == Keys.W){
       if(entity.getPosition().y <= lanes.get(3).getMid() - 9){
         System.out.println(lanes.get(3).getMid() - 7.5);
-        entity.setPosition(entity.getPosition().x, lanes.get(i).getMid() - (1.7f * (i + 1) + j));
-        newY = lanes.get(i).getMid() - (1.6f * (i + 1));
+        if (i == 2){
+          entity.setPosition(entity.getPosition().x, lanes.get(3).getMid() - (1.6f * (4 + 1)));
+        }else{
+          entity.setPosition(entity.getPosition().x, lanes.get(i).getMid() - (1.7f * (i + 1) + j));
+        }
+//        newY = lanes.get(i).getMid() - (1.6f * (i + 1));
         if (i < 3){
           i += 1;
         }
         if (j <= 0.14f){
           j += 0.03f;
         }
-        System.out.println("current lane number:" + i);
-        System.out.println(newY);
+//        System.out.println("current lane number:" + i);
+//        System.out.println(newY);
       }
     } else if (keycode == Keys.S){
       if (entity.getPosition().y >= lanes.get(0).getMid() - 4){
