@@ -1,6 +1,8 @@
 package com.deco2800.game.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.deco2800.game.GdxGame;
 import com.deco2800.game.components.gamestory.GameStoryActions;
@@ -14,9 +16,10 @@ import com.deco2800.game.rendering.RenderService;
 import com.deco2800.game.rendering.Renderer;
 import com.deco2800.game.services.ResourceService;
 import com.deco2800.game.services.ServiceLocator;
+import com.deco2800.game.services.GameTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.deco2800.game.services.GameTime;
+
 import static com.deco2800.game.GdxGame.ScreenType.MAIN_GAME;
 
 /**
@@ -28,11 +31,12 @@ public class GameStoryScreen extends ScreenAdapter {
     private final Renderer renderer;
     private final long gameTimer;
     private static final String[] storyScreenTextures = {"images/story-screen-bg.png"};
+    private static final Sound storySound = Gdx.audio.newSound(Gdx.files.internal("sounds/story.ogg"));
 
     public GameStoryScreen(GdxGame game) {
         this.game = game;
 
-        this.gameTimer = 15000;
+        this.gameTimer = 18000;
         logger.debug("Initialising story screen services");
         ServiceLocator.registerTimeSource(new GameTime());
         ServiceLocator.registerInputService(new InputService());
@@ -40,6 +44,8 @@ public class GameStoryScreen extends ScreenAdapter {
         ServiceLocator.registerEntityService(new EntityService());
         ServiceLocator.registerRenderService(new RenderService());
         ServiceLocator.registerTimeSource(new GameTime());
+
+        storySound.play(1.0f);
 
         renderer = RenderFactory.createRenderer();
 
@@ -83,6 +89,7 @@ public class GameStoryScreen extends ScreenAdapter {
         ServiceLocator.getEntityService().dispose();
 
         ServiceLocator.clear();
+        storySound.stop();
     }
 
     private void loadAssets() {

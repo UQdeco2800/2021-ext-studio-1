@@ -67,7 +67,8 @@ public class PlayerActions extends Component {
     if(animator.getCurrentAnimation() != null || animator2.getCurrentAnimation() != null|| animator3.getCurrentAnimation() != null || animator4.getCurrentAnimation() != null || animator6.getCurrentAnimation() != null){
       animator5.stopAnimation();
     }
-    if (animator2.isFinished() || animator3.isFinished() || animator4.isFinished() || animator6.isFinished()){
+    if (animator2.isFinished() || animator3.isFinished() || animator4.isFinished() || animator6.isFinished() || animator.isFinished()){
+      animator.stopAnimation();
       animator2.stopAnimation();
       animator3.stopAnimation();
       animator4.stopAnimation();
@@ -115,7 +116,7 @@ public class PlayerActions extends Component {
    * Makes the player attack.
    */
   void attack() {
-    if(attackCount > 150 || attackTrigger == false){
+    if(attackCount > 90 || attackTrigger == false){
       attackTrigger = true;
       logger.info("attack",attackTrigger);
       Array<Entity> entities = ServiceLocator.getEntityService().getEntities();
@@ -139,8 +140,8 @@ public class PlayerActions extends Component {
   }
 
   void unAttack(){
-    animator.stopAnimation();
-    animator5.startAnimation("run");
+////    animator.stopAnimation();
+//    animator5.startAnimation("run");
   }
 
 
