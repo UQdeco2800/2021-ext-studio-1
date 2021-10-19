@@ -21,7 +21,7 @@ public class KeyboardPlayerInputComponent extends InputComponent {
   public static int i = 0;
   public static float j = 0.5f;
 
-  public KeyboardPlayerInputComponent() {
+   KeyboardPlayerInputComponent() {
     super(5);
   }
 
@@ -32,7 +32,7 @@ public class KeyboardPlayerInputComponent extends InputComponent {
    * @see InputProcessor#keyDown(int)
    */
   @Override
-  public boolean keyDown(int keycode) {
+   boolean keyDown(int keycode) {
     Bridge bridge = RagnorakRacer.rainbowBridge;
     List<Lane> lanes = bridge.getLanes();
 //    for (Lane lane : lanes){
@@ -125,7 +125,7 @@ public class KeyboardPlayerInputComponent extends InputComponent {
    * @see InputProcessor#keyUp(int)
    */
   @Override
-  public boolean keyUp(int keycode) {
+   boolean keyUp(int keycode) {
     switch (keycode) {
       case Keys.W:
         walkDirection.sub(Vector2Utils.UP);
